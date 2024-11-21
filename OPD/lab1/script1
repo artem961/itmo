@@ -1,0 +1,43 @@
+#!/usr/bin/bash
+
+mkdir elekid4
+mkdir kabutops6
+mkdir kabutops6/shieldon
+mkdir kabutops6/lilligant
+mkdir skitty9
+mkdir skitty9/happiny
+mkdir skitty9/ducklett
+
+echo "Ходы Aqua Tail Body Slam Covet Dynamicpunch Fire
+Punch Focus Punch Fury Cutter Helping Hand Hyper Voice Ice Punch Iron
+Tail Knock Off Last Resort Mud-Slap Rollout Shock Wave Sleep Talk
+Snore Sucker Punch Super Fang Swift Thunderpunch Trick Water Pulse
+Uproar" > sentret7
+echo "Тип диеты Phototroph
+Carnivore" > victreebel4
+echo "Возможности   Overland=4 Surface=12 Underwater=12
+ Jump=3 Power=6 Intelligence=4 Fountain=0" > wailord4
+ 
+echo "Способности   Supersonic Astonish Bite Wing Attack Confuse Ray
+Swift Air Cutter Acrobatics Mean Look Poison Fang Haze Air
+Slash" > elekid4/crobat
+echo "satk=6 sdef=6 spd=10" > elekid4/voltorb
+echo "Тип диеты
+Omnivore" > elekid4/lickilicky
+echo "Тип диеты Ergovore" > elekid4/magneton
+
+echo "satk=7 sdef=4
+spd=2" > kabutops6/slugma
+
+echo "Ходы Body Slam Counter Double-Edge Drain Punch
+Dynamicpunch Fire Puncht Focus Punch Gravity Helping Hand Ice Punch
+Low Kick Magic Coat Mega Kick Mega Punch Metronome Mud-SLap Pain Split
+Recycle Role Play Secret Power Seismic Toss Signal Beam Sleep Talk
+Snore Swift Thunderpuncht Trick Vacuum Wave Zen Headbutt" > skitty9/medicham
+echo "Тип
+покемона    NORMAL NONE" > skitty9/persian
+
+
+
+
+

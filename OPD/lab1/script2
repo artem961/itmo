@@ -1,0 +1,18 @@
+#!/usr/bin/bash
+
+chmod 755 elekid4
+chmod u=r elekid4/crobat
+chmod u=rw,g=w,o=r elekid4/voltorb
+chmod 444 elekid4/lickilicky
+chmod g=rw,o=w elekid4/magneton
+chmod 357 kabutops6
+chmod u=wx,g=x,o=w kabutops6/shieldon
+chmod 700 kabutops6/lilligant
+chmod o=rw kabutops6/slugma
+chmod u=rw,g=w sentret7
+chmod u=wx,g=x,o=w skitty9
+chmod 444 skitty9/medicham
+chmod u=rx,g=wx,o=rwx skitty9/happiny
+chmod u=r,o=r skitty9/persian
+chmod 307 skitty9/ducklett
+chmod 064 wailord4

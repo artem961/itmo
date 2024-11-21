@@ -1,0 +1,9 @@
+javac -d build/classes -cp lib/Pokemon.jar --source-path src/ src/fight/Main.java
+
+mkdir -p build/libs
+
+cd build/libs/
+
+jar xf ../../lib/Pokemon.jar
+
+jar -cef fight.Main fightBuild.jar -C build/classes . -C build/libs .

@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+
+
+message Tuesday {
+    string type = 1;
+    string name = 2;
+    string time_start = 3;
+    string time_end = 4;
+    string teacher = 5;
+    string room = 6;
+}
+
+message Friday {
+    string type = 1;
+    string name = 2;
+    string time_start = 3;
+    string time_end = 4;
+    string teacher = 5;
+    string room = 6;
+}
+
+message SomeMessage {
+    repeated Tuesday tuesday = 1;
+    repeated Friday friday = 2;
+}
