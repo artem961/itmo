@@ -1,0 +1,262 @@
+\documentclass[12pt, onecolumn]{article}
+% Поддержка языков
+\usepackage[english, russian]{babel} 
+
+% Настройка кодировок
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+
+% Настройка шрифтов
+\usepackage{fontspec}
+\setmainfont[Ligatures=TeX]{Times New Roman} % Шрифт для основного текста документа
+
+% Настройка отступов от краев страницы
+\usepackage[left=5mm, top=20mm, right=5mm, bottom=10mm, nofoot]{geometry}
+
+% пакеты для математики
+\usepackage{amsmath, amsfonts, amssymb, amsthm, mathtools} 
+
+\usepackage{tikz}
+\usepackage{tkz-euclide}
+\usetikzlibrary{angles,quotes}
+%\usepackage{tempora} ломает русский язык
+\usepackage{newtxmath}
+\usepackage{graphicx}
+\usepackage{wrapfig}
+\usepackage{multicol}
+
+\usepackage{fancyhdr} % пакет для установки колонтитулов
+\pagestyle{fancy} % смена стиля оформления страниц
+\fancyhf{} % очистка текущих значений
+
+%%%%%%%%%%%%%%
+%	Команды для линий и углов
+%%%%%%%%%%%%%%
+
+% линии
+\newcommand{\boldline}[4]{
+    \begin{tikzpicture}[scale=1.5, line width=2.5pt]
+        \draw[#4, #3] (1,1) -- (1.8,1);
+        \node[above] at (1,1) {\tiny #1};
+        \node[above] at (1.8,1) {\tiny #2};
+    \end{tikzpicture}
+}
+
+\newcommand{\thinline}[4]{
+    \begin{tikzpicture}[scale=1.5, line width=1.2pt]
+        \draw[#4, #3] (1,1) -- (1.8,1);
+        
+        \node[above] at (1,1) {\tiny #1};
+        \node[above] at (1.8,1) {\tiny #2};
+    \end{tikzpicture}
+}
+
+            
+% углы
+
+\newcommand{\BDC}{
+    \begin{tikzpicture}[scale=1, line width=1.2pt]
+          \draw pic[fill=red, angle radius=0.7cm] {angle = C--D--B};
+	\filldraw[black] (d) circle (0pt) node[anchor=east]{\tiny D};
+            \filldraw[black] (b) circle (0pt) node[anchor=west]{\tiny B};
+            \filldraw[black] (c) circle (0pt) node[anchor=north]{\tiny C};    
+    \end{tikzpicture}
+}
+
+\newcommand{\ACD}{
+    \begin{tikzpicture}[scale=1, line width=1.2pt]
+          \draw pic[fill=yellow, angle radius=0.7cm] {angle = a--c--d};
+	\filldraw[black] (d) circle (0pt) node[anchor=east]{\tiny D};
+            \filldraw[black] (a) circle (0pt) node[anchor=west]{\tiny A};
+            \filldraw[black] (c) circle (0pt) node[anchor=west]{\tiny C};    
+    \end{tikzpicture}
+}
+
+\newcommand{\ADC}{
+    \begin{tikzpicture}[scale=1, line width=1.2pt]
+	\draw pic[fill=blue, angle radius=0.7cm] {angle = b--d--a};
+       \draw pic[fill=red, angle radius=0.7cm] {angle = c--d--b};
+\filldraw[black] (d) circle (0pt) node[anchor=east]{\tiny D};
+            \filldraw[black] (a) circle (0pt) node[anchor=south]{\tiny A};
+            \filldraw[black] (c) circle (0pt) node[anchor=north]{\tiny C};    
+    \end{tikzpicture}
+}
+
+\newcommand{\DCB}{
+    \begin{tikzpicture}[scale=0.1, line width=1.2pt]
+	\draw pic[fill=yellow, angle radius=0.5cm] {angle = a--c--d};
+	\draw pic[fill=black, angle radius=0.5cm] {angle = b--c--a};
+	 \filldraw[black] (d) circle (0pt) node[anchor=east]{\tiny D};
+            \filldraw[black] (b) circle (0pt) node[anchor=west]{\tiny B};
+            \filldraw[black] (c) circle (0pt) node[anchor=north]{\tiny C};    
+    \end{tikzpicture}
+}
+
+\newcommand{\GEF}{
+    \begin{tikzpicture}[scale=0.1]
+	\draw pic[draw=black, line width = 1mm, dotted, angle radius=0.6cm] {angle = g--e--f};
+       \draw[line width=0.5mm, red] (e) -- (g);
+	\draw[line width=0.5mm, blue] (e) -- (f);
+	\filldraw[black] (e) circle (0pt) node[anchor=south]{\tiny E};
+            \filldraw[black] (f) circle (0pt) node[anchor=west]{\tiny F};
+            \filldraw[black] (g) circle (0pt) node[anchor=east]{\tiny G};          
+	
+    \end{tikzpicture}
+}
+
+\newcommand{\CAB}{
+    \begin{tikzpicture}[scale=0.1]	
+	\draw pic[draw=black, line width = 1mm, dotted, angle radius=0.6cm] {angle = c--a--b};
+	\draw[line width=1mm, blue] (a) -- (b);
+     	\draw[line width=1mm, red] (c) -- (a);
+	  \filldraw[black] (a) circle (1pt) node[anchor=south]{\tiny A};
+            \filldraw[black] (b) circle (1pt) node[anchor=west]{\tiny B};
+            \filldraw[black] (c) circle (1pt) node[anchor=east]{\tiny C};           
+    \end{tikzpicture}
+}
+\newcommand{\DAB}{
+    \begin{tikzpicture}[scale=0.1]	
+	\draw pic[draw=red, line width = 1mm, angle radius=0.6cm] {angle = d--a--c};
+	\draw pic[draw=black, line width = 1mm, dotted, angle radius=0.6cm] {angle = c--a--b};
+	\draw[line width=1mm, blue] (a) -- (b);
+     	\draw[line width=1mm, red] (c) -- (a);
+	\draw[line width=1mm, red, dotted] (d) -- (a);
+	  \filldraw[black] (a) circle (1pt) node[anchor=south]{\tiny A};
+            \filldraw[black] (b) circle (1pt) node[anchor=west]{\tiny B};
+            \filldraw[black] (d) circle (1pt) node[anchor=east]{\tiny D};           
+    \end{tikzpicture}
+}
+%%%%%%%%%%%%%%%%%%
+%	Основной	документ
+%%%%%%%%%%%%%%%%%%
+
+\date{}
+
+\setlength{\columnsep}{-3cm}
+
+\begin{document}
+
+\fancyhead[C]{48} % установка верхнего колонтитула
+\fancyhead[R]{КНИГА I ПРЕДЛ. XXIV. ТЕОРЕМА} % установка верхнего колонтитула
+\renewcommand{\headrulewidth}{0pt} % убрать разделительную линию
+
+ \begin{multicols}{2}    
+
+	%	Чертёж пирамиды
+        \begin{tikzpicture}[scale=0.8]       
+	% Задаём точки 
+         	\coordinate (A) at (5, 5);
+            \coordinate (B) at (7, 0);
+            \coordinate (C) at (3, -2);
+            \coordinate (D) at (0, 0);
+	     \coordinate (E) at (0, 0);
+            \coordinate (F) at (2, -5);
+            \coordinate (G) at (-3, -7); 
+	\coordinate (a) at (0.5, 0.5);
+        \coordinate (b) at (0.7, 0);
+        \coordinate (c) at (0.3, -0.2);
+	 \coordinate (d) at (0, 0);
+	     \coordinate (e) at (0, 0);
+            \coordinate (f) at (0.2, -0.5);
+            \coordinate (g) at (-0.3, -0.7); 
+
+            % Углы
+		\draw pic[fill=blue, angle radius=1cm] {angle = B--D--A};
+		\draw pic[fill=red, angle radius=1cm] {angle = C--D--B};
+		\draw pic[fill=yellow, angle radius=1cm] {angle = A--C--D};
+		\draw pic[fill=black, angle radius=1cm] {angle = B--C--A};
+		\draw pic[draw=black, line width = 1mm, dotted, angle radius=1cm] {angle = C--A--B};
+		\draw pic[draw=red, line width = 1mm, angle radius=1cm] {angle = D--A--C};
+        
+		% Линии
+              \draw[line width=1mm, red, dotted] (D) -- (A);
+		\draw[line width=1mm, blue, dotted] (D) -- (C);
+	       \draw[line width=1mm, red] (C) -- (A);
+ 		\draw[line width=1mm, dotted] (C) -- (B);
+		\draw[line width=1mm] (D) -- (B);
+		\draw[line width=1mm, blue] (A) -- (B);
+      
+            % Подписываем точки
+            \filldraw[black] (A) circle (1pt) node[anchor=south]{A};
+            \filldraw[black] (B) circle (1pt) node[anchor=west]{B};
+            \filldraw[black] (C) circle (1pt) node[anchor=north]{C};
+            \filldraw[black] (D) circle (1pt) node[anchor=east]{D};         
+        \end{tikzpicture}
+
+	  \vspace{0.5cm}
+
+	%	Чертёж треугольника
+        \begin{tikzpicture}[scale=0.8]        
+            
+            % Углы
+		\draw pic[draw=black, line width = 1mm, dotted, angle radius=1cm] {angle = G--E--F};
+        
+		% Линии
+          	 \draw[line width=0.5mm, red] (E) -- (G);
+		\draw[line width=0.5mm, blue] (E) -- (F);
+	       \draw[line width=0.5mm, yellow] (G) -- (F);
+
+            % Подписываем точки
+            \filldraw[black] (E) circle (1pt) node[anchor=south]{E};
+            \filldraw[black] (F) circle (1pt) node[anchor=west]{F};
+            \filldraw[black] (G) circle (1pt) node[anchor=north]{G};          
+        \end{tikzpicture}
+
+        \vfill\null
+        \columnbreak
+	
+	%	Основной текст
+        \setlength{\columnsep}{-5cm}
+        
+        \begin{multicols}{2}
+            \includegraphics[width=2.5cm, height=2.5cm ]{images/letter.png}
+			
+            \vfill\null
+	
+            \columnbreak
+			
+            \noindent сли \textit{у двух треугольников по две стороны соответсвенно равны друг другу (\boldline{A}{B}{blue}{} = \thinline{E}{F}{blue}{} и \boldline{A}{D}{red}{dashed} = \thinline{G}{E}{red}{}), и угол заключенный ними в одном \DAB больше, чем в другом \GEF, то сторона \boldline{D}{B}{black}{} противолежащая большему углу больше стороны, противолежайшей меньшему \thinline{F}{G}{yellow}{}.} 
+        \end{multicols}
+   	
+  \vspace{1cm}
+
+	\begin{center}
+        Сделаем \CAB = \GEF (пр. I.$_{23}$),
+ 
+        \vspace{0.5cm}
+        
+	и \boldline{C}{A}{red}{} = \thinline{G}{E}{red}{} (пр. I.$_3$),
+	
+	проведём \boldline{C}{D}{blue}{dashed} и \boldline{B}{C}{black}{dashed}. 
+
+	\vspace{0.5cm}
+        \par 
+        
+        Поскольку \boldline{C}{A}{red}{} = \boldline{A}{D}{red}{dashed} (акс. I, гип., постр.)
+
+            $\therefore \ADC = \ACD $ (пр. I.$_5$), но \BDC < \ACD,
+            
+	   \vspace{0.5cm}
+
+            и $\therefore$ \BDC < \DCB,
+
+   	   \vspace{0.5cm}
+
+	    $\therefore$ \boldline{D}{B}{black}{} > \boldline{B}{C}{black}{dashed} (пр. I.$_{19}$)
+
+	   \vspace{0.5cm}
+
+            но \boldline{B}{C}{black}{dashed} = \thinline{F}{G}{yellow}{} (пр. I.$._4$)
+
+	   \vspace{0.5cm}
+
+	    $\therefore$ \boldline{D}{B}{black}{} >\thinline{F}{G}{yellow}{}.
+            
+      
+        
+        \end{center}
+        
+        \begin{flushright}ч.т.д.\end{flushright}
+        
+    \end{multicols}
+\end{document}
