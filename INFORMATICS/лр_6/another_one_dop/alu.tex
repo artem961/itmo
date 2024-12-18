@@ -1,0 +1,61 @@
+\documentclass[12pt, onecolumn]{article}
+% Поддержка языков
+\usepackage[english, russian]{babel} 
+
+% Настройка кодировок
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+
+% пакеты для математики
+\usepackage{amsmath, amsfonts, amssymb, amsthm, mathtools} 
+
+\usepackage{tikz}
+\usepackage{tkz-euclide}
+\usepackage{newtxmath}
+\usepackage{graphicx}
+\usepackage{wrapfig}
+
+\begin{document}
+
+\begin{tikzpicture}
+\tikzstyle{arrow}=[thick,->,>=stealth]
+%	точки
+	  	\coordinate (A) at (0, 0);
+            \coordinate (B) at (3, -4);
+            \coordinate (C) at (9, -4);
+            \coordinate (D) at (12, 0);
+	     \coordinate (E) at (7, 0);
+            \coordinate (F) at (5, 0);
+            \coordinate (G) at (6, -1); 
+%	прямые
+ \draw[line width=1.5mm] (A) -- (B);
+ \draw[line width=1.5mm] (B) -- (C);
+ \draw[line width=1.5mm] (C) -- (D);
+ \draw[line width=1.5mm] (D) -- (E);
+ \draw[line width=1.5mm] (E) -- (G);
+ \draw[line width=1.5mm] (F) -- (G);
+ \draw[line width=1.5mm] (F) -- (A);
+
+%	заполнение
+\fill[cyan] (A) -- (B) -- (C) -- (D) -- (E) -- (G) -- (F) -- cycle;
+
+%	подпись
+\filldraw(3, -0.5) circle (0pt) node[anchor=north]{A};
+\filldraw(9, -0.5) circle (0pt) node[anchor=north]{B};
+\filldraw(6, -3) circle (0pt) node[anchor=north]{Y};
+\filldraw(6, -5) circle (0pt) node[anchor=north]{Rezult(integer)};
+\filldraw(12, -2) circle (0pt) node[anchor=south]{Flags};
+\filldraw(9, 1) circle (0pt) node[anchor=south]{Operand B(integer)};
+\filldraw(3, 1) circle (0pt) node[anchor=south]{Operand A(integer)};
+\filldraw(-0.5, -1) circle (0pt) node[anchor=south]{Flags};
+\filldraw(0, -3) circle (0pt) node[anchor=south]{Comand};
+%	стрелочки
+ \draw[arrow, line width=1mm] (6, -4)--(6, -5);
+ \draw[arrow, line width=1mm] (3, 1)--(3, 0);
+ \draw[arrow, line width=1mm] (9, 1)--(9, 0);
+ \draw[arrow, line width=1mm] (10.5, -2)--(13, -2);
+ \draw[arrow, line width=1mm] (-1, -1)--(0.7, -1);
+ \draw[arrow, line width=1mm] (-1, -3)--(2.2, -3);	
+    \end{tikzpicture}
+
+\end{document}
