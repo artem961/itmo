@@ -11,11 +11,11 @@ public class SeniorPomidor extends Person implements CanCapture, CanRelease {
 
     @Override
     public String capture(Person person) {
-        return this + " захватил " + person;
+        return this.getName() + " захватил " + person;
     }
 
     @Override
     public String release(Person person, Place place) {
-        return "отпустил " + person.toString();
+        return this.getName() + " отпустил " + person.toString();
     }
 }

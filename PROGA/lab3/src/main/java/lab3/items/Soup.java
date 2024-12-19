@@ -1,5 +1,6 @@
 package lab3.items;
 
+import lab3.enumerations.Ingridients;
 import lab3.exceptions.TooFewArguments;
 
 public class Soup extends Food{

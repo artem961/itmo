@@ -1,4 +1,4 @@
-package lab3.places;
+package lab3.enumerations;
 
 public enum RoomType {
     GROUND("наземная"),
@@ -11,5 +11,10 @@ public enum RoomType {
     }
     public String getText(){
         return this.text;
+    }
+
+    @Override
+    public String toString() {
+        return this.getText();
     }
 }

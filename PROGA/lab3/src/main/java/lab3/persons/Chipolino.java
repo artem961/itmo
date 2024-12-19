@@ -19,12 +19,12 @@ public class Chipolino extends Person implements Lockable, CanBeSend, CanEat, No
 
     @Override
     public String send(Place place, Person attendant) {
-        return "отправили в " + place.toString() + " в сопровождении " + attendant.toString();
+        return this.getName() + " отправили в " + place.toString() + " в сопровождении " + attendant.toString();
     }
 
     @Override
     public String eat(Food food) {
-        return "съел " + food.toString();
+        return this.getName() + " съел " + food.toString();
     }
 
     @Override

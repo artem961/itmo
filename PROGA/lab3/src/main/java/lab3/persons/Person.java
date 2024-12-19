@@ -1,15 +1,21 @@
 package lab3.persons;
 
+import lab3.enumerations.HappinessLevel;
+import lab3.enumerations.HungerLevel;
+
 import java.util.Objects;
 
 public abstract class Person {
     protected String name;
     protected String profession;
-    protected int happinessLevel;
-    protected int hungerLevel;
+    protected HappinessLevel happinessLevel;
+    protected HungerLevel hungerLevel;
 
     public Person(String name){
         this.name = name;
+        this.profession = "тунеядец";
+        this.happinessLevel = HappinessLevel.NEUTRAL;
+        this.hungerLevel = HungerLevel.NEUTRAL;
     }
 
     // region Setters and Getters
@@ -22,11 +28,11 @@ public abstract class Person {
         return this.profession;
     }
 
-    public int getHappinessLevel(){
+    public HappinessLevel getHappinessLevel(){
         return this.happinessLevel;
     }
 
-    public int getHungerLevel(){
+    public HungerLevel getHungerLevel(){
         return this.hungerLevel;
     }
 
@@ -34,15 +40,15 @@ public abstract class Person {
         this.name = name;
     }
 
-    public void setProfession(String profeccion){
-        this.profession = profeccion;
+    public void setProfession(String profession){
+        this.profession = profession;
     }
 
-    public void setHappinessLevel(int happinessLevel){
+    public void setHappinessLevel(HappinessLevel happinessLevel){
         this.happinessLevel = happinessLevel;
     }
 
-    public void setHungerLevel(int hungerLevel){
+    public void setHungerLevel(HungerLevel hungerLevel){
         this.hungerLevel = hungerLevel;
     }
     // endregion
@@ -54,8 +60,7 @@ public abstract class Person {
 
     @Override
     public String toString() {
-        if (this.profession != null) return this.profession + " " + this.name;
-        else return this.name;
+        return this.name;
     }
 
     @Override

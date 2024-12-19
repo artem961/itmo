@@ -1,4 +1,4 @@
-package lab3.items;
+package lab3.enumerations;
 
 public enum Ingridients {
     BREAD("хлеб"),

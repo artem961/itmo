@@ -1,11 +1,10 @@
-package lab3.sentence;
+package lab3.story;
 
 public enum Delimiters {
     COMMA(","),
-    DOT("."),
-    BECAUSE("потому что"),
-    FIRSTLY("во-первых"),
-    SECONDLY("во-вторых");
+    AND("и"),
+    FIRSTLY_BECAUSE("во-первых, потому что"),
+    SECONDLY_BECAUSE("во-вторых, потому что");
 
     private String text;
     private Delimiters(String text){

@@ -10,6 +10,6 @@ public class Vishenka extends Person implements Lockable {
 
     @Override
     public String lock(Place place) {
-        return "заперли в " + place.toString();
+        return this.getName() + " заперли в " + place.toString();
     }
 }

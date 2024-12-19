@@ -1,18 +1,66 @@
 package lab3;
 
-
-import lab3.items.Ingridients;
+import lab3.enumerations.*;
 import lab3.items.RibbedBowl;
 import lab3.items.Soup;
-import lab3.persons.AllOtherPrisoners;
-import lab3.persons.Limonishka;
-import lab3.persons.SeniorPomidor;
-import lab3.sentence.Sentence;
+import lab3.persons.*;
+import lab3.places.*;
+import lab3.story.Delimiters;
+import lab3.story.Sentence;
+import lab3.story.Story;
 
 public class Main{
     public static void main(String[] args) {
-       Sentence st = new Sentence(null);
-       //st.add("Vitalik");
-       System.out.println(st);
+
+        //region Persons
+        SeniorPomidor seniorPomidor = new SeniorPomidor("Синьор Помидор");
+        Chipolino chipolino = new Chipolino("Чиполино");
+        AllOtherPrisoners allOtherPrisoners = new AllOtherPrisoners("все остальные пленники");
+        CompanyOfLemons companyOfLemons = new CompanyOfLemons("рота Лимончиков");
+        Vishenka vishenka = new Vishenka("Вишенка");
+        Limonishka limonishka = new Limonishka("Лимонишка");
+
+        seniorPomidor.setHappinessLevel(HappinessLevel.HAPPY);
+        chipolino.setHungerLevel(HungerLevel.HUNGRY);
+        limonishka.setProfession("тюремщик");
+        //endregion
+
+        //region Places
+        Attic attic = new Attic("чердак", RoomType.GROUND);
+        Cell cell = new Cell("камера", RoomType.UNDERGROUND);
+        Home home = new Home("дом", RoomType.GROUND);
+        Prison prison = new Prison("тюрьма", RoomType.GROUND);
+
+        cell.setLuminocity(Luminocity.NOLIGHT);
+        //endregion
+
+        //region Items
+        Soup soup = new Soup(Ingridients.BREAD, Ingridients.WATER);
+        RibbedBowl ribbedBowl = new RibbedBowl("щербатая миска");
+
+        ribbedBowl.setContent(soup);
+        //endregion
+
+        // region Sentences
+        Sentence sent1 = new Sentence(seniorPomidor.getName());
+        sent1 = sent1.add(seniorPomidor.getHappinessLevel().toString());
+        sent1 = sent1.add(seniorPomidor.capture(chipolino), Delimiters.COMMA);
+        sent1 = sent1.add(seniorPomidor.release(allOtherPrisoners, home), Delimiters.COMMA);
+
+        Sentence sent2 = new Sentence(vishenka.lock(attic));
+
+        Sentence sent3 = new Sentence(chipolino.send(prison, companyOfLemons));
+        sent3 = sent3.add(chipolino.lock(cell), Delimiters.AND);
+
+        Sentence sent4 = new Sentence(limonishka.bring(ribbedBowl, Period.TWICE_A_DAY));
+
+        Sentence sent5 = new Sentence(chipolino.eat(soup));
+        sent5 = sent5.add(chipolino.notSee());
+        sent5 = sent5.add(chipolino.getHungerLevel().getText(), Delimiters.FIRSTLY_BECAUSE);
+        sent5 = sent5.add(cell.getLuminocity().getText(), Delimiters.SECONDLY_BECAUSE);
+        //endregion
+
+        Story st = new Story(sent1, sent2, sent3, sent4, sent5);
+        st.makeStory();
     }
 }

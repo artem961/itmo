@@ -1,5 +1,8 @@
 package lab3.places;
 
+import lab3.enumerations.Luminocity;
+import lab3.enumerations.RoomType;
+
 import java.util.Objects;
 
 public abstract class Place {
@@ -10,6 +13,7 @@ public abstract class Place {
     public Place(String name, RoomType roomType){
         this.name = name;
         this.roomType = roomType;
+        this.luminocity = Luminocity.HASLIGHT;
     }
 
     // region Setters and Getters
@@ -54,6 +58,6 @@ public abstract class Place {
 
     @Override
     public String toString() {
-        return this.roomType + " " + this.name;
+        return this.name;
     }
 }
