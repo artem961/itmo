@@ -1,4 +1,4 @@
-package lab3.story;
+package lab3.enumerations;
 
 public enum Delimiters {
     COMMA(","),

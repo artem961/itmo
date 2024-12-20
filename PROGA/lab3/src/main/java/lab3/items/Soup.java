@@ -28,6 +28,11 @@ public class Soup extends Food{
     }
 
     @Override
+    public String goBad() {
+        return this.getName() + " протух";
+    }
+
+    @Override
     public String toString() {
         String text = this.getName() + " из:";
         try {

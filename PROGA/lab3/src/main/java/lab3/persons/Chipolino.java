@@ -1,5 +1,7 @@
 package lab3.persons;
 
+import lab3.enumerations.HappinessLevel;
+import lab3.enumerations.HungerLevel;
 import lab3.interfaces.CanBeSend;
 import lab3.interfaces.CanEat;
 import lab3.interfaces.Lockable;
@@ -14,6 +16,7 @@ public class Chipolino extends Person implements Lockable, CanBeSend, CanEat, No
 
     @Override
     public String lock(Place place) {
+        this.setHappinessLevel(HappinessLevel.SAD);
         return "заперли в " + place.toString();
     }
 
@@ -24,6 +27,7 @@ public class Chipolino extends Person implements Lockable, CanBeSend, CanEat, No
 
     @Override
     public String eat(Food food) {
+        this.setHungerLevel(HungerLevel.SATISFIED);
         return this.getName() + " съел " + food.toString();
     }
 

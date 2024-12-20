@@ -1,5 +1,7 @@
 package lab3.story;
 
+import lab3.enumerations.Delimiters;
+
 public record Sentence(String content) {
 
     public Sentence add(String text){

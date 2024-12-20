@@ -1,13 +1,10 @@
 package lab3;
 
 import lab3.enumerations.*;
-import lab3.items.RibbedBowl;
-import lab3.items.Soup;
 import lab3.persons.*;
+import lab3.items.*;
 import lab3.places.*;
-import lab3.story.Delimiters;
-import lab3.story.Sentence;
-import lab3.story.Story;
+import lab3.story.*;
 
 public class Main{
     public static void main(String[] args) {
@@ -20,8 +17,6 @@ public class Main{
         Vishenka vishenka = new Vishenka("Вишенка");
         Limonishka limonishka = new Limonishka("Лимонишка");
 
-        seniorPomidor.setHappinessLevel(HappinessLevel.HAPPY);
-        chipolino.setHungerLevel(HungerLevel.HUNGRY);
         limonishka.setProfession("тюремщик");
         //endregion
 
@@ -42,8 +37,7 @@ public class Main{
         //endregion
 
         // region Sentences
-        Sentence sent1 = new Sentence(seniorPomidor.getName());
-        sent1 = sent1.add(seniorPomidor.getHappinessLevel().toString());
+        Sentence sent1 = new Sentence(seniorPomidor.rejoice());
         sent1 = sent1.add(seniorPomidor.capture(chipolino), Delimiters.COMMA);
         sent1 = sent1.add(seniorPomidor.release(allOtherPrisoners, home), Delimiters.COMMA);
 
@@ -56,11 +50,12 @@ public class Main{
 
         Sentence sent5 = new Sentence(chipolino.eat(soup));
         sent5 = sent5.add(chipolino.notSee());
+        chipolino.setHungerLevel(HungerLevel.HUNGRY);
         sent5 = sent5.add(chipolino.getHungerLevel().getText(), Delimiters.FIRSTLY_BECAUSE);
         sent5 = sent5.add(cell.getLuminocity().getText(), Delimiters.SECONDLY_BECAUSE);
         //endregion
 
-        Story st = new Story(sent1, sent2, sent3, sent4, sent5);
-        st.makeStory();
+        Story story = new Story(sent1, sent2, sent3, sent4, sent5);
+        story.makeStory();
     }
 }

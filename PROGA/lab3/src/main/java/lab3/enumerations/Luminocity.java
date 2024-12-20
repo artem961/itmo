@@ -1,9 +1,9 @@
 package lab3.enumerations;
 
 public enum Luminocity {
-    HASLIGHT("есть свет"),
+    HASLIGHT("всегда есть свет"),
     GLUMLY("мрачно"),
-    NOLIGHT("нет света");
+    NOLIGHT("никогда нет света");
 
     private String text;
 

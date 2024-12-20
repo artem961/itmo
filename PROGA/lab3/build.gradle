@@ -17,3 +17,6 @@ dependencies {
 test {
     useJUnitPlatform()
 }
+tasks.jar {
+    manifest.attributes("Main-Class": "lab3.Main")
+}
