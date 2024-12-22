@@ -18,5 +18,5 @@ test {
     useJUnitPlatform()
 }
 tasks.jar {
-    manifest.attributes("Main-Class": "lab3.Main")
+    manifest.attributes("Main-Class": ",lab3.Main")
 }

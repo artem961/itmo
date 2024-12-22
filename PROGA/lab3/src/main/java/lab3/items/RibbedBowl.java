@@ -23,4 +23,11 @@ public class RibbedBowl extends Thing{
             return "пустая " + this.getName();
         }
     }
+
+    public static void main(String[] args) {
+        var rb1 = new RibbedBowl("1");
+        var rb2 = new RibbedBowl("1");
+
+        System.out.println(rb1.equals(rb2));
+    }
 }
