@@ -53,6 +53,6 @@ public class Coordinates implements Validatable{
     @Override
     public String toString() {
         return "Coordinates{\"x\": " + x + ", " +
-                "\"y\": \"" + y + "\"" + "}";
+                "\"y\": " + y + "}";
     }
 }

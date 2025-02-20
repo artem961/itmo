@@ -51,9 +51,9 @@ public class House implements Validatable {
 
     @Override
     public String toString() {
-        return "House{\"name\": " + name + ", " +
-                "\"year\": \"" + year + "\", " +
-                "\"numberOfFlatsOnFloor\": \"" + numberOfFlatsOnFloor + "\"" + "}";
+        return "House{\"name\": \"" + name + "\", " +
+                "\"year\": " + year + ", " +
+                "\"numberOfFlatsOnFloor\": " + numberOfFlatsOnFloor + "}";
     }
 
     @Override

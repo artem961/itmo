@@ -14,7 +14,7 @@ public class Flat implements Comparable<Flat>, Validatable {
     private Integer id; //Поле не может быть null, Значение поля должно быть больше 0, Значение этого поля должно быть уникальным, Значение этого поля должно генерироваться автоматически
     private String name; //Поле не может быть null, Строка не может быть пустой
     private Coordinates coordinates; //Поле не может быть null
-    // private java.time.LocalDate creationDate; //Поле не может быть null, Значение этого поля должно генерироваться автоматически
+    private java.time.LocalDate creationDate; //Поле не может быть null, Значение этого поля должно генерироваться автоматически
     private float area; //Значение поля должно быть больше 0
     private int numberOfRooms; //Значение поля должно быть больше 0
     private long height; //Значение поля должно быть больше 0
@@ -47,7 +47,7 @@ public class Flat implements Comparable<Flat>, Validatable {
         this.height = height;
         this.transport = transport;
         this.house = house;
-        //  this.creationDate = LocalDate.now();
+        //this.creationDate = LocalDate.now();
         validate();
 
     }
@@ -185,9 +185,9 @@ public class Flat implements Comparable<Flat>, Validatable {
                 "\"name\": \"" + name + "\", " +
                 "\"coordinates\": \"" + coordinates + "\", " +
                 //"\"creationDate\" = \"" + creationDate + "\", " +
-                "\"area\": \"" + area + "\", " +
-                "\"numberOfRooms\" = \"" + numberOfRooms + "\", " +
-                "\"height\": \"" + height + "\", " +
+                "\"area\": " + area + ", " +
+                "\"numberOfRooms\" = " + numberOfRooms + ", " +
+                "\"height\": " + height + ", " +
                 "\"furnish\": \"" + furnish + "\", " +
                 "\"transport\": \"" + transport + "\", " +
                 "\"house\": \"" + house + "\"" + "}";
