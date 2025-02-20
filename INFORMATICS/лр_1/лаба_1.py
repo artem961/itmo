@@ -27,9 +27,25 @@ def to_fib(n): #Перевод в СС Фибоначчи
         return ans[:-1]
 
 
-a = input()
-b = input()
-c = input()
+#a = input()
+#b = input()
+#c = input()
+#####
+def to_10(a: str, b: int):
+    ans = 0
+    for i in range(len(a)):
+        ans += b ** (len(a) - i - 1) * int(a[i])
+    return ans
+
+a = "0"
+b = -10
+while to_10(a, b) != 1958:
+    a = str(int(a) + 1)
+print(a)
+
+exit()
+#####
+
 alf = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 ans = 0
 

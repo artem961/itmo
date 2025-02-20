@@ -1,5 +1,11 @@
 package lab3.items;
 
+import lab3.interfaces.Lockable;
+import lab3.places.Attic;
+import lab3.places.Place;
+
+import java.sql.SQLOutput;
+
 public class RibbedBowl extends Thing{
     protected Food content;
 
@@ -25,9 +31,6 @@ public class RibbedBowl extends Thing{
     }
 
     public static void main(String[] args) {
-        var rb1 = new RibbedBowl("1");
-        var rb2 = new RibbedBowl("1");
 
-        System.out.println(rb1.equals(rb2));
     }
 }
