@@ -4,15 +4,17 @@ import lab5.collection.DumpManager;
 import lab5.collection.exceptions.EmptyFieldException;
 import lab5.collection.exceptions.FieldLowerThanValidException;
 import lab5.collection.exceptions.NullFieldException;
+import lab5.collection.exceptions.ValidationException;
+import lab5.collection.interfaces.Validatable;
 
 import java.io.IOException;
 import java.time.LocalDate;
 
-public class Flat implements Comparable<Flat> {
+public class Flat implements Comparable<Flat>, Validatable {
     private Integer id; //Поле не может быть null, Значение поля должно быть больше 0, Значение этого поля должно быть уникальным, Значение этого поля должно генерироваться автоматически
     private String name; //Поле не может быть null, Строка не может быть пустой
     private Coordinates coordinates; //Поле не может быть null
-    private java.time.LocalDate creationDate; //Поле не может быть null, Значение этого поля должно генерироваться автоматически
+    // private java.time.LocalDate creationDate; //Поле не может быть null, Значение этого поля должно генерироваться автоматически
     private float area; //Значение поля должно быть больше 0
     private int numberOfRooms; //Значение поля должно быть больше 0
     private long height; //Значение поля должно быть больше 0
@@ -37,14 +39,16 @@ public class Flat implements Comparable<Flat> {
                 int numberOfRooms,
                 long height,
                 Transport transport,
-                House house) { // нет Furnish и id
-        setName(name);
-        setCoordinates(coordinates);
-        setArea(area);
-        setNumberOfRooms(numberOfRooms);
-        setHeight(height);
-        setHouse(house);
-        this.creationDate = LocalDate.now();
+                House house) throws ValidationException { // нет Furnish и id
+        this.name = name;
+        this.coordinates = coordinates;
+        this.area = area;
+        this.numberOfRooms = numberOfRooms;
+        this.height = height;
+        this.transport = transport;
+        this.house = house;
+        //  this.creationDate = LocalDate.now();
+        validate();
 
     }
 
@@ -67,48 +71,50 @@ public class Flat implements Comparable<Flat> {
                 long height,
                 Furnish furnish,
                 Transport transport,
-                House house) {
-        setName(name);
-        setCoordinates(coordinates);
-        setArea(area);
-        setNumberOfRooms(numberOfRooms);
-        setHeight(height);
-        setHouse(house);
-        setFurnish(furnish);
-        this.creationDate = LocalDate.now();
+                House house) throws ValidationException {
+        this.name = name;
+        this.coordinates = coordinates;
+        this.area = area;
+        this.numberOfRooms = numberOfRooms;
+        this.height = height;
+        this.transport = transport;
+        this.house = house;
+        this.furnish = furnish;
+        //  this.creationDate = LocalDate.now();
+        validate();
 
     }
 
     //region setteres
-    public void setId(Integer id) {
-        if (id == null) throw new NullFieldException();
-        if (id <= 0) throw new FieldLowerThanValidException(0);
+    public void setId(Integer id) throws ValidationException {
+        if (id == null) throw new NullFieldException("id");
+        if (id <= 0) throw new FieldLowerThanValidException("id", 0);
         this.id = id;
     }
 
-    public void setName(String name) {
-        if (name == null) throw new NullFieldException();
-        if (name.isEmpty()) throw new EmptyFieldException();
+    public void setName(String name) throws ValidationException {
+        if (name == null) throw new NullFieldException("name");
+        if (name.isEmpty()) throw new EmptyFieldException("name");
         this.name = name;
     }
 
-    public void setCoordinates(Coordinates coordinates) {
-        if (coordinates == null) throw new NullFieldException();
+    public void setCoordinates(Coordinates coordinates) throws ValidationException {
+        if (coordinates == null) throw new NullFieldException("coordinates");
         this.coordinates = coordinates;
     }
 
-    public void setArea(float area) {
-        if (area <= 0) throw new FieldLowerThanValidException(0);
+    public void setArea(float area) throws ValidationException {
+        if (area <= 0) throw new FieldLowerThanValidException("area", 0);
         this.area = area;
     }
 
-    public void setNumberOfRooms(int numberOfRooms) {
-        if (numberOfRooms <= 0) throw new FieldLowerThanValidException(0);
+    public void setNumberOfRooms(int numberOfRooms) throws ValidationException {
+        if (numberOfRooms <= 0) throw new FieldLowerThanValidException("numberOfRooms", 0);
         this.numberOfRooms = numberOfRooms;
     }
 
-    public void setHeight(long height) {
-        if (height <= 0) throw new FieldLowerThanValidException(0);
+    public void setHeight(long height) throws ValidationException {
+        if (height <= 0) throw new FieldLowerThanValidException("height", 0);
         this.height = height;
     }
 
@@ -116,8 +122,8 @@ public class Flat implements Comparable<Flat> {
         this.furnish = furnish;
     }
 
-    public void setTransport(Transport transport) {
-        if (transport == null) throw new NullFieldException();
+    public void setTransport(Transport transport) throws ValidationException {
+        if (transport == null) throw new NullFieldException("transport");
         this.transport = transport;
     }
 
@@ -155,9 +161,9 @@ public class Flat implements Comparable<Flat> {
         return numberOfRooms;
     }
 
-    public LocalDate getCreationDate() {
-        return creationDate;
-    }
+    // public LocalDate getCreationDate() {
+    //   return creationDate;
+    //}
 
     public long getHeight() {
         return height;
@@ -178,12 +184,31 @@ public class Flat implements Comparable<Flat> {
         return "Flat{\"id\": " + id + ", " +
                 "\"name\": \"" + name + "\", " +
                 "\"coordinates\": \"" + coordinates + "\", " +
-                "\"creationDate\" = \"" + creationDate + "\", " +
+                //"\"creationDate\" = \"" + creationDate + "\", " +
                 "\"area\": \"" + area + "\", " +
                 "\"numberOfRooms\" = \"" + numberOfRooms + "\", " +
                 "\"height\": \"" + height + "\", " +
                 "\"furnish\": \"" + furnish + "\", " +
                 "\"transport\": \"" + transport + "\", " +
                 "\"house\": \"" + house + "\"" + "}";
+    }
+
+    @Override
+    public void validate() throws ValidationException {
+        if (id == null) throw new NullFieldException("id");
+        if (id <= 0) throw new FieldLowerThanValidException("id", 0);
+
+        if (name == null) throw new NullFieldException("name");
+        if (name.isEmpty()) throw new EmptyFieldException("name");
+
+        if (coordinates == null) throw new NullFieldException("coordinates");
+
+        if (area <= 0) throw new FieldLowerThanValidException("area", 0);
+
+        if (numberOfRooms <= 0) throw new FieldLowerThanValidException("numberOfRooms", 0);
+
+        if (height <= 0) throw new FieldLowerThanValidException("height", 0);
+
+        if (transport == null) throw new NullFieldException("transport");
     }
 }

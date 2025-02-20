@@ -1,8 +1,10 @@
 package lab5.collection;
 
+import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import lab5.collection.exceptions.ValidationException;
 import lab5.collection.models.*;
 
 import java.io.IOException;
@@ -23,10 +25,17 @@ public class CollectionManager {
      *
      * @param flat Объект класса Flat
      */
-    public void add(Flat flat) {
+    public void add(Flat flat) throws ValidationException{
         if (flat.getId() == null) {
-            flat.setId(this.idGenerator.getNextId());
+            try {
+                flat.setId(this.idGenerator.getNextId());
+            } catch (ValidationException e) {
+                throw new RuntimeException("Ошибка в установке id");
+            }
         }
+        flat.validate();
+        flat.getCoordinates().validate();
+        flat.getHouse().validate();
         collection.add(flat);
     }
 
@@ -35,26 +44,9 @@ public class CollectionManager {
      *
      * @param jsonObject JsonObject из библиотеки gson
      */
-    private void add(JsonObject jsonObject) {
-        String name = jsonObject.get("name").toString();
-        Coordinates coordinates = new Coordinates(
-                (Float) jsonObject.get("coordinates").getAsJsonObject().get("x").getAsFloat(),
-                jsonObject.get("coordinates").getAsJsonObject().get("y").getAsDouble());
-        float area = jsonObject.get("area").getAsFloat();
-        int numberOfRooms = jsonObject.get("numberOfRooms").getAsInt();
-        long height = jsonObject.get("height").getAsLong();
-        Furnish furnish = Furnish.valueOf("BAD");
-        String st = jsonObject.get("transport").toString();
-        Transport transport = Transport.valueOf(st);
-        System.out.println(transport);
-        //House house = new House(
-          //      jsonObject.get("house").getAsJsonObject().get("name").toString(),
-            //    jsonObject.get("house").getAsJsonObject().get("year").getAsInt(),
-              //  jsonObject.get("house").getAsJsonObject().get("numberOfFlatsOnFloor").getAsLong());
-
-
-        //Flat flat = new Flat(name, coordinates, area, numberOfRooms, height, furnish, transport, house);
-        //System.out.println(flat);
+    private void add(JsonObject jsonObject) throws ValidationException{
+        Flat flat = new Gson().fromJson(jsonObject, Flat.class);
+        add(flat);
     }
 
     /**
@@ -81,13 +73,13 @@ public class CollectionManager {
      * @param filePath Пусть до файла
      * @throws IOException
      */
-    public void loadCollection(String filePath) throws IOException {
+    public void loadCollection(String filePath) throws IOException, ValidationException {
         JsonElement jsonElement = new DumpManager(filePath).readJson();
 
         if (jsonElement.isJsonArray()) {
             JsonArray jsonArray = jsonElement.getAsJsonArray();
             for (JsonElement element : jsonArray.asList()) {
-                //this.add(element.getAsJsonObject());
+                this.add(element.getAsJsonObject());
             }
         } else {
             this.add(jsonElement.getAsJsonObject());
