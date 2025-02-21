@@ -16,10 +16,12 @@ public class Main {
         try {
             CollectionManager collectionManager = new CollectionManager();
             collectionManager.loadCollection("test.json");
-            System.out.println(collectionManager.toString());
+            collectionManager.saveCollection("test.json");
         } catch (IOException e) {
             System.out.println(e.getMessage());
         } catch (ValidationException e) {
+            System.out.println(e.getMessage());
+        } catch (Exception e){
             System.out.println(e.getMessage());
         }
 

@@ -25,14 +25,34 @@ public class CollectionManager {
      *
      * @param flat Объект класса Flat
      */
-    public void add(Flat flat) throws ValidationException{
+    public void add(Flat flat) throws ValidationException {
         if (flat.getId() == null) {
             try {
-                flat.setId(this.idGenerator.getNextId());
+                Integer id = this.idGenerator.getNextId();
+                while (!isIdFree(id)){
+                    id = this.idGenerator.getNextId();
+                }
+                flat.setId(id);
             } catch (ValidationException e) {
-                throw new RuntimeException("Ошибка в установке id");
+                throw new ValidationException("Ошибка в установке id");
             }
         }
+        else if(!isIdFree(flat.getId())) {
+            try {
+                Integer id = this.idGenerator.getNextId();
+                while (!isIdFree(id)){
+                    id = this.idGenerator.getNextId();
+                }
+                flat.setId(id);
+            } catch (ValidationException e) {
+                throw new ValidationException("Ошибка в установке id");
+            }
+        }
+
+        if (flat.getCreationDate() == null) {
+            flat.setCreationDate();
+        }
+
         flat.validate();
         flat.getCoordinates().validate();
         flat.getHouse().validate();
@@ -40,13 +60,15 @@ public class CollectionManager {
     }
 
     /**
-     * Добавляет элемент в коллекцию
-     *
-     * @param jsonObject JsonObject из библиотеки gson
+     * Проверяет свободен ли данный id
+     * @param id id
+     * @return boolean
      */
-    private void add(JsonObject jsonObject) throws ValidationException{
-        Flat flat = new Gson().fromJson(jsonObject, Flat.class);
-        add(flat);
+    public boolean isIdFree(Integer id){
+        for (Flat flat: collection){
+            if (flat.getId() == id) return false;
+        }
+        return true;
     }
 
     /**
@@ -70,20 +92,23 @@ public class CollectionManager {
     /**
      * Загружает элементы коллекции из файла в формате JSON
      *
-     * @param filePath Пусть до файла
+     * @param filePath Путь до файла
      * @throws IOException
      */
     public void loadCollection(String filePath) throws IOException, ValidationException {
-        JsonElement jsonElement = new DumpManager(filePath).readJson();
-
-        if (jsonElement.isJsonArray()) {
-            JsonArray jsonArray = jsonElement.getAsJsonArray();
-            for (JsonElement element : jsonArray.asList()) {
-                this.add(element.getAsJsonObject());
-            }
-        } else {
-            this.add(jsonElement.getAsJsonObject());
+        List<Flat> flatList = new DumpManager(filePath).jsonFileToFlatList();
+        for (Flat flat: flatList) {
+            this.add(flat);
         }
+    }
+
+    /**
+     * Сохраняет коллекцию в файл
+     * @param filePath Путь до файла
+     * @throws IOException
+     */
+    public void saveCollection(String filePath) throws IOException {
+       new DumpManager(filePath).CollectionToJsonFile(this.sort());
     }
 
     @Override

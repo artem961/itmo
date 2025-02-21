@@ -1,6 +1,6 @@
 plugins {
     id 'java'
-    id 'application' // Для запуска приложения
+    id 'application'
 }
 
 group = 'org.example'
@@ -17,14 +17,20 @@ dependencies {
 }
 
 application {
-    mainClass = 'org.example.Main' // Укажите ваш главный класс
+    mainClass = 'lab5.Main'
 }
 
 run {
     jvmArgs '--add-opens', 'java.base/java.time=ALL-UNNAMED'
+    doLast {
+       // println "Задача run завершена"
+    }
 }
 
 test {
     useJUnitPlatform()
     jvmArgs '--add-opens', 'java.base/java.time=ALL-UNNAMED'
+    doLast {
+        println "Задача test завершена"
+    }
 }

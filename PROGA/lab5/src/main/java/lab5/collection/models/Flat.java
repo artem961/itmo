@@ -47,7 +47,7 @@ public class Flat implements Comparable<Flat>, Validatable {
         this.height = height;
         this.transport = transport;
         this.house = house;
-        //this.creationDate = LocalDate.now();
+        this.creationDate = LocalDate.now();
         validate();
 
     }
@@ -80,7 +80,7 @@ public class Flat implements Comparable<Flat>, Validatable {
         this.transport = transport;
         this.house = house;
         this.furnish = furnish;
-        //  this.creationDate = LocalDate.now();
+        this.creationDate = LocalDate.now();
         validate();
 
     }
@@ -101,6 +101,10 @@ public class Flat implements Comparable<Flat>, Validatable {
     public void setCoordinates(Coordinates coordinates) throws ValidationException {
         if (coordinates == null) throw new NullFieldException("coordinates");
         this.coordinates = coordinates;
+    }
+
+    public void setCreationDate() {
+        this.creationDate = LocalDate.now();
     }
 
     public void setArea(float area) throws ValidationException {
@@ -161,9 +165,9 @@ public class Flat implements Comparable<Flat>, Validatable {
         return numberOfRooms;
     }
 
-    // public LocalDate getCreationDate() {
-    //   return creationDate;
-    //}
+    public LocalDate getCreationDate() {
+        return creationDate;
+    }
 
     public long getHeight() {
         return height;
@@ -184,7 +188,7 @@ public class Flat implements Comparable<Flat>, Validatable {
         return "Flat{\"id\": " + id + ", " +
                 "\"name\": \"" + name + "\", " +
                 "\"coordinates\": \"" + coordinates + "\", " +
-                //"\"creationDate\" = \"" + creationDate + "\", " +
+                "\"creationDate\" = \"" + creationDate + "\", " +
                 "\"area\": " + area + ", " +
                 "\"numberOfRooms\" = " + numberOfRooms + ", " +
                 "\"height\": " + height + ", " +
