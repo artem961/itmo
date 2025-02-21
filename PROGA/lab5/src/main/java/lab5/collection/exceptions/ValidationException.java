@@ -1,6 +1,9 @@
 package lab5.collection.exceptions;
 
-public class ValidationException extends Exception{
+/**
+ * Исключение валидации данных.
+ */
+public class ValidationException extends Exception {
     public ValidationException(String message) {
         super(message);
     }

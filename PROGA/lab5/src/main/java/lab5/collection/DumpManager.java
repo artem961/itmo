@@ -10,7 +10,7 @@ import java.util.List;
 
 
 /**
- * Класс для чтения коллекции из файла и записи в файл.
+ * Класс для работы с чтением и записью файлов.
  */
 public class DumpManager {
     private final String filePath;
@@ -23,6 +23,12 @@ public class DumpManager {
         this.filePath = filePath;
     }
 
+    /**
+     * Читает Json файл и возвращает JsonElement из библиотеки gson.
+     *
+     * @return JsonElement библиотека gson
+     * @throws IOException
+     */
     public JsonElement readJson() throws IOException {
         InputStreamReader reader = new InputStreamReader(new FileInputStream(filePath));
         StringBuilder jsonString = new StringBuilder();
@@ -40,6 +46,12 @@ public class DumpManager {
         return jsonElement;
     }
 
+    /**
+     * Сохраняет JSON строку в файл.
+     *
+     * @param jsonString строка в формате JSON
+     * @throws IOException
+     */
     public void saveJson(String jsonString) throws IOException {
         BufferedWriter writer = new BufferedWriter(new FileWriter(filePath));
         try {
@@ -50,6 +62,12 @@ public class DumpManager {
         writer.close();
     }
 
+    /**
+     * Файл с данными в формате JSON преобразует список Flat.
+     *
+     * @return List из элементов класса Flat
+     * @throws IOException
+     */
     public List<Flat> jsonFileToFlatList() throws IOException {
         JsonElement jsonElement = null;
         List<Flat> flatList = new ArrayList<>();
@@ -76,6 +94,12 @@ public class DumpManager {
         return flatList;
     }
 
+    /**
+     * Сохраняет коллекцию в файл JSON.
+     *
+     * @param collection Коллекция
+     * @throws IOException
+     */
     public void CollectionToJsonFile(Collection collection) throws IOException {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         try {

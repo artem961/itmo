@@ -5,11 +5,9 @@ package lab5.collection.exceptions;
  */
 public class FieldLowerThanValidException extends ValidationException {
     /**
-     *
      * @param Bound Нижняя граница
      */
-    public FieldLowerThanValidException(String field, Number Bound)
-    {
+    public FieldLowerThanValidException(String field, Number Bound) {
         super("Значение поля " + field + " должно быть больше чем " + Bound.toString() + ".");
     }
 }

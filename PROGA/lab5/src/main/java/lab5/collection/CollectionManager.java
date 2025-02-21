@@ -29,18 +29,17 @@ public class CollectionManager {
         if (flat.getId() == null) {
             try {
                 Integer id = this.idGenerator.getNextId();
-                while (!isIdFree(id)){
+                while (!isIdFree(id)) {
                     id = this.idGenerator.getNextId();
                 }
                 flat.setId(id);
             } catch (ValidationException e) {
                 throw new ValidationException("Ошибка в установке id");
             }
-        }
-        else if(!isIdFree(flat.getId())) {
+        } else if (!isIdFree(flat.getId())) {
             try {
                 Integer id = this.idGenerator.getNextId();
-                while (!isIdFree(id)){
+                while (!isIdFree(id)) {
                     id = this.idGenerator.getNextId();
                 }
                 flat.setId(id);
@@ -61,11 +60,12 @@ public class CollectionManager {
 
     /**
      * Проверяет свободен ли данный id
+     *
      * @param id id
      * @return boolean
      */
-    public boolean isIdFree(Integer id){
-        for (Flat flat: collection){
+    public boolean isIdFree(Integer id) {
+        for (Flat flat : collection) {
             if (flat.getId() == id) return false;
         }
         return true;
@@ -75,9 +75,19 @@ public class CollectionManager {
      * Удаляет элемент из коллекции
      *
      * @param flat Объект Flat для добавления
+     * @return Содержался ли элемент в коллекции
      */
-    public void remove(Flat flat) {
-        collection.remove(flat);
+    public boolean remove(Flat flat) {
+        return collection.remove(flat);
+    }
+
+    /**
+     * Удаляет элемент коллекции по ID.
+     * @param id ID элемента.
+     * @return
+     */
+    public boolean removeById(Integer id) {
+        return collection.removeIf(flat -> flat.getId() == id);
     }
 
     /**
@@ -90,25 +100,26 @@ public class CollectionManager {
     }
 
     /**
-     * Загружает элементы коллекции из файла в формате JSON
+     * Загружает элементы коллекции из файла.
      *
      * @param filePath Путь до файла
      * @throws IOException
      */
     public void loadCollection(String filePath) throws IOException, ValidationException {
         List<Flat> flatList = new DumpManager(filePath).jsonFileToFlatList();
-        for (Flat flat: flatList) {
+        for (Flat flat : flatList) {
             this.add(flat);
         }
     }
 
     /**
-     * Сохраняет коллекцию в файл
+     * Сохраняет коллекцию в файл.
+     *
      * @param filePath Путь до файла
      * @throws IOException
      */
     public void saveCollection(String filePath) throws IOException {
-       new DumpManager(filePath).CollectionToJsonFile(this.sort());
+        new DumpManager(filePath).CollectionToJsonFile(this.sort());
     }
 
     @Override
