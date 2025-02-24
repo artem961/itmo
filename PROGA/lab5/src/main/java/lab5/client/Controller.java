@@ -34,19 +34,19 @@ public class Controller {
 
     public String handleInput(String input){
         try {
-            parseInput(input);
+            return input + (parseInput(input) == true? " успешно": " неуспешно") + " выполнил";
         } catch (CommandExecutionError e) {
             return e.getMessage();
         } catch (CommandNotFoundException e){
             return e.getMessage() + " Введите help для справки по командам.";
         }
-        return input;
+        //return "";
     }
 
-    private void parseInput(String input) throws CommandExecutionError {
+    private boolean parseInput(String input) throws CommandExecutionError {
         String[] data = input.split(" ");
         String commandName = data[0];
         Command command = commandManager.getCommand(commandName);
-        command.apply(Arrays.copyOfRange(data, 1, data.length));
+        return command.apply(Arrays.copyOfRange(data, 1, data.length));
     }
 }

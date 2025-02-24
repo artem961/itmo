@@ -2,7 +2,7 @@ package lab5;
 
 import lab5.client.CommandManager;
 import lab5.client.Controller;
-import lab5.client.commands.Help;
+import lab5.client.commands.*;
 import lab5.client.console.StandartConsole;
 import lab5.collection.CollectionManager;
 import lab5.collection.DumpManager;
@@ -29,9 +29,24 @@ public class Main {
             System.out.println(e.getMessage());
         }
          */
-        CommandManager commandManager = new CommandManager();
         StandartConsole console = new StandartConsole();
+        CommandManager commandManager = new CommandManager();
+        CollectionManager collectionManager = new CollectionManager();
+
+        try {
+            collectionManager.loadCollection("test.json");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (ValidationException e) {
+            throw new RuntimeException(e);
+        }
+
         commandManager.registerCommand(new Help(console, commandManager));
+        commandManager.registerCommand(new Show(console, collectionManager));
+        commandManager.registerCommand(new RemoveById(console, collectionManager));
+        commandManager.registerCommand(new Clear(console, collectionManager));
+        commandManager.registerCommand(new Save(console, collectionManager));
+        commandManager.registerCommand(new Exit());
 
         Controller controller = new Controller(commandManager, console);
         controller.run();

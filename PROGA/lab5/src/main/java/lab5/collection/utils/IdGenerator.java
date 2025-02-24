@@ -1,4 +1,4 @@
-package lab5.collection;
+package lab5.collection.utils;
 
 /**
  * Генератор ID.

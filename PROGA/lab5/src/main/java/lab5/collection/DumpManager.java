@@ -2,8 +2,10 @@ package lab5.collection;
 
 import com.google.gson.*;
 import lab5.collection.models.Flat;
+import lab5.collection.utils.LocalDateAdapter;
 
 import java.io.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -13,23 +15,20 @@ import java.util.List;
  * Класс для работы с чтением и записью файлов.
  */
 public class DumpManager {
-    private final String filePath;
-
-    public DumpManager(String filePath) throws IOException {
-        if (!(new File(filePath).exists())) {
-            throw new IOException("Файл не найден!");
-        }
-
-        this.filePath = filePath;
-    }
-
     /**
      * Читает Json файл и возвращает JsonElement из библиотеки gson.
      *
+     * @param filePath Путь до файла.
      * @return JsonElement библиотека gson
      * @throws IOException
      */
-    public JsonElement readJson() throws IOException {
+    public static JsonElement readJson(String filePath) throws IOException {
+        if (!(new File(filePath).exists())) {
+            if (!(new File(filePath + ".json").exists())) {
+                throw new IOException("Не удалось найти файл!");
+            } else filePath = filePath + ".json";
+        }
+
         InputStreamReader reader = new InputStreamReader(new FileInputStream(filePath));
         StringBuilder jsonString = new StringBuilder();
         int data;
@@ -50,9 +49,16 @@ public class DumpManager {
      * Сохраняет JSON строку в файл.
      *
      * @param jsonString строка в формате JSON
+     * @param filePath   Путь до файла.
      * @throws IOException
      */
-    public void saveJson(String jsonString) throws IOException {
+    public static void saveJson(String jsonString, String filePath) throws IOException {
+        if (!(new File(filePath).exists())) {
+            if (!(new File(filePath + ".json").exists())) {
+                new File(filePath).createNewFile();
+            } else filePath = filePath + ".json";
+        }
+
         BufferedWriter writer = new BufferedWriter(new FileWriter(filePath));
         try {
             writer.write(jsonString);
@@ -65,23 +71,28 @@ public class DumpManager {
     /**
      * Файл с данными в формате JSON преобразует список Flat.
      *
+     * @param filePath Путь до файла.
      * @return List из элементов класса Flat
      * @throws IOException
      */
-    public List<Flat> jsonFileToFlatList() throws IOException {
+    public static List<Flat> jsonFileToFlatList(String filePath) throws IOException {
         JsonElement jsonElement = null;
         List<Flat> flatList = new ArrayList<>();
 
         try {
-            jsonElement = this.readJson();
+            jsonElement = readJson(filePath);
         } catch (IOException e) {
-            throw new IOException("Не удалось прочитать файл!");
+            throw new IOException(e.getMessage());
         }
+
+        Gson gson = new GsonBuilder()
+                .registerTypeAdapter(LocalDate.class, new LocalDateAdapter())
+                .create();
 
         if (jsonElement.isJsonArray()) {
             JsonArray jsonArray = jsonElement.getAsJsonArray();
             for (JsonElement element : jsonArray.asList()) {
-                Flat flat = new Gson().fromJson(element, Flat.class);
+                Flat flat = gson.fromJson(element, Flat.class);
                 if (flat.getCreationDate() == null) flat.setCreationDate();
                 flatList.add(flat);
             }
@@ -97,15 +108,19 @@ public class DumpManager {
     /**
      * Сохраняет коллекцию в файл JSON.
      *
+     * @param filePath   Путь до файла.
      * @param collection Коллекция
      * @throws IOException
      */
-    public void CollectionToJsonFile(Collection collection) throws IOException {
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+    public static void CollectionToJsonFile(Collection collection, String filePath) throws IOException {
+        Gson gson = new GsonBuilder()
+                .setPrettyPrinting()
+                .registerTypeAdapter(LocalDate.class, new LocalDateAdapter())
+                .create();
         try {
-            saveJson(gson.toJson(collection));
+            saveJson(gson.toJson(collection), filePath);
         } catch (IOException e) {
-            throw new IOException("Не удалось сохранить в файл!");
+            throw new IOException(e.getMessage());
         }
     }
 }

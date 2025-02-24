@@ -1,11 +1,8 @@
 package lab5.collection;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
 import lab5.collection.exceptions.ValidationException;
 import lab5.collection.models.*;
+import lab5.collection.utils.IdGenerator;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -83,11 +80,21 @@ public class CollectionManager {
 
     /**
      * Удаляет элемент коллекции по ID.
+     *
      * @param id ID элемента.
      * @return
      */
     public boolean removeById(Integer id) {
         return collection.removeIf(flat -> flat.getId() == id);
+    }
+
+    /**
+     * Удаляет все элементы коллекции.
+     * @return
+     */
+    public boolean removeAll() {
+        collection.clear();
+        return true;
     }
 
     /**
@@ -106,7 +113,7 @@ public class CollectionManager {
      * @throws IOException
      */
     public void loadCollection(String filePath) throws IOException, ValidationException {
-        List<Flat> flatList = new DumpManager(filePath).jsonFileToFlatList();
+        List<Flat> flatList = DumpManager.jsonFileToFlatList(filePath);
         for (Flat flat : flatList) {
             this.add(flat);
         }
@@ -119,7 +126,7 @@ public class CollectionManager {
      * @throws IOException
      */
     public void saveCollection(String filePath) throws IOException {
-        new DumpManager(filePath).CollectionToJsonFile(this.sort());
+        DumpManager.CollectionToJsonFile(this.sort(), filePath);
     }
 
     @Override

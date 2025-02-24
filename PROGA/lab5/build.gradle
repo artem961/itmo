@@ -21,15 +21,25 @@ application {
 }
 
 run {
-    jvmArgs '--add-opens', 'java.base/java.time=ALL-UNNAMED'
     doLast {
        // println "Задача run завершена"
     }
 }
 
+jar {
+    manifest {
+        attributes(
+                'Main-Class': 'lab5.Main',
+        )
+    }
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+}
+
 test {
     useJUnitPlatform()
-    jvmArgs '--add-opens', 'java.base/java.time=ALL-UNNAMED'
     doLast {
         println "Задача test завершена"
     }
