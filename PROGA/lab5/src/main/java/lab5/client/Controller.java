@@ -1,11 +1,14 @@
 package lab5.client;
 
 import lab5.client.commands.Command;
+import lab5.client.commands.History;
 import lab5.client.console.StandartConsole;
 import lab5.client.exceptions.CommandExecutionError;
 import lab5.client.exceptions.CommandNotFoundException;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class Controller {
     private final StandartConsole console;
@@ -47,6 +50,7 @@ public class Controller {
         String[] data = input.split(" ");
         String commandName = data[0];
         Command command = commandManager.getCommand(commandName);
+        commandManager.addToHistory(command);
         return command.apply(Arrays.copyOfRange(data, 1, data.length));
     }
 }

@@ -5,6 +5,9 @@ import lab5.client.console.Console;
 import lab5.client.exceptions.CommandExecutionError;
 import lab5.collection.CollectionManager;
 
+import java.io.IOException;
+import java.util.List;
+
 public class History extends Command{
     private final Console console;
     private final CommandManager commandManager;
@@ -17,6 +20,16 @@ public class History extends Command{
 
     @Override
     public boolean apply(String[] args) throws CommandExecutionError {
-        return super.apply(args);
+        List<Command> history = commandManager.getHistory();
+
+        for (Command command: history){
+            if (command == null) continue;
+            try {
+                console.writeln(command.getName());
+            } catch (IOException e) {
+                throw new CommandExecutionError(e.getMessage());
+            }
+        }
+        return true;
     }
 }
