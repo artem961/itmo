@@ -49,6 +49,7 @@ public class Main {
         commandManager.registerCommand(new Exit());
         commandManager.registerCommand(new History(console, commandManager));
         commandManager.registerCommand(new PrintDescending(console, collectionManager));
+        commandManager.registerCommand(new Add(console, collectionManager));
 
         Controller controller = new Controller(commandManager, console);
         controller.run();

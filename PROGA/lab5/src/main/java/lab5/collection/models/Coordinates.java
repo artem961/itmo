@@ -42,11 +42,11 @@ public class Coordinates implements Validatable{
     public void validate() throws ValidationException{
         if (x <= -621) {
             this.setX(0f);
-            throw new FieldLowerThanValidException("x", -621);
+            throw new FieldLowerThanValidException("X", -621);
         }
         if (x == null) {
             this.setX(0f);
-            throw new NullFieldException("x");
+            throw new NullFieldException("X");
         }
     }
 
