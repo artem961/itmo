@@ -29,6 +29,7 @@
     "numberOfRooms": 12,
     "height": 52,
     "transport": "FEW",
+    "furnish": "BAD",
     "house": {
       "name": "dom",
       "year": 2003,

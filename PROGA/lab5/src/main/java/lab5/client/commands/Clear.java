@@ -16,6 +16,7 @@ public class Clear extends Command{
 
     @Override
     public boolean apply(String[] args) throws CommandExecutionError {
+        console.writeln("Коллекция очищена!");
         return collectionManager.removeAll();
     }
 }

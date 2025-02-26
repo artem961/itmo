@@ -1,28 +1,33 @@
 package lab5.client.commands;
 
+import lab5.client.commands.forms.FlatForm;
 import lab5.client.console.Console;
 import lab5.client.exceptions.CommandExecutionError;
 import lab5.collection.CollectionManager;
+import lab5.collection.exceptions.ValidationException;
 import lab5.collection.models.Flat;
 
 import java.io.IOException;
 import java.util.List;
 
-public class PrintDescending extends Command {
+public class RemoveLower extends Command{
     private final Console console;
     private final CollectionManager collectionManager;
 
-    public PrintDescending(Console console, CollectionManager collectionManager) {
-        super("print_descending", "Вывести все элементы коллекции в порядке убывания.");
+    public RemoveLower(Console console, CollectionManager collectionManager) {
+        super("remove_lower", "Удаляет из коллекции все элементы, меньшие заданного.");
         this.console = console;
         this.collectionManager = collectionManager;
     }
 
     @Override
     public boolean apply(String[] args) throws CommandExecutionError {
+        Flat flat = new FlatForm(console).run();
         List<Flat> flatList = collectionManager.sort();
-        for (int i = flatList.size() - 1; i >= 0; i--) {
-            console.writeln(flatList.get(i).toString());
+        for (Flat f: flatList){
+            if (f.compareTo(flat) == -1){
+                collectionManager.remove(f);
+            }
         }
         return true;
     }

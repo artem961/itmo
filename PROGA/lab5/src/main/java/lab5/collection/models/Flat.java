@@ -48,7 +48,7 @@ public class Flat implements Comparable<Flat>, Validatable {
         this.transport = transport;
         this.house = house;
         this.creationDate = LocalDate.now();
-        validate();
+        //validate();
 
     }
 
@@ -81,7 +81,7 @@ public class Flat implements Comparable<Flat>, Validatable {
         this.house = house;
         this.furnish = furnish;
         this.creationDate = LocalDate.now();
-        validate();
+        //validate();
 
     }
 
@@ -92,49 +92,71 @@ public class Flat implements Comparable<Flat>, Validatable {
         this.id = id;
     }
 
-    public void setName(String name) throws ValidationException {
-        if (name == null) throw new NullFieldException("name");
-        if (name.isEmpty()) throw new EmptyFieldException("name");
-        this.name = name;
-    }
-
-    public void setCoordinates(Coordinates coordinates) throws ValidationException {
-        if (coordinates == null) throw new NullFieldException("coordinates");
-        this.coordinates = coordinates;
-    }
-
     public void setCreationDate() {
         this.creationDate = LocalDate.now();
     }
-
-    public void setArea(float area) throws ValidationException {
-        if (area <= 0) throw new FieldLowerThanValidException("area", 0);
-        this.area = area;
-    }
-
-    public void setNumberOfRooms(int numberOfRooms) throws ValidationException {
-        if (numberOfRooms <= 0) throw new FieldLowerThanValidException("numberOfRooms", 0);
-        this.numberOfRooms = numberOfRooms;
-    }
-
-    public void setHeight(long height) throws ValidationException {
-        if (height <= 0) throw new FieldLowerThanValidException("height", 0);
-        this.height = height;
-    }
-
-    public void setFurnish(Furnish furnish) {
-        this.furnish = furnish;
-    }
-
-    public void setTransport(Transport transport) throws ValidationException {
-        if (transport == null) throw new NullFieldException("transport");
-        this.transport = transport;
-    }
-
-    public void setHouse(House house) {
-        this.house = house;
-    }
     // endregion
+
+    //region validation
+    public static void ValidateId(Integer id) throws ValidationException {
+        if (id == null) throw new NullFieldException("id");
+        if (id <= 0) throw new FieldLowerThanValidException("id", 0);
+    }
+
+    public static void ValidateName(String name) throws ValidationException {
+        if (name == null) throw new NullFieldException("name");
+        if (name.isEmpty()) throw new EmptyFieldException("name");
+    }
+
+    public static void ValidateCoordinates(Coordinates coordinates) throws ValidationException {
+        if (coordinates == null) throw new NullFieldException("coordinates");
+    }
+
+    public static void ValidateCreationDate() throws ValidationException {
+    }
+
+    public static void ValidateArea(float area) throws ValidationException {
+        if (area <= 0) throw new FieldLowerThanValidException("area", 0);
+    }
+
+    public static void ValidateNumberOfRooms(int numberOfRooms) throws ValidationException {
+        if (numberOfRooms <= 0) throw new FieldLowerThanValidException("numberOfRooms", 0);
+    }
+
+    public static void ValidateHeight(long height) throws ValidationException {
+        if (height <= 0) throw new FieldLowerThanValidException("height", 0);
+    }
+
+    public static void ValidateFurnish(Furnish furnish) throws ValidationException {
+    }
+
+    public static void ValidateTransport(Transport transport) throws ValidationException {
+        if (transport == null) throw new NullFieldException("transport");
+    }
+
+    public static void ValidateHouse(House house) throws ValidationException {
+
+    }
+
+    @Override
+    public void validate() throws ValidationException {
+        if (id == null) throw new NullFieldException("id");
+        if (id <= 0) throw new FieldLowerThanValidException("id", 0);
+
+        if (name == null) throw new NullFieldException("name");
+        if (name.isEmpty()) throw new EmptyFieldException("name");
+
+        if (coordinates == null) throw new NullFieldException("coordinates");
+
+        if (area <= 0) throw new FieldLowerThanValidException("area", 0);
+
+        if (numberOfRooms <= 0) throw new FieldLowerThanValidException("numberOfRooms", 0);
+
+        if (height <= 0) throw new FieldLowerThanValidException("height", 0);
+
+        if (transport == null) throw new NullFieldException("transport");
+    }
+    //endregion
 
     //region getters
     public Integer getId() {
@@ -178,9 +200,10 @@ public class Flat implements Comparable<Flat>, Validatable {
     }
     //endregion
 
+
     @Override
     public int compareTo(Flat o) {
-        return this.getId().compareTo(o.getId());
+        return Integer.compare(name.length(), o.getName().length());
     }
 
     @Override
@@ -195,24 +218,5 @@ public class Flat implements Comparable<Flat>, Validatable {
                 "\"furnish\": \"" + furnish + "\", " +
                 "\"transport\": \"" + transport + "\", " +
                 "\"house\": \"" + house + "\"" + "}";
-    }
-
-    @Override
-    public void validate() throws ValidationException {
-        if (id == null) throw new NullFieldException("id");
-        if (id <= 0) throw new FieldLowerThanValidException("id", 0);
-
-        if (name == null) throw new NullFieldException("name");
-        if (name.isEmpty()) throw new EmptyFieldException("name");
-
-        if (coordinates == null) throw new NullFieldException("coordinates");
-
-        if (area <= 0) throw new FieldLowerThanValidException("area", 0);
-
-        if (numberOfRooms <= 0) throw new FieldLowerThanValidException("numberOfRooms", 0);
-
-        if (height <= 0) throw new FieldLowerThanValidException("height", 0);
-
-        if (transport == null) throw new NullFieldException("transport");
     }
 }

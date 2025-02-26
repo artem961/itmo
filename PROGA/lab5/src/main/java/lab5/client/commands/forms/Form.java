@@ -1,4 +1,4 @@
-package lab5.client.commands.utility;
+package lab5.client.commands.forms;
 
 import lab5.client.console.Console;
 
@@ -11,5 +11,5 @@ public abstract class Form {
         this.console = console;
     }
 
-    public abstract Object run() throws IOException;
+    public abstract Object run();
 }

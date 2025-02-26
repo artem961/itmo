@@ -22,20 +22,11 @@ public class Show extends Command{
     public boolean apply(String[] args) throws CommandExecutionError {
         List<Flat> flatList = collectionManager.sort();
         if (flatList.size() == 0){
-            try {
-                console.writeln("Коллекция пустая!");
-            } catch (IOException e) {
-                throw new CommandExecutionError();
-            };
+            console.writeln("Коллекция пустая!");
             return true;
         }
-
         for (Flat flat: flatList){
-            try {
-                console.writeln(flat.toString());
-            } catch (IOException e) {
-                throw new CommandExecutionError();
-            }
+            console.writeln(flat.toString());
         }
         return true;
     }

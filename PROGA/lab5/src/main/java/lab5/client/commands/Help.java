@@ -21,11 +21,7 @@ public class Help extends Command{
     public boolean apply(String[] args) throws CommandExecutionError {
         List<Command> commandList = commandManager.getAllCommands();
         for (Command command: commandList) {
-            try {
-                console.writeln(command.getName() + " - " + command.getDescription());
-            } catch (IOException e) {
-                throw new CommandExecutionError();
-            }
+            console.writeln(command.getName() + " - " + command.getDescription());
         }
         return true;
     }

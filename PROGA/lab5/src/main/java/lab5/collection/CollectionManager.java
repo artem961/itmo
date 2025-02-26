@@ -2,6 +2,7 @@ package lab5.collection;
 
 import lab5.collection.exceptions.ValidationException;
 import lab5.collection.models.*;
+import lab5.collection.utils.CollectionInfo;
 import lab5.collection.utils.IdGenerator;
 
 import java.io.IOException;
@@ -14,8 +15,14 @@ import java.util.List;
  * Менеджер для управления коллекцией.
  */
 public class CollectionManager {
+    private CollectionInfo collectionInfo = new CollectionInfo(null, 0, null);
     private final IdGenerator idGenerator = new IdGenerator();
     private final HashSet<Flat> collection = new HashSet<>();
+
+    public void updateCollectionInfo(){
+        this.collectionInfo = new CollectionInfo(collectionInfo.collectionType(), collection.size(), collectionInfo.loadedFrom());
+    }
+
 
     /**
      * Добавляет элемент в коллекцию
@@ -50,9 +57,20 @@ public class CollectionManager {
         }
 
         flat.validate();
-        flat.getCoordinates().validate();
-        flat.getHouse().validate();
+        if (flat.getCoordinates() != null) flat.getCoordinates().validate();
+        if (flat.getHouse() != null) flat.getHouse().validate();
         collection.add(flat);
+    }
+
+    public void update(Flat flat, Integer id) throws ValidationException {
+        Flat.ValidateId(id);
+        if (!isIdFree(id)) {
+            removeById(id);
+            flat.setId(id);
+        } else{
+            flat.setId(id);
+        }
+       add(flat);
     }
 
     /**
@@ -90,6 +108,7 @@ public class CollectionManager {
 
     /**
      * Удаляет все элементы коллекции.
+     *
      * @return
      */
     public boolean removeAll() {
@@ -117,6 +136,7 @@ public class CollectionManager {
         for (Flat flat : flatList) {
             this.add(flat);
         }
+        this.collectionInfo = new CollectionInfo(collection.getClass().getName(), collection.size(), filePath);
     }
 
     /**
@@ -127,6 +147,10 @@ public class CollectionManager {
      */
     public void saveCollection(String filePath) throws IOException {
         DumpManager.CollectionToJsonFile(this.sort(), filePath);
+    }
+
+    public CollectionInfo getCollectionInfo() {
+        return collectionInfo;
     }
 
     @Override

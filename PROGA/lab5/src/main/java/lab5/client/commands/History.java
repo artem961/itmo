@@ -24,11 +24,7 @@ public class History extends Command{
 
         for (Command command: history){
             if (command == null) continue;
-            try {
-                console.writeln(command.getName());
-            } catch (IOException e) {
-                throw new CommandExecutionError(e.getMessage());
-            }
+            console.writeln(command.getName());
         }
         return true;
     }

@@ -15,22 +15,30 @@ public class House implements Validatable {
         this.year = year;
         this.numberOfFlatsOnFloor = numberOfFlatsOnFloor;
         validate();
-
     }
 
-    //region setters
-    public void setName(String name) {
-        this.name = name;
+    //region validation
+    public static void ValidateName(String name) throws ValidationException{
     }
 
-    public void setYear(int year) throws ValidationException {
+    public static void ValidateYear(int year) throws ValidationException {
         if (year <= 0) throw new FieldLowerThanValidException("year", 0);
-        this.year = year;
     }
 
-    public void setNumberOfFlatsOnFloor(Long numberOfFlatsOnFloor) throws ValidationException {
+    public static void ValidateNumberOfFlatsOnFloor(Long numberOfFlatsOnFloor) throws ValidationException {
         if (numberOfFlatsOnFloor <= 0) throw new FieldLowerThanValidException("numberOfFlatsOnFloor", 0);
-        this.numberOfFlatsOnFloor = numberOfFlatsOnFloor;
+    }
+
+    @Override
+    public void validate() throws ValidationException {
+        if (year <= 0) {
+            this.year = 1;
+            throw new FieldLowerThanValidException("year", 0);
+        }
+        if (numberOfFlatsOnFloor <= 0){
+            this.numberOfFlatsOnFloor = Long.valueOf(1);
+            throw new FieldLowerThanValidException("numberOfFlatsOnFloor", 0);
+        }
     }
     //endregion
 
@@ -54,11 +62,5 @@ public class House implements Validatable {
         return "House{\"name\": \"" + name + "\", " +
                 "\"year\": " + year + ", " +
                 "\"numberOfFlatsOnFloor\": " + numberOfFlatsOnFloor + "}";
-    }
-
-    @Override
-    public void validate() throws ValidationException {
-        if (year <= 0) throw new FieldLowerThanValidException("year", 0);
-        if (numberOfFlatsOnFloor <= 0) throw new FieldLowerThanValidException("numberOfFlatsOnFloor", 0);
     }
 }

@@ -12,7 +12,7 @@ public interface Console extends AutoCloseable {
      * @return Считанные данные.
      * @throws IOException
      */
-    String read() throws IOException;
+    String read();
 
     /**
      * Выводит сообщение и считывает данные с консоли.
@@ -21,7 +21,7 @@ public interface Console extends AutoCloseable {
      * @return Считанные данные.
      * @throws IOException
      */
-    default String read(String message) throws IOException {
+    default String read(String message){
         write(message);
         return read();
     }
@@ -31,9 +31,9 @@ public interface Console extends AutoCloseable {
      *
      * @param data Строка для вывода.
      */
-    void write(String data) throws IOException;
+    void write(String data);
 
-    default void writeln(String data) throws IOException {
+    default void writeln(String data) {
         write(data + "\n");
     }
 }

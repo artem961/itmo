@@ -16,22 +16,10 @@ import java.io.*;
 
 public class Main {
     public static void main(String... args){
-        /*
-        try {
-            CollectionManager collectionManager = new CollectionManager();
-            collectionManager.loadCollection("test.json");
-            collectionManager.saveCollection("test.json");
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        } catch (ValidationException e) {
-            System.out.println(e.getMessage());
-        } catch (Exception e){
-            System.out.println(e.getMessage());
-        }
-         */
         StandartConsole console = new StandartConsole();
         CommandManager commandManager = new CommandManager();
         CollectionManager collectionManager = new CollectionManager();
+        Controller controller = new Controller(commandManager, console);
 
         try {
             collectionManager.loadCollection("test.json");
@@ -42,17 +30,22 @@ public class Main {
         }
 
         commandManager.registerCommand(new Help(console, commandManager));
+        commandManager.registerCommand(new Info(console, collectionManager));
         commandManager.registerCommand(new Show(console, collectionManager));
+        commandManager.registerCommand(new Add(console, collectionManager));
+        commandManager.registerCommand(new Update(console, collectionManager));
         commandManager.registerCommand(new RemoveById(console, collectionManager));
         commandManager.registerCommand(new Clear(console, collectionManager));
         commandManager.registerCommand(new Save(console, collectionManager));
+        commandManager.registerCommand(new ExecuteScript(console, controller, commandManager, collectionManager));
         commandManager.registerCommand(new Exit());
+        commandManager.registerCommand(new AddIfMax(console, collectionManager));
+        commandManager.registerCommand(new RemoveLower(console, collectionManager));
         commandManager.registerCommand(new History(console, commandManager));
+        commandManager.registerCommand(new MaxByFurnish(console, collectionManager));
+        commandManager.registerCommand(new FilterLessThanFurnish(console, collectionManager));
         commandManager.registerCommand(new PrintDescending(console, collectionManager));
-        commandManager.registerCommand(new Add(console, collectionManager));
 
-        Controller controller = new Controller(commandManager, console);
         controller.run();
-
     }
 }

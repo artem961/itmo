@@ -16,15 +16,26 @@ public class Coordinates implements Validatable{
         validate();
     }
 
-    //region setters
-    private void setX(Float x) throws ValidationException{
+    //region validation
+    public static void ValidateX(Float x) throws ValidationException{
         if (x <= -621) throw new FieldLowerThanValidException("x", -621);
         if (x == null) throw new NullFieldException("x");
-        this.x = x;
     }
 
-    private void setY(double y) {
-        this.y = y;
+    public static void ValidateY(double y) throws ValidationException{
+
+    }
+
+    @Override
+    public void validate() throws ValidationException{
+        if (x <= -621) {
+            this.x = 0f;
+            throw new FieldLowerThanValidException("X", -621);
+        }
+        if (x == null) {
+            this.x = 0f;
+            throw new NullFieldException("X");
+        }
     }
     //endregion
 
@@ -38,17 +49,7 @@ public class Coordinates implements Validatable{
     }
     //endregion
 
-    @Override
-    public void validate() throws ValidationException{
-        if (x <= -621) {
-            this.setX(0f);
-            throw new FieldLowerThanValidException("X", -621);
-        }
-        if (x == null) {
-            this.setX(0f);
-            throw new NullFieldException("X");
-        }
-    }
+
 
     @Override
     public String toString() {
