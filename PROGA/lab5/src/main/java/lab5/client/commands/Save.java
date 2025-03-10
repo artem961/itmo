@@ -20,11 +20,13 @@ public class Save extends Command{
     public boolean apply(String[] args) throws CommandExecutionError {
         try {
             collectionManager.saveCollection(args[0]);
+            collectionManager.backupManager.deleteBackupFile();
         } catch (IOException e) {
             throw new CommandExecutionError(e.getMessage());
         } catch (IndexOutOfBoundsException e){
             throw new CommandExecutionError("Введите имя файла!");
         }
+        console.writeln("Коллекция успешно сохранена в файл " + args[0] + "!");
         return true;
     }
 }

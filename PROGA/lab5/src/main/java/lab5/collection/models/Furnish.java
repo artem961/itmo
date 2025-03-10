@@ -1,16 +1,31 @@
 package lab5.collection.models;
 
-public enum Furnish{
+/**
+ * Мебель.
+ */
+public enum Furnish {
     DESIGNER,
     LITTLE,
     BAD,
     NONE;
 
-    public static Furnish getMax(){
+    /**
+     * Получить максимальное значение.
+     *
+     * @return
+     */
+    public static Furnish getMax() {
         return DESIGNER;
     }
 
-    public static int compare(Furnish f1, Furnish f2){
+    /**
+     * Сравнить 2 значения перечисления.
+     *
+     * @param f1
+     * @param f2
+     * @return
+     */
+    public static int compare(Furnish f1, Furnish f2) {
         return -Integer.compare(f1.ordinal(), f2.ordinal());
     }
 }

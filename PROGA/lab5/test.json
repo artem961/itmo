@@ -1,5 +1,23 @@
 [
   {
+    "id": 5,
+    "name": "Vova",
+    "coordinates": {
+      "x": 1.3,
+      "y": 1.2
+    },
+    "creationDate": "2025-02-24",
+    "area": 12.0,
+    "numberOfRooms": 12,
+    "height": 52,
+    "transport": "FEW",
+    "house": {
+      "name": "dom",
+      "year": 2003,
+      "numberOfFlatsOnFloor": 666
+    }
+  },
+  {
     "id": 1,
     "name": "Vasya",
     "coordinates": {
@@ -28,8 +46,8 @@
     "area": 12.0,
     "numberOfRooms": 12,
     "height": 52,
-    "transport": "FEW",
     "furnish": "BAD",
+    "transport": "FEW",
     "house": {
       "name": "dom",
       "year": 2003,
@@ -37,21 +55,98 @@
     }
   },
   {
-    "id": 3,
-    "name": "Vova",
+    "id": 6,
+    "name": "random_flat_80",
     "coordinates": {
-      "x": 1.3,
-      "y": 1.2
+      "x": 80.0,
+      "y": 80.0
     },
-    "creationDate": "2025-02-24",
-    "area": 12.0,
-    "numberOfRooms": 12,
-    "height": 52,
-    "transport": "FEW",
+    "creationDate": "2025-03-10",
+    "area": 80.0,
+    "numberOfRooms": 80,
+    "height": 80,
+    "furnish": "NONE",
+    "transport": "NONE",
     "house": {
-      "name": "dom",
-      "year": 2003,
-      "numberOfFlatsOnFloor": 666
+      "name": "random_house_80",
+      "year": 80,
+      "numberOfFlatsOnFloor": 80
+    }
+  },
+  {
+    "id": 3,
+    "name": "random_flat_730",
+    "coordinates": {
+      "x": 730.0,
+      "y": 730.0
+    },
+    "creationDate": "2025-03-10",
+    "area": 730.0,
+    "numberOfRooms": 730,
+    "height": 730,
+    "furnish": "NONE",
+    "transport": "NONE",
+    "house": {
+      "name": "random_house_730",
+      "year": 730,
+      "numberOfFlatsOnFloor": 730
+    }
+  },
+  {
+    "id": 7,
+    "name": "random_flat_1910",
+    "coordinates": {
+      "x": 1910.0,
+      "y": 1910.0
+    },
+    "creationDate": "2025-03-10",
+    "area": 1910.0,
+    "numberOfRooms": 1910,
+    "height": 1910,
+    "furnish": "NONE",
+    "transport": "NONE",
+    "house": {
+      "name": "random_house_1910",
+      "year": 1910,
+      "numberOfFlatsOnFloor": 1910
+    }
+  },
+  {
+    "id": 8,
+    "name": "random_flat_3676",
+    "coordinates": {
+      "x": 3676.0,
+      "y": 3676.0
+    },
+    "creationDate": "2025-03-10",
+    "area": 3676.0,
+    "numberOfRooms": 3676,
+    "height": 3676,
+    "furnish": "NONE",
+    "transport": "NONE",
+    "house": {
+      "name": "random_house_3676",
+      "year": 3676,
+      "numberOfFlatsOnFloor": 3676
+    }
+  },
+  {
+    "id": 4,
+    "name": "random_flat_6830",
+    "coordinates": {
+      "x": 6830.0,
+      "y": 6830.0
+    },
+    "creationDate": "2025-03-10",
+    "area": 6830.0,
+    "numberOfRooms": 6830,
+    "height": 6830,
+    "furnish": "NONE",
+    "transport": "NONE",
+    "house": {
+      "name": "random_house_6830",
+      "year": 6830,
+      "numberOfFlatsOnFloor": 6830
     }
   }
 ]

@@ -25,7 +25,6 @@ public class Add extends Command {
 
     @Override
     public boolean apply(String[] args) throws CommandExecutionError {
-
         try {
             Flat flat = new FlatForm(console).run();
             collectionManager.add(flat);

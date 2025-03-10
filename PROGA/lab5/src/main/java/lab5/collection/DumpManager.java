@@ -12,14 +12,15 @@ import java.util.List;
 
 
 /**
- * Класс для работы с чтением и записью файлов.
+ * Класс для работы с чтением и записью коллекции.
  */
 public class DumpManager {
+
     /**
-     * Читает Json файл и возвращает JsonElement из библиотеки gson.
+     * Читает JSON файл
      *
-     * @param filePath Путь до файла.
-     * @return JsonElement библиотека gson
+     * @param filePath Путь до файла
+     * @return JsonElement из библиотеки Gson
      * @throws IOException
      */
     public static JsonElement readJson(String filePath) throws IOException {
@@ -39,6 +40,7 @@ public class DumpManager {
         } catch (IOException e) {
             throw new RuntimeException("Не удалось прочитать файл!");
         }
+        if (jsonString.isEmpty()) jsonString.append("[]");
         JsonElement jsonElement = JsonParser.parseString(jsonString.toString());
 
         reader.close();
@@ -69,7 +71,7 @@ public class DumpManager {
     }
 
     /**
-     * Файл с данными в формате JSON преобразует список Flat.
+     * Файл с данными в формате JSON преобразует в список Flat.
      *
      * @param filePath Путь до файла.
      * @return List из элементов класса Flat
@@ -97,7 +99,7 @@ public class DumpManager {
                 flatList.add(flat);
             }
         } else {
-            Flat flat = new Gson().fromJson(jsonElement, Flat.class);
+            Flat flat = gson.fromJson(jsonElement, Flat.class);
             if (flat.getCreationDate() == null) flat.setCreationDate();
             flatList.add(flat);
         }
@@ -109,7 +111,7 @@ public class DumpManager {
      * Сохраняет коллекцию в файл JSON.
      *
      * @param filePath   Путь до файла.
-     * @param collection Коллекция
+     * @param collection Коллекция.
      * @throws IOException
      */
     public static void CollectionToJsonFile(Collection collection, String filePath) throws IOException {

@@ -21,7 +21,7 @@ public interface Console extends AutoCloseable {
      * @return Считанные данные.
      * @throws IOException
      */
-    default String read(String message){
+    default String read(String message) {
         write(message);
         return read();
     }
@@ -33,6 +33,11 @@ public interface Console extends AutoCloseable {
      */
     void write(String data);
 
+    /**
+     * Написать данные в консоль и перейти на следующую строку.
+     *
+     * @param data
+     */
     default void writeln(String data) {
         write(data + "\n");
     }

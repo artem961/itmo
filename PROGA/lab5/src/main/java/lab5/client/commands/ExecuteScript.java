@@ -34,8 +34,8 @@ public class ExecuteScript extends Command {
             while ((data = reader.read()) != -1) {
                 fileInput.append((char) data);
             }
-            executeScript(fileInput.toString(), filePath);
             reader.close();
+            executeScript(fileInput.toString(), filePath);
         } catch (IndexOutOfBoundsException e) {
             throw new CommandExecutionError("Введите имя файла!");
         } catch (FileNotFoundException e) {
@@ -48,18 +48,6 @@ public class ExecuteScript extends Command {
 
     private void executeScript(String script, String filePath) throws CommandExecutionError {
         List<String> scriptLines = List.of(script.split("\n"));
-        if (controller.getLaunchedScripts().contains(filePath)){
-            controller.clearLaunchedScripts();
-            throw new CommandExecutionError("Рекурсивный вызов скрипта!");
-        }
-
-        controller.addLaunchedScript(filePath);
-        console.setScript(scriptLines);
-        console.setScriptMode(true);
-        try {
-            controller.run();
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
+        controller.launchScript(filePath, scriptLines);
     }
 }

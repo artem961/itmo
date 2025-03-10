@@ -1,15 +1,16 @@
 package lab5.collection.models;
 
-import lab5.collection.DumpManager;
 import lab5.collection.exceptions.EmptyFieldException;
 import lab5.collection.exceptions.FieldLowerThanValidException;
 import lab5.collection.exceptions.NullFieldException;
 import lab5.collection.exceptions.ValidationException;
 import lab5.collection.interfaces.Validatable;
 
-import java.io.IOException;
 import java.time.LocalDate;
 
+/**
+ * Квартира.
+ */
 public class Flat implements Comparable<Flat>, Validatable {
     private Integer id; //Поле не может быть null, Значение поля должно быть больше 0, Значение этого поля должно быть уникальным, Значение этого поля должно генерироваться автоматически
     private String name; //Поле не может быть null, Строка не может быть пустой
@@ -23,7 +24,7 @@ public class Flat implements Comparable<Flat>, Validatable {
     private House house; //Поле может быть null
 
     /**
-     * Конструктор без Furnish
+     * Конструктор без furnish.
      *
      * @param name
      * @param coordinates
@@ -32,6 +33,7 @@ public class Flat implements Comparable<Flat>, Validatable {
      * @param height
      * @param transport
      * @param house
+     * @throws ValidationException
      */
     public Flat(String name,
                 Coordinates coordinates,
@@ -49,11 +51,10 @@ public class Flat implements Comparable<Flat>, Validatable {
         this.house = house;
         this.creationDate = LocalDate.now();
         //validate();
-
     }
 
     /**
-     * Перегрузка конструктора с Furnish
+     * Перегрузка конструктора с furnish
      *
      * @param name
      * @param coordinates
@@ -82,7 +83,6 @@ public class Flat implements Comparable<Flat>, Validatable {
         this.furnish = furnish;
         this.creationDate = LocalDate.now();
         //validate();
-
     }
 
     //region setteres
@@ -98,42 +98,102 @@ public class Flat implements Comparable<Flat>, Validatable {
     // endregion
 
     //region validation
+
+    /**
+     * Проверить валидность id.
+     *
+     * @param id
+     * @throws ValidationException
+     */
     public static void ValidateId(Integer id) throws ValidationException {
         if (id == null) throw new NullFieldException("id");
         if (id <= 0) throw new FieldLowerThanValidException("id", 0);
     }
 
+    /**
+     * Проверить валидность имени.
+     *
+     * @param name
+     * @throws ValidationException
+     */
     public static void ValidateName(String name) throws ValidationException {
         if (name == null) throw new NullFieldException("name");
         if (name.isEmpty()) throw new EmptyFieldException("name");
     }
 
+    /**
+     * Проверить валидность координат.
+     *
+     * @param coordinates
+     * @throws ValidationException
+     */
     public static void ValidateCoordinates(Coordinates coordinates) throws ValidationException {
         if (coordinates == null) throw new NullFieldException("coordinates");
     }
 
+    /**
+     * Проверить валидность даты создания.
+     *
+     * @throws ValidationException
+     */
     public static void ValidateCreationDate() throws ValidationException {
     }
 
+    /**
+     * Проверить валидность площади.
+     *
+     * @param area
+     * @throws ValidationException
+     */
     public static void ValidateArea(float area) throws ValidationException {
         if (area <= 0) throw new FieldLowerThanValidException("area", 0);
     }
 
+    /**
+     * Проверить валидность количества комнат.
+     *
+     * @param numberOfRooms
+     * @throws ValidationException
+     */
     public static void ValidateNumberOfRooms(int numberOfRooms) throws ValidationException {
         if (numberOfRooms <= 0) throw new FieldLowerThanValidException("numberOfRooms", 0);
     }
 
+    /**
+     * Проверить валидность высоты.
+     *
+     * @param height
+     * @throws ValidationException
+     */
     public static void ValidateHeight(long height) throws ValidationException {
         if (height <= 0) throw new FieldLowerThanValidException("height", 0);
     }
 
+    /**
+     * Проверить валидность мебели.
+     *
+     * @param furnish
+     * @throws ValidationException
+     */
     public static void ValidateFurnish(Furnish furnish) throws ValidationException {
     }
 
+    /**
+     * Проверить валидность транспорта.
+     *
+     * @param transport
+     * @throws ValidationException
+     */
     public static void ValidateTransport(Transport transport) throws ValidationException {
         if (transport == null) throw new NullFieldException("transport");
     }
 
+    /**
+     * Проверить валидность дома.
+     *
+     * @param house
+     * @throws ValidationException
+     */
     public static void ValidateHouse(House house) throws ValidationException {
 
     }

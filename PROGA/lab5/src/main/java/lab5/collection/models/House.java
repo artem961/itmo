@@ -5,6 +5,9 @@ import lab5.collection.exceptions.NullFieldException;
 import lab5.collection.exceptions.ValidationException;
 import lab5.collection.interfaces.Validatable;
 
+/**
+ * Дом.
+ */
 public class House implements Validatable {
     private String name; //Поле может быть null
     private int year; //Значение поля должно быть больше 0
@@ -18,13 +21,32 @@ public class House implements Validatable {
     }
 
     //region validation
-    public static void ValidateName(String name) throws ValidationException{
+
+    /**
+     * Проверить валидность названия.
+     *
+     * @param name
+     * @throws ValidationException
+     */
+    public static void ValidateName(String name) throws ValidationException {
     }
 
+    /**
+     * Проверить валидность года.
+     *
+     * @param year
+     * @throws ValidationException
+     */
     public static void ValidateYear(int year) throws ValidationException {
         if (year <= 0) throw new FieldLowerThanValidException("year", 0);
     }
 
+    /**
+     * Проверить валидность количества квартир на этаже.
+     *
+     * @param numberOfFlatsOnFloor
+     * @throws ValidationException
+     */
     public static void ValidateNumberOfFlatsOnFloor(Long numberOfFlatsOnFloor) throws ValidationException {
         if (numberOfFlatsOnFloor <= 0) throw new FieldLowerThanValidException("numberOfFlatsOnFloor", 0);
     }
@@ -35,7 +57,7 @@ public class House implements Validatable {
             this.year = 1;
             throw new FieldLowerThanValidException("year", 0);
         }
-        if (numberOfFlatsOnFloor <= 0){
+        if (numberOfFlatsOnFloor <= 0) {
             this.numberOfFlatsOnFloor = Long.valueOf(1);
             throw new FieldLowerThanValidException("numberOfFlatsOnFloor", 0);
         }

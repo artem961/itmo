@@ -17,7 +17,9 @@ public class RemoveById extends Command {
     @Override
     public boolean apply(String[] args) throws CommandExecutionError {
         try {
-            return collectionManager.removeById(Integer.valueOf(args[0]));
+            boolean rezult = collectionManager.removeById(Integer.valueOf(args[0]));
+            console.writeln("Элемент с id " + args[0] + " удалён!");
+            return rezult;
         } catch (NumberFormatException e) {
             throw new CommandExecutionError("Неверный формат ввода id! Введите целое положительное число!");
         } catch (IndexOutOfBoundsException e) {
