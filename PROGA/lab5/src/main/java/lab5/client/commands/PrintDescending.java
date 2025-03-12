@@ -21,6 +21,10 @@ public class PrintDescending extends Command {
     @Override
     public boolean apply(String[] args) throws CommandExecutionError {
         List<Flat> flatList = collectionManager.sort();
+        if (flatList.size() == 0){
+            console.writeln("Коллекция пустая!");
+            return true;
+        }
         for (int i = flatList.size() - 1; i >= 0; i--) {
             console.writeln(flatList.get(i).toString());
         }

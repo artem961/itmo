@@ -28,7 +28,7 @@ public class MaxByFurnish extends Command {
                 return true;
             }
         }
-        console.writeln("В коллекции нет элементов значение поля Furnish которых максимально.");
+        console.writeln("В коллекции нет элементов значение поля furnish которых максимально.");
         return true;
     }
 }

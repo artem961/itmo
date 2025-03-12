@@ -24,11 +24,14 @@ public class RemoveLower extends Command{
     public boolean apply(String[] args) throws CommandExecutionError {
         Flat flat = new FlatForm(console).run();
         List<Flat> flatList = collectionManager.sort();
+        int counterDeletedElements = 0;
         for (Flat f: flatList){
             if (f.compareTo(flat) == -1){
                 collectionManager.remove(f);
+                counterDeletedElements++;
             }
         }
+        console.writeln("Удалено элементов: " + String.valueOf(counterDeletedElements) + ".");
         return true;
     }
 }

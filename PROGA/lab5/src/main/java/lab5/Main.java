@@ -24,9 +24,11 @@ public class Main {
             if (console.read("Если хотите удалить элементы введите yes: ").equals("yes")){
                 collectionManager.backupManager.clearCorruptedElements();
                 console.writeln("Элементы удалены!");
+                console.writeln("");
             } else{
                 collectionManager.loadCorruptedElements();
                 console.writeln("Элементы восстановлены!");
+                console.writeln("");
             }
         }
     }

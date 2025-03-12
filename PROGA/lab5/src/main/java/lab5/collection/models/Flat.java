@@ -263,7 +263,7 @@ public class Flat implements Comparable<Flat>, Validatable {
 
     @Override
     public int compareTo(Flat o) {
-        return Integer.compare(name.length(), o.getName().length());
+        return Float.compare(area, o.getArea());
     }
 
     @Override
