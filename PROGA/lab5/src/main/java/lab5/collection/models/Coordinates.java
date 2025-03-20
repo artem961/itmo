@@ -20,38 +20,33 @@ public class Coordinates implements Validatable {
     }
 
     //region validation
+    public static class Validator {
+        /**
+         * Проверить валидность x.
+         *
+         * @param x
+         * @throws ValidationException
+         */
+        public static void validateX(Float x) throws ValidationException {
+            if (x == null) throw new NullFieldException("x");
+            if (x <= -621) throw new FieldLowerThanValidException("x", -621);
+        }
 
-    /**
-     * Проверить валидность x.
-     *
-     * @param x
-     * @throws ValidationException
-     */
-    public static void ValidateX(Float x) throws ValidationException {
-        if (x <= -621) throw new FieldLowerThanValidException("x", -621);
-        if (x == null) throw new NullFieldException("x");
-    }
+        /**
+         * Проверить валидность y.
+         *
+         * @param y
+         * @throws ValidationException
+         */
+        public static void validateY(double y) throws ValidationException {
 
-    /**
-     * Проверить валидность y.
-     *
-     * @param y
-     * @throws ValidationException
-     */
-    public static void ValidateY(double y) throws ValidationException {
-
+        }
     }
 
     @Override
     public void validate() throws ValidationException {
-        if (x <= -621) {
-            this.x = 0f;
-            throw new FieldLowerThanValidException("X", -621);
-        }
-        if (x == null) {
-            this.x = 0f;
-            throw new NullFieldException("X");
-        }
+        Validator.validateX(x);
+        Validator.validateY(y);
     }
     //endregion
 

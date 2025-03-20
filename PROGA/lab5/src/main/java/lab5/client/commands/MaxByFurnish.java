@@ -6,9 +6,11 @@ import lab5.collection.CollectionManager;
 import lab5.collection.models.Flat;
 import lab5.collection.models.Furnish;
 
-import java.io.IOException;
 import java.util.List;
 
+/**
+ * Команда выводит элемент коллекции, значение поля furnish которого максимально.
+ */
 public class MaxByFurnish extends Command {
     private final Console console;
     private final CollectionManager collectionManager;

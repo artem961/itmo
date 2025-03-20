@@ -59,7 +59,7 @@ CREATE TABLE IF NOT EXISTS liftings(
 --id SERIAL PRIMARY KEY,
 human_id INT REFERENCES humans(id) PRIMARY KEY,   
 object_id INT REFERENCES objects(id) NOT NULL,
-accuracy accuracy_types NOT NULL,
+accuracy accuracy_types NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS stops(

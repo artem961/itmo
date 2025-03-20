@@ -5,10 +5,12 @@ import lab5.client.exceptions.CommandExecutionError;
 import lab5.collection.CollectionManager;
 import lab5.collection.models.Flat;
 
-import java.io.IOException;
 import java.util.List;
 
-public class Show extends Command{
+/**
+ * Команда выводит все элементы коллекции.
+ */
+public class Show extends Command {
     private final Console console;
     private final CollectionManager collectionManager;
 
@@ -21,11 +23,11 @@ public class Show extends Command{
     @Override
     public boolean apply(String[] args) throws CommandExecutionError {
         List<Flat> flatList = collectionManager.sort();
-        if (flatList.size() == 0){
+        if (flatList.size() == 0) {
             console.writeln("Коллекция пустая!");
             return true;
         }
-        for (Flat flat: flatList){
+        for (Flat flat : flatList) {
             console.writeln(flat.toString());
         }
         return true;

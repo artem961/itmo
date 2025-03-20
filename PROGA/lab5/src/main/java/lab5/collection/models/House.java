@@ -21,46 +21,42 @@ public class House implements Validatable {
     }
 
     //region validation
+    public static class Validator {
+        /**
+         * Проверить валидность названия.
+         *
+         * @param name
+         * @throws ValidationException
+         */
+        public static void validateName(String name) throws ValidationException {
+        }
 
-    /**
-     * Проверить валидность названия.
-     *
-     * @param name
-     * @throws ValidationException
-     */
-    public static void ValidateName(String name) throws ValidationException {
-    }
+        /**
+         * Проверить валидность года.
+         *
+         * @param year
+         * @throws ValidationException
+         */
+        public static void validateYear(int year) throws ValidationException {
+            if (year <= 0) throw new FieldLowerThanValidException("year", 0);
+        }
 
-    /**
-     * Проверить валидность года.
-     *
-     * @param year
-     * @throws ValidationException
-     */
-    public static void ValidateYear(int year) throws ValidationException {
-        if (year <= 0) throw new FieldLowerThanValidException("year", 0);
-    }
-
-    /**
-     * Проверить валидность количества квартир на этаже.
-     *
-     * @param numberOfFlatsOnFloor
-     * @throws ValidationException
-     */
-    public static void ValidateNumberOfFlatsOnFloor(Long numberOfFlatsOnFloor) throws ValidationException {
-        if (numberOfFlatsOnFloor <= 0) throw new FieldLowerThanValidException("numberOfFlatsOnFloor", 0);
+        /**
+         * Проверить валидность количества квартир на этаже.
+         *
+         * @param numberOfFlatsOnFloor
+         * @throws ValidationException
+         */
+        public static void validateNumberOfFlatsOnFloor(Long numberOfFlatsOnFloor) throws ValidationException {
+            if (numberOfFlatsOnFloor <= 0) throw new FieldLowerThanValidException("numberOfFlatsOnFloor", 0);
+        }
     }
 
     @Override
     public void validate() throws ValidationException {
-        if (year <= 0) {
-            this.year = 1;
-            throw new FieldLowerThanValidException("year", 0);
-        }
-        if (numberOfFlatsOnFloor <= 0) {
-            this.numberOfFlatsOnFloor = Long.valueOf(1);
-            throw new FieldLowerThanValidException("numberOfFlatsOnFloor", 0);
-        }
+        Validator.validateName(name);
+        Validator.validateYear(year);
+        Validator.validateNumberOfFlatsOnFloor(numberOfFlatsOnFloor);
     }
     //endregion
 

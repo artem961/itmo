@@ -4,6 +4,9 @@ import lab5.client.console.Console;
 import lab5.client.exceptions.CommandExecutionError;
 import lab5.collection.CollectionManager;
 
+/**
+ * Команда удаляет элемент коллекции по id.
+ */
 public class RemoveById extends Command {
     private final Console console;
     private final CollectionManager collectionManager;

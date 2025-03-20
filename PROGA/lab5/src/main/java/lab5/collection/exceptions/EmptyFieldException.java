@@ -5,6 +5,6 @@ package lab5.collection.exceptions;
  */
 public class EmptyFieldException extends ValidationException {
     public EmptyFieldException(String field) {
-        super("Поле " + field + "не может быть пустым");
+        super("Поле " + field + " не может быть пустым!");
     }
 }

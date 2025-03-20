@@ -8,6 +8,6 @@ public class FieldLowerThanValidException extends ValidationException {
      * @param Bound Нижняя граница
      */
     public FieldLowerThanValidException(String field, Number Bound) {
-        super("Значение поля " + field + " должно быть больше чем " + Bound.toString() + ".");
+        super("Значение поля " + field + " должно быть больше чем " + Bound.toString() + "!");
     }
 }

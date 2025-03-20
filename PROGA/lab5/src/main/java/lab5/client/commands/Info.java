@@ -5,9 +5,10 @@ import lab5.client.exceptions.CommandExecutionError;
 import lab5.collection.CollectionManager;
 import lab5.collection.utils.CollectionInfo;
 
-import java.io.IOException;
-
-public class Info extends Command{
+/**
+ * Команда выводит информацию о коллекции.
+ */
+public class Info extends Command {
     private final Console console;
     private final CollectionManager collectionManager;
 
@@ -23,9 +24,9 @@ public class Info extends Command{
         CollectionInfo collectionInfo = collectionManager.getCollectionInfo();
         console.writeln(
                 "Информация о коллекции: " +
-                "тип: " + collectionInfo.collectionType() +
-                "; количество элементов: " + collectionInfo.size() +
-                "; загружена из файла: " + collectionInfo.loadedFrom() + ";");
+                        "тип: " + collectionInfo.collectionType() +
+                        "; количество элементов: " + collectionInfo.size() +
+                        "; загружена из файла: " + collectionInfo.loadedFrom() + ";");
         return true;
     }
 }

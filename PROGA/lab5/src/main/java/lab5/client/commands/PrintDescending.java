@@ -5,9 +5,11 @@ import lab5.client.exceptions.CommandExecutionError;
 import lab5.collection.CollectionManager;
 import lab5.collection.models.Flat;
 
-import java.io.IOException;
 import java.util.List;
 
+/**
+ * Команда выводит элементы коллекции в порядке убывания.
+ */
 public class PrintDescending extends Command {
     private final Console console;
     private final CollectionManager collectionManager;
@@ -21,7 +23,7 @@ public class PrintDescending extends Command {
     @Override
     public boolean apply(String[] args) throws CommandExecutionError {
         List<Flat> flatList = collectionManager.sort();
-        if (flatList.size() == 0){
+        if (flatList.size() == 0) {
             console.writeln("Коллекция пустая!");
             return true;
         }

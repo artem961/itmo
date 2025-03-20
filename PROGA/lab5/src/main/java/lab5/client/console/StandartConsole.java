@@ -1,10 +1,7 @@
 package lab5.client.console;
 
+
 import java.io.*;
-import java.util.ArrayDeque;
-import java.util.Collections;
-import java.util.Deque;
-import java.util.List;
 
 /**
  * Класс для ввода и вывода информации через консоль.

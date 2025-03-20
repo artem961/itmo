@@ -101,7 +101,7 @@ public class CollectionManager {
      * @throws ValidationException
      */
     public void update(Flat flat, Integer id) throws ValidationException {
-        Flat.ValidateId(id);
+        Flat.Validator.validateId(id);
         if (!isIdFree(id)) {
             removeById(id);
             flat.setId(id);

@@ -7,6 +7,7 @@ import lab5.client.exceptions.CommandNotFoundException;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -42,8 +43,9 @@ public class Controller {
 
     /**
      * Запустить скрипт.
+     *
      * @param scriptName имя скрипта
-     * @param script скрипт
+     * @param script     скрипт
      */
     public void launchScript(String scriptName, List<String> script) {
         if (launchedScripts.contains(scriptName)) {
@@ -53,7 +55,7 @@ public class Controller {
         launchedScripts.add(scriptName);
 
         for (String line : script) {
-            console.writeln("Введите команду: " + line.trim());
+            console.writeln(line.trim());
             console.writeln(handleInput(line.trim()));
         }
         launchedScripts.remove(scriptName);
@@ -77,17 +79,21 @@ public class Controller {
     }
 
     /**
-     * Ввполнить парсинг пользовательского ввода.
+     * Выполнить парсинг пользовательского ввода.
      *
      * @param input
      * @return
      * @throws CommandExecutionError
      */
     private boolean parseInput(String input) throws CommandExecutionError {
-        String[] data = input.split(" ");
+        String[] data = input
+                .trim()
+                .replace("\t", " ")
+                .split("\\s+");
+
         String commandName = data[0];
         Command command = commandManager.getCommand(commandName);
         commandManager.addToHistory(command);
-        return command.apply(Arrays.copyOfRange(data, 1, data.length));
+        return command.apply(Arrays.copyOfRange(data,1, data.length));
     }
 }

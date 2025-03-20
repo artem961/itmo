@@ -3,13 +3,14 @@ package lab5.client.commands;
 import lab5.client.console.Console;
 import lab5.client.exceptions.CommandExecutionError;
 import lab5.collection.CollectionManager;
-import lab5.collection.exceptions.ValidationException;
 import lab5.collection.models.Flat;
 import lab5.collection.models.Furnish;
 
 import java.util.List;
-import java.io.IOException;
 
+/**
+ * Команда выводит элементы коллекции, значение которых меньше чем введённое значение furnish.
+ */
 public class FilterLessThanFurnish extends Command {
     private final Console console;
     private final CollectionManager collectionManager;
@@ -31,9 +32,9 @@ public class FilterLessThanFurnish extends Command {
                     console.writeln(flat.toString());
                 }
             }
-        } catch (IllegalArgumentException | IndexOutOfBoundsException e){
+        } catch (IllegalArgumentException | IndexOutOfBoundsException e) {
             console.write("Список доступных для ввода значений мебели:");
-            for (Furnish furnish : Furnish.values()){
+            for (Furnish furnish : Furnish.values()) {
                 console.write(" " + furnish.toString() + ";");
             }
             console.writeln("");

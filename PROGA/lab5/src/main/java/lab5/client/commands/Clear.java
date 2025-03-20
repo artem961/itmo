@@ -4,7 +4,10 @@ import lab5.client.console.Console;
 import lab5.client.exceptions.CommandExecutionError;
 import lab5.collection.CollectionManager;
 
-public class Clear extends Command{
+/**
+ * Команда очищает коллекцию.
+ */
+public class Clear extends Command {
     private final Console console;
     private final CollectionManager collectionManager;
 

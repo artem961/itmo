@@ -16,14 +16,28 @@ public abstract class Command {
         this.description = description;
     }
 
+    /**
+     * Получить имя команды.
+     * @return
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * Получить описание команды.
+     * @return
+     */
     public String getDescription() {
         return description;
     }
 
+    /**
+     * Применить команду.
+     * @param args аргументы.
+     * @return
+     * @throws CommandExecutionError
+     */
     public boolean apply(String[] args) throws CommandExecutionError {
         return true;
     }

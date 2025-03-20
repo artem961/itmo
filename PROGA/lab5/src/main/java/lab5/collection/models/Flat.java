@@ -7,6 +7,7 @@ import lab5.collection.exceptions.ValidationException;
 import lab5.collection.interfaces.Validatable;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 /**
  * Квартира.
@@ -98,123 +99,116 @@ public class Flat implements Comparable<Flat>, Validatable {
     // endregion
 
     //region validation
+    public static class Validator {
+        /**
+         * Проверить валидность id.
+         *
+         * @param id
+         * @throws ValidationException
+         */
+        public static void validateId(Integer id) throws ValidationException {
+            if (id == null) throw new NullFieldException("id");
+            if (id <= 0) throw new FieldLowerThanValidException("id", 0);
+        }
 
-    /**
-     * Проверить валидность id.
-     *
-     * @param id
-     * @throws ValidationException
-     */
-    public static void ValidateId(Integer id) throws ValidationException {
-        if (id == null) throw new NullFieldException("id");
-        if (id <= 0) throw new FieldLowerThanValidException("id", 0);
-    }
+        /**
+         * Проверить валидность имени.
+         *
+         * @param name
+         * @throws ValidationException
+         */
+        public static void validateName(String name) throws ValidationException {
+            if (name == null) throw new NullFieldException("name");
+            if (name.isEmpty()) throw new EmptyFieldException("name");
+        }
 
-    /**
-     * Проверить валидность имени.
-     *
-     * @param name
-     * @throws ValidationException
-     */
-    public static void ValidateName(String name) throws ValidationException {
-        if (name == null) throw new NullFieldException("name");
-        if (name.isEmpty()) throw new EmptyFieldException("name");
-    }
+        /**
+         * Проверить валидность координат.
+         *
+         * @param coordinates
+         * @throws ValidationException
+         */
+        public static void validateCoordinates(Coordinates coordinates) throws ValidationException {
+            if (coordinates == null) throw new NullFieldException("coordinates");
+        }
 
-    /**
-     * Проверить валидность координат.
-     *
-     * @param coordinates
-     * @throws ValidationException
-     */
-    public static void ValidateCoordinates(Coordinates coordinates) throws ValidationException {
-        if (coordinates == null) throw new NullFieldException("coordinates");
-    }
+        /**
+         * Проверить валидность даты создания.
+         *
+         * @throws ValidationException
+         */
+        public static void validateCreationDate() throws ValidationException {
+        }
 
-    /**
-     * Проверить валидность даты создания.
-     *
-     * @throws ValidationException
-     */
-    public static void ValidateCreationDate() throws ValidationException {
-    }
+        /**
+         * Проверить валидность площади.
+         *
+         * @param area
+         * @throws ValidationException
+         */
+        public static void validateArea(float area) throws ValidationException {
+            if (area <= 0) throw new FieldLowerThanValidException("area", 0);
+        }
 
-    /**
-     * Проверить валидность площади.
-     *
-     * @param area
-     * @throws ValidationException
-     */
-    public static void ValidateArea(float area) throws ValidationException {
-        if (area <= 0) throw new FieldLowerThanValidException("area", 0);
-    }
+        /**
+         * Проверить валидность количества комнат.
+         *
+         * @param numberOfRooms
+         * @throws ValidationException
+         */
+        public static void validateNumberOfRooms(int numberOfRooms) throws ValidationException {
+            if (numberOfRooms <= 0) throw new FieldLowerThanValidException("numberOfRooms", 0);
+        }
 
-    /**
-     * Проверить валидность количества комнат.
-     *
-     * @param numberOfRooms
-     * @throws ValidationException
-     */
-    public static void ValidateNumberOfRooms(int numberOfRooms) throws ValidationException {
-        if (numberOfRooms <= 0) throw new FieldLowerThanValidException("numberOfRooms", 0);
-    }
+        /**
+         * Проверить валидность высоты.
+         *
+         * @param height
+         * @throws ValidationException
+         */
+        public static void validateHeight(long height) throws ValidationException {
+            if (height <= 0) throw new FieldLowerThanValidException("height", 0);
+        }
 
-    /**
-     * Проверить валидность высоты.
-     *
-     * @param height
-     * @throws ValidationException
-     */
-    public static void ValidateHeight(long height) throws ValidationException {
-        if (height <= 0) throw new FieldLowerThanValidException("height", 0);
-    }
+        /**
+         * Проверить валидность мебели.
+         *
+         * @param furnish
+         * @throws ValidationException
+         */
+        public static void validateFurnish(Furnish furnish) throws ValidationException {
+        }
 
-    /**
-     * Проверить валидность мебели.
-     *
-     * @param furnish
-     * @throws ValidationException
-     */
-    public static void ValidateFurnish(Furnish furnish) throws ValidationException {
-    }
+        /**
+         * Проверить валидность транспорта.
+         *
+         * @param transport
+         * @throws ValidationException
+         */
+        public static void validateTransport(Transport transport) throws ValidationException {
+            if (transport == null) throw new NullFieldException("transport");
+        }
 
-    /**
-     * Проверить валидность транспорта.
-     *
-     * @param transport
-     * @throws ValidationException
-     */
-    public static void ValidateTransport(Transport transport) throws ValidationException {
-        if (transport == null) throw new NullFieldException("transport");
-    }
+        /**
+         * Проверить валидность дома.
+         *
+         * @param house
+         * @throws ValidationException
+         */
+        public static void validateHouse(House house) throws ValidationException {
 
-    /**
-     * Проверить валидность дома.
-     *
-     * @param house
-     * @throws ValidationException
-     */
-    public static void ValidateHouse(House house) throws ValidationException {
-
+        }
     }
 
     @Override
     public void validate() throws ValidationException {
-        if (id == null) throw new NullFieldException("id");
-        if (id <= 0) throw new FieldLowerThanValidException("id", 0);
-
-        if (name == null) throw new NullFieldException("name");
-        if (name.isEmpty()) throw new EmptyFieldException("name");
-
-        if (coordinates == null) throw new NullFieldException("coordinates");
-
-        if (area <= 0) throw new FieldLowerThanValidException("area", 0);
-
-        if (numberOfRooms <= 0) throw new FieldLowerThanValidException("numberOfRooms", 0);
-
-        if (height <= 0) throw new FieldLowerThanValidException("height", 0);
-
-        if (transport == null) throw new NullFieldException("transport");
+        Validator.validateId(id);
+        Validator.validateName(name);
+        Validator.validateCoordinates(coordinates);
+        Validator.validateArea(area);
+        Validator.validateNumberOfRooms(numberOfRooms);
+        Validator.validateHeight(height);
+        Validator.validateTransport(transport);
     }
     //endregion
 
@@ -278,5 +272,18 @@ public class Flat implements Comparable<Flat>, Validatable {
                 "\"furnish\": \"" + furnish + "\", " +
                 "\"transport\": \"" + transport + "\", " +
                 "\"house\": \"" + house + "\"" + "}";
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Flat flat = (Flat) o;
+        return Float.compare(area, flat.area) == 0 && numberOfRooms == flat.numberOfRooms && height == flat.height && Objects.equals(id, flat.id) && Objects.equals(name, flat.name) && Objects.equals(coordinates, flat.coordinates) && Objects.equals(creationDate, flat.creationDate) && furnish == flat.furnish && transport == flat.transport && Objects.equals(house, flat.house);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, coordinates, creationDate, area, numberOfRooms, height, furnish, transport, house);
     }
 }

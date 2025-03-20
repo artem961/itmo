@@ -6,7 +6,10 @@ import lab5.collection.CollectionManager;
 
 import java.io.IOException;
 
-public class Save extends Command{
+/**
+ * Команда сохраняет коллекцию в файл.
+ */
+public class Save extends Command {
     private final Console console;
     private final CollectionManager collectionManager;
 
@@ -23,7 +26,7 @@ public class Save extends Command{
             collectionManager.backupManager.deleteBackupFile();
         } catch (IOException e) {
             throw new CommandExecutionError(e.getMessage());
-        } catch (IndexOutOfBoundsException e){
+        } catch (IndexOutOfBoundsException e) {
             throw new CommandExecutionError("Введите имя файла!");
         }
         console.writeln("Коллекция успешно сохранена в файл " + args[0] + "!");

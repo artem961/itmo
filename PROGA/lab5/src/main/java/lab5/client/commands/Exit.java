@@ -5,8 +5,12 @@ import lab5.collection.CollectionManager;
 
 import static java.lang.System.exit;
 
+/**
+ * Команда выходит без сохранения коллекции.
+ */
 public class Exit extends Command {
     public final CollectionManager collectionManager;
+
     public Exit(CollectionManager collectionManager) {
         super("exit", "Завершает программу без сохранения в файл.");
         this.collectionManager = collectionManager;
