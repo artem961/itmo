@@ -1,6 +1,4 @@
-package common;
-
-import common.collection.models.Flat;
+package common.network;
 
 import java.io.Serializable;
 

@@ -1,13 +1,14 @@
 package lab6.client;
 
-import common.Request;
-import common.Response;
-import common.ResponseType;
+import common.network.Request;
+import common.network.Response;
+import common.network.ResponseType;
+import common.network.Serializer;
+import common.network.NetworkException;
 import common.client.console.Console;
 import common.client.exceptions.CommandExecutionError;
 import common.client.exceptions.CommandNotFoundException;
 import common.collection.models.Flat;
-import lab6.NetworkException;
 import lab6.NetworkManager;
 import lab6.client.builders.FlatBuilder;
 
@@ -100,14 +101,14 @@ public class Controller {
         String commandName = data[0];
         String[] args = Arrays.copyOfRange(data,1, data.length);
 
-        Request request = new Request(commandName, NetworkManager.serializeObject(args));
+        Request request = new Request(commandName, Serializer.serializeObject(args));
         Response response = makeRequest(request);
         parseResponce(commandName, response);
     }
 
     private void parseResponce(String commandName, Response response) throws CommandExecutionError, NetworkException {
         ResponseType type = response.type();
-        var data = NetworkManager.deserialazeObject(response.data());
+        var data = Serializer.deserialazeObject(response.data());
 
         switch (response.type()){
             case OK:
@@ -119,7 +120,7 @@ public class Controller {
                 throw new CommandExecutionError(data.toString());
             case INPUT_FLAT:
                 Flat flat = new FlatBuilder(console).build();
-                Request request = new Request(commandName, NetworkManager.serializeObject(flat));
+                Request request = new Request(commandName, Serializer.serializeObject(flat));
                 Response resp =  makeRequest(request);
                 parseResponce(commandName, resp);
                 break;
@@ -128,8 +129,8 @@ public class Controller {
     }
 
     private Response makeRequest(Request request) throws NetworkException, CommandExecutionError {
-        networkManager.sendData(NetworkManager.serializeObject(request));
-        Response response = (Response) NetworkManager.deserialazeObject(networkManager.receiveData());
+        networkManager.sendData(Serializer.serializeObject(request));
+        Response response = (Response) Serializer.deserialazeObject(networkManager.receiveData());
         return response;
     }
 }

@@ -1,4 +1,4 @@
-package lab6;
+package common.network;
 
 import java.io.IOException;
 

@@ -1,21 +1,1902 @@
 [
   {
-    "id": 1,
-    "name": "random_flat_5726",
+    "id": 57,
+    "name": "random_flat_130",
     "coordinates": {
-      "x": 1349.0,
-      "y": 1349.0
+      "x": 130.0,
+      "y": 130.0
     },
-    "creationDate": "2025-04-17",
-    "area": 481.0,
-    "numberOfRooms": 481,
-    "height": 481,
+    "creationDate": "2025-04-18",
+    "area": 130.0,
+    "numberOfRooms": 130,
+    "height": 130,
     "furnish": "NONE",
     "transport": "NONE",
     "house": {
-      "name": "random_house_4933",
-      "year": 4933,
-      "numberOfFlatsOnFloor": 4933
+      "name": "random_house_130",
+      "year": 130,
+      "numberOfFlatsOnFloor": 130
+    }
+  },
+  {
+    "id": 54,
+    "name": "random_flat_204",
+    "coordinates": {
+      "x": 204.0,
+      "y": 204.0
+    },
+    "creationDate": "2025-04-18",
+    "area": 204.0,
+    "numberOfRooms": 204,
+    "height": 204,
+    "furnish": "NONE",
+    "transport": "NONE",
+    "house": {
+      "name": "random_house_204",
+      "year": 204,
+      "numberOfFlatsOnFloor": 204
+    }
+  },
+  {
+    "id": 1,
+    "name": "random_flat_359",
+    "coordinates": {
+      "x": 359.0,
+      "y": 359.0
+    },
+    "creationDate": "2025-04-18",
+    "area": 359.0,
+    "numberOfRooms": 359,
+    "height": 359,
+    "furnish": "NONE",
+    "transport": "NONE",
+    "house": {
+      "name": "random_house_359",
+      "year": 359,
+      "numberOfFlatsOnFloor": 359
+    }
+  },
+  {
+    "id": 21,
+    "name": "random_flat_434",
+    "coordinates": {
+      "x": 434.0,
+      "y": 434.0
+    },
+    "creationDate": "2025-04-18",
+    "area": 434.0,
+    "numberOfRooms": 434,
+    "height": 434,
+    "furnish": "NONE",
+    "transport": "NONE",
+    "house": {
+      "name": "random_house_434",
+      "year": 434,
+      "numberOfFlatsOnFloor": 434
+    }
+  },
+  {
+    "id": 51,
+    "name": "random_flat_435",
+    "coordinates": {
+      "x": 435.0,
+      "y": 435.0
+    },
+    "creationDate": "2025-04-18",
+    "area": 435.0,
+    "numberOfRooms": 435,
+    "height": 435,
+    "furnish": "NONE",
+    "transport": "NONE",
+    "house": {
+      "name": "random_house_435",
+      "year": 435,
+      "numberOfFlatsOnFloor": 435
+    }
+  },
+  {
+    "id": 33,
+    "name": "random_flat_476",
+    "coordinates": {
+      "x": 476.0,
+      "y": 476.0
+    },
+    "creationDate": "2025-04-18",
+    "area": 476.0,
+    "numberOfRooms": 476,
+    "height": 476,
+    "furnish": "NONE",
+    "transport": "NONE",
+    "house": {
+      "name": "random_house_476",
+      "year": 476,
+      "numberOfFlatsOnFloor": 476
+    }
+  },
+  {
+    "id": 15,
+    "name": "random_flat_905",
+    "coordinates": {
+      "x": 905.0,
+      "y": 905.0
+    },
+    "creationDate": "2025-04-18",
+    "area": 905.0,
+    "numberOfRooms": 905,
+    "height": 905,
+    "furnish": "NONE",
+    "transport": "NONE",
+    "house": {
+      "name": "random_house_905",
+      "year": 905,
+      "numberOfFlatsOnFloor": 905
+    }
+  },
+  {
+    "id": 27,
+    "name": "random_flat_999",
+    "coordinates": {
+      "x": 999.0,
+      "y": 999.0
+    },
+    "creationDate": "2025-04-18",
+    "area": 999.0,
+    "numberOfRooms": 999,
+    "height": 999,
+    "furnish": "NONE",
+    "transport": "NONE",
+    "house": {
+      "name": "random_house_999",
+      "year": 999,
+      "numberOfFlatsOnFloor": 999
+    }
+  },
+  {
+    "id": 42,
+    "name": "random_flat_1129",
+    "coordinates": {
+      "x": 1129.0,
+      "y": 1129.0
+    },
+    "creationDate": "2025-04-18",
+    "area": 1129.0,
+    "numberOfRooms": 1129,
+    "height": 1129,
+    "furnish": "NONE",
+    "transport": "NONE",
+    "house": {
+      "name": "random_house_1129",
+      "year": 1129,
+      "numberOfFlatsOnFloor": 1129
+    }
+  },
+  {
+    "id": 37,
+    "name": "random_flat_1297",
+    "coordinates": {
+      "x": 1297.0,
+      "y": 1297.0
+    },
+    "creationDate": "2025-04-18",
+    "area": 1297.0,
+    "numberOfRooms": 1297,
+    "height": 1297,
+    "furnish": "NONE",
+    "transport": "NONE",
+    "house": {
+      "name": "random_house_1297",
+      "year": 1297,
+      "numberOfFlatsOnFloor": 1297
+    }
+  },
+  {
+    "id": 98,
+    "name": "random_flat_1428",
+    "coordinates": {
+      "x": 1428.0,
+      "y": 1428.0
+    },
+    "creationDate": "2025-04-18",
+    "area": 1428.0,
+    "numberOfRooms": 1428,
+    "height": 1428,
+    "furnish": "NONE",
+    "transport": "NONE",
+    "house": {
+      "name": "random_house_1428",
+      "year": 1428,
+      "numberOfFlatsOnFloor": 1428
+    }
+  },
+  {
+    "id": 41,
+    "name": "random_flat_1571",
+    "coordinates": {
+      "x": 1571.0,
+      "y": 1571.0
+    },
+    "creationDate": "2025-04-18",
+    "area": 1571.0,
+    "numberOfRooms": 1571,
+    "height": 1571,
+    "furnish": "NONE",
+    "transport": "NONE",
+    "house": {
+      "name": "random_house_1571",
+      "year": 1571,
+      "numberOfFlatsOnFloor": 1571
+    }
+  },
+  {
+    "id": 34,
+    "name": "random_flat_1670",
+    "coordinates": {
+      "x": 1670.0,
+      "y": 1670.0
+    },
+    "creationDate": "2025-04-18",
+    "area": 1670.0,
+    "numberOfRooms": 1670,
+    "height": 1670,
+    "furnish": "NONE",
+    "transport": "NONE",
+    "house": {
+      "name": "random_house_1670",
+      "year": 1670,
+      "numberOfFlatsOnFloor": 1670
+    }
+  },
+  {
+    "id": 35,
+    "name": "random_flat_1670",
+    "coordinates": {
+      "x": 1670.0,
+      "y": 1670.0
+    },
+    "creationDate": "2025-04-18",
+    "area": 1670.0,
+    "numberOfRooms": 1670,
+    "height": 1670,
+    "furnish": "NONE",
+    "transport": "NONE",
+    "house": {
+      "name": "random_house_1670",
+      "year": 1670,
+      "numberOfFlatsOnFloor": 1670
+    }
+  },
+  {
+    "id": 50,
+    "name": "random_flat_1904",
+    "coordinates": {
+      "x": 1904.0,
+      "y": 1904.0
+    },
+    "creationDate": "2025-04-18",
+    "area": 1904.0,
+    "numberOfRooms": 1904,
+    "height": 1904,
+    "furnish": "NONE",
+    "transport": "NONE",
+    "house": {
+      "name": "random_house_1904",
+      "year": 1904,
+      "numberOfFlatsOnFloor": 1904
+    }
+  },
+  {
+    "id": 18,
+    "name": "random_flat_1919",
+    "coordinates": {
+      "x": 1919.0,
+      "y": 1919.0
+    },
+    "creationDate": "2025-04-18",
+    "area": 1919.0,
+    "numberOfRooms": 1919,
+    "height": 1919,
+    "furnish": "NONE",
+    "transport": "NONE",
+    "house": {
+      "name": "random_house_1919",
+      "year": 1919,
+      "numberOfFlatsOnFloor": 1919
+    }
+  },
+  {
+    "id": 88,
+    "name": "random_flat_2210",
+    "coordinates": {
+      "x": 2210.0,
+      "y": 2210.0
+    },
+    "creationDate": "2025-04-18",
+    "area": 2210.0,
+    "numberOfRooms": 2210,
+    "height": 2210,
+    "furnish": "NONE",
+    "transport": "NONE",
+    "house": {
+      "name": "random_house_2210",
+      "year": 2210,
+      "numberOfFlatsOnFloor": 2210
+    }
+  },
+  {
+    "id": 38,
+    "name": "random_flat_2289",
+    "coordinates": {
+      "x": 2289.0,
+      "y": 2289.0
+    },
+    "creationDate": "2025-04-18",
+    "area": 2289.0,
+    "numberOfRooms": 2289,
+    "height": 2289,
+    "furnish": "NONE",
+    "transport": "NONE",
+    "house": {
+      "name": "random_house_2289",
+      "year": 2289,
+      "numberOfFlatsOnFloor": 2289
+    }
+  },
+  {
+    "id": 58,
+    "name": "random_flat_2345",
+    "coordinates": {
+      "x": 2345.0,
+      "y": 2345.0
+    },
+    "creationDate": "2025-04-18",
+    "area": 2345.0,
+    "numberOfRooms": 2345,
+    "height": 2345,
+    "furnish": "NONE",
+    "transport": "NONE",
+    "house": {
+      "name": "random_house_2345",
+      "year": 2345,
+      "numberOfFlatsOnFloor": 2345
+    }
+  },
+  {
+    "id": 74,
+    "name": "random_flat_2430",
+    "coordinates": {
+      "x": 2430.0,
+      "y": 2430.0
+    },
+    "creationDate": "2025-04-18",
+    "area": 2430.0,
+    "numberOfRooms": 2430,
+    "height": 2430,
+    "furnish": "NONE",
+    "transport": "NONE",
+    "house": {
+      "name": "random_house_2430",
+      "year": 2430,
+      "numberOfFlatsOnFloor": 2430
+    }
+  },
+  {
+    "id": 49,
+    "name": "random_flat_7276",
+    "coordinates": {
+      "x": 2494.0,
+      "y": 2494.0
+    },
+    "creationDate": "2025-04-18",
+    "area": 2494.0,
+    "numberOfRooms": 2494,
+    "height": 2494,
+    "furnish": "NONE",
+    "transport": "NONE",
+    "house": {
+      "name": "random_house_2494",
+      "year": 2494,
+      "numberOfFlatsOnFloor": 2494
+    }
+  },
+  {
+    "id": 84,
+    "name": "random_flat_2636",
+    "coordinates": {
+      "x": 2636.0,
+      "y": 2636.0
+    },
+    "creationDate": "2025-04-18",
+    "area": 2636.0,
+    "numberOfRooms": 2636,
+    "height": 2636,
+    "furnish": "NONE",
+    "transport": "NONE",
+    "house": {
+      "name": "random_house_2636",
+      "year": 2636,
+      "numberOfFlatsOnFloor": 2636
+    }
+  },
+  {
+    "id": 43,
+    "name": "random_flat_2738",
+    "coordinates": {
+      "x": 2738.0,
+      "y": 2738.0
+    },
+    "creationDate": "2025-04-18",
+    "area": 2738.0,
+    "numberOfRooms": 2738,
+    "height": 2738,
+    "furnish": "NONE",
+    "transport": "NONE",
+    "house": {
+      "name": "random_house_2738",
+      "year": 2738,
+      "numberOfFlatsOnFloor": 2738
+    }
+  },
+  {
+    "id": 64,
+    "name": "random_flat_2797",
+    "coordinates": {
+      "x": 2797.0,
+      "y": 2797.0
+    },
+    "creationDate": "2025-04-18",
+    "area": 2797.0,
+    "numberOfRooms": 2797,
+    "height": 2797,
+    "furnish": "NONE",
+    "transport": "NONE",
+    "house": {
+      "name": "random_house_2797",
+      "year": 2797,
+      "numberOfFlatsOnFloor": 2797
+    }
+  },
+  {
+    "id": 9,
+    "name": "random_flat_2850",
+    "coordinates": {
+      "x": 2850.0,
+      "y": 2850.0
+    },
+    "creationDate": "2025-04-18",
+    "area": 2850.0,
+    "numberOfRooms": 2850,
+    "height": 2850,
+    "furnish": "NONE",
+    "transport": "NONE",
+    "house": {
+      "name": "random_house_2850",
+      "year": 2850,
+      "numberOfFlatsOnFloor": 2850
+    }
+  },
+  {
+    "id": 66,
+    "name": "random_flat_3021",
+    "coordinates": {
+      "x": 3021.0,
+      "y": 3021.0
+    },
+    "creationDate": "2025-04-18",
+    "area": 3021.0,
+    "numberOfRooms": 3021,
+    "height": 3021,
+    "furnish": "NONE",
+    "transport": "NONE",
+    "house": {
+      "name": "random_house_3021",
+      "year": 3021,
+      "numberOfFlatsOnFloor": 3021
+    }
+  },
+  {
+    "id": 7,
+    "name": "random_flat_3102",
+    "coordinates": {
+      "x": 3102.0,
+      "y": 3102.0
+    },
+    "creationDate": "2025-04-18",
+    "area": 3102.0,
+    "numberOfRooms": 3102,
+    "height": 3102,
+    "furnish": "NONE",
+    "transport": "NONE",
+    "house": {
+      "name": "random_house_3102",
+      "year": 3102,
+      "numberOfFlatsOnFloor": 3102
+    }
+  },
+  {
+    "id": 72,
+    "name": "random_flat_3149",
+    "coordinates": {
+      "x": 3149.0,
+      "y": 3149.0
+    },
+    "creationDate": "2025-04-18",
+    "area": 3149.0,
+    "numberOfRooms": 3149,
+    "height": 3149,
+    "furnish": "NONE",
+    "transport": "NONE",
+    "house": {
+      "name": "random_house_3149",
+      "year": 3149,
+      "numberOfFlatsOnFloor": 3149
+    }
+  },
+  {
+    "id": 86,
+    "name": "random_flat_3293",
+    "coordinates": {
+      "x": 3293.0,
+      "y": 3293.0
+    },
+    "creationDate": "2025-04-18",
+    "area": 3293.0,
+    "numberOfRooms": 3293,
+    "height": 3293,
+    "furnish": "NONE",
+    "transport": "NONE",
+    "house": {
+      "name": "random_house_3293",
+      "year": 3293,
+      "numberOfFlatsOnFloor": 6699
+    }
+  },
+  {
+    "id": 46,
+    "name": "random_flat_3386",
+    "coordinates": {
+      "x": 3386.0,
+      "y": 3386.0
+    },
+    "creationDate": "2025-04-18",
+    "area": 3386.0,
+    "numberOfRooms": 3386,
+    "height": 3386,
+    "furnish": "NONE",
+    "transport": "NONE",
+    "house": {
+      "name": "random_house_3386",
+      "year": 3386,
+      "numberOfFlatsOnFloor": 3386
+    }
+  },
+  {
+    "id": 13,
+    "name": "random_flat_3447",
+    "coordinates": {
+      "x": 3447.0,
+      "y": 3447.0
+    },
+    "creationDate": "2025-04-18",
+    "area": 3447.0,
+    "numberOfRooms": 3447,
+    "height": 3447,
+    "furnish": "NONE",
+    "transport": "NONE",
+    "house": {
+      "name": "random_house_3447",
+      "year": 3447,
+      "numberOfFlatsOnFloor": 3447
+    }
+  },
+  {
+    "id": 89,
+    "name": "random_flat_3576",
+    "coordinates": {
+      "x": 3576.0,
+      "y": 3576.0
+    },
+    "creationDate": "2025-04-18",
+    "area": 3576.0,
+    "numberOfRooms": 3576,
+    "height": 3576,
+    "furnish": "NONE",
+    "transport": "NONE",
+    "house": {
+      "name": "random_house_3576",
+      "year": 3576,
+      "numberOfFlatsOnFloor": 3576
+    }
+  },
+  {
+    "id": 10,
+    "name": "random_flat_3608",
+    "coordinates": {
+      "x": 3608.0,
+      "y": 3608.0
+    },
+    "creationDate": "2025-04-18",
+    "area": 3608.0,
+    "numberOfRooms": 3608,
+    "height": 3608,
+    "furnish": "NONE",
+    "transport": "NONE",
+    "house": {
+      "name": "random_house_3608",
+      "year": 3608,
+      "numberOfFlatsOnFloor": 3608
+    }
+  },
+  {
+    "id": 5,
+    "name": "random_flat_3657",
+    "coordinates": {
+      "x": 3657.0,
+      "y": 3657.0
+    },
+    "creationDate": "2025-04-18",
+    "area": 3657.0,
+    "numberOfRooms": 3657,
+    "height": 3657,
+    "furnish": "NONE",
+    "transport": "NONE",
+    "house": {
+      "name": "random_house_3657",
+      "year": 3657,
+      "numberOfFlatsOnFloor": 3657
+    }
+  },
+  {
+    "id": 6,
+    "name": "random_flat_3657",
+    "coordinates": {
+      "x": 3657.0,
+      "y": 3657.0
+    },
+    "creationDate": "2025-04-18",
+    "area": 3657.0,
+    "numberOfRooms": 3657,
+    "height": 3657,
+    "furnish": "NONE",
+    "transport": "NONE",
+    "house": {
+      "name": "random_house_3657",
+      "year": 3657,
+      "numberOfFlatsOnFloor": 3657
+    }
+  },
+  {
+    "id": 65,
+    "name": "random_flat_3935",
+    "coordinates": {
+      "x": 3935.0,
+      "y": 3935.0
+    },
+    "creationDate": "2025-04-18",
+    "area": 3935.0,
+    "numberOfRooms": 3935,
+    "height": 3935,
+    "furnish": "NONE",
+    "transport": "NONE",
+    "house": {
+      "name": "random_house_3935",
+      "year": 3935,
+      "numberOfFlatsOnFloor": 3935
+    }
+  },
+  {
+    "id": 92,
+    "name": "random_flat_3963",
+    "coordinates": {
+      "x": 3963.0,
+      "y": 3963.0
+    },
+    "creationDate": "2025-04-18",
+    "area": 3963.0,
+    "numberOfRooms": 3963,
+    "height": 3963,
+    "furnish": "NONE",
+    "transport": "NONE",
+    "house": {
+      "name": "random_house_3963",
+      "year": 3963,
+      "numberOfFlatsOnFloor": 3963
+    }
+  },
+  {
+    "id": 3,
+    "name": "random_flat_4140",
+    "coordinates": {
+      "x": 4140.0,
+      "y": 4140.0
+    },
+    "creationDate": "2025-04-18",
+    "area": 4140.0,
+    "numberOfRooms": 4140,
+    "height": 4140,
+    "furnish": "NONE",
+    "transport": "NONE",
+    "house": {
+      "name": "random_house_4140",
+      "year": 4140,
+      "numberOfFlatsOnFloor": 4140
+    }
+  },
+  {
+    "id": 45,
+    "name": "random_flat_4186",
+    "coordinates": {
+      "x": 4186.0,
+      "y": 4186.0
+    },
+    "creationDate": "2025-04-18",
+    "area": 4186.0,
+    "numberOfRooms": 4186,
+    "height": 4186,
+    "furnish": "NONE",
+    "transport": "NONE",
+    "house": {
+      "name": "random_house_4186",
+      "year": 4186,
+      "numberOfFlatsOnFloor": 4186
+    }
+  },
+  {
+    "id": 62,
+    "name": "random_flat_4243",
+    "coordinates": {
+      "x": 4243.0,
+      "y": 4243.0
+    },
+    "creationDate": "2025-04-18",
+    "area": 4243.0,
+    "numberOfRooms": 4243,
+    "height": 4243,
+    "furnish": "NONE",
+    "transport": "NONE",
+    "house": {
+      "name": "random_house_4243",
+      "year": 4243,
+      "numberOfFlatsOnFloor": 4243
+    }
+  },
+  {
+    "id": 59,
+    "name": "random_flat_4506",
+    "coordinates": {
+      "x": 4506.0,
+      "y": 4506.0
+    },
+    "creationDate": "2025-04-18",
+    "area": 4506.0,
+    "numberOfRooms": 4506,
+    "height": 4506,
+    "furnish": "NONE",
+    "transport": "NONE",
+    "house": {
+      "name": "random_house_4506",
+      "year": 4506,
+      "numberOfFlatsOnFloor": 4506
+    }
+  },
+  {
+    "id": 14,
+    "name": "random_flat_4626",
+    "coordinates": {
+      "x": 4626.0,
+      "y": 4626.0
+    },
+    "creationDate": "2025-04-18",
+    "area": 4626.0,
+    "numberOfRooms": 4626,
+    "height": 4626,
+    "furnish": "NONE",
+    "transport": "NONE",
+    "house": {
+      "name": "random_house_4626",
+      "year": 4626,
+      "numberOfFlatsOnFloor": 4626
+    }
+  },
+  {
+    "id": 78,
+    "name": "random_flat_4717",
+    "coordinates": {
+      "x": 4717.0,
+      "y": 4717.0
+    },
+    "creationDate": "2025-04-18",
+    "area": 4717.0,
+    "numberOfRooms": 4717,
+    "height": 4717,
+    "furnish": "NONE",
+    "transport": "NONE",
+    "house": {
+      "name": "random_house_4717",
+      "year": 4717,
+      "numberOfFlatsOnFloor": 4717
+    }
+  },
+  {
+    "id": 68,
+    "name": "random_flat_4741",
+    "coordinates": {
+      "x": 4741.0,
+      "y": 4741.0
+    },
+    "creationDate": "2025-04-18",
+    "area": 4741.0,
+    "numberOfRooms": 4741,
+    "height": 4741,
+    "furnish": "NONE",
+    "transport": "NONE",
+    "house": {
+      "name": "random_house_4741",
+      "year": 4741,
+      "numberOfFlatsOnFloor": 4741
+    }
+  },
+  {
+    "id": 81,
+    "name": "random_flat_4807",
+    "coordinates": {
+      "x": 4807.0,
+      "y": 4807.0
+    },
+    "creationDate": "2025-04-18",
+    "area": 4807.0,
+    "numberOfRooms": 4807,
+    "height": 4807,
+    "furnish": "NONE",
+    "transport": "NONE",
+    "house": {
+      "name": "random_house_4807",
+      "year": 4807,
+      "numberOfFlatsOnFloor": 4807
+    }
+  },
+  {
+    "id": 79,
+    "name": "random_flat_4854",
+    "coordinates": {
+      "x": 4854.0,
+      "y": 4854.0
+    },
+    "creationDate": "2025-04-18",
+    "area": 4854.0,
+    "numberOfRooms": 4854,
+    "height": 4854,
+    "furnish": "NONE",
+    "transport": "NONE",
+    "house": {
+      "name": "random_house_4854",
+      "year": 4854,
+      "numberOfFlatsOnFloor": 4854
+    }
+  },
+  {
+    "id": 39,
+    "name": "random_flat_4991",
+    "coordinates": {
+      "x": 4991.0,
+      "y": 4991.0
+    },
+    "creationDate": "2025-04-18",
+    "area": 4991.0,
+    "numberOfRooms": 4991,
+    "height": 4991,
+    "furnish": "NONE",
+    "transport": "NONE",
+    "house": {
+      "name": "random_house_4991",
+      "year": 4991,
+      "numberOfFlatsOnFloor": 4991
+    }
+  },
+  {
+    "id": 8,
+    "name": "random_flat_5140",
+    "coordinates": {
+      "x": 5140.0,
+      "y": 5140.0
+    },
+    "creationDate": "2025-04-18",
+    "area": 5140.0,
+    "numberOfRooms": 5140,
+    "height": 5140,
+    "furnish": "NONE",
+    "transport": "NONE",
+    "house": {
+      "name": "random_house_5140",
+      "year": 5140,
+      "numberOfFlatsOnFloor": 5140
+    }
+  },
+  {
+    "id": 85,
+    "name": "random_flat_5368",
+    "coordinates": {
+      "x": 5368.0,
+      "y": 5368.0
+    },
+    "creationDate": "2025-04-18",
+    "area": 5368.0,
+    "numberOfRooms": 5368,
+    "height": 5368,
+    "furnish": "NONE",
+    "transport": "NONE",
+    "house": {
+      "name": "random_house_5368",
+      "year": 5368,
+      "numberOfFlatsOnFloor": 5368
+    }
+  },
+  {
+    "id": 60,
+    "name": "random_flat_5470",
+    "coordinates": {
+      "x": 5470.0,
+      "y": 5470.0
+    },
+    "creationDate": "2025-04-18",
+    "area": 5470.0,
+    "numberOfRooms": 5470,
+    "height": 5470,
+    "furnish": "NONE",
+    "transport": "NONE",
+    "house": {
+      "name": "random_house_5470",
+      "year": 5470,
+      "numberOfFlatsOnFloor": 5470
+    }
+  },
+  {
+    "id": 4,
+    "name": "random_flat_5511",
+    "coordinates": {
+      "x": 5511.0,
+      "y": 5511.0
+    },
+    "creationDate": "2025-04-18",
+    "area": 5511.0,
+    "numberOfRooms": 5511,
+    "height": 5511,
+    "furnish": "NONE",
+    "transport": "NONE",
+    "house": {
+      "name": "random_house_5511",
+      "year": 5511,
+      "numberOfFlatsOnFloor": 5511
+    }
+  },
+  {
+    "id": 17,
+    "name": "random_flat_5583",
+    "coordinates": {
+      "x": 5583.0,
+      "y": 5583.0
+    },
+    "creationDate": "2025-04-18",
+    "area": 5583.0,
+    "numberOfRooms": 5583,
+    "height": 5583,
+    "furnish": "NONE",
+    "transport": "NONE",
+    "house": {
+      "name": "random_house_5583",
+      "year": 5583,
+      "numberOfFlatsOnFloor": 5583
+    }
+  },
+  {
+    "id": 20,
+    "name": "random_flat_5657",
+    "coordinates": {
+      "x": 5657.0,
+      "y": 5657.0
+    },
+    "creationDate": "2025-04-18",
+    "area": 5657.0,
+    "numberOfRooms": 5657,
+    "height": 5657,
+    "furnish": "NONE",
+    "transport": "NONE",
+    "house": {
+      "name": "random_house_5657",
+      "year": 5657,
+      "numberOfFlatsOnFloor": 5657
+    }
+  },
+  {
+    "id": 29,
+    "name": "random_flat_5713",
+    "coordinates": {
+      "x": 5713.0,
+      "y": 5713.0
+    },
+    "creationDate": "2025-04-18",
+    "area": 5713.0,
+    "numberOfRooms": 5713,
+    "height": 5713,
+    "furnish": "NONE",
+    "transport": "NONE",
+    "house": {
+      "name": "random_house_5713",
+      "year": 5713,
+      "numberOfFlatsOnFloor": 5713
+    }
+  },
+  {
+    "id": 28,
+    "name": "random_flat_5713",
+    "coordinates": {
+      "x": 5713.0,
+      "y": 5713.0
+    },
+    "creationDate": "2025-04-18",
+    "area": 5713.0,
+    "numberOfRooms": 5713,
+    "height": 5713,
+    "furnish": "NONE",
+    "transport": "NONE",
+    "house": {
+      "name": "random_house_5713",
+      "year": 5713,
+      "numberOfFlatsOnFloor": 5713
+    }
+  },
+  {
+    "id": 80,
+    "name": "random_flat_5828",
+    "coordinates": {
+      "x": 5828.0,
+      "y": 5828.0
+    },
+    "creationDate": "2025-04-18",
+    "area": 5828.0,
+    "numberOfRooms": 5828,
+    "height": 5828,
+    "furnish": "NONE",
+    "transport": "NONE",
+    "house": {
+      "name": "random_house_5828",
+      "year": 5828,
+      "numberOfFlatsOnFloor": 5828
+    }
+  },
+  {
+    "id": 56,
+    "name": "random_flat_5899",
+    "coordinates": {
+      "x": 5899.0,
+      "y": 5899.0
+    },
+    "creationDate": "2025-04-18",
+    "area": 5899.0,
+    "numberOfRooms": 5899,
+    "height": 5899,
+    "furnish": "NONE",
+    "transport": "NONE",
+    "house": {
+      "name": "random_house_5899",
+      "year": 7804,
+      "numberOfFlatsOnFloor": 7804
+    }
+  },
+  {
+    "id": 2,
+    "name": "random_flat_5922",
+    "coordinates": {
+      "x": 5922.0,
+      "y": 5922.0
+    },
+    "creationDate": "2025-04-18",
+    "area": 5922.0,
+    "numberOfRooms": 5922,
+    "height": 5922,
+    "furnish": "NONE",
+    "transport": "NONE",
+    "house": {
+      "name": "random_house_5922",
+      "year": 5922,
+      "numberOfFlatsOnFloor": 5922
+    }
+  },
+  {
+    "id": 71,
+    "name": "random_flat_5951",
+    "coordinates": {
+      "x": 5951.0,
+      "y": 5951.0
+    },
+    "creationDate": "2025-04-18",
+    "area": 5951.0,
+    "numberOfRooms": 5951,
+    "height": 5951,
+    "furnish": "NONE",
+    "transport": "NONE",
+    "house": {
+      "name": "random_house_5951",
+      "year": 5951,
+      "numberOfFlatsOnFloor": 5951
+    }
+  },
+  {
+    "id": 75,
+    "name": "random_flat_5983",
+    "coordinates": {
+      "x": 5983.0,
+      "y": 5983.0
+    },
+    "creationDate": "2025-04-18",
+    "area": 5983.0,
+    "numberOfRooms": 5983,
+    "height": 5983,
+    "furnish": "NONE",
+    "transport": "NONE",
+    "house": {
+      "name": "random_house_5983",
+      "year": 5983,
+      "numberOfFlatsOnFloor": 5983
+    }
+  },
+  {
+    "id": 91,
+    "name": "random_flat_6011",
+    "coordinates": {
+      "x": 6011.0,
+      "y": 6011.0
+    },
+    "creationDate": "2025-04-18",
+    "area": 6011.0,
+    "numberOfRooms": 6011,
+    "height": 6011,
+    "furnish": "NONE",
+    "transport": "NONE",
+    "house": {
+      "name": "random_house_6011",
+      "year": 6011,
+      "numberOfFlatsOnFloor": 6011
+    }
+  },
+  {
+    "id": 12,
+    "name": "random_flat_6037",
+    "coordinates": {
+      "x": 6037.0,
+      "y": 6037.0
+    },
+    "creationDate": "2025-04-18",
+    "area": 6037.0,
+    "numberOfRooms": 6037,
+    "height": 6037,
+    "furnish": "NONE",
+    "transport": "NONE",
+    "house": {
+      "name": "random_house_6037",
+      "year": 6037,
+      "numberOfFlatsOnFloor": 6037
+    }
+  },
+  {
+    "id": 99,
+    "name": "random_flat_6172",
+    "coordinates": {
+      "x": 6172.0,
+      "y": 6172.0
+    },
+    "creationDate": "2025-04-18",
+    "area": 6172.0,
+    "numberOfRooms": 6172,
+    "height": 6172,
+    "furnish": "NONE",
+    "transport": "NONE",
+    "house": {
+      "name": "random_house_6172",
+      "year": 6172,
+      "numberOfFlatsOnFloor": 6172
+    }
+  },
+  {
+    "id": 25,
+    "name": "random_flat_6421",
+    "coordinates": {
+      "x": 6421.0,
+      "y": 6421.0
+    },
+    "creationDate": "2025-04-18",
+    "area": 6421.0,
+    "numberOfRooms": 6421,
+    "height": 6421,
+    "furnish": "NONE",
+    "transport": "NONE",
+    "house": {
+      "name": "random_house_6421",
+      "year": 6421,
+      "numberOfFlatsOnFloor": 6421
+    }
+  },
+  {
+    "id": 30,
+    "name": "random_flat_6441",
+    "coordinates": {
+      "x": 6441.0,
+      "y": 6441.0
+    },
+    "creationDate": "2025-04-18",
+    "area": 6441.0,
+    "numberOfRooms": 6441,
+    "height": 6441,
+    "furnish": "NONE",
+    "transport": "NONE",
+    "house": {
+      "name": "random_house_6441",
+      "year": 6441,
+      "numberOfFlatsOnFloor": 6441
+    }
+  },
+  {
+    "id": 31,
+    "name": "random_flat_6441",
+    "coordinates": {
+      "x": 6441.0,
+      "y": 6441.0
+    },
+    "creationDate": "2025-04-18",
+    "area": 6441.0,
+    "numberOfRooms": 6441,
+    "height": 6441,
+    "furnish": "NONE",
+    "transport": "NONE",
+    "house": {
+      "name": "random_house_6441",
+      "year": 6441,
+      "numberOfFlatsOnFloor": 6441
+    }
+  },
+  {
+    "id": 87,
+    "name": "random_flat_6699",
+    "coordinates": {
+      "x": 6699.0,
+      "y": 6699.0
+    },
+    "creationDate": "2025-04-18",
+    "area": 6699.0,
+    "numberOfRooms": 6699,
+    "height": 6699,
+    "furnish": "NONE",
+    "transport": "NONE",
+    "house": {
+      "name": "random_house_6699",
+      "year": 6699,
+      "numberOfFlatsOnFloor": 6699
+    }
+  },
+  {
+    "id": 67,
+    "name": "random_flat_6822",
+    "coordinates": {
+      "x": 6822.0,
+      "y": 6822.0
+    },
+    "creationDate": "2025-04-18",
+    "area": 6822.0,
+    "numberOfRooms": 6822,
+    "height": 6822,
+    "furnish": "NONE",
+    "transport": "NONE",
+    "house": {
+      "name": "random_house_6822",
+      "year": 6822,
+      "numberOfFlatsOnFloor": 6822
+    }
+  },
+  {
+    "id": 53,
+    "name": "random_flat_6916",
+    "coordinates": {
+      "x": 6916.0,
+      "y": 6916.0
+    },
+    "creationDate": "2025-04-18",
+    "area": 6916.0,
+    "numberOfRooms": 6916,
+    "height": 6916,
+    "furnish": "NONE",
+    "transport": "NONE",
+    "house": {
+      "name": "random_house_6916",
+      "year": 6916,
+      "numberOfFlatsOnFloor": 6916
+    }
+  },
+  {
+    "id": 77,
+    "name": "random_flat_6947",
+    "coordinates": {
+      "x": 6947.0,
+      "y": 6947.0
+    },
+    "creationDate": "2025-04-18",
+    "area": 6947.0,
+    "numberOfRooms": 6947,
+    "height": 6947,
+    "furnish": "NONE",
+    "transport": "NONE",
+    "house": {
+      "name": "random_house_6947",
+      "year": 6947,
+      "numberOfFlatsOnFloor": 6947
+    }
+  },
+  {
+    "id": 55,
+    "name": "random_flat_6961",
+    "coordinates": {
+      "x": 6961.0,
+      "y": 6961.0
+    },
+    "creationDate": "2025-04-18",
+    "area": 6961.0,
+    "numberOfRooms": 6961,
+    "height": 6961,
+    "furnish": "NONE",
+    "transport": "NONE",
+    "house": {
+      "name": "random_house_6961",
+      "year": 6961,
+      "numberOfFlatsOnFloor": 6961
+    }
+  },
+  {
+    "id": 76,
+    "name": "random_flat_7028",
+    "coordinates": {
+      "x": 7028.0,
+      "y": 7028.0
+    },
+    "creationDate": "2025-04-18",
+    "area": 7028.0,
+    "numberOfRooms": 7028,
+    "height": 7028,
+    "furnish": "NONE",
+    "transport": "NONE",
+    "house": {
+      "name": "random_house_7028",
+      "year": 7028,
+      "numberOfFlatsOnFloor": 7028
+    }
+  },
+  {
+    "id": 36,
+    "name": "random_flat_7105",
+    "coordinates": {
+      "x": 7105.0,
+      "y": 7105.0
+    },
+    "creationDate": "2025-04-18",
+    "area": 7105.0,
+    "numberOfRooms": 7105,
+    "height": 7105,
+    "furnish": "NONE",
+    "transport": "NONE",
+    "house": {
+      "name": "random_house_7105",
+      "year": 7105,
+      "numberOfFlatsOnFloor": 7105
+    }
+  },
+  {
+    "id": 73,
+    "name": "random_flat_7475",
+    "coordinates": {
+      "x": 7475.0,
+      "y": 7475.0
+    },
+    "creationDate": "2025-04-18",
+    "area": 7475.0,
+    "numberOfRooms": 7475,
+    "height": 7475,
+    "furnish": "NONE",
+    "transport": "NONE",
+    "house": {
+      "name": "random_house_7475",
+      "year": 7475,
+      "numberOfFlatsOnFloor": 7475
+    }
+  },
+  {
+    "id": 63,
+    "name": "random_flat_7523",
+    "coordinates": {
+      "x": 7523.0,
+      "y": 7523.0
+    },
+    "creationDate": "2025-04-18",
+    "area": 7523.0,
+    "numberOfRooms": 7523,
+    "height": 7523,
+    "furnish": "NONE",
+    "transport": "NONE",
+    "house": {
+      "name": "random_house_7523",
+      "year": 7523,
+      "numberOfFlatsOnFloor": 7523
+    }
+  },
+  {
+    "id": 22,
+    "name": "random_flat_7742",
+    "coordinates": {
+      "x": 7742.0,
+      "y": 7742.0
+    },
+    "creationDate": "2025-04-18",
+    "area": 7742.0,
+    "numberOfRooms": 7742,
+    "height": 7742,
+    "furnish": "NONE",
+    "transport": "NONE",
+    "house": {
+      "name": "random_house_7742",
+      "year": 7742,
+      "numberOfFlatsOnFloor": 7742
+    }
+  },
+  {
+    "id": 70,
+    "name": "random_flat_7787",
+    "coordinates": {
+      "x": 7787.0,
+      "y": 7787.0
+    },
+    "creationDate": "2025-04-18",
+    "area": 7787.0,
+    "numberOfRooms": 7787,
+    "height": 7787,
+    "furnish": "NONE",
+    "transport": "NONE",
+    "house": {
+      "name": "random_house_7787",
+      "year": 7787,
+      "numberOfFlatsOnFloor": 7787
+    }
+  },
+  {
+    "id": 69,
+    "name": "random_flat_7787",
+    "coordinates": {
+      "x": 7787.0,
+      "y": 7787.0
+    },
+    "creationDate": "2025-04-18",
+    "area": 7787.0,
+    "numberOfRooms": 7787,
+    "height": 7787,
+    "furnish": "NONE",
+    "transport": "NONE",
+    "house": {
+      "name": "random_house_7787",
+      "year": 7787,
+      "numberOfFlatsOnFloor": 7787
+    }
+  },
+  {
+    "id": 52,
+    "name": "random_flat_7790",
+    "coordinates": {
+      "x": 7790.0,
+      "y": 7790.0
+    },
+    "creationDate": "2025-04-18",
+    "area": 7790.0,
+    "numberOfRooms": 7790,
+    "height": 7790,
+    "furnish": "NONE",
+    "transport": "NONE",
+    "house": {
+      "name": "random_house_7790",
+      "year": 7790,
+      "numberOfFlatsOnFloor": 7790
+    }
+  },
+  {
+    "id": 61,
+    "name": "random_flat_7802",
+    "coordinates": {
+      "x": 7802.0,
+      "y": 7802.0
+    },
+    "creationDate": "2025-04-18",
+    "area": 7802.0,
+    "numberOfRooms": 7802,
+    "height": 7802,
+    "furnish": "NONE",
+    "transport": "NONE",
+    "house": {
+      "name": "random_house_7802",
+      "year": 7802,
+      "numberOfFlatsOnFloor": 7802
+    }
+  },
+  {
+    "id": 97,
+    "name": "random_flat_7832",
+    "coordinates": {
+      "x": 7832.0,
+      "y": 7832.0
+    },
+    "creationDate": "2025-04-18",
+    "area": 7832.0,
+    "numberOfRooms": 7832,
+    "height": 7832,
+    "furnish": "NONE",
+    "transport": "NONE",
+    "house": {
+      "name": "random_house_7832",
+      "year": 7832,
+      "numberOfFlatsOnFloor": 7832
+    }
+  },
+  {
+    "id": 26,
+    "name": "random_flat_7836",
+    "coordinates": {
+      "x": 7836.0,
+      "y": 7836.0
+    },
+    "creationDate": "2025-04-18",
+    "area": 7836.0,
+    "numberOfRooms": 7836,
+    "height": 7836,
+    "furnish": "NONE",
+    "transport": "NONE",
+    "house": {
+      "name": "random_house_7836",
+      "year": 7836,
+      "numberOfFlatsOnFloor": 7836
+    }
+  },
+  {
+    "id": 96,
+    "name": "random_flat_7870",
+    "coordinates": {
+      "x": 7870.0,
+      "y": 7870.0
+    },
+    "creationDate": "2025-04-18",
+    "area": 7870.0,
+    "numberOfRooms": 7870,
+    "height": 7870,
+    "furnish": "NONE",
+    "transport": "NONE",
+    "house": {
+      "name": "random_house_7870",
+      "year": 7870,
+      "numberOfFlatsOnFloor": 7870
+    }
+  },
+  {
+    "id": 83,
+    "name": "random_flat_8116",
+    "coordinates": {
+      "x": 8116.0,
+      "y": 8116.0
+    },
+    "creationDate": "2025-04-18",
+    "area": 8116.0,
+    "numberOfRooms": 8116,
+    "height": 8116,
+    "furnish": "NONE",
+    "transport": "NONE",
+    "house": {
+      "name": "random_house_8116",
+      "year": 8116,
+      "numberOfFlatsOnFloor": 8116
+    }
+  },
+  {
+    "id": 95,
+    "name": "random_flat_8252",
+    "coordinates": {
+      "x": 8252.0,
+      "y": 8252.0
+    },
+    "creationDate": "2025-04-18",
+    "area": 8252.0,
+    "numberOfRooms": 8252,
+    "height": 8252,
+    "furnish": "NONE",
+    "transport": "NONE",
+    "house": {
+      "name": "random_house_8252",
+      "year": 8252,
+      "numberOfFlatsOnFloor": 8252
+    }
+  },
+  {
+    "id": 16,
+    "name": "random_flat_8387",
+    "coordinates": {
+      "x": 8387.0,
+      "y": 8387.0
+    },
+    "creationDate": "2025-04-18",
+    "area": 8387.0,
+    "numberOfRooms": 8387,
+    "height": 8387,
+    "furnish": "NONE",
+    "transport": "NONE",
+    "house": {
+      "name": "random_house_8387",
+      "year": 8387,
+      "numberOfFlatsOnFloor": 8387
+    }
+  },
+  {
+    "id": 94,
+    "name": "random_flat_8713",
+    "coordinates": {
+      "x": 8713.0,
+      "y": 8713.0
+    },
+    "creationDate": "2025-04-18",
+    "area": 8713.0,
+    "numberOfRooms": 8713,
+    "height": 8713,
+    "furnish": "NONE",
+    "transport": "NONE",
+    "house": {
+      "name": "random_house_8713",
+      "year": 8713,
+      "numberOfFlatsOnFloor": 8713
+    }
+  },
+  {
+    "id": 48,
+    "name": "random_flat_8788",
+    "coordinates": {
+      "x": 8788.0,
+      "y": 8788.0
+    },
+    "creationDate": "2025-04-18",
+    "area": 8788.0,
+    "numberOfRooms": 8788,
+    "height": 8788,
+    "furnish": "NONE",
+    "transport": "NONE",
+    "house": {
+      "name": "random_house_8788",
+      "year": 8788,
+      "numberOfFlatsOnFloor": 8788
+    }
+  },
+  {
+    "id": 90,
+    "name": "random_flat_8878",
+    "coordinates": {
+      "x": 8878.0,
+      "y": 8878.0
+    },
+    "creationDate": "2025-04-18",
+    "area": 8878.0,
+    "numberOfRooms": 8878,
+    "height": 8878,
+    "furnish": "NONE",
+    "transport": "NONE",
+    "house": {
+      "name": "random_house_8878",
+      "year": 8878,
+      "numberOfFlatsOnFloor": 8878
+    }
+  },
+  {
+    "id": 82,
+    "name": "random_flat_8879",
+    "coordinates": {
+      "x": 8879.0,
+      "y": 8879.0
+    },
+    "creationDate": "2025-04-18",
+    "area": 8879.0,
+    "numberOfRooms": 8879,
+    "height": 8879,
+    "furnish": "NONE",
+    "transport": "NONE",
+    "house": {
+      "name": "random_house_8879",
+      "year": 8879,
+      "numberOfFlatsOnFloor": 8879
+    }
+  },
+  {
+    "id": 32,
+    "name": "random_flat_8973",
+    "coordinates": {
+      "x": 8973.0,
+      "y": 8973.0
+    },
+    "creationDate": "2025-04-18",
+    "area": 8973.0,
+    "numberOfRooms": 8973,
+    "height": 8973,
+    "furnish": "NONE",
+    "transport": "NONE",
+    "house": {
+      "name": "random_house_8973",
+      "year": 8973,
+      "numberOfFlatsOnFloor": 8973
+    }
+  },
+  {
+    "id": 40,
+    "name": "random_flat_9009",
+    "coordinates": {
+      "x": 9009.0,
+      "y": 9009.0
+    },
+    "creationDate": "2025-04-18",
+    "area": 9009.0,
+    "numberOfRooms": 9009,
+    "height": 9009,
+    "furnish": "NONE",
+    "transport": "NONE",
+    "house": {
+      "name": "random_house_9009",
+      "year": 8069,
+      "numberOfFlatsOnFloor": 8069
+    }
+  },
+  {
+    "id": 93,
+    "name": "random_flat_9126",
+    "coordinates": {
+      "x": 9126.0,
+      "y": 9126.0
+    },
+    "creationDate": "2025-04-18",
+    "area": 9126.0,
+    "numberOfRooms": 9126,
+    "height": 9126,
+    "furnish": "NONE",
+    "transport": "NONE",
+    "house": {
+      "name": "random_house_9126",
+      "year": 9126,
+      "numberOfFlatsOnFloor": 9126
+    }
+  },
+  {
+    "id": 19,
+    "name": "random_flat_9244",
+    "coordinates": {
+      "x": 9244.0,
+      "y": 9244.0
+    },
+    "creationDate": "2025-04-18",
+    "area": 9244.0,
+    "numberOfRooms": 9244,
+    "height": 9244,
+    "furnish": "NONE",
+    "transport": "NONE",
+    "house": {
+      "name": "random_house_9244",
+      "year": 9244,
+      "numberOfFlatsOnFloor": 9244
+    }
+  },
+  {
+    "id": 44,
+    "name": "random_flat_9286",
+    "coordinates": {
+      "x": 9286.0,
+      "y": 9286.0
+    },
+    "creationDate": "2025-04-18",
+    "area": 9286.0,
+    "numberOfRooms": 9286,
+    "height": 9286,
+    "furnish": "NONE",
+    "transport": "NONE",
+    "house": {
+      "name": "random_house_9286",
+      "year": 9286,
+      "numberOfFlatsOnFloor": 9286
+    }
+  },
+  {
+    "id": 47,
+    "name": "random_flat_9836",
+    "coordinates": {
+      "x": 9836.0,
+      "y": 9836.0
+    },
+    "creationDate": "2025-04-18",
+    "area": 9836.0,
+    "numberOfRooms": 9836,
+    "height": 9836,
+    "furnish": "NONE",
+    "transport": "NONE",
+    "house": {
+      "name": "random_house_9836",
+      "year": 9836,
+      "numberOfFlatsOnFloor": 9836
+    }
+  },
+  {
+    "id": 100,
+    "name": "random_flat_9837",
+    "coordinates": {
+      "x": 9837.0,
+      "y": 9837.0
+    },
+    "creationDate": "2025-04-18",
+    "area": 9837.0,
+    "numberOfRooms": 9837,
+    "height": 9837,
+    "furnish": "NONE",
+    "transport": "NONE",
+    "house": {
+      "name": "random_house_9837",
+      "year": 9837,
+      "numberOfFlatsOnFloor": 9837
+    }
+  },
+  {
+    "id": 24,
+    "name": "random_flat_9860",
+    "coordinates": {
+      "x": 9860.0,
+      "y": 9860.0
+    },
+    "creationDate": "2025-04-18",
+    "area": 9860.0,
+    "numberOfRooms": 9860,
+    "height": 9860,
+    "furnish": "NONE",
+    "transport": "NONE",
+    "house": {
+      "name": "random_house_9860",
+      "year": 9860,
+      "numberOfFlatsOnFloor": 9860
+    }
+  },
+  {
+    "id": 11,
+    "name": "random_flat_9918",
+    "coordinates": {
+      "x": 9918.0,
+      "y": 9918.0
+    },
+    "creationDate": "2025-04-18",
+    "area": 9918.0,
+    "numberOfRooms": 9918,
+    "height": 9918,
+    "furnish": "NONE",
+    "transport": "NONE",
+    "house": {
+      "name": "random_house_9918",
+      "year": 9918,
+      "numberOfFlatsOnFloor": 9918
+    }
+  },
+  {
+    "id": 23,
+    "name": "random_flat_9940",
+    "coordinates": {
+      "x": 9940.0,
+      "y": 9940.0
+    },
+    "creationDate": "2025-04-18",
+    "area": 9940.0,
+    "numberOfRooms": 9940,
+    "height": 9940,
+    "furnish": "NONE",
+    "transport": "NONE",
+    "house": {
+      "name": "random_house_9940",
+      "year": 9940,
+      "numberOfFlatsOnFloor": 9940
     }
   }
 ]

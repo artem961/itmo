@@ -1,4 +1,4 @@
-package common;
+package common.network;
 
 public enum ResponseType {
     OK,

@@ -1,72 +1,53 @@
 package lab6;
 
-import common.Request;
-import common.Response;
-import common.ResponseType;
-import common.client.Command;
+import common.network.*;
 import common.client.console.BufferedConsole;
-import common.client.console.Console;
-import common.client.exceptions.CommandExecutionError;
-import common.client.exceptions.CommandNotFoundException;
 import lab6.client.CommandManager;
 
-import java.net.DatagramPacket;
-import java.net.InetAddress;
-import java.net.SocketException;
-import java.net.UnknownHostException;
-import java.util.List;
+import java.io.IOException;
+import java.net.*;
+import java.nio.channels.DatagramChannel;
+import java.nio.channels.SelectionKey;
+import java.nio.channels.Selector;
 
 public class Server {
     private final int port;
     private final NetworkManager networkManager;
-    private final CommandManager commandManager;
+    private final RequestHandler requestHandler;
     private final BufferedConsole console;
+    private final Selector selector;
 
-    public Server(int port, BufferedConsole console, CommandManager commandManager) throws SocketException, UnknownHostException {
+    public Server(int port, RequestHandler requestHandler, BufferedConsole console) throws IOException {
         this.port = port;
         this.networkManager = new NetworkManager(port);
-        this.commandManager = commandManager;
+        this.requestHandler = requestHandler;
         this.console = console;
+        this.selector = Selector.open();
     }
 
-    public Response handleRequest(Request request){
-        String commandName = request.commandName();
-        var data = NetworkManager.deserialazeObject(request.data());
+    private void acceptConnection(InetAddress address, int port) throws NetworkException {
         try {
-            if (data instanceof String[]) {
-                Command command = commandManager.getCommand(commandName);
-
-                console.setBufferMode(true);
-                command.apply((String[]) data);
-                List<String> out = console.getBuffer();
-                console.setBufferMode(false);
-                console.clearBuffer();
-
-                return new Response(ResponseType.OK,
-                        NetworkManager.serializeObject(String.join("", out)));
-            }
-        } catch (CommandNotFoundException e) {
-            return new Response(ResponseType.COMMAND_NOT_FOUND_EXCEPTION,
-                    NetworkManager.serializeObject(commandName));
+            DatagramChannel datagramChannel = DatagramChannel.open();
+            datagramChannel.configureBlocking(false);
+            datagramChannel.bind(new InetSocketAddress(address, port));
+            datagramChannel.register(selector, SelectionKey.OP_CONNECT);
+        } catch (IOException e) {
+            throw new NetworkException("Не удалось подключить клиента!");
         }
-        catch (Exception e) {
-            return new Response(ResponseType.EXCEPTION,
-                    NetworkManager.serializeObject(e.getMessage()));
-        }
-        return new Response(ResponseType.OK,
-                NetworkManager.serializeObject("nigger"));
     }
 
     public void run(){
         while (true){
             try {
-                DatagramPacket dp = networkManager.receivePacket();
-                Request request = (Request) NetworkManager.deserialazeObject(dp.getData());
-                InetAddress userAdress = dp.getAddress();
-                int userPort = dp.getPort();
+                UserDataObject data = networkManager.receiveData();
+                Request request = (Request) Serializer.deserialazeObject(data.data());
+                InetAddress userAdress = data.userAddress();
+                int userPort = data.userPort();
 
-                Response response = handleRequest(request);
-                networkManager.sendData(NetworkManager.serializeObject(response), userAdress, userPort);
+                Response response = requestHandler.handleRequest(request);
+                networkManager.sendData(Serializer.serializeObject(response), userAdress, userPort);
+
+
             } catch (NetworkException e) {
                 System.out.println(e.getMessage());
             } catch (Exception e) {

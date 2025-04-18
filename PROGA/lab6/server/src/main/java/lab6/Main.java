@@ -2,16 +2,14 @@ package lab6;
 
 import common.client.console.BufferedConsole;
 import common.client.console.Console;
-import common.client.console.StandartConsole;
 import common.collection.exceptions.ValidationException;
+import common.network.NetworkException;
 import lab6.client.CommandManager;
 import lab6.client.commands.*;
 import lab6.collection.CollectionManager;
 
-import java.io.File;
 import java.io.IOException;
 
-import static java.lang.System.exit;
 
 public class Main {
     private static void loadCollection(Console console, CollectionManager collectionManager, String fileName) throws ValidationException, IOException {
@@ -91,9 +89,8 @@ public class Main {
        // commandManager.registerCommand(new PrintDescending(console, collectionManager));
         //endregion
 
-
-
-        Server server = new Server(1488, console, commandManager);
+        RequestHandler requestHandler = new StandartRequestHandler(commandManager, console);
+        Server server = new Server(1488, requestHandler, console);
         server.run();
     }
 }
