@@ -28,8 +28,9 @@ public class Update extends Command {
         else throw new InputFlatException("Введите кваритру!");
     }
 
-    private boolean executeCommand(Flat flat){
-        return false;
+    private Flat getFlat(Object object){
+        if (object == null) throw new InputFlatException("Введите кваритру!");
+        return (Flat) object;
     }
 
     @Override
@@ -53,7 +54,24 @@ public class Update extends Command {
     }
 
     @Override
-    public boolean apply(Object object) throws CommandExecutionError {
-        return false;
+    public boolean apply(String[] args, Object object) throws CommandExecutionError {
+        if (args.length < 1) throw new CommandExecutionError("Введите id элемента который хотите изменить!");
+        try {
+            Integer id = Integer.valueOf(args[0]);
+            Flat flat = getFlat(object);
+            System.out.println(id);
+            System.out.println(flat);
+            if (flat == null) {
+                console.writeln("Не удалось создать квартиру!");
+                return false;
+            }
+            collectionManager.update(flat, id);
+            console.writeln("Элемент с id " + id.toString() + " успешно обновлён!");
+        } catch (NumberFormatException e) {
+            throw new CommandExecutionError("Введите целое положительное число!");
+        } catch (ValidationException e) {
+            throw new CommandExecutionError(e.getMessage());
+        }
+        return true;
     }
 }

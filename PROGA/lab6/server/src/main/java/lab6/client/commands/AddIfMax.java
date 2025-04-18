@@ -30,6 +30,11 @@ public class AddIfMax extends Command{
         else throw new InputFlatException("Введите кваритру!");
     }
 
+    private Flat getFlat(Object object){
+        if (object == null) throw new InputFlatException("Введите кваритру!");
+        return (Flat) object;
+    }
+
     private boolean executeCommand(Flat flat) throws CommandExecutionError {
         try {
             if (flat == null) {
@@ -60,8 +65,8 @@ public class AddIfMax extends Command{
     }
 
     @Override
-    public boolean apply(Object object) throws CommandExecutionError {
-        Flat flat = (Flat) object;
+    public boolean apply(String[] args, Object object) throws CommandExecutionError {
+        Flat flat = getFlat(object);
         return executeCommand(flat);
     }
 }

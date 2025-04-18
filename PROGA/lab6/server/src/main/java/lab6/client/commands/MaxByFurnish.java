@@ -26,6 +26,7 @@ public class MaxByFurnish extends Command {
     public boolean apply(String[] args) throws CommandExecutionError {
         List<Flat> flatList = collectionManager.sort();
         for (Flat flat : flatList) {
+            if (flat.getFurnish() == null) continue;
             if (flat.getFurnish().equals(Furnish.getMax())) {
                 console.writeln(flat.toString());
                 return true;

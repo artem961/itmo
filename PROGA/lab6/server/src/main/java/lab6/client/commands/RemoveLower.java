@@ -28,6 +28,11 @@ public class RemoveLower extends Command {
         else throw new InputFlatException("Введите кваритру!");
     }
 
+    private Flat getFlat(Object object){
+        if (object == null) throw new InputFlatException("Введите кваритру!");
+        return (Flat) object;
+    }
+
     private boolean executeCommand(Flat flat){
         if (flat == null) {
             console.writeln("Не удалось создать квартиру!");
@@ -53,8 +58,8 @@ public class RemoveLower extends Command {
     }
 
     @Override
-    public boolean apply(Object object) throws CommandExecutionError {
-        Flat flat = (Flat) object;
+    public boolean apply(String[] args, Object object) throws CommandExecutionError {
+        Flat flat = getFlat(object);
         return executeCommand(flat);
     }
 }

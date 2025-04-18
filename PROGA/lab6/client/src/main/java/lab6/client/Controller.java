@@ -101,12 +101,12 @@ public class Controller {
         String commandName = data[0];
         String[] args = Arrays.copyOfRange(data,1, data.length);
 
-        Request request = new Request(commandName, Serializer.serializeObject(args));
+        Request request = new Request(commandName, args, null);
         Response response = makeRequest(request);
-        parseResponce(commandName, response);
+        parseResponce(commandName, args, response);
     }
 
-    private void parseResponce(String commandName, Response response) throws CommandExecutionError, NetworkException {
+    private void parseResponce(String commandName, String[] args, Response response) throws CommandExecutionError, NetworkException {
         ResponseType type = response.type();
         var data = Serializer.deserialazeObject(response.data());
 
@@ -120,9 +120,9 @@ public class Controller {
                 throw new CommandExecutionError(data.toString());
             case INPUT_FLAT:
                 Flat flat = new FlatBuilder(console).build();
-                Request request = new Request(commandName, Serializer.serializeObject(flat));
+                Request request = new Request(commandName, args, flat);
                 Response resp =  makeRequest(request);
-                parseResponce(commandName, resp);
+                parseResponce(commandName, args, resp);
                 break;
         }
 

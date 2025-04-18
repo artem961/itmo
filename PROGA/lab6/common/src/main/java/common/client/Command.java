@@ -2,6 +2,7 @@ package common.client;
 
 import common.client.exceptions.CommandExecutionError;
 
+import javax.management.ObjectName;
 import java.util.Objects;
 
 /**
@@ -42,8 +43,15 @@ public abstract class Command {
         return true;
     }
 
-    public boolean apply(Object object) throws CommandExecutionError{
-        return true;
+    /**
+     * Применить команду, передав объект.
+     * @param args
+     * @param object
+     * @return
+     * @throws CommandExecutionError
+     */
+    public boolean apply(String[] args, Object object) throws CommandExecutionError{
+        return apply(args);
     }
 
     @Override

@@ -81,18 +81,18 @@ public class Main {
         commandManager.registerCommand(new Show(console, collectionManager));
         commandManager.registerCommand(new Add(console, collectionManager));
         commandManager.registerCommand(new AddRandom(console, collectionManager));
-        //commandManager.registerCommand(new Update(console, collectionManager));
-        //commandManager.registerCommand(new RemoveById(console, collectionManager));
+        commandManager.registerCommand(new Update(console, collectionManager));
+        commandManager.registerCommand(new RemoveById(console, collectionManager));
         commandManager.registerCommand(new Clear(console, collectionManager));
        // commandManager.registerCommand(new Save(console, collectionManager));
         //commandManager.registerCommand(new ExecuteScript(console, controller, commandManager, collectionManager));
         //commandManager.registerCommand(new Exit(collectionManager));
         commandManager.registerCommand(new AddIfMax(console, collectionManager));
-        //commandManager.registerCommand(new RemoveLower(console, collectionManager));
-       // commandManager.registerCommand(new History(console, commandManager));
-       // commandManager.registerCommand(new MaxByFurnish(console, collectionManager));
+        commandManager.registerCommand(new RemoveLower(console, collectionManager));
+        commandManager.registerCommand(new History(console, commandManager));
+        commandManager.registerCommand(new MaxByFurnish(console, collectionManager));
         commandManager.registerCommand(new FilterLessThanFurnish(console, collectionManager));
-       // commandManager.registerCommand(new PrintDescending(console, collectionManager));
+        commandManager.registerCommand(new PrintDescending(console, collectionManager));
         //endregion
 
 
