@@ -1,12 +1,9 @@
-package lab6.client.builders;
-
+package common.builders;
 
 
 import common.client.console.Console;
 import common.collection.exceptions.ValidationException;
 import common.collection.models.*;
-
-import java.util.Arrays;
 
 public class FlatBuilder extends DefaultConsoleBuilder {
     private String[] args;
@@ -42,10 +39,10 @@ public class FlatBuilder extends DefaultConsoleBuilder {
         }
     }
 
-    private Flat buildFromString(){
+    private Flat buildFromString() {
         try {
             if (args.length > 11) console.writeln("Слишком много аргументов! Можно запутаться!");
-           return new Flat(
+            return new Flat(
                     args[0],
                     new Coordinates(Float.valueOf(args[1]), Double.valueOf(args[2])),
                     Float.valueOf(args[3]),
@@ -56,18 +53,16 @@ public class FlatBuilder extends DefaultConsoleBuilder {
                     new House(args[8], Integer.valueOf(args[9]), Long.valueOf(args[10])));
         } catch (IndexOutOfBoundsException e) {
             console.writeln("Слишком мало аргументов. Для создания квартиры требуется 11.");
-            return null;
         } catch (NumberFormatException e) {
             console.writeln("Неверный формат ввода числа!");
-            return null;
         } catch (IllegalArgumentException e) {
             console.writeln("Такого значения нет в доступных для ввода транспорта и мебели!");
-            return null;
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             console.writeln(e.getMessage());
-            return null;
         }
+        console.write("Формат создания в одну строку: ");
+        console.writeln("add name x y area numberOfRooms height furnish transport houseName year numberOfFlatsOnFloor");
+        return null;
     }
 
     private House inputHouse() {

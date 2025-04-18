@@ -9,34 +9,61 @@ import java.net.*;
 import java.nio.channels.DatagramChannel;
 import java.nio.channels.SelectionKey;
 import java.nio.channels.Selector;
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Set;
 
 public class Server {
-    private final int port;
+    private final InetSocketAddress serverAddress;
     private final NetworkManager networkManager;
     private final RequestHandler requestHandler;
     private final BufferedConsole console;
     private final Selector selector;
+    private final DatagramChannel serverChannel;
 
-    public Server(int port, RequestHandler requestHandler, BufferedConsole console) throws IOException {
-        this.port = port;
-        this.networkManager = new NetworkManager(port);
+    public Server(InetSocketAddress serverAddress, RequestHandler requestHandler, BufferedConsole console) throws IOException {
+        this.serverAddress = serverAddress;
         this.requestHandler = requestHandler;
         this.console = console;
         this.selector = Selector.open();
+        this.serverChannel = DatagramChannel.open();
+        this.networkManager = new NetworkManager(serverChannel);
+        serverChannel.bind(serverAddress);
+        serverChannel.register(selector, SelectionKey.OP_READ);
     }
 
-    private void acceptConnection(InetAddress address, int port) throws NetworkException {
-        try {
-            DatagramChannel datagramChannel = DatagramChannel.open();
-            datagramChannel.configureBlocking(false);
-            datagramChannel.bind(new InetSocketAddress(address, port));
-            datagramChannel.register(selector, SelectionKey.OP_CONNECT);
-        } catch (IOException e) {
-            throw new NetworkException("Не удалось подключить клиента!");
+
+    public void run() throws IOException, NetworkException {
+        while (true) {
+            selector.select();
+
+            Set<SelectionKey> selectedKeys = selector.selectedKeys();
+            Iterator<SelectionKey> iterator = selectedKeys.iterator();
+
+            while (iterator.hasNext()) {
+                SelectionKey key = iterator.next();
+                iterator.remove();
+
+                if (key.isReadable()) {
+                    Map<SocketAddress, byte[]> messages = networkManager.readFromChannel((DatagramChannel) key.channel());
+                    //messages.forEach((address, bytes) -> System.out.println(address.toString() + "  :  " + bytes.length));
+                    for (Map.Entry<SocketAddress, byte[]> entry: messages.entrySet()){
+                        Response response;
+                        try {
+                            Request request = (Request) Serializer.deserialazeObject(entry.getValue());
+                            response = requestHandler.handleRequest(request);
+                        } catch (SerializationException e){
+                            response = new Response(ResponseType.EXCEPTION, Serializer.serializeObject(e));
+
+                        }
+                        networkManager.sendData(Serializer.serializeObject(response), entry.getKey());
+                    }
+
+                }
+            }
         }
-    }
-
-    public void run(){
+        /*
         while (true){
             try {
                 UserDataObject data = networkManager.receiveData();
@@ -54,5 +81,7 @@ public class Server {
                 System.out.println(e.getMessage());
             }
         }
+
+         */
     }
 }

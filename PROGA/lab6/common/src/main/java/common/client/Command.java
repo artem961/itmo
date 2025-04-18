@@ -42,6 +42,10 @@ public abstract class Command {
         return true;
     }
 
+    public boolean apply(Object object) throws CommandExecutionError{
+        return true;
+    }
+
     @Override
     public boolean equals(Object object) {
         if (this == object) return true;

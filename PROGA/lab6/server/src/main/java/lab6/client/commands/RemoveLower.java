@@ -1,11 +1,12 @@
 package lab6.client.commands;
 
-import common.client.commands.Command;
-import common.client.commands.builders.FlatBuilder;
+import common.builders.FlatBuilder;
+import common.client.Command;
 import common.client.console.Console;
 import common.client.exceptions.CommandExecutionError;
-import common.collection.CollectionManager;
 import common.collection.models.Flat;
+import lab6.client.InputFlatException;
+import lab6.collection.CollectionManager;
 
 import java.util.List;
 
@@ -24,12 +25,10 @@ public class RemoveLower extends Command {
 
     private Flat getFlat(String[] args) {
         if (args.length != 0) return new FlatBuilder(console, args).build();
-        else return new FlatBuilder(console).build();
+        else throw new InputFlatException("Введите кваритру!");
     }
 
-    @Override
-    public boolean apply(String[] args) throws CommandExecutionError {
-        Flat flat = getFlat(args);
+    private boolean executeCommand(Flat flat){
         if (flat == null) {
             console.writeln("Не удалось создать квартиру!");
             return false;
@@ -45,5 +44,17 @@ public class RemoveLower extends Command {
         }
         console.writeln("Удалено элементов: " + String.valueOf(counterDeletedElements) + ".");
         return true;
+    }
+
+    @Override
+    public boolean apply(String[] args) throws CommandExecutionError {
+        Flat flat = getFlat(args);
+        return executeCommand(flat);
+    }
+
+    @Override
+    public boolean apply(Object object) throws CommandExecutionError {
+        Flat flat = (Flat) object;
+        return executeCommand(flat);
     }
 }

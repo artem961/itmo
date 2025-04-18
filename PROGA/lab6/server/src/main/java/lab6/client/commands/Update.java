@@ -1,12 +1,13 @@
 package lab6.client.commands;
 
+import common.builders.FlatBuilder;
 import common.client.Command;
-import common.client.builders.FlatBuilder;
 import common.client.console.Console;
 import common.client.exceptions.CommandExecutionError;
-import common.collection.CollectionManager;
 import common.collection.exceptions.ValidationException;
 import common.collection.models.Flat;
+import lab6.client.InputFlatException;
+import lab6.collection.CollectionManager;
 
 import java.util.Arrays;
 
@@ -24,7 +25,11 @@ public class Update extends Command {
     }
     private Flat getFlat(String[] args) {
         if (args.length != 0) return new FlatBuilder(console, args).build();
-        else return new FlatBuilder(console).build();
+        else throw new InputFlatException("Введите кваритру!");
+    }
+
+    private boolean executeCommand(Flat flat){
+        return false;
     }
 
     @Override
@@ -45,5 +50,10 @@ public class Update extends Command {
             throw new CommandExecutionError(e.getMessage());
         }
         return true;
+    }
+
+    @Override
+    public boolean apply(Object object) throws CommandExecutionError {
+        return false;
     }
 }

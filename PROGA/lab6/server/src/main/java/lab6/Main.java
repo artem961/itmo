@@ -6,9 +6,15 @@ import common.collection.exceptions.ValidationException;
 import common.network.NetworkException;
 import lab6.client.CommandManager;
 import lab6.client.commands.*;
+import lab6.client.commands.Add;
 import lab6.collection.CollectionManager;
 
 import java.io.IOException;
+import java.net.InetAddress;
+import java.net.InetSocketAddress;
+import java.net.SocketAddress;
+import java.nio.ByteBuffer;
+import java.nio.channels.DatagramChannel;
 
 
 public class Main {
@@ -73,24 +79,31 @@ public class Main {
         commandManager.registerCommand(new Help(console, commandManager));
         commandManager.registerCommand(new Info(console, collectionManager));
         commandManager.registerCommand(new Show(console, collectionManager));
-        //commandManager.registerCommand(new Add(console, collectionManager));
+        commandManager.registerCommand(new Add(console, collectionManager));
         commandManager.registerCommand(new AddRandom(console, collectionManager));
         //commandManager.registerCommand(new Update(console, collectionManager));
         //commandManager.registerCommand(new RemoveById(console, collectionManager));
-        //commandManager.registerCommand(new Clear(console, collectionManager));
+        commandManager.registerCommand(new Clear(console, collectionManager));
        // commandManager.registerCommand(new Save(console, collectionManager));
         //commandManager.registerCommand(new ExecuteScript(console, controller, commandManager, collectionManager));
         //commandManager.registerCommand(new Exit(collectionManager));
-       // commandManager.registerCommand(new AddIfMax(console, collectionManager));
+        commandManager.registerCommand(new AddIfMax(console, collectionManager));
         //commandManager.registerCommand(new RemoveLower(console, collectionManager));
        // commandManager.registerCommand(new History(console, commandManager));
        // commandManager.registerCommand(new MaxByFurnish(console, collectionManager));
-       // commandManager.registerCommand(new FilterLessThanFurnish(console, collectionManager));
+        commandManager.registerCommand(new FilterLessThanFurnish(console, collectionManager));
        // commandManager.registerCommand(new PrintDescending(console, collectionManager));
         //endregion
 
+
         RequestHandler requestHandler = new StandartRequestHandler(commandManager, console);
-        Server server = new Server(1488, requestHandler, console);
-        server.run();
+        Server server = new Server(new InetSocketAddress(InetAddress.getLocalHost(), 1488), requestHandler, console);
+        try {
+            server.run();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println(e.getClass());
+        }
+
     }
 }

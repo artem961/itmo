@@ -1,10 +1,10 @@
 package lab6.client.commands;
 
-import common.client.commands.Command;
+import common.client.Command;
 import common.client.console.Console;
 import common.client.exceptions.CommandExecutionError;
-import common.collection.CollectionManager;
 import common.collection.models.Flat;
+import lab6.collection.CollectionManager;
 
 import java.util.List;
 

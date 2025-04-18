@@ -22,7 +22,7 @@ public class History extends common.client.Command {
 
     @Override
     public boolean apply(String[] args) throws CommandExecutionError {
-        List<common.client.commands.Command> history = commandManager.getHistory();
+        List<Command> history = commandManager.getHistory();
 
         for (Command command : history) {
             if (command == null) continue;

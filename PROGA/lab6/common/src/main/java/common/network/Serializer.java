@@ -14,7 +14,7 @@ public class Serializer {
             objectOutputStream.close();
             return bytes;
         } catch (IOException e) {
-            throw new RuntimeException("Ошибка сереализации объекта!");
+            throw new SerializationException("Ошибка сереализации объекта!");
         }
     }
 
@@ -26,7 +26,7 @@ public class Serializer {
             objectInputStream.close();
             return obj;
         } catch (IOException | ClassNotFoundException e) {
-            throw new RuntimeException("Ошибка десериализации объекта!");
+            throw new SerializationException("Ошибка десериализации объекта!");
         }
     }
 }

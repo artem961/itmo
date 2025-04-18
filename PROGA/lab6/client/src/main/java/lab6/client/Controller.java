@@ -10,7 +10,7 @@ import common.client.exceptions.CommandExecutionError;
 import common.client.exceptions.CommandNotFoundException;
 import common.collection.models.Flat;
 import lab6.NetworkManager;
-import lab6.client.builders.FlatBuilder;
+import common.builders.FlatBuilder;
 
 import java.util.ArrayList;
 import java.util.Arrays;

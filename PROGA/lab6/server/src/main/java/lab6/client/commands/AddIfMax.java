@@ -1,19 +1,20 @@
 package lab6.client.commands;
 
+import common.builders.FlatBuilder;
 import common.client.Command;
-import common.client.commands.builders.FlatBuilder;
 import common.client.console.Console;
 import common.client.exceptions.CommandExecutionError;
-import common.collection.CollectionManager;
 import common.collection.exceptions.ValidationException;
 import common.collection.models.Flat;
+import lab6.client.InputFlatException;
+import lab6.collection.CollectionManager;
 
 import java.util.List;
 
 /**
  * Команда добавления элемента в коллекцию, если его значение превышает значение наибольшего элемента.
  */
-public class AddIfMax extends Command {
+public class AddIfMax extends Command{
     private final Console console;
     private final CollectionManager collectionManager;
 
@@ -26,13 +27,11 @@ public class AddIfMax extends Command {
 
     private Flat getFlat(String[] args) {
         if (args.length != 0) return new FlatBuilder(console, args).build();
-        else return new FlatBuilder(console).build();
+        else throw new InputFlatException("Введите кваритру!");
     }
 
-    @Override
-    public boolean apply(String[] args) throws CommandExecutionError {
+    private boolean executeCommand(Flat flat) throws CommandExecutionError {
         try {
-            Flat flat = getFlat(args);
             if (flat == null) {
                 console.writeln("Не удалось создать квартиру!");
                 return false;
@@ -52,5 +51,17 @@ public class AddIfMax extends Command {
         }
         console.writeln("Квартира добавлена!");
         return true;
+    }
+
+    @Override
+    public boolean apply(String[] args) throws CommandExecutionError {
+        Flat flat = getFlat(args);
+        return executeCommand(flat);
+    }
+
+    @Override
+    public boolean apply(Object object) throws CommandExecutionError {
+        Flat flat = (Flat) object;
+        return executeCommand(flat);
     }
 }

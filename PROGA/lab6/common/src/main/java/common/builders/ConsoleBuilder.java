@@ -1,4 +1,4 @@
-package lab6.client.builders;
+package common.builders;
 
 /**
  * Интерфейс для сборки объектов через консоль.
