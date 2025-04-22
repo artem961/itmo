@@ -3,9 +3,11 @@ package lab6.client.commands;
 import common.client.Command;
 import common.client.console.Console;
 import common.client.exceptions.CommandExecutionError;
-import lab6.client.CommandManager;
+import common.client.CommandManager;
+import lab6.client.GetCommandsException;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Команда выводит справку по доступным командам.
@@ -21,11 +23,15 @@ public class Help extends common.client.Command {
     }
 
     @Override
-    public boolean apply(String[] args) throws CommandExecutionError {
-        List<common.client.Command> commandList = commandManager.getAllCommands();
-        for (Command command : commandList) {
-            console.writeln(command.getName() + " - " + command.getDescription());
+    public boolean apply(String[] args, Object object) throws CommandExecutionError {
+        if (object == null) {
+            throw new GetCommandsException("Запрос у клиента его доступных команд");
         }
+
+        Map<String, String> clientCommands = (Map<String, String>) object;
+        Map<String, String> commandList = commandManager.getCommandsMap();
+        commandList.putAll(clientCommands);
+        commandList.forEach((name, discription) -> console.writeln(name + " - " + discription));
         return true;
     }
 }

@@ -3,6 +3,7 @@ package common.client;
 import common.client.exceptions.CommandExecutionError;
 
 import javax.management.ObjectName;
+import java.io.Serializable;
 import java.util.Objects;
 
 /**
@@ -12,7 +13,7 @@ public abstract class Command {
     private final String name;
     private final String description;
 
-    public Command(String name, String description) {
+    public Command(String name, String description)  {
         this.name = name;
         this.description = description;
     }

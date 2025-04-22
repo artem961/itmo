@@ -1,15 +1,14 @@
 package lab6;
 
 import common.network.Constants;
+import common.network.MessageAssembler;
 import common.network.NetworkException;
 
 import java.io.*;
-import java.net.DatagramPacket;
-import java.net.DatagramSocket;
-import java.net.InetAddress;
-import java.net.SocketException;
+import java.net.*;
 import java.nio.ByteBuffer;
 import java.util.Arrays;
+import java.util.Map;
 import java.util.SortedMap;
 import java.util.TreeMap;
 
@@ -18,15 +17,19 @@ public class NetworkManager {
     private final int port;
     private final int bufferSize = Constants.PACKET_SIZE.getValue();
     private final int packetDataSize = bufferSize - 8;
+    private final MessageAssembler messageAssembler;
 
 
     private final InetAddress serverAddress;
     private final int serverPort;
+    private final SocketAddress serverSocket;
 
     public NetworkManager(int port, int serverPort, InetAddress serverAddress) throws SocketException {
         this.port = port;
         this.serverPort = serverPort;
         this.serverAddress = serverAddress;
+        this.messageAssembler = new MessageAssembler();
+        serverSocket = new InetSocketAddress(serverAddress, serverPort);
         socket = new DatagramSocket(port);
         socket.setSoTimeout(8000);
     }
@@ -51,22 +54,17 @@ public class NetworkManager {
     }
 
     public byte[] receiveData() throws NetworkException {
-        SortedMap<Integer, byte[]> packets = new TreeMap<>();
-        int totalCount = -1;
-
+        Map<SocketAddress, byte[]> messages = null;
         while (true) {
             DatagramPacket dp = receivePacket();
-            byte[] packetData = dp.getData();
-            ByteBuffer buffer = ByteBuffer.wrap(packetData, 0, 8);
-            int packetNumber = buffer.getInt();
-            int count = buffer.getInt();
-            if (totalCount == -1) totalCount = count;
-
-            packetData = Arrays.copyOfRange(packetData, 8, dp.getLength());
-            packets.put(packetNumber, packetData);
-            if (packetNumber == totalCount) break;
+            ByteBuffer buffer = ByteBuffer.wrap(dp.getData());
+            messageAssembler.addPacket(serverSocket, buffer);
+            messages = messageAssembler.getReceivedMessages();
+            if (messages.size() != 0){
+                messageAssembler.clearReceivedMessages();
+                return messages.get(serverSocket);
+            }
         }
-        return combineMessage(packets);
     }
 
     public void sendData(byte[] data, InetAddress address, int port) throws NetworkException {
@@ -77,7 +75,6 @@ public class NetworkManager {
             buffer.putInt(packetsCount);
             buffer.put(data, number* packetDataSize, Math.min(packetDataSize, data.length - number * packetDataSize));
             buffer.flip();
-
             byte[] newData = new byte[buffer.remaining()];
             buffer.get(newData);
             DatagramPacket packet = new DatagramPacket(newData, newData.length, address, port);

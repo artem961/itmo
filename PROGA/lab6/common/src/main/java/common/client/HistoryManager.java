@@ -1,6 +1,4 @@
-package lab6.client;
-
-import common.client.Command;
+package common.client;
 
 import java.util.ArrayDeque;
 import java.util.Deque;
@@ -13,13 +11,11 @@ public class HistoryManager {
     /**
      * Класс хранящий историю команд.
      */
-    private class History {
-        private final int maxSize;
-        Deque<Command> hisory;
+    private class HistoryStorage {
+        Deque<Command> history;
 
-        private History(int maxSize) {
-            this.maxSize = maxSize;
-            hisory = new ArrayDeque<>(maxSize);
+        private HistoryStorage(int maxSize) {
+            history = new ArrayDeque<>(maxSize);
         }
 
         /**
@@ -28,8 +24,7 @@ public class HistoryManager {
          * @param command
          */
         private void add(Command command) {
-            if (hisory.size() == maxSize) hisory.removeFirst();
-            hisory.addLast(command);
+            history.add(command);
         }
 
         /**
@@ -38,14 +33,14 @@ public class HistoryManager {
          * @return
          */
         private List<Command> toList() {
-            return hisory.stream().toList();
+            return history.stream().toList();
         }
     }
 
-    private History history;
+    private HistoryStorage history;
 
     public HistoryManager() {
-        history = new History(15);
+        history = new HistoryStorage(15);
     }
 
     /**

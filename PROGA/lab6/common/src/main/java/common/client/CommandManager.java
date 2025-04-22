@@ -1,15 +1,17 @@
-package lab6.client;
+package common.client;
 
-import common.client.Command;
 import common.client.exceptions.CommandNotFoundException;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * Менеджер команд.
  */
-public class CommandManager {
+public class CommandManager{
     private final List<Command> commands = new ArrayList<>();
     private final HistoryManager historyManager = new HistoryManager();
 
@@ -60,5 +62,10 @@ public class CommandManager {
      */
     public List<Command> getAllCommands() {
         return this.commands;
+    }
+
+    public Map<String, String> getCommandsMap(){
+        return commands.stream()
+                        .collect(Collectors.toMap(Command::getName, Command::getDescription));
     }
 }

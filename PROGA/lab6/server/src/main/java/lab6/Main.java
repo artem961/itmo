@@ -4,7 +4,7 @@ import common.client.console.BufferedConsole;
 import common.client.console.Console;
 import common.collection.exceptions.ValidationException;
 import common.network.NetworkException;
-import lab6.client.CommandManager;
+import common.client.CommandManager;
 import lab6.client.commands.*;
 import lab6.client.commands.Add;
 import lab6.collection.CollectionManager;
@@ -12,9 +12,6 @@ import lab6.collection.CollectionManager;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
-import java.net.SocketAddress;
-import java.nio.ByteBuffer;
-import java.nio.channels.DatagramChannel;
 
 
 public class Main {

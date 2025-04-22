@@ -5,7 +5,7 @@ import java.io.IOException;
 /**
  * Интерфейс консоли.
  */
-public interface Console extends AutoCloseable {
+public interface Console extends AutoCloseable  {
     /**
      * Считывает данные с консоли.
      *

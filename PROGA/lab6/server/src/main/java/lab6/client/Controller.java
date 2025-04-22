@@ -1,6 +1,7 @@
 package lab6.client;
 
 import common.client.Command;
+import common.client.CommandManager;
 import common.client.console.Console;
 import common.client.exceptions.CommandExecutionError;
 import common.client.exceptions.CommandNotFoundException;

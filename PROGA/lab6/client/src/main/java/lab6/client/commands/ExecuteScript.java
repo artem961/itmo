@@ -1,11 +1,10 @@
 package lab6.client.commands;
 
 import common.client.Command;
+import common.client.CommandManager;
 import common.client.console.Console;
 import common.client.exceptions.CommandExecutionError;
-import common.client.CommandManager;
 import lab6.client.Controller;
-import lab6.collection.CollectionManager;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -20,14 +19,12 @@ import java.util.stream.Stream;
 public class ExecuteScript extends Command {
     private final Console console;
     private final CommandManager commandManager;
-    private final CollectionManager collectionManager;
     private final Controller controller;
 
-    public ExecuteScript(Console console, Controller controller, CommandManager commandManager, CollectionManager collectionManager) {
+    public ExecuteScript(Console console, Controller controller, CommandManager commandManager) {
         super("execute_script", "Исполняет скрипт из указанного файла.");
         this.console = console;
         this.commandManager = commandManager;
-        this.collectionManager = collectionManager;
         this.controller = controller;
     }
 

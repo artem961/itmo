@@ -3,7 +3,7 @@ package lab6.client.commands;
 import common.client.Command;
 import common.client.console.Console;
 import common.client.exceptions.CommandExecutionError;
-import lab6.client.CommandManager;
+import common.client.CommandManager;
 
 import java.util.List;
 

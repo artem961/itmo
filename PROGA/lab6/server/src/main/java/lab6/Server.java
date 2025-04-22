@@ -2,19 +2,20 @@ package lab6;
 
 import common.network.*;
 import common.client.console.BufferedConsole;
-import lab6.client.CommandManager;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
 import java.net.*;
-import java.nio.channels.DatagramChannel;
-import java.nio.channels.SelectionKey;
-import java.nio.channels.Selector;
+import java.nio.channels.*;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
+
 public class Server {
+    private static final Logger logger =  LogManager.getLogger(Server.class);
     private final InetSocketAddress serverAddress;
     private final NetworkManager networkManager;
     private final RequestHandler requestHandler;
@@ -31,57 +32,48 @@ public class Server {
         this.networkManager = new NetworkManager(serverChannel);
         serverChannel.bind(serverAddress);
         serverChannel.register(selector, SelectionKey.OP_READ);
+        logger.info("Сервер инициализирован по адресу {}", serverAddress);
+
+
     }
 
+    private void handleSelectionKey(SelectionKey key) throws NetworkException, IOException {
+        if (key.isReadable()) {
+            Map<SocketAddress, byte[]> messages = networkManager.readFromChannel((DatagramChannel) key.channel());
+            messages.forEach((address, bytes) -> logger.info("Получено новое сообщение от {}", address));
+            for (Map.Entry<SocketAddress, byte[]> entry : messages.entrySet()) {
+                Response response;
+                try {
+                    Request request = (Request) Serializer.deserialazeObject(entry.getValue());
+                    response = requestHandler.handleRequest(request);
+                } catch (SerializationException e) {
+                    response = new Response(ResponseType.EXCEPTION, Serializer.serializeObject(e));
+                }
+                networkManager.sendData(Serializer.serializeObject(response), entry.getKey());
+                logger.info("Отправлен ответ на {}", entry.getKey());
+            }
+        }
+    }
 
     public void run() throws IOException, NetworkException {
+        logger.info("Сервер запущен по адресу {}", this.serverAddress);
         while (true) {
             selector.select();
-
             Set<SelectionKey> selectedKeys = selector.selectedKeys();
             Iterator<SelectionKey> iterator = selectedKeys.iterator();
 
             while (iterator.hasNext()) {
                 SelectionKey key = iterator.next();
                 iterator.remove();
-
-                if (key.isReadable()) {
-                    Map<SocketAddress, byte[]> messages = networkManager.readFromChannel((DatagramChannel) key.channel());
-                    //messages.forEach((address, bytes) -> System.out.println(address.toString() + "  :  " + bytes.length));
-                    for (Map.Entry<SocketAddress, byte[]> entry: messages.entrySet()){
-                        Response response;
-                        try {
-                            Request request = (Request) Serializer.deserialazeObject(entry.getValue());
-                            response = requestHandler.handleRequest(request);
-                        } catch (SerializationException e){
-                            response = new Response(ResponseType.EXCEPTION, Serializer.serializeObject(e));
-
-                        }
-                        networkManager.sendData(Serializer.serializeObject(response), entry.getKey());
-                    }
-
-                }
+                handleSelectionKey(key);
             }
         }
-        /*
-        while (true){
-            try {
-                UserDataObject data = networkManager.receiveData();
-                Request request = (Request) Serializer.deserialazeObject(data.data());
-                InetAddress userAdress = data.userAddress();
-                int userPort = data.userPort();
+    }
 
-                Response response = requestHandler.handleRequest(request);
-                networkManager.sendData(Serializer.serializeObject(response), userAdress, userPort);
-
-
-            } catch (NetworkException e) {
-                System.out.println(e.getMessage());
-            } catch (Exception e) {
-                System.out.println(e.getMessage());
-            }
-        }
-
-         */
+    public void stop() throws Exception {
+        this.serverChannel.close();
+        this.console.close();
+        this.selector.close();
+        logger.info("Сервер остановлен.");
     }
 }

@@ -1,72 +1,21 @@
 [
   {
-    "id": 5,
-    "name": "у",
-    "coordinates": {
-      "x": 1.0,
-      "y": 2.0
-    },
-    "creationDate": "2025-04-18",
-    "area": 132.0,
-    "numberOfRooms": 1,
-    "height": 2,
-    "transport": "FEW"
-  },
-  {
     "id": 1,
-    "name": "random_flat_2877",
+    "name": "random_flat_5011",
     "coordinates": {
-      "x": 2877.0,
-      "y": 2877.0
+      "x": 5011.0,
+      "y": 5011.0
     },
-    "creationDate": "2025-04-18",
-    "area": 2877.0,
-    "numberOfRooms": 2877,
-    "height": 2877,
+    "creationDate": "2025-04-23",
+    "area": 5011.0,
+    "numberOfRooms": 5011,
+    "height": 5011,
     "furnish": "NONE",
     "transport": "NONE",
     "house": {
-      "name": "random_house_2877",
-      "year": 2877,
-      "numberOfFlatsOnFloor": 2877
-    }
-  },
-  {
-    "id": 3,
-    "name": "random_flat_4871",
-    "coordinates": {
-      "x": 4871.0,
-      "y": 4871.0
-    },
-    "creationDate": "2025-04-18",
-    "area": 4871.0,
-    "numberOfRooms": 4871,
-    "height": 4871,
-    "furnish": "NONE",
-    "transport": "NONE",
-    "house": {
-      "name": "random_house_4871",
-      "year": 4871,
-      "numberOfFlatsOnFloor": 4871
-    }
-  },
-  {
-    "id": 4,
-    "name": "random_flat_5058",
-    "coordinates": {
-      "x": 5058.0,
-      "y": 5058.0
-    },
-    "creationDate": "2025-04-18",
-    "area": 5058.0,
-    "numberOfRooms": 5058,
-    "height": 5058,
-    "furnish": "NONE",
-    "transport": "NONE",
-    "house": {
-      "name": "random_house_5058",
-      "year": 5058,
-      "numberOfFlatsOnFloor": 5058
+      "name": "random_house_9459",
+      "year": 9459,
+      "numberOfFlatsOnFloor": 9459
     }
   }
 ]

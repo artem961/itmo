@@ -1,6 +1,7 @@
 package lab6;
 
 import common.network.Constants;
+import common.network.MessageAssembler;
 import common.network.NetworkException;
 
 import java.io.*;
@@ -10,22 +11,28 @@ import java.nio.channels.DatagramChannel;
 import java.util.*;
 
 public class NetworkManager {
-    private final int bufferSize = Constants.PACKET_SIZE.getValue();
-    private final int packetDataSize = bufferSize - 8;
-    private final ByteBuffer buffer = ByteBuffer.allocate(bufferSize);
     private final DatagramChannel serverChannel;
-    private final Map<SocketAddress, SortedMap<Integer, byte[]>> receivedPackets = new HashMap<>();
-    private final Map<SocketAddress, byte[]> receivedMessages = new HashMap<>();
+    private final MessageAssembler messageAssembler;
+    private final int bufferSize;
+    private final int packetDataSize;
+    private final ByteBuffer buffer;
 
     public NetworkManager(DatagramChannel serverChannel) throws IOException {
         this.serverChannel = serverChannel;
+        this.messageAssembler = new MessageAssembler();
+        this.bufferSize = Constants.PACKET_SIZE.getValue();
+        this.packetDataSize = bufferSize - 8;
+        this.buffer = ByteBuffer.allocate(bufferSize);
+
         serverChannel.configureBlocking(false);
     }
 
-    private void sendBuffer(SocketAddress address) throws NetworkException {
+    private void sendPacket(SocketAddress address, ByteBuffer buffer) throws NetworkException {
         try {
             int sendBytes = serverChannel.send(buffer, address);
-            if (sendBytes == 0) throw new NetworkException("Серверный канал не отправил пакет!");
+            if (sendBytes == 0){
+                throw new NetworkException("Серверный канал не отправил пакет!");
+            }
         } catch (IOException e) {
             throw new NetworkException("Не удалось отправить пакет!");
         }
@@ -39,43 +46,19 @@ public class NetworkManager {
             buffer.putInt(packetsCount);
             buffer.put(data, number * packetDataSize, Math.min(packetDataSize, data.length - number * packetDataSize));
             buffer.flip();
-            sendBuffer(address);
+            sendPacket(address, buffer);
         }
     }
 
-    private byte[] combineMessage(SortedMap<Integer, byte[]> packets) {
-        try (ByteArrayOutputStream baos = new ByteArrayOutputStream()) {
-            for (byte[] packetData : packets.values()) {
-                baos.write(packetData);
-            }
-            return baos.toByteArray();
-        } catch (IOException e) {
-            return null;
-        }
-    }
-
-    public Map<SocketAddress, byte[]> readFromChannel(DatagramChannel channel) throws IOException {
-        receivedMessages.clear();
+    public Map<SocketAddress, byte[]> readFromChannel(DatagramChannel channel) throws IOException, NetworkException {
+        messageAssembler.clearReceivedMessages();
         while (true) {
             buffer.clear();
             SocketAddress clientAddress = channel.receive(buffer);
             if (clientAddress == null) break;
             buffer.flip();
-            saveBufferToMap(clientAddress);
+            messageAssembler.addPacket(clientAddress, buffer);
         }
-        return receivedMessages;
-    }
-
-    private void saveBufferToMap(SocketAddress clientAddress) {
-        int packetNumber = buffer.getInt();
-        int totalCount = buffer.getInt();
-        byte[] packetData = new byte[buffer.remaining()];
-        buffer.get(packetData);
-        receivedPackets.computeIfAbsent(clientAddress, key -> new TreeMap<>())
-                .put(packetNumber, packetData);
-        if (receivedPackets.get(clientAddress).size() == totalCount){
-            receivedMessages.put(clientAddress, combineMessage(receivedPackets.get(clientAddress)));
-            receivedPackets.remove(clientAddress);
-        }
+        return messageAssembler.getReceivedMessages();
     }
 }
