@@ -258,7 +258,7 @@ public class Flat implements Comparable<Flat>, Validatable, Serializable {
 
     @Override
     public int compareTo(Flat o) {
-        return Float.compare(area, o.getArea());
+        return this.getName().compareTo(o.getName());
     }
 
     @Override

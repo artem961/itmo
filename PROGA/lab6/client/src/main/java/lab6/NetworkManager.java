@@ -24,13 +24,13 @@ public class NetworkManager {
     private final int serverPort;
     private final SocketAddress serverSocket;
 
-    public NetworkManager(int port, int serverPort, InetAddress serverAddress) throws SocketException {
-        this.port = port;
+    public NetworkManager(int serverPort, InetAddress serverAddress) throws SocketException {
         this.serverPort = serverPort;
         this.serverAddress = serverAddress;
         this.messageAssembler = new MessageAssembler();
         serverSocket = new InetSocketAddress(serverAddress, serverPort);
-        socket = new DatagramSocket(port);
+        socket = new DatagramSocket();
+        this.port = socket.getPort();
         socket.setSoTimeout(8000);
     }
 

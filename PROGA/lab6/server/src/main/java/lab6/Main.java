@@ -2,6 +2,7 @@ package lab6;
 
 import common.client.console.BufferedConsole;
 import common.client.console.Console;
+import common.client.console.StandartConsole;
 import common.collection.exceptions.ValidationException;
 import common.network.NetworkException;
 import common.client.CommandManager;
@@ -9,70 +10,37 @@ import lab6.client.commands.*;
 import lab6.client.commands.Add;
 import lab6.collection.CollectionManager;
 
+import java.io.File;
 import java.io.IOException;
+import java.net.BindException;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
 
+import static java.lang.System.exit;
+
 
 public class Main {
-    private static void loadCollection(Console console, CollectionManager collectionManager, String fileName) throws ValidationException, IOException {
-        collectionManager.loadCollection(fileName);
-        if (collectionManager.backupManager.haveCorruptedElements()){
-            console.writeln("В коллекции элементы с одинаковым id:");
-            for (Object obj: collectionManager.backupManager.getCorruptedElements()){
-                console.writeln(obj.toString());
-            }
-            console.writeln("Элементы будут автоматически восстановлены.");
-            if (console.read("Если хотите удалить элементы введите yes: ").equals("yes")){
-                collectionManager.backupManager.clearCorruptedElements();
-                console.writeln("Элементы удалены!");
-                console.writeln("");
-            } else{
-                collectionManager.loadCorruptedElements();
-                console.writeln("Элементы восстановлены!");
-                console.writeln("");
-            }
-        }
-    }
 
     public static void main(String... args) throws IOException, NetworkException, ValidationException {
         BufferedConsole console = new BufferedConsole();
         CommandManager commandManager = new CommandManager();
         CollectionManager collectionManager = new CollectionManager();
-
-        /*
-        String fileName = "";
-        try{
-            fileName = args[0];
-            if (!(new File(fileName)).exists()) {
-                console.writeln("Файл не существует!");
-                exit(0);
-            }
-        } catch (Exception e) {
-            console.writeln("Введите имя файла!");
-            exit(0);
-        }
-
+        RequestHandler requestHandler = new StandartRequestHandler(commandManager, console);
+        Server server = null;
         try {
-            if (collectionManager.backupManager.checkBackupFile()) {
-                if (console.read("Программа была завершена неправильно. Если хотите восстановить коллекцию введите yes: ").toLowerCase().equals("yes")) {
-                    loadCollection(console, collectionManager, collectionManager.backupManager.getBackupFile());
-                } else {
-                    loadCollection(console, collectionManager, fileName);
-                }
-            } else{
-                loadCollection(console, collectionManager, fileName);
-            }
-        } catch (Exception e) {
-            console.writeln(e.getMessage());
-            console.writeln("Не удалось загрузить коллекцию из файла!");
+            server = new Server(new InetSocketAddress(InetAddress.getLocalHost(), 13531), requestHandler);
+        }catch (BindException e){
+            console.writeln("Этот порт уже занят!");
             exit(0);
         }
 
-         */
+        //region loadCollection
+        String fileName = getFileName(args);
+        CollectionLoader collectionLoader = new CollectionLoader(console, collectionManager);
+        collectionLoader.loadCollection(fileName);
+        //endregion
 
-
-        //region registerCommands
+        //region registerClientCommands
         commandManager.registerCommand(new Help(console, commandManager));
         commandManager.registerCommand(new Info(console, collectionManager));
         commandManager.registerCommand(new Show(console, collectionManager));
@@ -81,9 +49,6 @@ public class Main {
         commandManager.registerCommand(new Update(console, collectionManager));
         commandManager.registerCommand(new RemoveById(console, collectionManager));
         commandManager.registerCommand(new Clear(console, collectionManager));
-       // commandManager.registerCommand(new Save(console, collectionManager));
-        //commandManager.registerCommand(new ExecuteScript(console, controller, commandManager, collectionManager));
-        //commandManager.registerCommand(new Exit(collectionManager));
         commandManager.registerCommand(new AddIfMax(console, collectionManager));
         commandManager.registerCommand(new RemoveLower(console, collectionManager));
         commandManager.registerCommand(new History(console, commandManager));
@@ -91,16 +56,34 @@ public class Main {
         commandManager.registerCommand(new FilterLessThanFurnish(console, collectionManager));
         commandManager.registerCommand(new PrintDescending(console, collectionManager));
         //endregion
+        Thread serverThread = new Thread(server);
+        serverThread.start();
 
+        //region serverController
+        Console serverConsole = new StandartConsole();
+        CommandManager serverCommandManager = new CommandManager();
+        Controller controller = new Controller(serverConsole, serverCommandManager);
 
-        RequestHandler requestHandler = new StandartRequestHandler(commandManager, console);
-        Server server = new Server(new InetSocketAddress(InetAddress.getLocalHost(), 1488), requestHandler, console);
-        try {
-            server.run();
+        serverCommandManager.registerCommand(new Close(server, collectionManager));
+        serverCommandManager.registerCommand(new Help(serverConsole, serverCommandManager));
+        serverCommandManager.registerCommand(new Save(serverConsole, collectionManager));
+
+        controller.run();
+        //endregion
+    }
+
+    private static String getFileName(String[] args){
+        String fileName = "re";
+        try{
+            fileName = args[0];
+            if (!(new File(fileName)).exists()) {
+                System.out.println("Файл не существует!");
+               // exit(0);
+            }
         } catch (Exception e) {
-            System.out.println(e.getMessage());
-            System.out.println(e.getClass());
+            System.out.println("Введите имя файла!");
+           // exit(0);
         }
-
+        return fileName;
     }
 }

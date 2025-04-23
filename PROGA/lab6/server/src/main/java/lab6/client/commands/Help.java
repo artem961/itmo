@@ -23,11 +23,19 @@ public class Help extends common.client.Command {
     }
 
     @Override
+    public boolean apply(String[] args) throws CommandExecutionError {
+        Map<String, String> commandList = commandManager.getCommandsMap();
+        commandList.forEach((name, discription) -> console.writeln(name + " - " + discription));
+        return true;
+    }
+
+    @Override
     public boolean apply(String[] args, Object object) throws CommandExecutionError {
         if (object == null) {
             throw new GetCommandsException("Запрос у клиента его доступных команд");
         }
 
+        @SuppressWarnings("unchecked")
         Map<String, String> clientCommands = (Map<String, String>) object;
         Map<String, String> commandList = commandManager.getCommandsMap();
         commandList.putAll(clientCommands);

@@ -21,11 +21,11 @@ public class Main {
 
 
         InetAddress serverAdress = InetAddress.getLocalHost();
-        int serverPort = 1488;
+        int serverPort = 13531;
 
         Console console = new StandartConsole();
         CommandManager commandManager = new CommandManager();
-        NetworkManager networkManager = new NetworkManager(1487, serverPort, serverAdress);
+        NetworkManager networkManager = new NetworkManager(serverPort, serverAdress);
         Controller controller = new Controller(console, networkManager, commandManager);
 
         StringBuilder sb = new StringBuilder();

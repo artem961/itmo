@@ -1,0 +1,21 @@
+[
+  {
+    "id": 1,
+    "name": "random_flat_4616",
+    "coordinates": {
+      "x": 6961.0,
+      "y": 6961.0
+    },
+    "creationDate": "2025-04-23",
+    "area": 6961.0,
+    "numberOfRooms": 6961,
+    "height": 6961,
+    "furnish": "NONE",
+    "transport": "NONE",
+    "house": {
+      "name": "random_house_6961",
+      "year": 7987,
+      "numberOfFlatsOnFloor": 7987
+    }
+  }
+]

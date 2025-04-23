@@ -1,5 +1,6 @@
 package lab6;
 
+import common.client.console.Console;
 import common.network.*;
 import common.client.console.BufferedConsole;
 import org.apache.logging.log4j.LogManager;
@@ -14,27 +15,23 @@ import java.util.Map;
 import java.util.Set;
 
 
-public class Server {
+public class Server implements Runnable{
     private static final Logger logger =  LogManager.getLogger(Server.class);
     private final InetSocketAddress serverAddress;
     private final NetworkManager networkManager;
-    private final RequestHandler requestHandler;
-    private final BufferedConsole console;
-    private final Selector selector;
     private final DatagramChannel serverChannel;
+    private final RequestHandler requestHandler;
+    private final Selector selector;
 
-    public Server(InetSocketAddress serverAddress, RequestHandler requestHandler, BufferedConsole console) throws IOException {
+    public Server(InetSocketAddress serverAddress, RequestHandler requestHandler) throws IOException {
         this.serverAddress = serverAddress;
         this.requestHandler = requestHandler;
-        this.console = console;
         this.selector = Selector.open();
         this.serverChannel = DatagramChannel.open();
         this.networkManager = new NetworkManager(serverChannel);
         serverChannel.bind(serverAddress);
         serverChannel.register(selector, SelectionKey.OP_READ);
         logger.info("Сервер инициализирован по адресу {}", serverAddress);
-
-
     }
 
     private void handleSelectionKey(SelectionKey key) throws NetworkException, IOException {
@@ -48,6 +45,7 @@ public class Server {
                     response = requestHandler.handleRequest(request);
                 } catch (SerializationException e) {
                     response = new Response(ResponseType.EXCEPTION, Serializer.serializeObject(e));
+                    logger.warn(e.getMessage());
                 }
                 networkManager.sendData(Serializer.serializeObject(response), entry.getKey());
                 logger.info("Отправлен ответ на {}", entry.getKey());
@@ -55,24 +53,29 @@ public class Server {
         }
     }
 
-    public void run() throws IOException, NetworkException {
+    @Override
+    public void run(){
         logger.info("Сервер запущен по адресу {}", this.serverAddress);
-        while (true) {
-            selector.select();
-            Set<SelectionKey> selectedKeys = selector.selectedKeys();
-            Iterator<SelectionKey> iterator = selectedKeys.iterator();
+        try {
+            while (true) {
+                selector.select();
+                Set<SelectionKey> selectedKeys = selector.selectedKeys();
+                Iterator<SelectionKey> iterator = selectedKeys.iterator();
 
-            while (iterator.hasNext()) {
-                SelectionKey key = iterator.next();
-                iterator.remove();
-                handleSelectionKey(key);
+                while (iterator.hasNext()) {
+                    SelectionKey key = iterator.next();
+                    iterator.remove();
+                    handleSelectionKey(key);
+                }
             }
+        } catch (Exception e) {
+            logger.error(e);
         }
     }
 
     public void stop() throws Exception {
         this.serverChannel.close();
-        this.console.close();
+        this.selector.wakeup();
         this.selector.close();
         logger.info("Сервер остановлен.");
     }
