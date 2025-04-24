@@ -11,7 +11,7 @@ import static java.lang.System.exit;
 public class Exit extends Command {
 
     public Exit() {
-        super("exit", "Завершает работу приложения.");
+        super("exit", "Завершает программу.");
     }
 
     @Override

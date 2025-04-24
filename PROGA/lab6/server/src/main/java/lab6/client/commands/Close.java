@@ -21,11 +21,7 @@ public class Close extends Command {
     @Override
     public boolean apply(String[] args) throws CommandExecutionError {
         collectionManager.backupManager.deleteBackupFile();
-        try {
-            server.stop();
-        } catch (Exception e) {
-            throw new CommandExecutionError(e.toString());
-        }
+        server.close();
         return true;
     }
 }

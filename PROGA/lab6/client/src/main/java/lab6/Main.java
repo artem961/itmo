@@ -12,14 +12,11 @@ import lab6.client.commands.Exit;
 
 import java.io.IOException;
 import java.net.InetAddress;
+import java.util.Arrays;
 
 
 public class Main {
     public static void main(String... args) throws IOException, ValidationException, NetworkException, InterruptedException {
-
-
-
-
         InetAddress serverAdress = InetAddress.getLocalHost();
         int serverPort = 13531;
 
@@ -27,9 +24,6 @@ public class Main {
         CommandManager commandManager = new CommandManager();
         NetworkManager networkManager = new NetworkManager(serverPort, serverAdress);
         Controller controller = new Controller(console, networkManager, commandManager);
-
-        StringBuilder sb = new StringBuilder();
-
 
         commandManager.registerCommand(new ExecuteScript(console, controller, commandManager));
         commandManager.registerCommand(new Exit());

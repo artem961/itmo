@@ -11,26 +11,24 @@ import java.nio.channels.DatagramChannel;
 import java.util.*;
 
 public class NetworkManager {
-    private final DatagramChannel serverChannel;
     private final MessageAssembler messageAssembler;
     private final int bufferSize;
     private final int packetDataSize;
     private final ByteBuffer buffer;
+    private final DatagramChannel channel;
 
-    public NetworkManager(DatagramChannel serverChannel) throws IOException {
-        this.serverChannel = serverChannel;
+    public NetworkManager(DatagramChannel outChannel) throws IOException {
         this.messageAssembler = new MessageAssembler();
         this.bufferSize = Constants.PACKET_SIZE.getValue();
         this.packetDataSize = bufferSize - 8;
         this.buffer = ByteBuffer.allocate(bufferSize);
-
-        serverChannel.configureBlocking(false);
+        this.channel = outChannel;
     }
 
     private void sendPacket(SocketAddress address, ByteBuffer buffer) throws NetworkException {
         try {
-            int sendBytes = serverChannel.send(buffer, address);
-            if (sendBytes == 0){
+            int sendBytes = channel.send(buffer, address);
+            if (sendBytes == 0) {
                 throw new NetworkException("Серверный канал не отправил пакет!");
             }
         } catch (IOException e) {

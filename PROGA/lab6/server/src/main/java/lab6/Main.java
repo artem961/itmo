@@ -28,10 +28,12 @@ public class Main {
         RequestHandler requestHandler = new StandartRequestHandler(commandManager, console);
         Server server = null;
         try {
-            server = new Server(new InetSocketAddress(InetAddress.getLocalHost(), 13531), requestHandler);
+            server = new Server(new InetSocketAddress("0.0.0.0", 13531), requestHandler);
         }catch (BindException e){
             console.writeln("Этот порт уже занят!");
             exit(0);
+        } catch (Exception e){
+            System.out.println(e);
         }
 
         //region loadCollection
@@ -67,22 +69,23 @@ public class Main {
         serverCommandManager.registerCommand(new Close(server, collectionManager));
         serverCommandManager.registerCommand(new Help(serverConsole, serverCommandManager));
         serverCommandManager.registerCommand(new Save(serverConsole, collectionManager));
+        serverCommandManager.registerCommand(new Exit());
 
         controller.run();
         //endregion
     }
 
     private static String getFileName(String[] args){
-        String fileName = "re";
+        String fileName = "";
         try{
             fileName = args[0];
             if (!(new File(fileName)).exists()) {
                 System.out.println("Файл не существует!");
-               // exit(0);
+                exit(0);
             }
         } catch (Exception e) {
             System.out.println("Введите имя файла!");
-           // exit(0);
+            exit(0);
         }
         return fileName;
     }

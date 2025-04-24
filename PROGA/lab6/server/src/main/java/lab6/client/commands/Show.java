@@ -28,9 +28,7 @@ public class Show extends Command {
             console.writeln("Коллекция пустая!");
             return true;
         }
-        for (Flat flat : flatList) {
-            console.writeln(flat.toString());
-        }
+        flatList.stream().forEach(flat -> console.writeln(flat.toString()));
         return true;
     }
 }

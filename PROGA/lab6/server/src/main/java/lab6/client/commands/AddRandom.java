@@ -54,7 +54,7 @@ public class AddRandom extends Command {
             else count = Integer.parseInt(args[0]);
 
             if (count < 0) throw new CommandExecutionError("Введите положительное число!");
-            if (count > 100) throw new CommandExecutionError("Нельзя создать больше 100 объектов за раз!");
+            //if (count > 100) throw new CommandExecutionError("Нельзя создать больше 100 объектов за раз!");
 
             for (int i = 0; i < count; i++) {
                 collectionManager.add(makeRandomFlat());
