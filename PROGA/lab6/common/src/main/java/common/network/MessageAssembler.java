@@ -1,5 +1,7 @@
 package common.network;
 
+import common.network.exceptions.NetworkException;
+
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.net.SocketAddress;

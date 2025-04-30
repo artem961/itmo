@@ -64,8 +64,9 @@ public class CommandManager{
         return this.commands;
     }
 
-    public Map<String, String> getCommandsMap(){
-        return commands.stream()
-                        .collect(Collectors.toMap(Command::getName, Command::getDescription));
+    public List<String> getAllCommandsAsString(){
+        return this.commands.stream()
+                .map(Command::toString)
+                .collect(Collectors.toList());
     }
 }

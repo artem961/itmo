@@ -1,7 +1,8 @@
 package common.network;
 
+import common.network.exceptions.SerializationException;
+
 import java.io.*;
-import java.util.Arrays;
 
 public class Serializer {
     public static byte[] serializeObject(Object object) {

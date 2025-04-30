@@ -4,6 +4,7 @@ import common.client.Command;
 import common.client.CommandManager;
 import common.client.console.Console;
 import common.client.exceptions.CommandExecutionError;
+import common.network.Response;
 import lab6.client.Controller;
 
 import java.io.FileNotFoundException;
@@ -17,19 +18,17 @@ import java.util.stream.Stream;
  * Команда исполняет скрипт.
  */
 public class ExecuteScript extends Command {
-    private final Console console;
     private final CommandManager commandManager;
     private final Controller controller;
 
     public ExecuteScript(Console console, Controller controller, CommandManager commandManager) {
         super("execute_script", "Исполняет скрипт из указанного файла.");
-        this.console = console;
         this.commandManager = commandManager;
         this.controller = controller;
     }
 
     @Override
-    public boolean apply(String[] args) throws CommandExecutionError {
+    public Response apply(String[] args) throws CommandExecutionError {
         try {
             String filePath = args[0];
             FileReader reader = new FileReader(filePath);
@@ -47,7 +46,7 @@ public class ExecuteScript extends Command {
         } catch (IOException e) {
             throw new CommandExecutionError("Ошибка чтения файла!");
         }
-        return true;
+        return super.apply(args);
     }
 
     private void executeScript(String script, String filePath) throws CommandExecutionError {

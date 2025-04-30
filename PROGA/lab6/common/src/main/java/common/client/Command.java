@@ -1,6 +1,7 @@
 package common.client;
 
 import common.client.exceptions.CommandExecutionError;
+import common.network.Response;
 
 import javax.management.ObjectName;
 import java.io.Serializable;
@@ -9,7 +10,7 @@ import java.util.Objects;
 /**
  * Абстрактный класс команды.
  */
-public abstract class Command {
+public abstract class Command{
     private final String name;
     private final String description;
 
@@ -40,8 +41,8 @@ public abstract class Command {
      * @return
      * @throws CommandExecutionError
      */
-    public boolean apply(String[] args) throws CommandExecutionError {
-        return true;
+    public Response apply(String[] args) throws CommandExecutionError {
+        return null;
     }
 
     /**
@@ -51,7 +52,7 @@ public abstract class Command {
      * @return
      * @throws CommandExecutionError
      */
-    public boolean apply(String[] args, Object object) throws CommandExecutionError{
+    public Response apply(String[] args, Object object) throws CommandExecutionError{
         return apply(args);
     }
 
@@ -70,9 +71,6 @@ public abstract class Command {
 
     @Override
     public String toString() {
-        return "Command{" +
-                "name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                '}';
+        return name + " - " + description;
     }
 }

@@ -2,6 +2,7 @@ package lab6.client.commands;
 
 import common.client.Command;
 import common.client.exceptions.CommandExecutionError;
+import common.network.Response;
 
 import static java.lang.System.exit;
 
@@ -15,7 +16,7 @@ public class Exit extends Command {
     }
 
     @Override
-    public boolean apply(String[] args) throws CommandExecutionError {
+    public Response apply(String[] args) throws CommandExecutionError {
         exit(0);
         return super.apply(args);
     }

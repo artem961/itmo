@@ -166,9 +166,17 @@ public class CollectionManager {
      * @return Возвращает отсортированную коллекцию в виде List
      */
     public List<Flat> sort() {
-        List<Flat> sortedList = new ArrayList<>(this.collection);
+        List<Flat> sortedList = getAsList();
         Collections.sort(sortedList);
         return sortedList;
+    }
+
+    /**
+     * @return Возвращает отсортированную коллекцию в виде List
+     */
+    public List<Flat> getAsList() {
+        List<Flat> list = new ArrayList<>(this.collection);
+        return list;
     }
 
     /**

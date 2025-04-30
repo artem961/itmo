@@ -7,14 +7,13 @@ import common.client.console.Console;
 import common.client.exceptions.CommandExecutionError;
 import common.client.exceptions.CommandNotFoundException;
 import common.collection.models.Flat;
-import lab6.NetworkManager;
+import common.network.enums.ResponseType;
+import common.network.exceptions.NetworkException;
+import lab6.client.exceptions.ScriptRecursionException;
+import lab6.network.NetworkManager;
 import common.builders.FlatBuilder;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
+import java.util.*;
 
 /**
  * Контроллер, запрашивающий у пользователя команду и исполняющий их.
@@ -72,7 +71,7 @@ public class Controller {
             console.writeln(line.trim());
             try {
                 console.writeln(handleInput(line.trim()));
-            } catch (ScriptRecursionException e){
+            } catch (ScriptRecursionException e) {
                 console.writeln(e.getMessage());
                 break;
             }
@@ -92,9 +91,9 @@ public class Controller {
             return "";
         } catch (CommandNotFoundException e) {
             return e.getMessage() + " Введите help для справки по командам.";
-        } catch (ScriptRecursionException e){
+        } catch (ScriptRecursionException e) {
             throw e;
-        } catch (Exception e){
+        } catch (Exception e) {
             return e.getMessage();
         }
     }
@@ -105,20 +104,52 @@ public class Controller {
      * @param input
      * @throws CommandExecutionError
      */
-    private void parseInput(String input) throws NetworkException, CommandExecutionError {
+    private void parseInput(String input) throws common.network.exceptions.NetworkException, CommandExecutionError {
         String[] data = input
                 .trim()
                 .replace("\t", " ")
                 .split("\\s+");
 
         String commandName = data[0];
-        String[] args = Arrays.copyOfRange(data,1, data.length);
-        try{
+        String[] args = Arrays.copyOfRange(data, 1, data.length);
+        try {
             executeLocal(commandName, args);
-        } catch (CommandNotFoundException e){
+        } catch (CommandNotFoundException e) {
             Request request = new Request(commandName, args, null);
             Response response = makeRequest(request);
-            printResponce(commandName, args, response);
+            printResponce(request, response);
+        }
+    }
+
+    private void printResponce(Request request, Response response) throws CommandExecutionError, common.network.exceptions.NetworkException {
+        String commandName = request.commandName();
+        String[] args = request.args();
+
+        ResponseType type = response.type();
+        String message = response.message();
+        Collection<?> collection = response.collection();
+
+        switch (type) {
+            case OK:
+                console.write(message);
+                printCollection(collection);
+                break;
+            case COMMAND_NOT_FOUND:
+                throw new CommandNotFoundException(message);
+            case EXCEPTION:
+                throw new CommandExecutionError(message);
+            case INPUT_FLAT:
+                Flat flat = new FlatBuilder(console).build();
+                request = new Request(commandName, args, flat);
+                Response resp = makeRequest(request);
+                printResponce(request, resp);
+                break;
+            case GET_COMMANDS:
+                List<String> commandsList = localCommandManager.getAllCommandsAsString();
+                request = new Request(commandName, args, commandsList);
+                response = makeRequest(request);
+                printResponce(request, response);
+                break;
         }
     }
 
@@ -127,37 +158,15 @@ public class Controller {
         command.apply(args);
     }
 
-    private void printResponce(String commandName, String[] args, Response response) throws CommandExecutionError, NetworkException {
-        ResponseType type = response.type();
-        var data = Serializer.deserialazeObject(response.data());
-
-        switch (response.type()){
-            case OK:
-                console.write(data.toString());
-                break;
-            case COMMAND_NOT_FOUND_EXCEPTION:
-                throw new CommandNotFoundException(data.toString());
-            case EXCEPTION:
-                throw new CommandExecutionError(data.toString());
-            case INPUT_FLAT:
-                Flat flat = new FlatBuilder(console).build();
-                Request request = new Request(commandName, args, flat);
-                Response resp =  makeRequest(request);
-                printResponce(commandName, args, resp);
-                break;
-            case GET_COMMANDS:
-                Map<String, String> commandsMap = localCommandManager.getCommandsMap();
-                Request request1 = new Request(commandName, args, commandsMap);
-                Response response1 =  makeRequest(request1);
-                printResponce(commandName, args, response1);
-                break;
-        }
-
-    }
-
     private Response makeRequest(Request request) throws NetworkException, CommandExecutionError {
         networkManager.sendData(Serializer.serializeObject(request));
         Response response = (Response) Serializer.deserialazeObject(networkManager.receiveData());
         return response;
+    }
+
+    private void printCollection(Collection<?> collection) {
+        if (collection != null) {
+            collection.forEach(object -> console.writeln(object.toString()));
+        }
     }
 }

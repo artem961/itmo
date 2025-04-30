@@ -19,7 +19,7 @@ public class FlatBuilder extends DefaultConsoleBuilder {
 
     @Override
     public Flat build() {
-        if (args != null) return buildFromString();
+        if (args != null) return buildFromString(args);
         console.writeln("");
         console.writeln("=== Создание квартиры ===");
         try {
@@ -39,9 +39,14 @@ public class FlatBuilder extends DefaultConsoleBuilder {
         }
     }
 
-    private Flat buildFromString() {
+    public static Flat buildFromString(String[] args) {
+        String format = "\nФормат создания в одну строку: \n" +
+        "add name x y area numberOfRooms height furnish transport houseName year numberOfFlatsOnFloor";
+
         try {
-            if (args.length > 11) console.writeln("Слишком много аргументов! Можно запутаться!");
+            if (args.length > 11){
+                throw new BuildException("Слишком много аргументов! Можно запутаться!");
+            }
             return new Flat(
                     args[0],
                     new Coordinates(Float.valueOf(args[1]), Double.valueOf(args[2])),
@@ -52,17 +57,14 @@ public class FlatBuilder extends DefaultConsoleBuilder {
                     Transport.valueOf(args[7].toUpperCase()),
                     new House(args[8], Integer.valueOf(args[9]), Long.valueOf(args[10])));
         } catch (IndexOutOfBoundsException e) {
-            console.writeln("Слишком мало аргументов. Для создания квартиры требуется 11.");
+            throw new BuildException("Слишком мало аргументов. Для создания квартиры требуется 11." + format);
         } catch (NumberFormatException e) {
-            console.writeln("Неверный формат ввода числа!");
+            throw new BuildException("Неверный формат ввода числа!" + format);
         } catch (IllegalArgumentException e) {
-            console.writeln("Такого значения нет в доступных для ввода транспорта и мебели!");
+            throw new BuildException("Такого значения нет в доступных для ввода транспорта и мебели!" + format);
         } catch (Exception e) {
-            console.writeln(e.getMessage());
+            throw new BuildException(e.getMessage());
         }
-        console.write("Формат создания в одну строку: ");
-        console.writeln("add name x y area numberOfRooms height furnish transport houseName year numberOfFlatsOnFloor");
-        return null;
     }
 
     private House inputHouse() {
