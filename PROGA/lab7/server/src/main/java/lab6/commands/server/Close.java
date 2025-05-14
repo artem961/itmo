@@ -22,7 +22,6 @@ public class Close extends Command {
 
     @Override
     public Response apply(String[] args) throws CommandExecutionError {
-        collectionManager.backupManager.deleteBackupFile();
         server.close();
         return Response.builder()
                 .setType(ResponseType.OK)

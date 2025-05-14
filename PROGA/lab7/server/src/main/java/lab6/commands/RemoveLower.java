@@ -47,6 +47,7 @@ public class RemoveLower extends Command {
         }
 
         List<Flat> flatList = collectionManager.getAsList();
+
         long elementsDelete = flatList.stream()
                 .filter(flat1 -> flat1.compareTo(flat) < 0)
                 .peek(collectionManager::remove)

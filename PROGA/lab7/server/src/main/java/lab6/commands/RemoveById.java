@@ -6,6 +6,8 @@ import common.client.exceptions.CommandExecutionError;
 import common.network.Response;
 import lab6.collection.CollectionManager;
 
+import java.sql.SQLException;
+
 /**
  * Команда удаляет элемент коллекции по id.
  */

@@ -45,7 +45,7 @@ public class Add extends Command {
             return Response.builder()
                     .setMessage("Квартира успешно добавлена!")
                     .build();
-        } catch (ValidationException | SQLException e) {
+        } catch (ValidationException e) {
             throw new CommandExecutionError(e.getMessage());
         }
     }

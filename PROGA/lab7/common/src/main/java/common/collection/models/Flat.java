@@ -5,23 +5,35 @@ import common.collection.exceptions.FieldLowerThanValidException;
 import common.collection.exceptions.NullFieldException;
 import common.collection.exceptions.ValidationException;
 import common.collection.interfaces.Validatable;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NonNull;
+import lombok.Setter;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.Objects;
 
 /**
  * Квартира.
  */
+
+@Getter
+@Setter
+@EqualsAndHashCode
 public class Flat implements Comparable<Flat>, Validatable, Serializable {
+    @NonNull
     private Integer id; //Поле не может быть null, Значение поля должно быть больше 0, Значение этого поля должно быть уникальным, Значение этого поля должно генерироваться автоматически
+    @NonNull
     private String name; //Поле не может быть null, Строка не может быть пустой
+    @NonNull
     private Coordinates coordinates; //Поле не может быть null
+    @NonNull
     private java.time.LocalDate creationDate; //Поле не может быть null, Значение этого поля должно генерироваться автоматически
     private float area; //Значение поля должно быть больше 0
     private int numberOfRooms; //Значение поля должно быть больше 0
     private long height; //Значение поля должно быть больше 0
     private Furnish furnish; //Поле может быть null
+    @NonNull
     private Transport transport; //Поле не может быть null
     private House house; //Поле может быть null
 
@@ -52,7 +64,6 @@ public class Flat implements Comparable<Flat>, Validatable, Serializable {
         this.transport = transport;
         this.house = house;
         this.creationDate = LocalDate.now();
-        //validate();
     }
 
     /**
@@ -84,22 +95,39 @@ public class Flat implements Comparable<Flat>, Validatable, Serializable {
         this.house = house;
         this.furnish = furnish;
         this.creationDate = LocalDate.now();
-        //validate();
     }
 
-    //region setteres
-    public void setId(Integer id) throws ValidationException {
-        if (id == null) throw new NullFieldException("id");
-        if (id <= 0) throw new FieldLowerThanValidException("id", 0);
-        this.id = id;
+    @Override
+    public void validate() throws ValidationException {
+        Validator.validateId(id);
+        Validator.validateName(name);
+        Validator.validateCoordinates(coordinates);
+        Validator.validateArea(area);
+        Validator.validateNumberOfRooms(numberOfRooms);
+        Validator.validateHeight(height);
+        Validator.validateTransport(transport);
+    }
+    //endregion
+
+    @Override
+    public int compareTo(Flat o) {
+        return this.getName().compareTo(o.getName());
     }
 
-    public void setCreationDate(LocalDate date) {
-        this.creationDate = date;
+    @Override
+    public String toString() {
+        return "Flat{\"id\": " + id + ", " +
+                "\"name\": \"" + name + "\", " +
+                "\"coordinates\": \"" + coordinates + "\", " +
+                "\"creationDate\" = \"" + creationDate + "\", " +
+                "\"area\": " + area + ", " +
+                "\"numberOfRooms\" = " + numberOfRooms + ", " +
+                "\"height\": " + height + ", " +
+                "\"furnish\": \"" + furnish + "\", " +
+                "\"transport\": \"" + transport + "\", " +
+                "\"house\": \"" + house + "\"" + "}";
     }
-    // endregion
 
-    //region validation
     public static class Validator {
         /**
          * Проверить валидность id.
@@ -199,92 +227,5 @@ public class Flat implements Comparable<Flat>, Validatable, Serializable {
         public static void validateHouse(House house) throws ValidationException {
 
         }
-    }
-
-    @Override
-    public void validate() throws ValidationException {
-        //Validator.validateId(id);
-        Validator.validateName(name);
-        Validator.validateCoordinates(coordinates);
-        Validator.validateArea(area);
-        Validator.validateNumberOfRooms(numberOfRooms);
-        Validator.validateHeight(height);
-        Validator.validateTransport(transport);
-    }
-    //endregion
-
-    //region getters
-    public Integer getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public Coordinates getCoordinates() {
-        return coordinates;
-    }
-
-    public float getArea() {
-        return area;
-    }
-
-    public Furnish getFurnish() {
-        return furnish;
-    }
-
-    public House getHouse() {
-        return house;
-    }
-
-    public int getNumberOfRooms() {
-        return numberOfRooms;
-    }
-
-    public LocalDate getCreationDate() {
-        return creationDate;
-    }
-
-    public long getHeight() {
-        return height;
-    }
-
-    public Transport getTransport() {
-        return transport;
-    }
-    //endregion
-
-
-    @Override
-    public int compareTo(Flat o) {
-        return this.getName().compareTo(o.getName());
-    }
-
-    @Override
-    public String toString() {
-        return "Flat{\"id\": " + id + ", " +
-                "\"name\": \"" + name + "\", " +
-                "\"coordinates\": \"" + coordinates + "\", " +
-                "\"creationDate\" = \"" + creationDate + "\", " +
-                "\"area\": " + area + ", " +
-                "\"numberOfRooms\" = " + numberOfRooms + ", " +
-                "\"height\": " + height + ", " +
-                "\"furnish\": \"" + furnish + "\", " +
-                "\"transport\": \"" + transport + "\", " +
-                "\"house\": \"" + house + "\"" + "}";
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Flat flat = (Flat) o;
-        return Float.compare(area, flat.area) == 0 && numberOfRooms == flat.numberOfRooms && height == flat.height && Objects.equals(id, flat.id) && Objects.equals(name, flat.name) && Objects.equals(coordinates, flat.coordinates) && Objects.equals(creationDate, flat.creationDate) && furnish == flat.furnish && transport == flat.transport && Objects.equals(house, flat.house);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, name, coordinates, creationDate, area, numberOfRooms, height, furnish, transport, house);
     }
 }

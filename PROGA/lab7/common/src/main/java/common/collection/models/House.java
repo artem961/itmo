@@ -3,12 +3,14 @@ package common.collection.models;
 import common.collection.exceptions.FieldLowerThanValidException;
 import common.collection.exceptions.ValidationException;
 import common.collection.interfaces.Validatable;
+import lombok.Getter;
 
 import java.io.Serializable;
 
 /**
  * Дом.
  */
+@Getter
 public class House implements Validatable, Serializable {
     private String name; //Поле может быть null
     private int year; //Значение поля должно быть больше 0
@@ -21,7 +23,22 @@ public class House implements Validatable, Serializable {
         validate();
     }
 
-    //region validation
+
+    @Override
+    public void validate() throws ValidationException {
+        Validator.validateName(name);
+        Validator.validateYear(year);
+        Validator.validateNumberOfFlatsOnFloor(numberOfFlatsOnFloor);
+    }
+    //endregion
+
+    @Override
+    public String toString() {
+        return "House{\"name\": \"" + name + "\", " +
+                "\"year\": " + year + ", " +
+                "\"numberOfFlatsOnFloor\": " + numberOfFlatsOnFloor + "}";
+    }
+
     public static class Validator {
         /**
          * Проверить валидность названия.
@@ -51,35 +68,5 @@ public class House implements Validatable, Serializable {
         public static void validateNumberOfFlatsOnFloor(Long numberOfFlatsOnFloor) throws ValidationException {
             if (numberOfFlatsOnFloor <= 0) throw new FieldLowerThanValidException("numberOfFlatsOnFloor", 0);
         }
-    }
-
-    @Override
-    public void validate() throws ValidationException {
-        Validator.validateName(name);
-        Validator.validateYear(year);
-        Validator.validateNumberOfFlatsOnFloor(numberOfFlatsOnFloor);
-    }
-    //endregion
-
-    //region getters
-    public String getName() {
-        return name;
-    }
-
-    public int getYear() {
-        return year;
-    }
-
-    public Long getNumberOfFlatsOnFloor() {
-        return numberOfFlatsOnFloor;
-    }
-    //endregion
-
-
-    @Override
-    public String toString() {
-        return "House{\"name\": \"" + name + "\", " +
-                "\"year\": " + year + ", " +
-                "\"numberOfFlatsOnFloor\": " + numberOfFlatsOnFloor + "}";
     }
 }

@@ -38,6 +38,9 @@ public class Update extends Command {
         if (args.length < 1) throw new CommandExecutionError("Введите id элемента который хотите изменить!");
         try {
             Integer id = Integer.valueOf(args[0]);
+            if (collectionManager.isIdFree(id)){
+                throw new CommandExecutionError("Элемента с таким id не существует!");
+            }
             Flat flat = getFlat(Arrays.copyOfRange(args, 1, args.length), null);
             if (flat == null) {
                 return Response.builder()
@@ -51,7 +54,7 @@ public class Update extends Command {
                     .build();
         } catch (NumberFormatException e) {
             throw new CommandExecutionError("Введите целое положительное число!");
-        } catch (ValidationException | SQLException e) {
+        } catch (ValidationException e) {
             throw new CommandExecutionError(e.getMessage());
         }
     }
@@ -61,6 +64,10 @@ public class Update extends Command {
         if (args.length < 1) throw new CommandExecutionError("Введите id элемента который хотите изменить!");
         try {
             Integer id = Integer.valueOf(args[0]);
+            if (collectionManager.isIdFree(id)){
+                throw new CommandExecutionError("Элемента с таким id не существует!");
+            }
+
             Flat flat = getFlat(Arrays.copyOfRange(args, 1, args.length), object);
             if (flat == null) {
                 return Response.builder()
@@ -74,7 +81,7 @@ public class Update extends Command {
                     .build();
         } catch (NumberFormatException e) {
             throw new CommandExecutionError("Введите целое положительное число!");
-        } catch (ValidationException | SQLException e) {
+        } catch (ValidationException e) {
             throw new CommandExecutionError(e.getMessage());
         }
     }

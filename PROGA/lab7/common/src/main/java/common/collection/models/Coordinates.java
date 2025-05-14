@@ -5,13 +5,17 @@ import common.collection.exceptions.NullFieldException;
 
 import common.collection.exceptions.ValidationException;
 import common.collection.interfaces.Validatable;
+import lombok.Getter;
+import lombok.NonNull;
 
 import java.io.Serializable;
 
 /**
  * Координаты.
  */
+@Getter
 public class Coordinates implements Validatable, Serializable {
+    @NonNull
     private Float x; //Значение поля должно быть больше -621, Поле не может быть null
     private double y;
 
@@ -21,7 +25,18 @@ public class Coordinates implements Validatable, Serializable {
         validate();
     }
 
-    //region validation
+    @Override
+    public void validate() throws ValidationException {
+        Validator.validateX(x);
+        Validator.validateY(y);
+    }
+
+    @Override
+    public String toString() {
+        return "Coordinates{\"x\": " + x + ", " +
+                "\"y\": " + y + "}";
+    }
+
     public static class Validator {
         /**
          * Проверить валидность x.
@@ -43,29 +58,5 @@ public class Coordinates implements Validatable, Serializable {
         public static void validateY(double y) throws ValidationException {
 
         }
-    }
-
-    @Override
-    public void validate() throws ValidationException {
-        Validator.validateX(x);
-        Validator.validateY(y);
-    }
-    //endregion
-
-    //region getters
-    public Float getX() {
-        return x;
-    }
-
-    public double getY() {
-        return y;
-    }
-    //endregion
-
-
-    @Override
-    public String toString() {
-        return "Coordinates{\"x\": " + x + ", " +
-                "\"y\": " + y + "}";
     }
 }

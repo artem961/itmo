@@ -7,6 +7,8 @@ import common.network.Response;
 import common.network.enums.ResponseType;
 import lab6.collection.CollectionManager;
 
+import java.sql.SQLException;
+
 /**
  * Команда очищает коллекцию.
  */
@@ -21,6 +23,7 @@ public class Clear extends Command {
     @Override
     public Response apply(String[] args) throws CommandExecutionError {
         collectionManager.removeAll();
+
         return Response.builder()
                 .setMessage("Коллекция очищена!")
                 .build();

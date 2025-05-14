@@ -37,19 +37,3 @@ CREATE FUNCTION insertHouse(varchar(500), integer, bigint) RETURNS INTEGER AS $$
         RETURN house_id;
     END;
 $$ LANGUAGE plpgsql;
-
-CREATE FUNCTION insertHouse(varchar(500), integer, bigint) RETURNS INTEGER AS $$
-    DECLARE
-        house_id integer;
-    BEGIN
-        SELECT id INTO house_id FROM houses WHERE name=$1 AND year=$2 AND num_of_flats=$3
-        LIMIT 1;
-
-        IF (house_id IS NULL) THEN
-            INSERT INTO houses (name, year, num_of_flats)
-             VALUES ($1, $2, $3)
-              RETURNING id INTO house_id;
-        END IF;
-        RETURN house_id;
-    END;
-$$ LANGUAGE plpgsql;

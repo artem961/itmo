@@ -59,7 +59,7 @@ public class AddIfMax extends Command {
             return Response.builder()
                     .setMessage("Квартира добавлена!")
                     .build();
-        } catch (ValidationException | SQLException e) {
+        } catch (ValidationException e) {
             throw new CommandExecutionError(e.getMessage());
         }
     }

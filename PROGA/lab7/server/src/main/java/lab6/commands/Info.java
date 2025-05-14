@@ -28,8 +28,7 @@ public class Info extends Command {
                 .setMessage(
                         "Информация о коллекции: " +
                         "тип: " + collectionInfo.collectionType() +
-                        "; количество элементов: " + collectionInfo.size() +
-                        "; загружена из файла: " + collectionInfo.loadedFrom() + ";")
+                        "; количество элементов: " + collectionInfo.size())
                 .build();
     }
 }

@@ -1,6 +1,7 @@
 plugins {
     id 'java'
     id 'application'
+    id("io.freefair.lombok") version "8.12.2.1"
 }
 
 group = 'org.example'

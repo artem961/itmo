@@ -61,7 +61,7 @@ public class AddRandom extends Command {
             return Response.builder()
                     .setMessage("Добавлены случайные квартиры в количестве " + count.toString() + " штук!")
                     .build();
-        } catch (ValidationException | SQLException e) {
+        } catch (ValidationException e) {
             throw new CommandExecutionError(e.getMessage());
         } catch (NumberFormatException e) {
             throw new CommandExecutionError("Введите целое положительное число в качеcтве аргумента!");

@@ -5,16 +5,11 @@ package lab6.collection;
 import common.collection.exceptions.ValidationException;
 import common.collection.models.Flat;
 import lab6.collection.database.DBQueryManager;
+import lab6.collection.database.FlatRepository;
 import lab6.collection.utils.CollectionInfo;
 
-import java.io.IOException;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
+import java.util.*;
 
 /**
  * Менеджер для управления коллекцией.
@@ -22,12 +17,12 @@ import java.util.List;
 public class CollectionManager {
     private CollectionInfo collectionInfo;
     private final HashSet<Flat> collection;
-    private final DBQueryManager dbQueryManager;
+    private final FlatRepository flatRepository;
 
     public CollectionManager(){
         collectionInfo = new CollectionInfo(null, 0);
         collection = new HashSet<>();
-        dbQueryManager = new DBQueryManager();
+        flatRepository = new FlatRepository();
         refreshCollection();
     }
 
@@ -44,7 +39,7 @@ public class CollectionManager {
      * @param flat
      * @throws ValidationException
      */
-    public void add(Flat flat) throws ValidationException, SQLException {
+    public void add(Flat flat) throws ValidationException {
         if (flat.getCreationDate() == null) {
             flat.setCreationDate(LocalDate.now());
         }
@@ -53,11 +48,11 @@ public class CollectionManager {
         if (flat.getCoordinates() != null) flat.getCoordinates().validate();
         if (flat.getHouse() != null) flat.getHouse().validate();
 
-        if (dbQueryManager.insertFlat(flat) != 0) {
+        if (flatRepository.insert(flat) != 0) {
             collection.add(flat);
             updateCollectionInfo();
         } else {
-            throw new SQLException("Не удалось добавить квартиру!");
+            throw new RuntimeException("Не удалось добавить квартиру!");
         }
     }
 
@@ -68,9 +63,12 @@ public class CollectionManager {
      * @param id
      * @throws ValidationException
      */
-    public void update(Flat flat, Integer id) throws ValidationException, SQLException {
-        if (dbQueryManager.updateFlatById(flat, id) != 0) {
-            removeById(id);
+    public void update(Flat flat, Integer id) throws ValidationException {
+        if (isIdFree(id)){
+            throw new RuntimeException("Элемента с таким id не существует!");
+        }
+        if (flatRepository.updateById(flat, id) != 0) {
+            collection.removeIf(fl -> fl.getId().equals(id));
             flat.setId(id);
             collection.add(flat);
         } else{
@@ -85,7 +83,7 @@ public class CollectionManager {
      * @return Содержался ли элемент в коллекции.
      */
     public boolean remove(Flat flat) {
-        boolean rezult = collection.remove(flat);
+        boolean rezult = removeById(flat.getId());
         return rezult;
     }
 
@@ -96,7 +94,8 @@ public class CollectionManager {
      * @return
      */
     public boolean removeById(Integer id) {
-        boolean rezult = collection.removeIf(flat -> flat.getId() == id);
+        flatRepository.removeById(id);
+        boolean rezult = collection.removeIf(flat -> flat.getId().equals(id));
         return rezult;
     }
 
@@ -106,6 +105,7 @@ public class CollectionManager {
      * @return
      */
     public boolean removeAll() {
+        flatRepository.removeAll();
         collection.clear();
         return true;
     }
@@ -131,22 +131,22 @@ public class CollectionManager {
      * Обновляет состояние коллекции
      *
      * @return
-     * @throws IOException
-     * @throws ValidationException
      */
     public void refreshCollection() {
-
-
+        this.collection.addAll(flatRepository.selectAll());
         updateCollectionInfo();
     }
 
     /**
      * Gjkexbnm информацию о коллекции.
-     *
      * @return
      */
     public CollectionInfo getCollectionInfo() {
         return collectionInfo;
+    }
+
+    public boolean isIdFree(Integer id){
+        return !collection.stream().anyMatch(flat -> flat.getId().equals(id));
     }
 
     @Override

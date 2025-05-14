@@ -18,7 +18,12 @@ public class DBManager {
         url = configLoader.get("db_url");
     }
 
-    public Connection getConnection() throws SQLException {
-        return DriverManager.getConnection(url, user, password);
+    public Connection getConnection() {
+        try {
+            return DriverManager.getConnection(url, user, password);
+        } catch (SQLException e) {
+            throw new DBException("Не удалось подключиться к базе!\n" + e);
+        }
+
     }
 }
