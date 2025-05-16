@@ -3,6 +3,7 @@ package lab6.collection.database;
 import common.collection.exceptions.ValidationException;
 import common.collection.models.Coordinates;
 import common.collection.models.Flat;
+import common.collection.models.Furnish;
 import common.collection.models.Transport;
 import lombok.RequiredArgsConstructor;
 
@@ -21,8 +22,7 @@ public class FlatRepository implements Repository<Flat> {
     @Override
     public int insert(Flat flat) {
         try {
-            String query = "INSERT INTO flats (name, x, y, date, area, numb_of_rooms, height, furnish, transport, house) " +
-                    "VALUES (?, ?, ?, ?, ?, ?, ?, ?::furnish, ?::transport, ?)";
+            String query = "select insertFlat(?, ?, ?, ?, ?, ?, ?, ?::furnish, ?::transport, ?)";
             Connection connection = dbManager.getConnection();
             connection.setAutoCommit(false);
             PreparedStatement stat = connection.prepareStatement(query);
@@ -46,10 +46,15 @@ public class FlatRepository implements Repository<Flat> {
                 stat.setInt(10, houseId);
             } else stat.setNull(10, Types.OTHER);
 
-            int res = stat.executeUpdate();
-            flat.setId(getLastFlatId(connection));
-            connection.commit();
-            return res;
+            ResultSet result = stat.executeQuery();
+            if (result.next()){
+                flat.setId(result.getInt(1));
+                connection.commit();
+                return 1;
+            } else{
+                connection.rollback();
+                return 0;
+            }
         } catch (SQLException e) {
             throw new DBException("Не удалось вставить квартиру!\n" + e);
         }
@@ -133,9 +138,12 @@ public class FlatRepository implements Repository<Flat> {
                         result.getFloat("area"),
                         result.getInt("numb_of_rooms"),
                         result.getLong("height"),
-                        //Furnish.valueOf(result.getString("furnish")),
                         Transport.valueOf(result.getString("transport")),
                         null);
+
+                if (result.getString("furnish") != null) {
+                    flat.setFurnish(Furnish.valueOf(result.getString("furnish")));
+                }
 
                 flat.setId(result.getInt("id"));
                 flat.setCreationDate(result.getDate("date").toLocalDate());
@@ -164,17 +172,6 @@ public class FlatRepository implements Repository<Flat> {
             return res;
         } catch (SQLException e) {
             throw new DBException("Не удалось очистить коллекцию!\n" + e);
-        }
-    }
-
-    private int getLastFlatId(Connection connection) throws SQLException {
-        String query = "SELECT last_value FROM flats_id_seq;";
-        ResultSet result = connection.createStatement().executeQuery(query);
-
-        if (result.next()) {
-            return result.getInt(1);
-        } else {
-            throw new SQLException("Не удалось получить flat id!");
         }
     }
 }

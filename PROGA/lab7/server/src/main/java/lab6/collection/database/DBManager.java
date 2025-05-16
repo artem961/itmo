@@ -11,7 +11,7 @@ public class DBManager {
     private final String url;
 
     public DBManager(){
-        ConfigLoader configLoader = new ConfigLoader();
+        ConfigLoader configLoader = new ConfigLoader("database.properties");
 
         user = configLoader.get("db_user");
         password = configLoader.get("db_password");

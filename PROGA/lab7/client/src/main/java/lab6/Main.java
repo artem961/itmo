@@ -18,7 +18,7 @@ import java.net.InetAddress;
 
 public class Main {
     public static void main(String... args) throws IOException, ValidationException, NetworkException, InterruptedException {
-        ConfigLoader configLoader = new ConfigLoader();
+        ConfigLoader configLoader = new ConfigLoader("connection.properties");
         InetAddress serverAdress = InetAddress.getByName(configLoader.get("server_address"));
         int serverPort = Integer.valueOf(configLoader.get("server_port"));
 

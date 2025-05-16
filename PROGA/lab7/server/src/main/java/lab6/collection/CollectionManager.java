@@ -4,7 +4,6 @@ package lab6.collection;
 
 import common.collection.exceptions.ValidationException;
 import common.collection.models.Flat;
-import lab6.collection.database.DBQueryManager;
 import lab6.collection.database.FlatRepository;
 import lab6.collection.utils.CollectionInfo;
 
@@ -137,10 +136,7 @@ public class CollectionManager {
         updateCollectionInfo();
     }
 
-    /**
-     * Gjkexbnm информацию о коллекции.
-     * @return
-     */
+
     public CollectionInfo getCollectionInfo() {
         return collectionInfo;
     }

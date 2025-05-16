@@ -99,7 +99,7 @@ public class Flat implements Comparable<Flat>, Validatable, Serializable {
 
     @Override
     public void validate() throws ValidationException {
-        Validator.validateId(id);
+        //Validator.validateId(id);
         Validator.validateName(name);
         Validator.validateCoordinates(coordinates);
         Validator.validateArea(area);

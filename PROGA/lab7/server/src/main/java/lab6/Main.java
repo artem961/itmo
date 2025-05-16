@@ -3,12 +3,8 @@ package lab6;
 import common.ConfigLoader;
 import common.client.console.Console;
 import common.client.console.StandartConsole;
-import common.collection.exceptions.ValidationException;
-import common.collection.models.Flat;
-import common.network.exceptions.NetworkException;
 import common.client.CommandManager;
 import lab6.collection.CollectionManager;
-import lab6.collection.database.DBQueryManager;
 import lab6.commands.*;
 import lab6.commands.server.Close;
 import lab6.commands.server.Status;
@@ -16,14 +12,9 @@ import lab6.network.RequestHandler;
 import lab6.network.Server;
 import lab6.network.StandartRequestHandler;
 
-import java.io.File;
-import java.io.IOException;
 import java.net.BindException;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
-import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
-import java.sql.SQLException;
 
 import static java.lang.System.exit;
 
@@ -38,7 +29,7 @@ public class Main {
             Server server = null;
             try {
                 //server = new Server(new InetSocketAddress("192.168.10.80", 13531), requestHandler);
-                ConfigLoader configLoader = new ConfigLoader();
+                ConfigLoader configLoader = new ConfigLoader("connection.properties");
                 server = new Server(new InetSocketAddress(
                         InetAddress.getByName(configLoader.get("server_address")),
                         Integer.valueOf(configLoader.get("server_port"))),

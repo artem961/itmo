@@ -22,7 +22,9 @@ transport Transport NOT NULL,
 house integer REFERENCES houses(id) ON DELETE SET NULL
 );
 
-CREATE FUNCTION insertHouse(varchar(500), integer, bigint) RETURNS INTEGER AS $$
+CREATE FUNCTION insertHouse(varchar(500),
+                            integer,
+                            bigint) RETURNS INTEGER AS $$
     DECLARE
         house_id integer;
     BEGIN
@@ -35,5 +37,24 @@ CREATE FUNCTION insertHouse(varchar(500), integer, bigint) RETURNS INTEGER AS $$
               RETURNING id INTO house_id;
         END IF;
         RETURN house_id;
+    END;
+$$ LANGUAGE plpgsql;
+
+CREATE FUNCTION insertFlat(varchar(500),
+                           float4,
+                           double precision,
+                           DATE,
+                           float4,
+                           integer,
+                           bigint,
+                           Furnish,
+                           Transport,
+                           integer) RETURNS integer AS $$
+    DECLARE
+    flat_id integer;
+    BEGIN
+        INSERT INTO flats (name, x, y, date, area, numb_of_rooms, height, furnish, transport, house)
+                            VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9::transport, $10) RETURNING id INTO flat_id;
+        RETURN flat_id;
     END;
 $$ LANGUAGE plpgsql;

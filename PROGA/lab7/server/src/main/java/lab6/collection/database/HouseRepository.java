@@ -35,9 +35,10 @@ public class HouseRepository implements Repository<House> {
             if (result.next()) {
                 connection.commit();
                 return result.getInt(1);
+            } else{
+                connection.rollback();
+                return -1;
             }
-            connection.rollback();
-            return -1;
         } catch (SQLException e) {
             throw new DBException("Не удалось вставить дом!\n" + e);
         }

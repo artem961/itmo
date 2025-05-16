@@ -8,9 +8,9 @@ import java.util.Properties;
 public class ConfigLoader  {
     private final Properties properties;
 
-    public ConfigLoader(){
+    public ConfigLoader(String fileName){
         properties = new Properties();
-        try(Reader reader = new FileReader("config.properties")){
+        try(Reader reader = new FileReader(fileName)){
             properties.load(reader);
         } catch (IOException e) {
             throw new RuntimeException(e);
