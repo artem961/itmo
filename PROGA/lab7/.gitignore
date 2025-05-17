@@ -42,4 +42,5 @@ bin/
 .DS_Store
 
 ##############
-database.properties
+!database.properties
+logs/
