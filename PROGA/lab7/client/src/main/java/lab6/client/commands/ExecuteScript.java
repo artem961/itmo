@@ -5,6 +5,7 @@ import common.client.CommandManager;
 import common.client.console.Console;
 import common.client.exceptions.CommandExecutionError;
 import common.network.Response;
+import common.network.User;
 import lab6.client.Controller;
 
 import java.io.FileNotFoundException;
@@ -28,7 +29,7 @@ public class ExecuteScript extends Command {
     }
 
     @Override
-    public Response apply(String[] args) throws CommandExecutionError {
+    public Response apply(String[] args, Object object, User user) throws CommandExecutionError {
         try {
             String filePath = args[0];
             FileReader reader = new FileReader(filePath);
@@ -39,6 +40,7 @@ public class ExecuteScript extends Command {
             }
             reader.close();
             executeScript(fileInput.toString(), filePath);
+            return null;
         } catch (IndexOutOfBoundsException e) {
             throw new CommandExecutionError("Введите имя файла!");
         } catch (FileNotFoundException e) {
@@ -46,7 +48,6 @@ public class ExecuteScript extends Command {
         } catch (IOException e) {
             throw new CommandExecutionError("Ошибка чтения файла!");
         }
-        return super.apply(args);
     }
 
     private void executeScript(String script, String filePath) throws CommandExecutionError {

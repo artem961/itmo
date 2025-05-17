@@ -21,36 +21,26 @@ import java.util.*;
 public class Controller {
     private final Console console;
     private final NetworkManager networkManager;
-    private CommandManager localCommandManager;
-    private final List<String> launchedScripts = new ArrayList<>();
+    private final CommandManager localCommandManager;
+    private final AuthManager authManager;
+    private final List<String> launchedScripts;
 
-    public Controller(Console console, NetworkManager networkManager) {
-        this.console = console;
-        this.networkManager = networkManager;
-        this.localCommandManager = new CommandManager();
-    }
-
-    public Controller(Console console, NetworkManager networkManager, CommandManager localCommandManager) {
+    public Controller(Console console, NetworkManager networkManager, CommandManager localCommandManager, AuthManager authManager) {
         this.console = console;
         this.networkManager = networkManager;
         this.localCommandManager = localCommandManager;
+        this.authManager = authManager;
+        this.launchedScripts = new ArrayList<>();
     }
 
     /**
      * Начать работу с пользователем.
      */
     public void run() {
+        authManager.auth();
         String input;
-        try {
-            while ((input = this.console.read("Введите команду: ")) != null) {
-                try {
-                    console.writeln(handleInput(input));
-                } catch (Exception e) {
-                    System.out.println(e.getMessage());
-                }
-            }
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
+        while ((input = console.read("Введите команду: ")) != null) {
+            console.writeln(handleInput(input));
         }
     }
 
@@ -87,8 +77,12 @@ public class Controller {
      */
     public String handleInput(String input) {
         try {
-            parseInput(input);
-            return "";
+            if (!authManager.isAuth()) {
+                return "Авторизуйтесь, чтобы исполнять команды!";
+            } else {
+                parseInput(input);
+                return "";
+            }
         } catch (CommandNotFoundException e) {
             return e.getMessage() + " Введите help для справки по командам.";
         } catch (ScriptRecursionException e) {
@@ -115,7 +109,7 @@ public class Controller {
         try {
             executeLocal(commandName, args);
         } catch (CommandNotFoundException e) {
-            Request request = new Request(commandName, args, null);
+            Request request = new Request(commandName, args, null, authManager.getUser());
             Response response = makeRequest(request);
             printResponce(request, response);
         }
@@ -140,22 +134,25 @@ public class Controller {
                 throw new CommandExecutionError(message);
             case INPUT_FLAT:
                 Flat flat = new FlatBuilder(console).build();
-                request = new Request(commandName, args, flat);
+                request = new Request(commandName, args, flat, authManager.getUser());
                 Response resp = makeRequest(request);
                 printResponce(request, resp);
                 break;
             case GET_COMMANDS:
                 List<String> commandsList = localCommandManager.getAllCommandsAsString();
-                request = new Request(commandName, args, commandsList);
+                request = new Request(commandName, args, commandsList, authManager.getUser());
                 response = makeRequest(request);
                 printResponce(request, response);
                 break;
+            case AUTH:
+                console.writeln("не должен был сюда попасть");
+                console.writeln(message);
         }
     }
 
     private void executeLocal(String commandName, String[] args) throws CommandExecutionError {
         Command command = this.localCommandManager.getCommand(commandName);
-        command.apply(args);
+        command.apply(args, null, authManager.getUser());
     }
 
     private Response makeRequest(Request request) throws NetworkException, CommandExecutionError {

@@ -4,6 +4,7 @@ package lab6.collection;
 
 import common.collection.exceptions.ValidationException;
 import common.collection.models.Flat;
+import common.network.User;
 import lab6.collection.database.FlatRepository;
 import lab6.collection.utils.CollectionInfo;
 
@@ -63,15 +64,12 @@ public class CollectionManager {
      * @throws ValidationException
      */
     public void update(Flat flat, Integer id) throws ValidationException {
-        if (isIdFree(id)){
-            throw new RuntimeException("Элемента с таким id не существует!");
-        }
         if (flatRepository.updateById(flat, id) != 0) {
             collection.removeIf(fl -> fl.getId().equals(id));
             flat.setId(id);
             collection.add(flat);
         } else{
-            throw new RuntimeException("Не удалось обновить flat");
+            throw new RuntimeException("Не удалось обновить.");
         }
     }
 
@@ -82,7 +80,7 @@ public class CollectionManager {
      * @return Содержался ли элемент в коллекции.
      */
     public boolean remove(Flat flat) {
-        boolean rezult = removeById(flat.getId());
+        boolean rezult = removeById(flat.getId(), flat.getUserId());
         return rezult;
     }
 
@@ -92,7 +90,12 @@ public class CollectionManager {
      * @param id ID элемента.
      * @return
      */
-    public boolean removeById(Integer id) {
+    public boolean removeById(Integer id, int userId) {
+        if (!getAsList().stream()
+                .anyMatch(flat -> flat.getId().equals(id) && flat.getUserId() == userId))
+        {
+            return false;
+        }
         flatRepository.removeById(id);
         boolean rezult = collection.removeIf(flat -> flat.getId().equals(id));
         return rezult;
@@ -106,6 +109,17 @@ public class CollectionManager {
     public boolean removeAll() {
         flatRepository.removeAll();
         collection.clear();
+        return true;
+    }
+
+    /**
+     * Удаляет все элементы этого пользователя.
+     * @param userId
+     * @return
+     */
+    public boolean removeAll(int userId) {
+        flatRepository.removeAll(userId);
+        collection.removeIf(flat -> flat.getUserId() == userId);
         return true;
     }
 

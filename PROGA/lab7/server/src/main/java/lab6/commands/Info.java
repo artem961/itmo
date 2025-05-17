@@ -4,6 +4,7 @@ import common.client.Command;
 import common.client.console.Console;
 import common.client.exceptions.CommandExecutionError;
 import common.network.Response;
+import common.network.User;
 import lab6.collection.CollectionManager;
 import lab6.collection.utils.CollectionInfo;
 
@@ -20,7 +21,7 @@ public class Info extends Command {
     }
 
     @Override
-    public Response apply(String[] args) throws CommandExecutionError {
+    public Response apply(String[] args, Object object, User user) throws CommandExecutionError {
         collectionManager.updateCollectionInfo();
         CollectionInfo collectionInfo = collectionManager.getCollectionInfo();
 

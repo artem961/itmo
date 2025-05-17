@@ -5,6 +5,7 @@ import common.client.console.Console;
 import common.client.exceptions.CommandExecutionError;
 import common.collection.models.Flat;
 import common.network.Response;
+import common.network.User;
 import lab6.collection.CollectionManager;
 
 import java.util.List;
@@ -21,7 +22,7 @@ public class Show extends Command {
     }
 
     @Override
-    public Response apply(String[] args) throws CommandExecutionError {
+    public Response apply(String[] args, Object object, User user) throws CommandExecutionError {
         List<Flat> flatList = collectionManager.sort();
         if (flatList.size() == 0) {
             return Response.builder()

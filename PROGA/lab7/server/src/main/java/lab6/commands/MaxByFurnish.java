@@ -6,6 +6,7 @@ import common.client.exceptions.CommandExecutionError;
 import common.collection.models.Flat;
 import common.collection.models.Furnish;
 import common.network.Response;
+import common.network.User;
 import lab6.collection.CollectionManager;
 
 import java.util.List;
@@ -23,7 +24,7 @@ public class MaxByFurnish extends Command {
     }
 
     @Override
-    public Response apply(String[] args) throws CommandExecutionError {
+    public Response apply(String[] args, Object object, User user) throws CommandExecutionError {
         List<Flat> flatList = collectionManager.getAsList();
         Flat maxFlat = flatList.stream()
                 .filter(flat -> flat.getFurnish() != null)

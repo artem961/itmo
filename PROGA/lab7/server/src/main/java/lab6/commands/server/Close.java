@@ -3,6 +3,7 @@ package lab6.commands.server;
 import common.client.Command;
 import common.client.exceptions.CommandExecutionError;
 import common.network.Response;
+import common.network.User;
 import common.network.enums.ResponseType;
 import lab6.network.Server;
 import lab6.collection.CollectionManager;
@@ -21,7 +22,7 @@ public class Close extends Command {
     }
 
     @Override
-    public Response apply(String[] args) throws CommandExecutionError {
+    public Response apply(String[] args, Object object, User user) throws CommandExecutionError {
         server.close();
         return Response.builder()
                 .setType(ResponseType.OK)

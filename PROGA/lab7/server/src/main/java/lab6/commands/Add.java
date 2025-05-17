@@ -6,6 +6,7 @@ import common.client.exceptions.CommandExecutionError;
 import common.collection.exceptions.ValidationException;
 import common.collection.models.Flat;
 import common.network.Response;
+import common.network.User;
 import common.network.enums.ResponseType;
 import lab6.collection.CollectionManager;
 
@@ -51,14 +52,11 @@ public class Add extends Command {
     }
 
     @Override
-    public Response apply(String[] args) throws CommandExecutionError {
-        Flat flat = getFlat(args, null);
-        return execute(flat);
-    }
-
-    @Override
-    public Response apply(String[] args, Object object) throws CommandExecutionError {
+    public Response apply(String[] args, Object object, User user) throws CommandExecutionError {
         Flat flat = getFlat(args, object);
+        if (flat != null) {
+            flat.setUserId(user.id());
+        }
         return execute(flat);
     }
 }

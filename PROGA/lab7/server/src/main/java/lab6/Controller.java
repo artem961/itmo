@@ -77,7 +77,7 @@ public class Controller {
         String commandName = data[0];
         String[] args = Arrays.copyOfRange(data, 1, data.length);
 
-        Request request = new Request(commandName, args, Collections.emptyList());
+        Request request = new Request(commandName, args, Collections.emptyList(), null);
         Response response = executeCommand(request);
         printResponce(response);
     }
@@ -101,7 +101,7 @@ public class Controller {
 
     private Response executeCommand(Request request) throws CommandExecutionError {
         Command command = this.commandManager.getCommand(request.commandName());
-        return command.apply(request.args(), request.object());
+        return command.apply(request.args(), request.object(), null);
     }
 
     private void printCollection(Collection<?> collection) {

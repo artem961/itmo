@@ -4,7 +4,9 @@ import common.client.Command;
 import common.client.console.Console;
 import common.client.exceptions.CommandExecutionError;
 import common.network.Response;
+import common.network.User;
 import lab6.collection.CollectionManager;
+import lab6.collection.database.DBException;
 
 import java.sql.SQLException;
 
@@ -20,15 +22,15 @@ public class RemoveById extends Command {
     }
 
     @Override
-    public Response apply(String[] args) throws CommandExecutionError {
+    public Response apply(String[] args, Object object, User user) throws CommandExecutionError {
         try {
-            boolean rezult = collectionManager.removeById(Integer.valueOf(args[0]));
+            boolean rezult = collectionManager.removeById(Integer.valueOf(args[0]), user.id());
             if (rezult) {
                 return Response.builder()
                         .setMessage("Элемент с id " + args[0] + " удалён!")
                         .build();
             } else {
-                throw new CommandExecutionError("Элемента с id " + args[0] + " не существует!");
+                throw new CommandExecutionError("Элемента с id " + args[0] + " не существует или он вам не принадлежит!");
             }
         } catch (NumberFormatException e) {
             throw new CommandExecutionError("Неверный формат ввода id! Введите целое положительное число!");

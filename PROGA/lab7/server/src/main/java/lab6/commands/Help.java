@@ -4,6 +4,7 @@ import common.client.Command;
 import common.client.exceptions.CommandExecutionError;
 import common.client.CommandManager;
 import common.network.Response;
+import common.network.User;
 import common.network.enums.ResponseType;
 
 
@@ -20,16 +21,9 @@ public class Help extends Command {
         super("help", "Вывести справку по доступным командам.");
         this.commandManager = commandManager;
     }
-
+    
     @Override
-    public Response apply(String[] args) throws CommandExecutionError {
-        return Response.builder()
-                .setCollection(commandManager.getAllCommandsAsString())
-                .build();
-    }
-
-    @Override
-    public Response apply(String[] args, Object object) throws CommandExecutionError {
+    public Response apply(String[] args, Object object, User user) throws CommandExecutionError {
         if (object == null) {
             return Response.builder()
                     .setType(ResponseType.GET_COMMANDS)

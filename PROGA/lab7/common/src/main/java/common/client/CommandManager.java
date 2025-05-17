@@ -1,6 +1,7 @@
 package common.client;
 
 import common.client.exceptions.CommandNotFoundException;
+import common.network.User;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -42,8 +43,8 @@ public class CommandManager{
      *
      * @param command
      */
-    public void addToHistory(Command command) {
-        historyManager.addToHisory(command);
+    public void addToHistory(Command command, User user) {
+        historyManager.addToHisory(command, user);
     }
 
     /**
@@ -51,8 +52,8 @@ public class CommandManager{
      *
      * @return
      */
-    public List<Command> getHistory() {
-        return historyManager.getHistory();
+    public List<Command> getHistory(User user) {
+        return historyManager.getHistory(user);
     }
 
     /**

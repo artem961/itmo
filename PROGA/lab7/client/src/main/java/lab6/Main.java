@@ -6,6 +6,7 @@ import common.client.console.Console;
 import common.client.console.StandartConsole;
 import common.collection.exceptions.ValidationException;
 import common.network.exceptions.NetworkException;
+import lab6.client.AuthManager;
 import lab6.client.Controller;
 import lab6.client.commands.ExecuteScript;
 import lab6.client.commands.Exit;
@@ -25,14 +26,10 @@ public class Main {
         Console console = new StandartConsole();
         CommandManager commandManager = new CommandManager();
         NetworkManager networkManager = new NetworkManager(serverPort, serverAdress);
-        Controller controller = new Controller(console, networkManager, commandManager);
-
+        AuthManager authManager = new AuthManager(console, networkManager);
+        Controller controller = new Controller(console, networkManager, commandManager, authManager);
         commandManager.registerCommand(new ExecuteScript(console, controller, commandManager));
         commandManager.registerCommand(new Exit());
-
-
-
-
 
         controller.run();
     }

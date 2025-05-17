@@ -36,6 +36,7 @@ public class Flat implements Comparable<Flat>, Validatable, Serializable {
     @NonNull
     private Transport transport; //Поле не может быть null
     private House house; //Поле может быть null
+    private int userId;
 
     /**
      * Конструктор без furnish.
@@ -111,7 +112,7 @@ public class Flat implements Comparable<Flat>, Validatable, Serializable {
 
     @Override
     public int compareTo(Flat o) {
-        return this.getName().compareTo(o.getName());
+        return o.getName().compareTo(this.getName());
     }
 
     @Override
@@ -119,13 +120,14 @@ public class Flat implements Comparable<Flat>, Validatable, Serializable {
         return "Flat{\"id\": " + id + ", " +
                 "\"name\": \"" + name + "\", " +
                 "\"coordinates\": \"" + coordinates + "\", " +
-                "\"creationDate\" = \"" + creationDate + "\", " +
+                "\"creationDate\": \"" + creationDate + "\", " +
                 "\"area\": " + area + ", " +
-                "\"numberOfRooms\" = " + numberOfRooms + ", " +
+                "\"numberOfRooms\": " + numberOfRooms + ", " +
                 "\"height\": " + height + ", " +
                 "\"furnish\": \"" + furnish + "\", " +
                 "\"transport\": \"" + transport + "\", " +
-                "\"house\": \"" + house + "\"" + "}";
+                "\"house\": \"" + house + "\", " +
+                "\"userId\": " + userId + "}";
     }
 
     public static class Validator {

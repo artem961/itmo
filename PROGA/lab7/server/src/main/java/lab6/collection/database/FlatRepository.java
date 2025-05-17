@@ -22,7 +22,7 @@ public class FlatRepository implements Repository<Flat> {
     @Override
     public int insert(Flat flat) {
         try {
-            String query = "select insertFlat(?, ?, ?, ?, ?, ?, ?, ?::furnish, ?::transport, ?)";
+            String query = "select insertFlat(?, ?, ?, ?, ?, ?, ?, ?::furnish, ?::transport, ?, ?)";
             Connection connection = dbManager.getConnection();
             connection.setAutoCommit(false);
             PreparedStatement stat = connection.prepareStatement(query);
@@ -34,6 +34,7 @@ public class FlatRepository implements Repository<Flat> {
             stat.setFloat(5, flat.getArea());
             stat.setInt(6, flat.getNumberOfRooms());
             stat.setLong(7, flat.getHeight());
+            stat.setInt(11, flat.getUserId());
 
             if (flat.getFurnish() != null) stat.setString(8, flat.getFurnish().name());
             else stat.setNull(8, Types.OTHER);
@@ -56,7 +57,7 @@ public class FlatRepository implements Repository<Flat> {
                 return 0;
             }
         } catch (SQLException e) {
-            throw new DBException("Не удалось вставить квартиру!\n" + e);
+            throw new DBException("Не удалось вставить flat!\n" + e);
         }
     }
 
@@ -65,7 +66,7 @@ public class FlatRepository implements Repository<Flat> {
         try {
             String query = "UPDATE flats SET name=?, x=?, y=?," +
                     " date=?, area=?, numb_of_rooms=?," +
-                    " height=?, furnish=?::furnish, transport=?::transport, house=? WHERE id=?";
+                    " height=?, furnish=?::furnish, transport=?::transport, house=?, user_id=? WHERE id=?";
 
             Connection connection = dbManager.getConnection();
             connection.setAutoCommit(false);
@@ -90,7 +91,8 @@ public class FlatRepository implements Repository<Flat> {
                 stat.setInt(10, houseId);
             } else stat.setNull(10, Types.OTHER);
 
-            stat.setInt(11, id);
+            stat.setInt(11, flat.getUserId());
+            stat.setInt(12, id);
             int result = stat.executeUpdate();
             connection.commit();
             return result;
@@ -148,6 +150,7 @@ public class FlatRepository implements Repository<Flat> {
                 flat.setId(result.getInt("id"));
                 flat.setCreationDate(result.getDate("date").toLocalDate());
                 flat.setHouse(houseRepository.selectById(result.getInt("house")));
+                flat.setUserId(result.getInt("user_id"));
                 flats.add(flat);
             }
             connection.commit();
@@ -172,6 +175,22 @@ public class FlatRepository implements Repository<Flat> {
             return res;
         } catch (SQLException e) {
             throw new DBException("Не удалось очистить коллекцию!\n" + e);
+        }
+    }
+
+    public int removeAll(Integer userId){
+        try {
+            String query = "DELETE FROM flats WHERE user_id=?";
+            Connection connection = dbManager.getConnection();
+            connection.setAutoCommit(false);
+
+            PreparedStatement stat = connection.prepareStatement(query);
+            stat.setInt(1, userId);
+            int res = stat.executeUpdate();
+            connection.commit();
+            return res;
+        } catch (SQLException e) {
+            throw new DBException("Не удалось удалить объекты пользователя!\n" + e);
         }
     }
 }

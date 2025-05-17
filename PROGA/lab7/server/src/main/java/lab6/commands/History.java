@@ -5,6 +5,7 @@ import common.client.console.Console;
 import common.client.exceptions.CommandExecutionError;
 import common.client.CommandManager;
 import common.network.Response;
+import common.network.User;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -21,8 +22,8 @@ public class History extends common.client.Command {
     }
 
     @Override
-    public Response apply(String[] args) throws CommandExecutionError {
-        List<String> history = commandManager.getHistory().stream()
+    public Response apply(String[] args, Object object, User user) throws CommandExecutionError {
+        List<String> history = commandManager.getHistory(user).stream()
                 .map(Command::getName)
                 .collect(Collectors.toList());
 

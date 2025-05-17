@@ -3,11 +3,11 @@ package lab6.commands;
 import common.client.Command;
 import common.client.exceptions.CommandExecutionError;
 import common.collection.exceptions.ValidationException;
-import common.collection.models.Flat;
+import common.collection.models.*;
 import common.network.Response;
+import common.network.User;
 import lab6.collection.CollectionManager;
 
-import java.sql.SQLException;
 import java.time.LocalTime;
 import java.util.Random;
 
@@ -30,23 +30,23 @@ public class AddRandom extends Command {
         return (int) round(random.nextDouble(2, 10000));
     }
 
-    private common.collection.models.Flat makeRandomFlat() throws ValidationException {
-        common.collection.models.Flat flat = new Flat(
+    private Flat makeRandomFlat() throws ValidationException {
+        Flat flat = new Flat(
                 "random_flat_" + String.valueOf(getRandom()),
-                new common.collection.models.Coordinates(Float.valueOf(getRandom()), (double) getRandom()),
+                new Coordinates(Float.valueOf(getRandom()), (double) getRandom()),
                 (float) getRandom(),
                 getRandom(),
                 Long.valueOf(getRandom()),
-                common.collection.models.Furnish.NONE,
-                common.collection.models.Transport.NONE,
-                new common.collection.models.House("random_house_" + String.valueOf(getRandom()),
+                Furnish.NONE,
+                Transport.NONE,
+                new House("random_house_" + String.valueOf(getRandom()),
                         getRandom(),
                         Long.valueOf(getRandom())));
         return flat;
     }
 
     @Override
-    public Response apply(String[] args) throws CommandExecutionError {
+    public Response apply(String[] args, Object object, User user) throws CommandExecutionError {
         try {
             Integer count = 0;
             if (args.length == 0) count = 1;
@@ -55,8 +55,11 @@ public class AddRandom extends Command {
             if (count < 0) throw new CommandExecutionError("Введите положительное число!");
             //if (count > 100) throw new CommandExecutionError("Нельзя создать больше 100 объектов за раз!");
 
+            Flat flat;
             for (int i = 0; i < count; i++) {
-                collectionManager.add(makeRandomFlat());
+                flat = makeRandomFlat();
+                flat.setUserId(user.id());
+                collectionManager.add(flat);
             }
             return Response.builder()
                     .setMessage("Добавлены случайные квартиры в количестве " + count.toString() + " штук!")

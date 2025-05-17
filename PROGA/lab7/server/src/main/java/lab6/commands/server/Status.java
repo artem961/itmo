@@ -3,6 +3,7 @@ package lab6.commands.server;
 import common.client.Command;
 import common.client.exceptions.CommandExecutionError;
 import common.network.Response;
+import common.network.User;
 import lab6.network.Server;
 
 public class Status extends Command {
@@ -14,7 +15,7 @@ public class Status extends Command {
     }
 
     @Override
-    public Response apply(String[] args) throws CommandExecutionError {
+    public Response apply(String[] args, Object object, User user) throws CommandExecutionError {
         Response response;
         if (server.isRunning()){
             response = Response.builder()

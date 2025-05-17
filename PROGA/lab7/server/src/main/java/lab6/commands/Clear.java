@@ -4,6 +4,7 @@ import common.client.Command;
 import common.client.console.Console;
 import common.client.exceptions.CommandExecutionError;
 import common.network.Response;
+import common.network.User;
 import common.network.enums.ResponseType;
 import lab6.collection.CollectionManager;
 
@@ -16,16 +17,16 @@ public class Clear extends Command {
     private final CollectionManager collectionManager;
 
     public Clear(CollectionManager collectionManager) {
-        super("clear", "Очищает коллекцию.");
+        super("clear", "Удаляет все объекты данного пользователя.");
         this.collectionManager = collectionManager;
     }
 
     @Override
-    public Response apply(String[] args) throws CommandExecutionError {
-        collectionManager.removeAll();
+    public Response apply(String[] args, Object object, User user) throws CommandExecutionError {
+        collectionManager.removeAll(user.id());
 
         return Response.builder()
-                .setMessage("Коллекция очищена!")
+                .setMessage("Все элемеенты пользователя " + user.name() + " удалены!")
                 .build();
     }
 }

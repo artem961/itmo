@@ -19,7 +19,14 @@ numb_of_rooms integer CHECK (numb_of_rooms > 0),
 height bigint,
 furnish Furnish,
 transport Transport NOT NULL,
-house integer REFERENCES houses(id) ON DELETE SET NULL
+house integer REFERENCES houses(id) ON DELETE SET NULL,
+user_id integer REFERENCES users(id) NOT NULL
+);
+
+CREATE TABLE users(
+id serial PRIMARY KEY,
+name varchar(100) UNIQUE NOT NULL,
+password varchar(500)
 );
 
 CREATE FUNCTION insertHouse(varchar(500),
@@ -49,12 +56,22 @@ CREATE FUNCTION insertFlat(varchar(500),
                            bigint,
                            Furnish,
                            Transport,
+                           integer,
                            integer) RETURNS integer AS $$
     DECLARE
     flat_id integer;
     BEGIN
-        INSERT INTO flats (name, x, y, date, area, numb_of_rooms, height, furnish, transport, house)
-                            VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9::transport, $10) RETURNING id INTO flat_id;
+        INSERT INTO flats (name, x, y, date, area, numb_of_rooms, height, furnish, transport, house, user_id)
+                            VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9::transport, $10, $11) RETURNING id INTO flat_id;
         RETURN flat_id;
     END;
+$$ LANGUAGE plpgsql;
+
+CREATE FUNCTION insertUser(varchar(100), varchar(500)) RETURNS integer AS $$
+DECLARE
+    user_id integer;
+BEGIN
+    INSERT INTO users (name, password) VALUES ($1, $2) RETURNING id INTO user_id;
+    RETURN user_id;
+END;
 $$ LANGUAGE plpgsql;

@@ -5,6 +5,7 @@ import common.client.Command;
 import common.client.exceptions.CommandExecutionError;
 import common.collection.models.Flat;
 import common.network.Response;
+import common.network.User;
 import common.network.enums.ResponseType;
 import lab6.collection.CollectionManager;
 
@@ -22,17 +23,9 @@ public class RemoveLower extends Command {
         this.collectionManager = collectionManager;
     }
 
-    private Flat getFlat(String[] args)  {
-        if (args.length != 0) {
+    private Flat getFlat(String[] args, Object object) {
+        if (object == null && args.length != 0) {
             return FlatBuilder.buildFromString(args);
-        } else {
-            return null;
-        }
-    }
-
-    private Flat getFlat(Object object) {
-        if (object == null) {
-            return null;
         } else {
             return (Flat) object;
         }
@@ -49,7 +42,7 @@ public class RemoveLower extends Command {
         List<Flat> flatList = collectionManager.getAsList();
 
         long elementsDelete = flatList.stream()
-                .filter(flat1 -> flat1.compareTo(flat) < 0)
+                .filter(flat1 -> flat1.compareTo(flat) < 0 && flat1.getUserId() == flat.getUserId())
                 .peek(collectionManager::remove)
                 .count();
 
@@ -59,14 +52,11 @@ public class RemoveLower extends Command {
     }
 
     @Override
-    public Response apply(String[] args) throws CommandExecutionError {
-        Flat flat = getFlat(args);
-        return executeCommand(flat);
-    }
-
-    @Override
-    public Response apply(String[] args, Object object) throws CommandExecutionError {
-        Flat flat = getFlat(object);
+    public Response apply(String[] args, Object object, User user) throws CommandExecutionError {
+        Flat flat = getFlat(args, object);
+        if (flat != null) {
+            flat.setUserId(user.id());
+        }
         return executeCommand(flat);
     }
 }
