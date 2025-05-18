@@ -1,4 +1,4 @@
-package lab6.network;
+package lab6.network.server.handlers;
 
 import common.client.Command;
 import common.client.exceptions.CommandNotFoundException;
@@ -7,6 +7,7 @@ import common.network.Response;
 import common.network.User;
 import common.network.enums.ResponseType;
 import common.client.CommandManager;
+import lab6.network.UserManager;
 
 public class StandartRequestHandler extends RequestHandler {
     private final CommandManager commandManager;

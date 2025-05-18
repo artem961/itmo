@@ -4,7 +4,7 @@ import common.client.Command;
 import common.client.exceptions.CommandExecutionError;
 import common.network.Response;
 import common.network.User;
-import lab6.network.Server;
+import lab6.network.server.Server;
 
 public class Status extends Command {
     private final Server server;

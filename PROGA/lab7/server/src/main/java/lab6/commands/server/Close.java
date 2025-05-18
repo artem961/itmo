@@ -5,7 +5,7 @@ import common.client.exceptions.CommandExecutionError;
 import common.network.Response;
 import common.network.User;
 import common.network.enums.ResponseType;
-import lab6.network.Server;
+import lab6.network.server.Server;
 import lab6.collection.CollectionManager;
 
 /**

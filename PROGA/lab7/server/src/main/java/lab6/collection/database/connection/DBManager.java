@@ -46,7 +46,7 @@ public class DBManager {
             synchronized (connectionPool) {
                 Connection connection = connectionPool.poll(5, TimeUnit.SECONDS);
                 if (connection == null){
-                    throw new DBException("Нет свободного соединения!");
+                    throw new DBException("База данных перегружена, все соединения заняты!");
                 } else{
                     return connection;
                 }

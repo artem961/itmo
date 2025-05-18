@@ -1,83 +1,72 @@
-package lab6.network;
+package lab6.network.server;
 
 import common.network.*;
-import common.network.enums.ResponseType;
 import common.network.exceptions.NetworkException;
-import common.network.exceptions.SerializationException;
+import lab6.network.NetworkManager;
+import lab6.network.server.handlers.RequestHandler;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
 import java.net.*;
 import java.nio.channels.*;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 
-public class Server implements Runnable {
+public class Server implements Runnable, AutoCloseable {
     private static final Logger logger = LogManager.getLogger(Server.class);
     private final InetSocketAddress serverAddress;
-    private final NetworkManager networkManager;
     private final DatagramChannel serverChannel;
-    private final RequestHandler requestHandler;
     private final Selector selector;
     private volatile boolean isRunning = false;
+    private final List<ServerModule> modules;
+    private final Set<Channel> readableChannels;
+    private final Map<SocketAddress, Request> requests;
+    private final Map<SocketAddress, Response> responses;
 
     public Server(InetSocketAddress serverAddress, RequestHandler requestHandler) throws IOException {
         this.serverAddress = serverAddress;
-        this.requestHandler = requestHandler;
         this.selector = Selector.open();
         this.serverChannel = DatagramChannel.open();
-
-        this.networkManager = new NetworkManager(serverChannel);
         serverChannel.configureBlocking(false);
         serverChannel.bind(serverAddress);
         serverChannel.register(selector, SelectionKey.OP_READ);
+        NetworkManager networkManager = new NetworkManager(serverChannel);
+
+        readableChannels = Collections.synchronizedSet(new HashSet<>());
+        requests = Collections.synchronizedMap(new HashMap<>());
+        responses = Collections.synchronizedMap(new HashMap<>());
+
+        modules = new ArrayList<>();
+        modules.add(new RequestReaderModule(networkManager, readableChannels, requests));
+        modules.add(new RequestHandlerModule(requests, responses, requestHandler, 10));
+        modules.add(new ResponseSenderModule(responses, networkManager));
+
         logger.info("Сервер инициализирован по адресу {}", serverAddress);
     }
 
-    public boolean isRunning(){
-        return isRunning;
-    }
-
-    // чтение запроса
     private void handleSelectionKey(SelectionKey key) throws NetworkException, IOException {
         if (key.isReadable()) {
-            Map<SocketAddress, byte[]> messages = networkManager.readFromChannel((DatagramChannel) key.channel());
-            messages.forEach((address, bytes) -> logger.info("Получено новое сообщение от {}", address));
-            Response response;
-            for (Map.Entry<SocketAddress, byte[]> entry : messages.entrySet()) {
-                try {
-                    Request request = (Request) Serializer.deserialazeObject(entry.getValue());
-                    response = requestHandler.handleRequest(request);
-                } catch (SerializationException e) {
-                    response = new Response.ResponseBuilder()
-                            .setType(ResponseType.EXCEPTION)
-                            .setMessage(e.getMessage())
-                            .build();
-                    logger.warn(e.getMessage());
-                }
-                networkManager.sendData(Serializer.serializeObject(response), entry.getKey());
-                logger.info("Отправлен ответ на {}", entry.getKey());
+            synchronized (readableChannels) {
+                readableChannels.add(key.channel());
+                readableChannels.notify();
             }
         }
     }
 
     @Override
     public void run() {
+        modules.forEach(module -> new Thread(module, module.getClass().getSimpleName()).start());
         isRunning = true;
-        logger.info("Сервер запущен по адресу {}", this.serverAddress);
+        logger.info("Сервер запущен по адресу {}", serverAddress);
 
         try {
             while (true) {
                 selector.select();
-
                 if (!isRunning) break;
 
                 Set<SelectionKey> selectedKeys = selector.selectedKeys();
                 Iterator<SelectionKey> iterator = selectedKeys.iterator();
-
                 while (iterator.hasNext()) {
                     SelectionKey key = iterator.next();
                     iterator.remove();
@@ -90,6 +79,7 @@ public class Server implements Runnable {
             logger.error("Ошибка при работе сервера!", e);
         } finally {
             try {
+                modules.forEach(ServerModule::shutdown);
                 if (selector.isOpen()) selector.close();
                 if (serverChannel.isOpen()) serverChannel.close();
             } catch (IOException e) {
@@ -99,8 +89,12 @@ public class Server implements Runnable {
         }
     }
 
+    public boolean isRunning() {
+        return isRunning;
+    }
+
     public void close() {
-        logger.info("Остановка сервера.");
+        logger.info("Остановка сервера...");
         isRunning = false;
         if (selector != null && selector.isOpen()) {
             selector.wakeup();

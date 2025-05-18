@@ -27,16 +27,18 @@ public class NetworkManager {
 
     private void sendPacket(SocketAddress address, ByteBuffer buffer) throws NetworkException {
         try {
-            int sendBytes = channel.send(buffer, address);
-            if (sendBytes == 0) {
-                throw new NetworkException("Серверный канал не отправил пакет!");
+            synchronized (channel) {
+                int sendBytes = channel.send(buffer, address);
+                if (sendBytes == 0) {
+                    throw new NetworkException("Серверный канал не отправил пакет!");
+                }
             }
         } catch (IOException e) {
             throw new NetworkException("Не удалось отправить пакет!");
         }
     }
 
-    public void sendData(byte[] data, SocketAddress address) throws NetworkException {
+    public synchronized void sendData(byte[] data, SocketAddress address) throws NetworkException {
         int packetsCount = (int) Math.ceil((double) data.length / packetDataSize);
         for (int number = 0; number < packetsCount; number++) {
             buffer.clear();
@@ -48,7 +50,7 @@ public class NetworkManager {
         }
     }
 
-    public Map<SocketAddress, byte[]> readFromChannel(DatagramChannel channel) throws IOException, NetworkException {
+    public synchronized Map<SocketAddress, byte[]> readFromChannel(DatagramChannel channel) throws IOException, NetworkException {
         messageAssembler.clearReceivedMessages();
         while (true) {
             buffer.clear();

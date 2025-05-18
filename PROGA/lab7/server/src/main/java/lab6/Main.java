@@ -9,9 +9,9 @@ import lab6.collection.database.connection.DBManager;
 import lab6.commands.*;
 import lab6.commands.server.Close;
 import lab6.commands.server.Status;
-import lab6.network.RequestHandler;
-import lab6.network.Server;
-import lab6.network.StandartRequestHandler;
+import lab6.network.server.handlers.RequestHandler;
+import lab6.network.server.Server;
+import lab6.network.server.handlers.StandartRequestHandler;
 import lab6.network.UserManager;
 
 import java.net.BindException;
@@ -62,7 +62,7 @@ public class Main {
             commandManager.registerCommand(new PrintDescending(collectionManager));
             //endregion
 
-            Thread serverThread = new Thread(server);
+            Thread serverThread = new Thread(server, "Сервер");
             serverThread.start();
 
             //region serverController

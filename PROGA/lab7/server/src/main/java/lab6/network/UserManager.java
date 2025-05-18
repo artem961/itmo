@@ -6,6 +6,9 @@ import common.network.enums.ResponseType;
 import lab6.collection.database.DBException;
 import lab6.collection.database.UserRepository;
 import lab6.collection.database.connection.DBManager;
+import lab6.network.server.RequestHandlerModule;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
 import java.util.Collection;
