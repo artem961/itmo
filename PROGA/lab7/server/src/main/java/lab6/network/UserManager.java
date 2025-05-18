@@ -5,6 +5,7 @@ import common.network.User;
 import common.network.enums.ResponseType;
 import lab6.collection.database.DBException;
 import lab6.collection.database.UserRepository;
+import lab6.collection.database.connection.DBManager;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -15,16 +16,13 @@ public class UserManager {
     private final UserRepository userRepository;
     private final Set<Integer> authUsersId;
 
-    public UserManager() {
-        this.userRepository = new UserRepository();
+    public UserManager(DBManager dbManager) {
+        this.userRepository = new UserRepository(dbManager);
         this.authUsersId = new HashSet<>();
     }
 
     public boolean checkUser(User user) {
-        if (authUsersId.stream().anyMatch(id -> id.equals(user.id()))) {
-            return true;
-        }
-        return false;
+        return authUsersId.stream().anyMatch(id -> id.equals(user.id()));
     }
 
     public Response authUser(User user) {

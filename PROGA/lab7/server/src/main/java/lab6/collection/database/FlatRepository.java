@@ -5,25 +5,28 @@ import common.collection.models.Coordinates;
 import common.collection.models.Flat;
 import common.collection.models.Furnish;
 import common.collection.models.Transport;
-import lombok.RequiredArgsConstructor;
+import lab6.collection.database.connection.DBManager;
+import lombok.Cleanup;
 
 import java.sql.*;
+import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 
 public class FlatRepository implements Repository<Flat> {
     private final DBManager dbManager;
     private final HouseRepository houseRepository;
 
-    public FlatRepository() {
-        dbManager = new DBManager();
-        houseRepository = new HouseRepository();
+    public FlatRepository(DBManager dbManager) {
+        this.dbManager = dbManager;
+        houseRepository = new HouseRepository(dbManager);
     }
 
     @Override
     public int insert(Flat flat) {
         try {
             String query = "select insertFlat(?, ?, ?, ?, ?, ?, ?, ?::furnish, ?::transport, ?, ?)";
-            Connection connection = dbManager.getConnection();
+            @Cleanup Connection connection = dbManager.getConnection();
             connection.setAutoCommit(false);
             PreparedStatement stat = connection.prepareStatement(query);
 
@@ -61,6 +64,10 @@ public class FlatRepository implements Repository<Flat> {
         }
     }
 
+    public int insertBatch(Collection<Flat> flats){
+        return 0;
+    }
+
     @Override
     public int updateById(Flat flat, Integer id) {
         try {
@@ -68,7 +75,7 @@ public class FlatRepository implements Repository<Flat> {
                     " date=?, area=?, numb_of_rooms=?," +
                     " height=?, furnish=?::furnish, transport=?::transport, house=?, user_id=? WHERE id=?";
 
-            Connection connection = dbManager.getConnection();
+            @Cleanup Connection connection = dbManager.getConnection();
             connection.setAutoCommit(false);
             PreparedStatement stat = connection.prepareStatement(query);
 
@@ -105,7 +112,7 @@ public class FlatRepository implements Repository<Flat> {
     public int removeById(Integer id) {
         try {
             String query = "DELETE FROM flats WHERE id=?";
-            Connection connection = dbManager.getConnection();
+            @Cleanup Connection connection = dbManager.getConnection();
             connection.setAutoCommit(false);
 
             PreparedStatement stat = connection.prepareStatement(query);
@@ -127,7 +134,7 @@ public class FlatRepository implements Repository<Flat> {
     public HashSet<Flat> selectAll() {
         try {
             HashSet<Flat> flats = new HashSet<>();
-            Connection connection = dbManager.getConnection();
+            @Cleanup Connection connection = dbManager.getConnection();
             connection.setAutoCommit(false);
             ResultSet result = connection.createStatement()
                     .executeQuery("SELECT * FROM flats");
@@ -167,7 +174,7 @@ public class FlatRepository implements Repository<Flat> {
     public int removeAll() {
         try {
             String query = "TRUNCATE TABLE flats";
-            Connection connection = dbManager.getConnection();
+            @Cleanup Connection connection = dbManager.getConnection();
             connection.setAutoCommit(false);
 
             int res = connection.createStatement().executeUpdate(query);
@@ -181,7 +188,7 @@ public class FlatRepository implements Repository<Flat> {
     public int removeAll(Integer userId){
         try {
             String query = "DELETE FROM flats WHERE user_id=?";
-            Connection connection = dbManager.getConnection();
+            @Cleanup Connection connection = dbManager.getConnection();
             connection.setAutoCommit(false);
 
             PreparedStatement stat = connection.prepareStatement(query);

@@ -5,12 +5,14 @@ import common.client.console.Console;
 import common.client.console.StandartConsole;
 import common.client.CommandManager;
 import lab6.collection.CollectionManager;
+import lab6.collection.database.connection.DBManager;
 import lab6.commands.*;
 import lab6.commands.server.Close;
 import lab6.commands.server.Status;
 import lab6.network.RequestHandler;
 import lab6.network.Server;
 import lab6.network.StandartRequestHandler;
+import lab6.network.UserManager;
 
 import java.net.BindException;
 import java.net.InetAddress;
@@ -24,8 +26,10 @@ public class Main {
         try {
             Console console = new StandartConsole();
             CommandManager commandManager = new CommandManager();
-            CollectionManager collectionManager = new CollectionManager();
-            RequestHandler requestHandler = new StandartRequestHandler(commandManager, console);
+            DBManager dbManager = new DBManager(5);
+            CollectionManager collectionManager = new CollectionManager(dbManager);
+            UserManager userManager = new UserManager(dbManager);
+            RequestHandler requestHandler = new StandartRequestHandler(commandManager, userManager);
             Server server = null;
             try {
                 //server = new Server(new InetSocketAddress("192.168.10.80", 13531), requestHandler);

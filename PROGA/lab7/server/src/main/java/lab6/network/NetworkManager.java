@@ -17,7 +17,7 @@ public class NetworkManager {
     private final ByteBuffer buffer;
     private final DatagramChannel channel;
 
-    public NetworkManager(DatagramChannel outChannel) throws IOException {
+    public NetworkManager(DatagramChannel outChannel) {
         this.messageAssembler = new MessageAssembler();
         this.bufferSize = Constants.PACKET_SIZE.getValue();
         this.packetDataSize = bufferSize - 8;

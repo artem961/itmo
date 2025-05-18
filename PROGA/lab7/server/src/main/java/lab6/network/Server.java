@@ -41,6 +41,7 @@ public class Server implements Runnable {
         return isRunning;
     }
 
+    // чтение запроса
     private void handleSelectionKey(SelectionKey key) throws NetworkException, IOException {
         if (key.isReadable()) {
             Map<SocketAddress, byte[]> messages = networkManager.readFromChannel((DatagramChannel) key.channel());

@@ -26,7 +26,7 @@ public class Clear extends Command {
         collectionManager.removeAll(user.id());
 
         return Response.builder()
-                .setMessage("Все элемеенты пользователя " + user.name() + " удалены!")
+                .setMessage("Все элементы пользователя " + user.name() + " удалены!")
                 .build();
     }
 }

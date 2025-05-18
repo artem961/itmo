@@ -1,13 +1,13 @@
 package lab6.collection;
 
-
-
 import common.collection.exceptions.ValidationException;
 import common.collection.models.Flat;
-import common.network.User;
 import lab6.collection.database.FlatRepository;
+import lab6.collection.database.connection.DBManager;
 import lab6.collection.utils.CollectionInfo;
+import lombok.Getter;
 
+import java.awt.image.DataBuffer;
 import java.time.LocalDate;
 import java.util.*;
 
@@ -15,14 +15,15 @@ import java.util.*;
  * Менеджер для управления коллекцией.
  */
 public class CollectionManager {
+    @Getter
     private CollectionInfo collectionInfo;
-    private final HashSet<Flat> collection;
+    private final Set<Flat> collection;
     private final FlatRepository flatRepository;
 
-    public CollectionManager(){
+    public CollectionManager(DBManager dbManager){
         collectionInfo = new CollectionInfo(null, 0);
-        collection = new HashSet<>();
-        flatRepository = new FlatRepository();
+        collection = Collections.synchronizedSet(new HashSet<>());
+        flatRepository = new FlatRepository(dbManager);
         refreshCollection();
     }
 
@@ -36,7 +37,7 @@ public class CollectionManager {
     /**
      * Добавляет элемент в коллекцию
      *
-     * @param flat
+     * @param flat Квартира
      * @throws ValidationException
      */
     public void add(Flat flat) throws ValidationException {
@@ -54,6 +55,10 @@ public class CollectionManager {
         } else {
             throw new RuntimeException("Не удалось добавить квартиру!");
         }
+    }
+
+    public void add(Collection<Flat> flats){
+
     }
 
     /**
@@ -80,8 +85,7 @@ public class CollectionManager {
      * @return Содержался ли элемент в коллекции.
      */
     public boolean remove(Flat flat) {
-        boolean rezult = removeById(flat.getId(), flat.getUserId());
-        return rezult;
+        return removeById(flat.getId(), flat.getUserId());
     }
 
     /**
@@ -91,14 +95,13 @@ public class CollectionManager {
      * @return
      */
     public boolean removeById(Integer id, int userId) {
-        if (!getAsList().stream()
-                .anyMatch(flat -> flat.getId().equals(id) && flat.getUserId() == userId))
+        if (getAsList().stream()
+                .noneMatch(flat -> flat.getId().equals(id) && flat.getUserId() == userId))
         {
             return false;
         }
         flatRepository.removeById(id);
-        boolean rezult = collection.removeIf(flat -> flat.getId().equals(id));
-        return rezult;
+        return collection.removeIf(flat -> flat.getId().equals(id));
     }
 
     /**
@@ -136,27 +139,19 @@ public class CollectionManager {
      * @return Возвращает отсортированную коллекцию в виде List
      */
     public List<Flat> getAsList() {
-        List<Flat> list = new ArrayList<>(this.collection);
-        return list;
+        return new ArrayList<>(this.collection);
     }
 
     /**
      * Обновляет состояние коллекции
-     *
-     * @return
      */
     public void refreshCollection() {
         this.collection.addAll(flatRepository.selectAll());
         updateCollectionInfo();
     }
 
-
-    public CollectionInfo getCollectionInfo() {
-        return collectionInfo;
-    }
-
     public boolean isIdFree(Integer id){
-        return !collection.stream().anyMatch(flat -> flat.getId().equals(id));
+        return collection.stream().noneMatch(flat -> flat.getId().equals(id));
     }
 
     @Override

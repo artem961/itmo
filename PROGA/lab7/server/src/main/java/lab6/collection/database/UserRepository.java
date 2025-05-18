@@ -1,6 +1,8 @@
 package lab6.collection.database;
 
 import common.network.User;
+import lab6.collection.database.connection.DBManager;
+import lombok.Cleanup;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -11,15 +13,15 @@ import java.util.HashSet;
 public class UserRepository implements Repository<User> {
     private final DBManager dbManager;
 
-    public UserRepository() {
-        dbManager = new DBManager();
+    public UserRepository(DBManager dbManager) {
+        this.dbManager = dbManager;
     }
 
     @Override
     public int insert(User user) {
         try {
             String query = "SELECT insertUser(?, ?)";
-            Connection connection = dbManager.getConnection();
+            @Cleanup Connection connection = dbManager.getConnection();
             connection.setAutoCommit(false);
             PreparedStatement stat = connection.prepareStatement(query);
 
@@ -53,31 +55,31 @@ public class UserRepository implements Repository<User> {
     public User selectById(Integer id) {
         try {
             String query = "SELECT * FROM users WHERE id=?";
-            Connection connection = dbManager.getConnection();
+            @Cleanup Connection connection = dbManager.getConnection();
             connection.setAutoCommit(false);
 
             PreparedStatement stat = connection.prepareStatement(query);
             stat.setInt(1, id);
             ResultSet result = stat.executeQuery();
 
-            if (result.next()){
+            if (result.next()) {
                 connection.commit();
                 return new User(result.getInt("id"),
                         result.getString("name"),
                         result.getString("password"));
-            } else{
+            } else {
                 connection.rollback();
                 return null;
             }
-        } catch (SQLException e){
+        } catch (SQLException e) {
             throw new DBException("Не удалось получить user по id!\n" + e);
         }
     }
 
-    public User selectByNameAndPass(String name, String password){
+    public User selectByNameAndPass(String name, String password) {
         try {
             String query = "SELECT * FROM users WHERE name=? and password=?";
-            Connection connection = dbManager.getConnection();
+            @Cleanup Connection connection = dbManager.getConnection();
             connection.setAutoCommit(false);
 
             PreparedStatement stat = connection.prepareStatement(query);
@@ -85,16 +87,16 @@ public class UserRepository implements Repository<User> {
             stat.setString(2, password);
             ResultSet result = stat.executeQuery();
 
-            if (result.next()){
+            if (result.next()) {
                 connection.commit();
                 return new User(result.getInt("id"),
                         result.getString("name"),
                         result.getString("password"));
-            } else{
+            } else {
                 connection.rollback();
                 return null;
             }
-        } catch (SQLException e){
+        } catch (SQLException e) {
             throw new DBException("Не удалось получить user по id!\n" + e);
         }
     }

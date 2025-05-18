@@ -2,8 +2,8 @@ package lab6.collection.database;
 
 import common.collection.exceptions.ValidationException;
 import common.collection.models.House;
-import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
+import lab6.collection.database.connection.DBManager;
+import lombok.Cleanup;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,15 +14,15 @@ import java.util.HashSet;
 public class HouseRepository implements Repository<House> {
     private final DBManager dbManager;
 
-    public HouseRepository(){
-        this.dbManager = new DBManager();
+    public HouseRepository(DBManager dbManager) {
+        this.dbManager = dbManager;
     }
 
     @Override
     public int insert(House house) {
         try {
             String query = "SELECT insertHouse(?, ?, ?)";
-            Connection connection = dbManager.getConnection();
+            @Cleanup Connection connection = dbManager.getConnection();
             connection.setAutoCommit(false);
 
             PreparedStatement stat = connection.prepareStatement(query);
@@ -35,7 +35,7 @@ public class HouseRepository implements Repository<House> {
             if (result.next()) {
                 connection.commit();
                 return result.getInt(1);
-            } else{
+            } else {
                 connection.rollback();
                 return -1;
             }
@@ -58,7 +58,7 @@ public class HouseRepository implements Repository<House> {
     public House selectById(Integer id) {
         try {
             String query = "SELECT * FROM houses WHERE id=?";
-            Connection connection = dbManager.getConnection();
+            @Cleanup Connection connection = dbManager.getConnection();
             connection.setAutoCommit(false);
 
             PreparedStatement stat = connection.prepareStatement(query);

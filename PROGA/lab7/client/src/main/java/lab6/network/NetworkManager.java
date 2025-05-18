@@ -23,7 +23,7 @@ public class NetworkManager {
         packetDataSize = bufferSize - 8;
 
         socket = new DatagramSocket();
-        socket.setReceiveBufferSize(bufferSize * 1024);
+        socket.setReceiveBufferSize(bufferSize * 1024*8);
         socket.setSoTimeout(8000);
     }
 

@@ -15,9 +15,6 @@ import common.builders.FlatBuilder;
 
 import java.util.*;
 
-/**
- * Контроллер, запрашивающий у пользователя команду и исполняющий их.
- */
 public class Controller {
     private final Console console;
     private final NetworkManager networkManager;
@@ -33,9 +30,6 @@ public class Controller {
         this.launchedScripts = new ArrayList<>();
     }
 
-    /**
-     * Начать работу с пользователем.
-     */
     public void run() {
         authManager.auth();
         String input;
@@ -44,12 +38,6 @@ public class Controller {
         }
     }
 
-    /**
-     * Запустить скрипт.
-     *
-     * @param scriptName имя скрипта
-     * @param script     скрипт
-     */
     public void launchScript(String scriptName, List<String> script) {
         if (launchedScripts.contains(scriptName)) {
             launchedScripts.clear();
@@ -69,12 +57,6 @@ public class Controller {
         launchedScripts.remove(scriptName);
     }
 
-    /**
-     * Обработать пользовательский ввод.
-     *
-     * @param input
-     * @return
-     */
     public String handleInput(String input) {
         try {
             if (!authManager.isAuth()) {
@@ -92,12 +74,6 @@ public class Controller {
         }
     }
 
-    /**
-     * Выполнить парсинг пользовательского ввода.
-     *
-     * @param input
-     * @throws CommandExecutionError
-     */
     private void parseInput(String input) throws common.network.exceptions.NetworkException, CommandExecutionError {
         String[] data = input
                 .trim()
@@ -145,7 +121,6 @@ public class Controller {
                 printResponce(request, response);
                 break;
             case AUTH:
-                console.writeln("не должен был сюда попасть");
                 console.writeln(message);
         }
     }
@@ -155,10 +130,9 @@ public class Controller {
         command.apply(args, null, authManager.getUser());
     }
 
-    private Response makeRequest(Request request) throws NetworkException, CommandExecutionError {
+    private Response makeRequest(Request request) throws NetworkException {
         networkManager.sendData(Serializer.serializeObject(request));
-        Response response = (Response) Serializer.deserialazeObject(networkManager.receiveData());
-        return response;
+        return (Response) Serializer.deserialazeObject(networkManager.receiveData());
     }
 
     private void printCollection(Collection<?> collection) {
