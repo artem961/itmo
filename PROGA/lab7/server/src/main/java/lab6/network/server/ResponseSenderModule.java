@@ -7,50 +7,49 @@ import lab6.network.NetworkManager;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.net.SocketAddress;
+import java.io.IOException;
+import java.nio.channels.SelectionKey;
+import java.nio.channels.SocketChannel;
 import java.util.Map;
-import java.util.Set;
+import java.util.Queue;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
-public class ResponseSenderModule extends ServerModule {
+public class ResponseSenderModule{
     private static final Logger logger = LogManager.getLogger(ResponseSenderModule.class);
-    private final Map<SocketAddress, Response> responses;
+    private final Map<SelectionKey, Queue<Response>> responses;
     private final NetworkManager networkManager;
+    private final ExecutorService senderPool;
 
-    public ResponseSenderModule(Map<SocketAddress, Response> responses,
+    public ResponseSenderModule(Map<SelectionKey, Queue<Response>> responses,
                                 NetworkManager networkManager) {
         this.responses = responses;
         this.networkManager = networkManager;
+        this.senderPool = Executors.newCachedThreadPool();
+        logger.info("Проинициализирован модуль отправки ответов.");
     }
 
-    @Override
-    public void run() {
-        logger.info("Запущен модуль отправки ответов.");
-        while (isRunning) {
+    public void sendToChannel(SelectionKey key) {
+        senderPool.submit(() -> {
+            SocketChannel channel = (SocketChannel) key.channel();
+            Queue<Response> responsesToSend = responses.get(key);
             try {
-                synchronized (responses) {
-                    while (responses.isEmpty() && isRunning) {
-                        responses.wait();
-                    }
-                    if (!isRunning) break;
-
-                    Set<SocketAddress> keys = responses.keySet();
-                    for (SocketAddress key : keys) {
-                        try {
-                            networkManager.sendData(Serializer.serializeObject(responses.remove(key)), key);
-                            logger.info("Отправлен ответ на {}", key);
-                        } catch (NetworkException e) {
-                            logger.error(e);
-                        }
-                    }
-                    responses.clear();
-
-
+                while (!responsesToSend.isEmpty()){
+                    Response response = responsesToSend.poll();
+                    networkManager.sendData(Serializer.serializeObject(response), channel);
+                    logger.info("Отправлен ответ на адрес {}",
+                            channel.getRemoteAddress());
                 }
-            } catch (InterruptedException e) {
-                logger.warn("Поток был прерван.", e);
-                Thread.currentThread().interrupt();
+            } catch (NetworkException | IOException e) {
+                logger.debug(e);
+                key.cancel();
+            } finally {
+                key.interestOps(key.interestOps() | SelectionKey.OP_WRITE);
             }
-        }
-        logger.info("Остановлен модуль отправки ответов.");
+        });
+    }
+
+    public void shutdown() {
+        senderPool.shutdown();
     }
 }

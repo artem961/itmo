@@ -25,7 +25,7 @@ import static java.lang.System.exit;
 
 public class Main {
     public static void main(String... args) {
-        DBManager dbManager = null;
+        DBManager dbManager;
         CollectionManager collectionManager = null;
         UserManager userManager = null;
         try {
@@ -44,7 +44,7 @@ public class Main {
             ConfigLoader configLoader = new ConfigLoader("connection.properties");
             server = new Server(new InetSocketAddress(
                     InetAddress.getByName(configLoader.get("server_address")),
-                    Integer.valueOf(configLoader.get("server_port"))),
+                    Integer.parseInt(configLoader.get("server_port"))),
                     requestHandler);
         } catch (BindException e) {
             System.out.println("Этот порт уже занят!");

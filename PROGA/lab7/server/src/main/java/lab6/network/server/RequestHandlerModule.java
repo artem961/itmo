@@ -6,27 +6,33 @@ import lab6.network.server.handlers.RequestHandler;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.net.SocketAddress;
+import java.io.IOException;
+import java.nio.channels.SelectionKey;
+import java.nio.channels.SocketChannel;
 import java.util.Map;
+import java.util.PriorityQueue;
+import java.util.Queue;
 import java.util.Set;
+import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+
 public class RequestHandlerModule extends ServerModule {
     private static final Logger logger = LogManager.getLogger(RequestHandlerModule.class);
-    private final ExecutorService handlerThreadsPool;
-    private final Map<SocketAddress, Request> requests;
-    private final Map<SocketAddress, Response> responses;
+    private final ExecutorService handlerPool;
+    private final Map<SelectionKey, Queue<Request>> requests;
+    private final Map<SelectionKey, Queue<Response>> responses;
     private final RequestHandler requestHandler;
 
-    public RequestHandlerModule(Map<SocketAddress, Request> requests,
-                                Map<SocketAddress, Response> responses,
+    public RequestHandlerModule(Map<SelectionKey, Queue<Request>> requests,
+                                Map<SelectionKey, Queue<Response>> responses,
                                 RequestHandler requestHandler,
                                 int handlerThreads) {
         this.requests = requests;
         this.responses = responses;
         this.requestHandler = requestHandler;
-        this.handlerThreadsPool = Executors.newFixedThreadPool(handlerThreads);
+        this.handlerPool = Executors.newFixedThreadPool(handlerThreads);
     }
 
     @Override
@@ -40,16 +46,9 @@ public class RequestHandlerModule extends ServerModule {
                     }
                     if (!isRunning) break;
 
-                    Set<SocketAddress> keys = requests.keySet();
-                    for (SocketAddress key : keys) {
-                        handlerThreadsPool.submit(() -> {
-                            Response response = requestHandler.handleRequest(requests.remove(key));
-                            logger.info("Обработан запрос от " + key + ".");
-                            synchronized (responses) {
-                                responses.put(key, response);
-                                responses.notify();
-                            }
-                        });
+                    Set<SelectionKey> keys = requests.keySet();
+                    for (SelectionKey key : keys) {
+                        handleKey(key, requests.get(key));
                     }
                 }
             } catch (InterruptedException e) {
@@ -60,9 +59,22 @@ public class RequestHandlerModule extends ServerModule {
         logger.info("Остановлен модуль обработки запросов.");
     }
 
+    private void handleKey(SelectionKey key, Queue<Request> requests) {
+        while (!requests.isEmpty()) {
+            Request request = requests.poll();
+            handlerPool.submit(() -> {
+                Response response = requestHandler.handleRequest(request);
+                logger.info("Обработан запрос от пользователя {}, команда {}",
+                        request.user().name(),
+                        request.commandName());
+                responses.get(key).add(response);
+            });
+        }
+    }
+
     @Override
     public void shutdown() {
-        handlerThreadsPool.shutdown();
+        handlerPool.shutdown();
         super.shutdown();
     }
 }

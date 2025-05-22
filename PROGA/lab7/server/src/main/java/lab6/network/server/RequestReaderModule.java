@@ -3,76 +3,61 @@ package lab6.network.server;
 import common.network.Request;
 import common.network.Serializer;
 import common.network.exceptions.NetworkException;
-import common.network.exceptions.SerializationException;
 import lab6.network.NetworkManager;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
-import java.net.SocketAddress;
-import java.nio.channels.Channel;
-import java.nio.channels.DatagramChannel;
-import java.util.Iterator;
+import java.nio.channels.SelectionKey;
+import java.nio.channels.SocketChannel;
 import java.util.Map;
-import java.util.Set;
+import java.util.PriorityQueue;
+import java.util.Queue;
+import java.util.concurrent.ConcurrentLinkedQueue;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.SynchronousQueue;
 
-public class RequestReaderModule extends ServerModule {
+public class RequestReaderModule {
     private static final Logger logger = LogManager.getLogger(RequestReaderModule.class);
-    private final Set<Channel> readableChannels;
-    private final Map<SocketAddress, Request> requests;
+    private final Map<SelectionKey, Queue<Request>> requests;
     private final NetworkManager networkManager;
+    private final ExecutorService readerPool;
 
     public RequestReaderModule(NetworkManager networkManager,
-                               Set<Channel> readableChannels,
-                               Map<SocketAddress, Request> requests) {
+                               Map<SelectionKey, Queue<Request>> requests) {
         this.networkManager = networkManager;
-        this.readableChannels = readableChannels;
         this.requests = requests;
+        this.readerPool = Executors.newCachedThreadPool();
+        logger.info("Проинициализирован модуль чтения запросов.");
     }
 
-    @Override
-    public void run() {
-        logger.info("Запущен модуль чтения запросов.");
-        while (isRunning) {
+    public void handleRead(SelectionKey key) {
+        readerPool.submit(() -> {
             try {
-                synchronized (readableChannels) {
-                    while (readableChannels.isEmpty() && isRunning) {
-                        readableChannels.wait();
-                    }
-                    if (!isRunning) break;
+                SocketChannel channel = (SocketChannel) key.channel();
+                byte[] data = networkManager.readFromChannel(channel);
+                Request request = (Request) Serializer.deserialazeObject(data);
+                logger.info("Получено новое сообщение c адреса {}, пользователь {}, команда {}",
+                        channel.getRemoteAddress(),
+                        request.user().name(),
+                        request.commandName());
 
-                    Iterator<Channel> iterator = readableChannels.iterator();
-                    while (iterator.hasNext()) {
-                        try {
-                            Map<SocketAddress, byte[]> messages = networkManager.readFromChannel((DatagramChannel) iterator.next());
-                            iterator.remove();
-                            messages.forEach((address, bytes) -> logger.info("Получено новое сообщение от {}", address));
-
-                            for (Map.Entry<SocketAddress, byte[]> entry : messages.entrySet()) {
-                                processMessage(entry.getKey(), entry.getValue());
-                            }
-                        } catch (IOException | NetworkException e) {
-                            logger.error(e);
-                        }
-                    }
+                requests.get(key).add(request);
+                synchronized (requests) {
+                    requests.notify();
                 }
-            } catch (InterruptedException e) {
-                logger.warn("Поток был прерван.", e);
-                Thread.currentThread().interrupt();
+            } catch (IOException | NetworkException e) {
+                logger.debug(e);
+                key.cancel();
+            } finally {
+                key.interestOps(key.interestOps() | SelectionKey.OP_READ);
             }
-        }
-        logger.info("Остановлен модуль чтения запросов.");
+        });
     }
 
-    private void processMessage(SocketAddress address, byte[] message) {
-        try {
-            Request request = (Request) Serializer.deserialazeObject(message);
-            synchronized (requests) {
-                requests.put(address, request);
-                requests.notify();
-            }
-        } catch (SerializationException e) {
-            logger.warn(e);
-        }
+    public void shutdown() {
+        readerPool.shutdown();
     }
+
 }

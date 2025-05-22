@@ -30,7 +30,6 @@ public class UserManager {
 
     public Response authUser(User user) {
         User newUser = userRepository.selectByNameAndPass(user.name(), user.hashedPassword());
-
         if (newUser == null) {
             return Response.builder()
                     .setType(ResponseType.EXCEPTION)

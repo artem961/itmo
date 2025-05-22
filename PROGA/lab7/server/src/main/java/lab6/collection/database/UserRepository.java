@@ -86,7 +86,6 @@ public class UserRepository implements Repository<User> {
             stat.setString(1, name);
             stat.setString(2, password);
             ResultSet result = stat.executeQuery();
-
             if (result.next()) {
                 connection.commit();
                 return new User(result.getInt("id"),

@@ -1,86 +1,70 @@
 package lab6.network;
 
 import common.ConfigLoader;
-import common.network.MessageAssembler;
 import common.network.exceptions.NetworkException;
 
 import java.io.*;
 import java.net.*;
 import java.nio.ByteBuffer;
-import java.util.Map;
 
-public class NetworkManager {
-    private final DatagramSocket socket;
-    private final int bufferSize;
-    private final int packetDataSize;
-    private final MessageAssembler messageAssembler;
-    private final SocketAddress serverSocket;
+public class NetworkManager implements AutoCloseable {
+    private final Socket socket;
+    private final OutputStream out;
+    private final InputStream in;
 
-    public NetworkManager() throws SocketException, UnknownHostException {
-        ConfigLoader configLoader = new ConfigLoader("connection.properties");
-        InetAddress serverAddress = InetAddress.getByName(configLoader.get("server_address"));
-        int serverPort = Integer.valueOf(configLoader.get("server_port"));
-
-        messageAssembler = new MessageAssembler();
-        serverSocket = new InetSocketAddress(serverAddress, serverPort);
-        ConfigLoader cl = new ConfigLoader("connection.properties");
-        bufferSize = Integer.parseInt(configLoader.get("packet_size"));
-        packetDataSize = bufferSize - 8;
-
-        socket = new DatagramSocket();
-        socket.setReceiveBufferSize(bufferSize * 1024*8);
-        socket.setSoTimeout(8000);
-    }
-
-    private void sendPacket(DatagramPacket dp) throws NetworkException {
+    public NetworkManager() throws NetworkException {
         try {
-            this.socket.send(dp);
-        } catch (IOException e) {
-            throw new NetworkException("Не удалось отправить пакет!");
-        }
-    }
+            ConfigLoader configLoader = new ConfigLoader("connection.properties");
+            InetAddress serverAddress = InetAddress.getByName(configLoader.get("server_address"));
+            int serverPort = Integer.parseInt(configLoader.get("server_port"));
 
-    private DatagramPacket receivePacket() throws NetworkException {
-        try {
-            byte[] buffer = new byte[bufferSize];
-            DatagramPacket dp = new DatagramPacket(buffer, buffer.length);
-            socket.receive(dp);
-            return dp;
+            socket = new Socket();
+            socket.setReceiveBufferSize(524288);
+            try {
+                socket.connect(new InetSocketAddress(serverAddress, serverPort), 5000);
+            } catch (IOException e) {
+                throw new NetworkException("Не удалось подключиться к серверу!");
+            }
+            out = socket.getOutputStream();
+            in = socket.getInputStream();
         } catch (IOException e) {
-            throw new NetworkException("Сервер не доступен!");
+            throw new NetworkException(e.toString());
         }
     }
 
     public byte[] receiveData() throws NetworkException {
-        Map<SocketAddress, byte[]> messages = null;
-        while (true) {
-            DatagramPacket dp = receivePacket();
-            ByteBuffer buffer = ByteBuffer.wrap(dp.getData());
-            messageAssembler.addPacket(serverSocket, buffer);
-            messages = messageAssembler.getReceivedMessages();
-            if (messages.size() != 0) {
-                messageAssembler.clearReceivedMessages();
-                return messages.get(serverSocket);
+        try {
+            byte[] lenBytes = in.readNBytes(4);
+            if (lenBytes.length == 0) {
+                throw new NetworkException("Ошибка получения длины!");
             }
-        }
-    }
 
-    public void sendData(byte[] data, SocketAddress socketAddress) throws NetworkException {
-        int packetsCount = (int) Math.ceil((double) data.length / packetDataSize);
-        for (int number = 0; number < packetsCount; number++) {
-            ByteBuffer buffer = ByteBuffer.allocate(bufferSize);
-            buffer.putInt(number + 1);
-            buffer.putInt(packetsCount);
-            buffer.put(data, number * packetDataSize, Math.min(packetDataSize, data.length - number * packetDataSize));
-            buffer.flip();
-            byte[] newData = new byte[buffer.remaining()];
-            buffer.get(newData);
-            DatagramPacket packet = new DatagramPacket(newData, newData.length, socketAddress);
-            sendPacket(packet);
+            int length = ByteBuffer.wrap(lenBytes).getInt();
+            return in.readNBytes(length);
+        } catch (IOException e) {
+            throw new NetworkException("Не удалось прочитать сообщение!");
         }
     }
 
     public void sendData(byte[] data) throws NetworkException {
-        sendData(data, serverSocket);
+        try {
+            ByteBuffer buffer = ByteBuffer.allocate(4 + data.length);
+            buffer.putInt(data.length);
+            buffer.put(data);
+            buffer.flip();
+
+            out.write(buffer.array());
+        } catch (IOException e) {
+            throw new NetworkException("Не удалось отправить данные!");
+        }
+    }
+
+    @Override
+    public void close() throws Exception {
+        socket.shutdownInput();
+        socket.shutdownOutput();
+        in.close();
+        out.close();
+        socket.close();
     }
 }
