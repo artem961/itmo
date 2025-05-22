@@ -12,18 +12,12 @@ import lab6.network.NetworkManager;
 
 
 import java.io.IOException;
-import java.net.InetAddress;
-
 
 public class Main {
     public static void main(String... args) throws IOException {
-        ConfigLoader configLoader = new ConfigLoader("connection.properties");
-        InetAddress serverAdress = InetAddress.getByName(configLoader.get("server_address"));
-        int serverPort = Integer.valueOf(configLoader.get("server_port"));
-
         Console console = new StandartConsole();
         CommandManager commandManager = new CommandManager();
-        NetworkManager networkManager = new NetworkManager(serverPort, serverAdress);
+        NetworkManager networkManager = new NetworkManager();
         AuthManager authManager = new AuthManager(console, networkManager);
         Controller controller = new Controller(console, networkManager, commandManager, authManager);
 
@@ -31,5 +25,6 @@ public class Main {
         commandManager.registerCommand(new Exit());
 
         controller.run();
+
     }
 }

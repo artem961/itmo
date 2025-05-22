@@ -1,6 +1,6 @@
 package lab6.network;
 
-import common.network.enums.Constants;
+import common.ConfigLoader;
 import common.network.MessageAssembler;
 import common.network.exceptions.NetworkException;
 
@@ -16,10 +16,15 @@ public class NetworkManager {
     private final MessageAssembler messageAssembler;
     private final SocketAddress serverSocket;
 
-    public NetworkManager(int serverPort, InetAddress serverAddress) throws SocketException {
-        this.messageAssembler = new MessageAssembler();
+    public NetworkManager() throws SocketException, UnknownHostException {
+        ConfigLoader configLoader = new ConfigLoader("connection.properties");
+        InetAddress serverAddress = InetAddress.getByName(configLoader.get("server_address"));
+        int serverPort = Integer.valueOf(configLoader.get("server_port"));
+
+        messageAssembler = new MessageAssembler();
         serverSocket = new InetSocketAddress(serverAddress, serverPort);
-        bufferSize = Constants.PACKET_SIZE.getValue();
+        ConfigLoader cl = new ConfigLoader("connection.properties");
+        bufferSize = Integer.parseInt(configLoader.get("packet_size"));
         packetDataSize = bufferSize - 8;
 
         socket = new DatagramSocket();

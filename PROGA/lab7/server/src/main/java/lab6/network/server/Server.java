@@ -45,7 +45,7 @@ public class Server implements Runnable, AutoCloseable {
         logger.info("Сервер инициализирован по адресу {}", serverAddress);
     }
 
-    private void handleSelectionKey(SelectionKey key) throws NetworkException, IOException {
+    private void handleSelectionKey(SelectionKey key) {
         if (key.isReadable()) {
             synchronized (readableChannels) {
                 readableChannels.add(key.channel());

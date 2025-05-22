@@ -1,6 +1,6 @@
 package lab6.network;
 
-import common.network.enums.Constants;
+import common.ConfigLoader;
 import common.network.MessageAssembler;
 import common.network.exceptions.NetworkException;
 
@@ -19,7 +19,7 @@ public class NetworkManager {
 
     public NetworkManager(DatagramChannel outChannel) {
         this.messageAssembler = new MessageAssembler();
-        this.bufferSize = Constants.PACKET_SIZE.getValue();
+        this.bufferSize = Integer.parseInt(new ConfigLoader("connection.properties").get("packet_size"));
         this.packetDataSize = bufferSize - 8;
         this.buffer = ByteBuffer.allocate(bufferSize);
         this.channel = outChannel;
@@ -40,6 +40,7 @@ public class NetworkManager {
 
     public synchronized void sendData(byte[] data, SocketAddress address) throws NetworkException {
         int packetsCount = (int) Math.ceil((double) data.length / packetDataSize);
+        int batchCounter = 0;
         for (int number = 0; number < packetsCount; number++) {
             buffer.clear();
             buffer.putInt(number + 1);
@@ -47,6 +48,16 @@ public class NetworkManager {
             buffer.put(data, number * packetDataSize, Math.min(packetDataSize, data.length - number * packetDataSize));
             buffer.flip();
             sendPacket(address, buffer);
+
+            batchCounter++;
+            if (batchCounter == 10){
+                try {
+                    Thread.sleep(15);
+                    batchCounter = 0;
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+            }
         }
     }
 

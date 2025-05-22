@@ -7,7 +7,6 @@ import lab6.collection.database.connection.DBManager;
 import lab6.collection.utils.CollectionInfo;
 import lombok.Getter;
 
-import java.awt.image.DataBuffer;
 import java.time.LocalDate;
 import java.util.*;
 
@@ -58,7 +57,7 @@ public class CollectionManager {
     }
 
     public void add(Collection<Flat> flats){
-
+        // Сдлеать вставку коллекцией
     }
 
     /**

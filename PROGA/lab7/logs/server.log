@@ -9,3 +9,74 @@
 2025-05-19 01:58:57.509 [RequestReaderModule] INFO  lab6.network.server.RequestReaderModule - Получено новое сообщение от /127.0.0.1:63387
 2025-05-19 01:59:09.631 [pool-2-thread-8] INFO  lab6.network.server.RequestHandlerModule - Обработан запрос от /127.0.0.1:63387.
 2025-05-19 01:59:09.633 [ResponseSenderModule] INFO  lab6.network.server.ResponseSenderModule - Отправлен ответ на /127.0.0.1:63387
+2025-05-21 00:04:50.253 [main] INFO  lab6.network.server.Server - Сервер инициализирован по адресу localhost/127.0.0.1:13532
+2025-05-21 00:04:50.265 [RequestHandlerModule] INFO  lab6.network.server.RequestHandlerModule - Запущен модуль обработки запросов.
+2025-05-21 00:04:50.265 [RequestReaderModule] INFO  lab6.network.server.RequestReaderModule - Запущен модуль чтения запросов.
+2025-05-21 00:04:50.265 [Сервер] INFO  lab6.network.server.Server - Сервер запущен по адресу localhost/127.0.0.1:13532
+2025-05-21 00:04:50.265 [ResponseSenderModule] INFO  lab6.network.server.ResponseSenderModule - Запущен модуль отправки ответов.
+2025-05-21 00:06:33.075 [main] INFO  lab6.network.server.Server - Сервер инициализирован по адресу localhost/127.0.0.1:13532
+2025-05-21 00:06:33.096 [ResponseSenderModule] INFO  lab6.network.server.ResponseSenderModule - Запущен модуль отправки ответов.
+2025-05-21 00:06:33.096 [RequestReaderModule] INFO  lab6.network.server.RequestReaderModule - Запущен модуль чтения запросов.
+2025-05-21 00:06:33.096 [RequestHandlerModule] INFO  lab6.network.server.RequestHandlerModule - Запущен модуль обработки запросов.
+2025-05-21 00:06:33.096 [Сервер] INFO  lab6.network.server.Server - Сервер запущен по адресу localhost/127.0.0.1:13532
+2025-05-21 00:52:12.654 [main] INFO  lab6.network.server.Server - Сервер инициализирован по адресу localhost/127.0.0.1:13532
+2025-05-21 00:52:12.662 [ResponseSenderModule] INFO  lab6.network.server.ResponseSenderModule - Запущен модуль отправки ответов.
+2025-05-21 00:52:12.662 [RequestReaderModule] INFO  lab6.network.server.RequestReaderModule - Запущен модуль чтения запросов.
+2025-05-21 00:52:12.662 [Сервер] INFO  lab6.network.server.Server - Сервер запущен по адресу localhost/127.0.0.1:13532
+2025-05-21 00:52:12.662 [RequestHandlerModule] INFO  lab6.network.server.RequestHandlerModule - Запущен модуль обработки запросов.
+2025-05-21 00:52:18.020 [RequestReaderModule] INFO  lab6.network.server.RequestReaderModule - Получено новое сообщение от /127.0.0.1:49484
+2025-05-21 00:52:18.115 [pool-2-thread-3] INFO  lab6.network.server.RequestHandlerModule - Обработан запрос от /127.0.0.1:49484.
+2025-05-21 00:52:18.121 [ResponseSenderModule] INFO  lab6.network.server.ResponseSenderModule - Отправлен ответ на /127.0.0.1:49484
+2025-05-21 00:52:19.669 [RequestReaderModule] INFO  lab6.network.server.RequestReaderModule - Получено новое сообщение от /127.0.0.1:49484
+2025-05-21 00:52:19.687 [pool-2-thread-5] INFO  lab6.network.server.RequestHandlerModule - Обработан запрос от /127.0.0.1:49484.
+2025-05-21 00:52:19.689 [ResponseSenderModule] INFO  lab6.network.server.ResponseSenderModule - Отправлен ответ на /127.0.0.1:49484
+2025-05-21 00:52:23.744 [RequestReaderModule] INFO  lab6.network.server.RequestReaderModule - Получено новое сообщение от /127.0.0.1:49484
+2025-05-21 00:52:23.746 [pool-2-thread-3] INFO  lab6.network.server.RequestHandlerModule - Обработан запрос от /127.0.0.1:49484.
+2025-05-21 00:52:23.747 [ResponseSenderModule] INFO  lab6.network.server.ResponseSenderModule - Отправлен ответ на /127.0.0.1:49484
+2025-05-21 00:52:38.297 [RequestReaderModule] INFO  lab6.network.server.RequestReaderModule - Получено новое сообщение от /127.0.0.1:49484
+2025-05-21 00:52:38.298 [pool-2-thread-4] INFO  lab6.network.server.RequestHandlerModule - Обработан запрос от /127.0.0.1:49484.
+2025-05-21 00:52:38.299 [ResponseSenderModule] INFO  lab6.network.server.ResponseSenderModule - Отправлен ответ на /127.0.0.1:49484
+2025-05-21 00:52:46.595 [RequestReaderModule] INFO  lab6.network.server.RequestReaderModule - Получено новое сообщение от /127.0.0.1:49484
+2025-05-21 00:52:55.320 [pool-2-thread-8] INFO  lab6.network.server.RequestHandlerModule - Обработан запрос от /127.0.0.1:49484.
+2025-05-21 00:52:55.321 [ResponseSenderModule] INFO  lab6.network.server.ResponseSenderModule - Отправлен ответ на /127.0.0.1:49484
+2025-05-21 00:53:01.800 [RequestReaderModule] INFO  lab6.network.server.RequestReaderModule - Получено новое сообщение от /127.0.0.1:52653
+2025-05-21 00:53:01.811 [pool-2-thread-6] INFO  lab6.network.server.RequestHandlerModule - Обработан запрос от /127.0.0.1:52653.
+2025-05-21 00:53:01.812 [ResponseSenderModule] INFO  lab6.network.server.ResponseSenderModule - Отправлен ответ на /127.0.0.1:52653
+2025-05-21 00:53:03.396 [RequestReaderModule] INFO  lab6.network.server.RequestReaderModule - Получено новое сообщение от /127.0.0.1:52653
+2025-05-21 00:53:03.401 [pool-2-thread-3] INFO  lab6.network.server.RequestHandlerModule - Обработан запрос от /127.0.0.1:52653.
+2025-05-21 00:53:03.402 [ResponseSenderModule] INFO  lab6.network.server.ResponseSenderModule - Отправлен ответ на /127.0.0.1:52653
+2025-05-21 00:53:05.071 [RequestReaderModule] INFO  lab6.network.server.RequestReaderModule - Получено новое сообщение от /127.0.0.1:52653
+2025-05-21 00:53:05.077 [pool-2-thread-7] INFO  lab6.network.server.RequestHandlerModule - Обработан запрос от /127.0.0.1:52653.
+2025-05-21 00:53:05.125 [ResponseSenderModule] INFO  lab6.network.server.ResponseSenderModule - Отправлен ответ на /127.0.0.1:52653
+2025-05-21 00:53:07.634 [RequestReaderModule] INFO  lab6.network.server.RequestReaderModule - Получено новое сообщение от /127.0.0.1:52653
+2025-05-21 00:53:07.643 [pool-2-thread-5] INFO  lab6.network.server.RequestHandlerModule - Обработан запрос от /127.0.0.1:52653.
+2025-05-21 00:53:07.686 [ResponseSenderModule] INFO  lab6.network.server.ResponseSenderModule - Отправлен ответ на /127.0.0.1:52653
+2025-05-21 00:53:12.101 [RequestReaderModule] INFO  lab6.network.server.RequestReaderModule - Получено новое сообщение от /127.0.0.1:52653
+2025-05-21 00:53:12.995 [pool-2-thread-1] INFO  lab6.network.server.RequestHandlerModule - Обработан запрос от /127.0.0.1:52653.
+2025-05-21 00:53:12.996 [ResponseSenderModule] INFO  lab6.network.server.ResponseSenderModule - Отправлен ответ на /127.0.0.1:52653
+2025-05-21 00:53:17.637 [RequestReaderModule] INFO  lab6.network.server.RequestReaderModule - Получено новое сообщение от /127.0.0.1:52653
+2025-05-21 00:53:17.640 [pool-2-thread-9] INFO  lab6.network.server.RequestHandlerModule - Обработан запрос от /127.0.0.1:52653.
+2025-05-21 00:53:17.666 [ResponseSenderModule] INFO  lab6.network.server.ResponseSenderModule - Отправлен ответ на /127.0.0.1:52653
+2025-05-21 00:53:23.173 [RequestReaderModule] INFO  lab6.network.server.RequestReaderModule - Получено новое сообщение от /127.0.0.1:52653
+2025-05-21 00:53:24.072 [pool-2-thread-2] INFO  lab6.network.server.RequestHandlerModule - Обработан запрос от /127.0.0.1:52653.
+2025-05-21 00:53:24.074 [ResponseSenderModule] INFO  lab6.network.server.ResponseSenderModule - Отправлен ответ на /127.0.0.1:52653
+2025-05-21 00:53:27.146 [RequestReaderModule] INFO  lab6.network.server.RequestReaderModule - Получено новое сообщение от /127.0.0.1:52653
+2025-05-21 00:53:27.149 [pool-2-thread-3] INFO  lab6.network.server.RequestHandlerModule - Обработан запрос от /127.0.0.1:52653.
+2025-05-21 00:53:27.150 [ResponseSenderModule] INFO  lab6.network.server.ResponseSenderModule - Отправлен ответ на /127.0.0.1:52653
+2025-05-21 00:53:29.152 [RequestReaderModule] INFO  lab6.network.server.RequestReaderModule - Получено новое сообщение от /127.0.0.1:52653
+2025-05-21 00:53:29.157 [pool-2-thread-6] INFO  lab6.network.server.RequestHandlerModule - Обработан запрос от /127.0.0.1:52653.
+2025-05-21 00:53:29.175 [ResponseSenderModule] INFO  lab6.network.server.ResponseSenderModule - Отправлен ответ на /127.0.0.1:52653
+2025-05-21 01:42:15.806 [main] INFO  lab6.network.server.Server - Сервер инициализирован по адресу localhost/127.0.0.1:13532
+2025-05-21 01:42:15.813 [RequestReaderModule] INFO  lab6.network.server.RequestReaderModule - Запущен модуль чтения запросов.
+2025-05-21 01:42:15.813 [RequestHandlerModule] INFO  lab6.network.server.RequestHandlerModule - Запущен модуль обработки запросов.
+2025-05-21 01:42:15.813 [ResponseSenderModule] INFO  lab6.network.server.ResponseSenderModule - Запущен модуль отправки ответов.
+2025-05-21 01:42:15.813 [Сервер] INFO  lab6.network.server.Server - Сервер запущен по адресу localhost/127.0.0.1:13532
+2025-05-21 01:42:22.378 [RequestReaderModule] INFO  lab6.network.server.RequestReaderModule - Получено новое сообщение от /127.0.0.1:53623
+2025-05-21 01:42:22.431 [pool-2-thread-1] INFO  lab6.network.server.RequestHandlerModule - Обработан запрос от /127.0.0.1:53623.
+2025-05-21 01:42:22.438 [ResponseSenderModule] INFO  lab6.network.server.ResponseSenderModule - Отправлен ответ на /127.0.0.1:53623
+2025-05-21 01:42:24.164 [RequestReaderModule] INFO  lab6.network.server.RequestReaderModule - Получено новое сообщение от /127.0.0.1:53623
+2025-05-21 01:42:24.183 [pool-2-thread-3] INFO  lab6.network.server.RequestHandlerModule - Обработан запрос от /127.0.0.1:53623.
+2025-05-21 01:42:24.222 [ResponseSenderModule] INFO  lab6.network.server.ResponseSenderModule - Отправлен ответ на /127.0.0.1:53623
+2025-05-21 01:42:25.865 [RequestReaderModule] INFO  lab6.network.server.RequestReaderModule - Получено новое сообщение от /127.0.0.1:53623
+2025-05-21 01:42:25.877 [pool-2-thread-9] INFO  lab6.network.server.RequestHandlerModule - Обработан запрос от /127.0.0.1:53623.
+2025-05-21 01:42:25.880 [ResponseSenderModule] INFO  lab6.network.server.ResponseSenderModule - Отправлен ответ на /127.0.0.1:53623

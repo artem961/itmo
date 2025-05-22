@@ -26,7 +26,6 @@ public class MessageAssembler {
         }
         int packetNumber = buffer.getInt();
         int totalCount = buffer.getInt();
-
         byte[] packetData = new byte[buffer.remaining()];
         buffer.get(packetData);
 

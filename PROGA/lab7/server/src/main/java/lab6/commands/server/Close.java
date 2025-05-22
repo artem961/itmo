@@ -16,7 +16,7 @@ public class Close extends Command {
     private final CollectionManager collectionManager;
 
     public Close(Server server, CollectionManager collectionManager) {
-        super("close", "Завершает работу сервера без сохранения в файл.");
+        super("close", "Завершает работу сервера.");
         this.server = server;
         this.collectionManager = collectionManager;
     }

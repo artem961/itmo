@@ -8,6 +8,12 @@ year integer CHECK (year > 0),
 num_of_flats bigint CHECK (num_of_flats > 0)
 );
 
+CREATE TABLE users(
+id serial PRIMARY KEY,
+name varchar(100) UNIQUE NOT NULL,
+password varchar(500)
+);
+
 CREATE TABLE flats(
 id serial PRIMARY KEY,
 name varchar(500) NOT NULL,
@@ -21,12 +27,6 @@ furnish Furnish,
 transport Transport NOT NULL,
 house integer REFERENCES houses(id) ON DELETE SET NULL,
 user_id integer REFERENCES users(id) NOT NULL
-);
-
-CREATE TABLE users(
-id serial PRIMARY KEY,
-name varchar(100) UNIQUE NOT NULL,
-password varchar(500)
 );
 
 CREATE FUNCTION insertHouse(varchar(500),

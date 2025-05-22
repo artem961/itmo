@@ -59,4 +59,10 @@ public class RequestHandlerModule extends ServerModule {
         }
         logger.info("Остановлен модуль обработки запросов.");
     }
+
+    @Override
+    public void shutdown() {
+        handlerThreadsPool.shutdown();
+        super.shutdown();
+    }
 }
