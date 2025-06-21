@@ -1,0 +1,52 @@
+2025-06-16 21:54:28.617 [JavaFX Application Thread] ERROR lab6.ui.AppManager - javafx.fxml.LoadException: Error resolving onAction='#languageSelected', either the event handler is not in the Namespace or there is an error in the script.
+/D:/itmo/PROGA/lab8/client/build/resources/main/fxml/Start.fxml:20
+
+2025-06-17 14:58:36.514 [JavaFX Application Thread] ERROR lab6.ui.AppManager - javafx.fxml.LoadException: 
+/D:/itmo/PROGA/lab8/client/build/resources/main/fxml/Start.fxml:21
+
+2025-06-17 14:58:50.288 [JavaFX Application Thread] ERROR lab6.ui.AppManager - javafx.fxml.LoadException: 
+/D:/itmo/PROGA/lab8/client/build/resources/main/fxml/Start.fxml:21
+
+2025-06-17 14:58:57.503 [JavaFX Application Thread] ERROR lab6.ui.AppManager - javafx.fxml.LoadException: 
+/D:/itmo/PROGA/lab8/client/build/resources/main/fxml/Start.fxml:21
+
+2025-06-18 19:15:39.675 [JavaFX Application Thread] ERROR lab6.ui.SceneManager - javafx.fxml.LoadException: 
+/D:/itmo/PROGA/lab8/client/build/resources/main/fxml/components/Header.fxml
+/D:/itmo/PROGA/lab8/client/build/resources/main/fxml/Auth.fxml:18
+
+2025-06-18 19:16:43.258 [JavaFX Application Thread] ERROR lab6.ui.SceneManager - javafx.fxml.LoadException: 
+/D:/itmo/PROGA/lab8/client/build/resources/main/fxml/components/Header.fxml
+/D:/itmo/PROGA/lab8/client/build/resources/main/fxml/Auth.fxml:18
+
+2025-06-18 19:17:20.913 [JavaFX Application Thread] ERROR lab6.ui.SceneManager - javafx.fxml.LoadException: 
+/D:/itmo/PROGA/lab8/client/build/resources/main/fxml/components/Header.fxml
+/D:/itmo/PROGA/lab8/client/build/resources/main/fxml/Auth.fxml:18
+
+2025-06-18 19:22:02.492 [JavaFX Application Thread] ERROR lab6.ui.SceneManager - javafx.fxml.LoadException: 
+/D:/itmo/PROGA/lab8/client/build/resources/main/fxml/components/Header.fxml
+/D:/itmo/PROGA/lab8/client/build/resources/main/fxml/Auth.fxml:18
+
+2025-06-18 19:22:07.537 [JavaFX Application Thread] ERROR lab6.ui.SceneManager - javafx.fxml.LoadException: 
+/D:/itmo/PROGA/lab8/client/build/resources/main/fxml/components/Header.fxml
+/D:/itmo/PROGA/lab8/client/build/resources/main/fxml/Registration.fxml:18
+
+2025-06-18 19:22:08.083 [JavaFX Application Thread] ERROR lab6.ui.SceneManager - javafx.fxml.LoadException: 
+/D:/itmo/PROGA/lab8/client/build/resources/main/fxml/components/Header.fxml
+/D:/itmo/PROGA/lab8/client/build/resources/main/fxml/Auth.fxml:18
+
+2025-06-18 19:26:54.441 [JavaFX Application Thread] ERROR lab6.ui.SceneManager - javafx.fxml.LoadException: 
+/D:/itmo/PROGA/lab8/client/build/resources/main/fxml/components/Header.fxml
+/D:/itmo/PROGA/lab8/client/build/resources/main/fxml/Auth.fxml:18
+
+2025-06-18 19:27:16.459 [JavaFX Application Thread] ERROR lab6.ui.SceneManager - javafx.fxml.LoadException: 
+/D:/itmo/PROGA/lab8/client/build/resources/main/fxml/components/Header.fxml
+/D:/itmo/PROGA/lab8/client/build/resources/main/fxml/Auth.fxml:18
+
+2025-06-18 19:27:26.890 [JavaFX Application Thread] ERROR lab6.ui.SceneManager - javafx.fxml.LoadException: 
+/D:/itmo/PROGA/lab8/client/build/resources/main/fxml/components/Header.fxml
+/D:/itmo/PROGA/lab8/client/build/resources/main/fxml/Auth.fxml:18
+
+2025-06-18 19:27:54.673 [JavaFX Application Thread] ERROR lab6.ui.SceneManager - javafx.fxml.LoadException: 
+/D:/itmo/PROGA/lab8/client/build/resources/main/fxml/components/Header.fxml
+/D:/itmo/PROGA/lab8/client/build/resources/main/fxml/Auth.fxml:18
+

@@ -1,0 +1,12 @@
+.appTitle {
+    -fx-font-size: 20pt;
+    -fx-font-weight: bold;
+    -fx-text-fill: #333333;
+}
+
+.header {
+    -fx-background-color: #f4f4f4;
+    -fx-border-color: #cccccc;
+    -fx-border-width: 0 0 1 0;
+    -fx-padding: 0 15px 0 15px; /* top | right | bottom | left */
+}

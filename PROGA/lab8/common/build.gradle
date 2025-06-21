@@ -1,0 +1,32 @@
+plugins {
+    id 'java'
+    id 'application'
+    id("io.freefair.lombok") version "8.12.2.1"
+}
+
+group = 'org.example'
+version = 'lab6-server-1.0'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'com.google.code.gson:gson:2.12.1'
+}
+
+application {
+    mainClass = 'lab6.Main'
+}
+
+jar {
+    manifest {
+        attributes(
+                'Main-Class': 'lab6.Main',
+        )
+    }
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+}

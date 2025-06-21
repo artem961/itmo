@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Button?>
+<?import java.net.URL?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.control.TextField?>
+<BorderPane fx:id="rootPane"
+            xmlns="http://javafx.com/javafx/16"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="lab6.ui.controllers.MainController"
+            styleClass="rootPane">
+    <stylesheets>
+        <URL value="@/css/main.css"/>
+    </stylesheets>
+    <top>
+        <fx:include source="components/Header.fxml"/>
+    </top>
+    <center>
+        <VBox styleClass="container">
+            <fx:include source="components/TableView.fxml"/>
+        </VBox>
+    </center>
+</BorderPane>

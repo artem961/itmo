@@ -20,22 +20,24 @@ import static java.lang.System.exit;
 
 public class Main {
     public static void main(String... args) {
-            Console console = new StandartConsole();
-            CommandManager commandManager = new CommandManager();
-            NetworkManager networkManager = null;
-            try {
-                networkManager = new NetworkManager();
-                console.writeln("Подключение с сервером установлено!");
-            } catch (NetworkException e) {
-                console.writeln(e.getMessage());
-                exit(0);
-            }
-            AuthManager authManager = new AuthManager(console, networkManager);
-            Controller controller = new Controller(console, networkManager, commandManager, authManager);
+        
+        Console console = new StandartConsole();
+        CommandManager commandManager = new CommandManager();
+        NetworkManager networkManager = null;
+        try {
+            networkManager = new NetworkManager();
+            console.writeln("Подключение с сервером установлено!");
+        } catch (NetworkException e) {
+            console.writeln(e.getMessage());
+            exit(0);
+        }
+        AuthManager authManager = new AuthManager(console, networkManager);
+        Controller controller = new Controller(console, networkManager, commandManager, authManager);
 
-            commandManager.registerCommand(new ExecuteScript(console, controller, commandManager));
-            commandManager.registerCommand(new Exit());
+        commandManager.registerCommand(new ExecuteScript(console, controller, commandManager));
+        commandManager.registerCommand(new Exit(networkManager));
 
-            controller.run();
+         authManager.auth();
+        controller.run();
     }
 }

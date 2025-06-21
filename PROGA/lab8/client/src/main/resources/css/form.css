@@ -1,0 +1,13 @@
+.form{
+    -fx-pref-width: 400px;
+    -fx-max-width: -fx-pref-width;
+
+    -fx-alignment: center;
+    -fx-spacing: 20px;
+    -fx-padding: 18px;
+
+    -fx-border-width: 1px;
+    -fx-border-radius: 16px;
+
+    -fx-background-radius: 16px;
+}

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import java.net.URL?>
+<?import javafx.collections.FXCollections?>
+<HBox
+        styleClass="header"
+        fx:id="container"
+        fx:controller="lab6.ui.controllers.HeaderController"
+        xmlns="http://javafx.com/javafx"
+        xmlns:fx="http://javafx.com/fxml">
+    <stylesheets>
+        <URL value="@/css/header.css"/>
+        <URL value="@/css/main.css"/>
+    </stylesheets>
+    <Label text="%app.name" styleClass="appTitle"></Label>
+    <Region HBox.hgrow="ALWAYS"/>
+    <Label fx:id="userLabel" styleClass="userLabel" text="xxx" onMouseClicked="#user"></Label>
+    <fx:include source="LanguageSelector.fxml"/>
+</HBox>

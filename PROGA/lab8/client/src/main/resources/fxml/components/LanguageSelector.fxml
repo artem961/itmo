@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import java.net.URL?>
+
+<HBox
+        styleClass="languageSelector"
+        fx:id="container"
+        fx:controller="lab6.ui.controllers.LanguageSelectorController"
+        xmlns="http://javafx.com/javafx"
+        xmlns:fx="http://javafx.com/fxml">
+    <stylesheets>
+        <URL value="@/css/main.css"/>
+    </stylesheets>
+        <ComboBox fx:id="languageComboBox" onAction="#languageSelected" promptText="%header.language.change"></ComboBox>
+</HBox>

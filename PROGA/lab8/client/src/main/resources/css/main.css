@@ -1,0 +1,46 @@
+.container{
+    -fx-alignment: center;
+    -fx-spacing: 10px;
+    -fx-padding: 20px;
+    -fx-max-width: 600px;
+}
+
+.button{
+   -fx-cursor: hand;
+   -fx-padding: 10px 20px;
+   -fx-background-radius: 5px;
+   -fx-border-radius: 5px;
+   -fx-border-width: 1px;
+   -fx-border-color: #333;
+   -fx-background-color: #eee;
+   -fx-font-size: 14px;
+}
+
+.button:hover {
+    -fx-background-color: #f8f9fa;
+        -fx-border-color: #34495e;
+}
+
+.boldLabel {
+    -fx-font-size: 14pt;
+    -fx-font-weight: bold;
+}
+
+.languageSelector{
+    -fx-padding: 5px 10px 5px 10px; /* top | right | bottom | left */
+    -fx-alignment: center;
+}
+
+.appTitle {
+    -fx-font-family: "Segoe UI Light", "Helvetica Neue", Arial, sans-serif; /* Более легкий и современный шрифт */
+        -fx-font-size: 52pt; /* Увеличенный размер шрифта */
+        -fx-font-weight: 300;
+        -fx-text-fill: #2c3e50; /* Современный темно-сине-серый цвет */
+}
+
+.rootPane{
+ -fx-pref-width: 600px;
+ -fx-pref-height: 600px;
+ -fx-background-color: #f4f7f9; /* Слегка измененный фон для лучшего вида */
+ -fx-alignment: top-center; /* Выравнивает VBox по верхнему краю */
+}

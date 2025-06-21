@@ -19,7 +19,7 @@ public class NetworkManager implements AutoCloseable {
             int serverPort = Integer.parseInt(configLoader.get("server_port"));
 
             socket = new Socket();
-            socket.setReceiveBufferSize(524288);
+            socket.setReceiveBufferSize(524288*2);
             try {
                 socket.connect(new InetSocketAddress(serverAddress, serverPort), 5000);
             } catch (IOException e) {
