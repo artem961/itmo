@@ -50,7 +50,6 @@ public class Server implements Runnable, AutoCloseable {
     private void handleSelectionKey(SelectionKey key) {
         try {
             if (key.isAcceptable()) {
-                System.out.println(selector.keys().size());
                 acceptClient();
             } else if (key.isReadable()) {
                 key.interestOps(key.interestOps() & ~SelectionKey.OP_READ);

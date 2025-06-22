@@ -48,7 +48,7 @@ public class HistoryManager {
     private HistoryStorage history;
 
     public HistoryManager() {
-        history = new HistoryStorage(15);
+        history = new HistoryStorage(5);
     }
 
     /**

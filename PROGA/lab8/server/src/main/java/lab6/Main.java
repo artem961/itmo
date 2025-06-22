@@ -69,6 +69,7 @@ public class Main {
         commandManager.registerCommand(new MaxByFurnish(collectionManager));
         commandManager.registerCommand(new FilterLessThanFurnish(collectionManager));
         commandManager.registerCommand(new PrintDescending(collectionManager));
+        commandManager.registerCommand(new GetCommands(commandManager));
         //endregion
 
         Thread serverThread = new Thread(server, "Сервер");

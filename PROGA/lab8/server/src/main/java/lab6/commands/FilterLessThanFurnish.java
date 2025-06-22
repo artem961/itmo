@@ -8,7 +8,9 @@ import common.network.Response;
 import common.network.User;
 import lab6.collection.CollectionManager;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 /**
@@ -38,8 +40,10 @@ public class FilterLessThanFurnish extends Command {
                     .build();
         } catch (IllegalArgumentException | IndexOutOfBoundsException e) {
             return Response.builder()
-                    .setMessage("Список доступных для ввода значений мебели:")
-                    .setCollection(List.of(Furnish.values()))
+                    .setMessage("Список доступных для ввода значений мебели:\n" +
+                            Arrays.stream(Furnish.values())
+                                    .map(Objects::toString)
+                                    .collect(Collectors.joining("\n")))
                     .build();
         }
     }

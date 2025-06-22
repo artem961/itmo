@@ -15,29 +15,22 @@ import java.util.List;
 /**
  * Команда выводит справку по доступным командам.
  */
-public class Help extends Command {
+public class GetCommands extends Command {
     private final CommandManager commandManager;
 
-    public Help(CommandManager commandManager) {
-        super("help", "Вывести справку по доступным командам.");
+    public GetCommands(CommandManager commandManager) {
+        super("get_commands", "Получить доступные команды.");
         this.commandManager = commandManager;
         this.setClientAvailable(false);
     }
-    
+
     @Override
     public Response apply(String[] args, Object object, User user) throws CommandExecutionError {
-        if (object == null) {
-            return Response.builder()
-                    .setType(ResponseType.GET_COMMANDS)
-                    .build();
-        }
-
-        @SuppressWarnings("unchecked")
-        List<String> clientCommands = (List<String>) object;
-        List<String> commandList = commandManager.getAllCommandsAsString();
-        commandList.addAll(clientCommands);
+        List<CommandInfo> commandInfoList = commandManager.getAllCommands().stream()
+                .map(Command::getInfo)
+                .toList();
         return Response.builder()
-                .setCollection(commandList)
+                .setCollection(commandInfoList)
                 .build();
     }
 }

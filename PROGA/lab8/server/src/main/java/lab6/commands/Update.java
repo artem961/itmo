@@ -42,7 +42,7 @@ public class Update extends Command {
             if (collectionManager.isIdFree(id)){
                 throw new CommandExecutionError("Элемента с таким id не существует!");
             } else if (!collectionManager.getAsList().stream()
-                    .filter(flat -> flat.getId() == id)
+                    .filter(flat -> flat.getId().equals(id))
                     .anyMatch(flat -> flat.getUserId() == user.id())){
                 throw new CommandExecutionError("Этот элемент вам не принадлежит!");
             }

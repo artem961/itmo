@@ -1,14 +1,20 @@
 package lab6.ui;
 
+import common.network.Request;
 import common.network.exceptions.NetworkException;
+import javafx.fxml.FXML;
 import javafx.stage.Stage;
 import lab6.client.AuthManager;
+import lab6.client.RequestManager;
 import lab6.network.NetworkManager;
+import lab6.ui.utils.DataExchanger;
 import lab6.ui.utils.UserSettings;
 import lombok.Getter;
 
 import java.util.Locale;
+import java.util.Objects;
 
+import lombok.Setter;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -20,10 +26,16 @@ public class AppManager {
     private static AppManager instance;
 
     @Getter
+    @Setter
+    private DataExchanger dataExchanger;
+
+
+    @Getter
     private final UserSettings userSettings;
     private final NetworkManager networkManager;
     public final SceneManager sceneManager;
     public final AuthManager authManager;
+    public final RequestManager requestManager;
 
     private AppManager(Stage stage) {
         NetworkManager nm = null;
@@ -40,6 +52,7 @@ public class AppManager {
         this.userSettings = new UserSettings();
         this.sceneManager = new SceneManager(stage, userSettings);
         this.authManager = new AuthManager(networkManager);
+        this.requestManager = new RequestManager(networkManager, authManager);
     }
 
     public static void init(Stage stage) {

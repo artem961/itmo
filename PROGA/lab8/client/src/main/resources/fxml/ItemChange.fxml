@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Button?>
+<?import java.net.URL?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<VBox fx:id="main"
+      xmlns="http://javafx.com/javafx/16"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="lab6.ui.controllers.ItemChangeController"
+      styleClass="rootPane">
+    <stylesheets>
+        <URL value="@/css/main.css"/>
+    </stylesheets>
+
+    <Label text="%collection.name" styleClass="boldLabel"/>
+    <TextField fx:id="name"/>
+
+    <Label text="%collection.x" styleClass="boldLabel"/>
+    <TextField fx:id="x"/>
+
+    <Label text="%collection.y" styleClass="boldLabel"/>
+    <TextField fx:id="y"/>
+
+    <Label text="%collection.area" styleClass="boldLabel"/>
+    <TextField fx:id="area"/>
+
+    <Label text="%collection.NumOfRooms" styleClass="boldLabel"/>
+    <TextField fx:id="numOfRooms"/>
+
+    <Label text="%collection.height" styleClass="boldLabel"/>
+    <TextField fx:id="height"/>
+
+    <Label text="%collection.transport" styleClass="boldLabel"/>
+    <TextField fx:id="transport"/>
+
+    <Label text="%collection.furnish" styleClass="boldLabel"/>
+    <TextField fx:id="furnish"/>
+
+    <Label text="%collection.house.name" styleClass="boldLabel"/>
+    <TextField fx:id="houseName"/>
+
+    <Label text="%collection.year" styleClass="boldLabel"/>
+    <TextField fx:id="year"/>
+
+    <Label text="%collection.numberOfFlats" styleClass="boldLabel"/>
+    <TextField fx:id="numberOfFlats"/>
+
+    <Label fx:id="messageLabel" styleClass="messageLabel" text="test"></Label>
+
+    <Button fx:id="change" styleClass="button" text="%button.change" onAction="#change"></Button>
+    <Button fx:id="remove" styleClass="button" text="%button.remove" onAction="#remove"></Button>
+</VBox>

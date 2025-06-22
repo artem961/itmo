@@ -23,12 +23,18 @@ public class History extends common.client.Command {
 
     @Override
     public Response apply(String[] args, Object object, User user) throws CommandExecutionError {
-        List<String> history = commandManager.getHistory(user).stream()
-                .map(Command::getName)
-                .collect(Collectors.toList());
-
+        if (commandManager.getHistory(user) != null) {
+            List<String> history = commandManager.getHistory(user).stream()
+                    .map(Command::getName)
+                    .collect(Collectors.toList());
+            return Response.builder()
+                    .setMessage(history.stream()
+                            .collect(Collectors.joining("\n")))
+                    .build();
+        }
         return Response.builder()
-                .setCollection(history)
-                .build();
+                .setMessage("История пустая!")
+        .build();
+
     }
 }

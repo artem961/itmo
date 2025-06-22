@@ -9,6 +9,8 @@ import common.network.enums.ResponseType;
 import common.client.CommandManager;
 import lab6.network.UserManager;
 
+import java.util.ArrayList;
+
 public class StandartRequestHandler extends RequestHandler {
     private final CommandManager commandManager;
     private final UserManager userManager;
@@ -24,6 +26,10 @@ public class StandartRequestHandler extends RequestHandler {
         String[] args = request.args();
         Object object = request.object();
         User user = request.user();
+
+        if (args == null){
+            args = new String[0];
+        }
         try {
             if (!userManager.checkUser(user)) {
                 switch (commandName) {
@@ -37,7 +43,10 @@ public class StandartRequestHandler extends RequestHandler {
 
             Command command = commandManager.getCommand(commandName);
             Response response = command.apply(args, object, user);
-            if (response.type() != ResponseType.GET_COMMANDS && response.type() != ResponseType.INPUT_FLAT) {
+            if (response.type() != ResponseType.GET_COMMANDS &&
+                    response.type() != ResponseType.INPUT_FLAT &&
+                    !commandName.equals("show") &&
+                    !commandName.equals("get_commands")) {
                 commandManager.addToHistory(command, user);
             }
             return response;

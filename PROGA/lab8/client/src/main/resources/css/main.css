@@ -44,3 +44,9 @@
  -fx-background-color: #f4f7f9; /* Слегка измененный фон для лучшего вида */
  -fx-alignment: top-center; /* Выравнивает VBox по верхнему краю */
 }
+
+.tableView{
+    -fx-alignment: center;
+    -fx-spacing: 10px;
+    -fx-padding: 20px;
+}

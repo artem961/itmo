@@ -1,33 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.*?>
-<TableView
-        fx:id="table"
-        xmlns="http://javafx.com/javafx"
-        xmlns:fx="http://javafx.com/fxml"
-        fx:controller="lab6.ui.controllers.TableViewController">
-    <columns>
-        <TableColumn fx:id="colId" text="%collection.id"/>
-        <TableColumn fx:id="name" text="%collection.name"/>
-        <TableColumn fx:id="x" text="%collection.x"/>
-        <TableColumn fx:id="y" text="%collection.y"/>
-        <TableColumn fx:id="date" text="%collection.date"/>
-        <TableColumn fx:id="area" text="%collection.area"/>
-        <TableColumn fx:id="numOfRooms" text="%collection.NumOfRooms"/>
-        <TableColumn fx:id="height" text="%collection.height"/>
-        <TableColumn fx:id="transport" text="%collection.transport"/>
-        <TableColumn fx:id="furnish" text="%collection.furnish"/>
-        <TableColumn fx:id="houseName" text="%collection.house.name"/>
-        <TableColumn fx:id="year" text="%collection.year"/>
-        <TableColumn fx:id="numberOfFlats" text="%collection.numberOfFlats"/>
-    </columns>
-    <columnResizePolicy>
-        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
-    </columnResizePolicy>
-    <fx:define>
-        <ContextMenu fx:id="contextMenu">
-            <items>
-            </items>
-        </ContextMenu>
-    </fx:define>
-</TableView>
+<?import javafx.scene.layout.VBox?>
+<VBox fx:id="tableWrap"
+      xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="lab6.ui.controllers.TableViewController">
+    <ComboBox fx:id="commandsComboBox" onAction="#commandSelected" promptText="%commandSelector.promt"></ComboBox>
+    <TextField fx:id="commandArgs" promptText="%commandSelector.commandArgsPromt"></TextField>
+    <Label fx:id="messageLabel" styleClass="boldLabel" text="Вывод команды"></Label>
+    <CheckBox fx:id="onlyMine" text="%checkbox.onlyMine" onAction="#onlyMine"></CheckBox>
+    <TableView fx:id="table">
+        <columns>
+            <TableColumn fx:id="colId" text="%collection.id"/>
+            <TableColumn fx:id="name" text="%collection.name"/>
+            <TableColumn fx:id="x" text="%collection.x"/>
+            <TableColumn fx:id="y" text="%collection.y"/>
+            <TableColumn fx:id="date" text="%collection.date"/>
+            <TableColumn fx:id="area" text="%collection.area"/>
+            <TableColumn fx:id="numOfRooms" text="%collection.NumOfRooms"/>
+            <TableColumn fx:id="height" text="%collection.height"/>
+            <TableColumn fx:id="transport" text="%collection.transport"/>
+            <TableColumn fx:id="furnish" text="%collection.furnish"/>
+            <TableColumn fx:id="houseName" text="%collection.house.name"/>
+            <TableColumn fx:id="year" text="%collection.year"/>
+            <TableColumn fx:id="numberOfFlats" text="%collection.numberOfFlats"/>
+            <TableColumn fx:id="userId" text="%collection.useId"/>
+        </columns>
+        <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+        </columnResizePolicy>
+        <fx:define>
+            <ContextMenu fx:id="contextMenu">
+                <items>
+                </items>
+            </ContextMenu>
+        </fx:define>
+    </TableView>
+</VBox>

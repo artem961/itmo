@@ -55,4 +55,13 @@ public class SceneManager {
         loadScene(previousSceneName, true);
     }
 
+    public SceneManager newWindow(String sceneName){
+        Stage stage1 = new Stage();
+        stage1.setTitle("Новое окно");;
+        stage1.show();
+        SceneManager sceneManager = new SceneManager(stage1, userSettings);
+        sceneManager.loadScene(sceneName, false);
+        return sceneManager;
+    }
+
 }
