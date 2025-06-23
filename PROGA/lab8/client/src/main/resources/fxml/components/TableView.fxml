@@ -2,12 +2,16 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
 <VBox fx:id="tableWrap"
       xmlns="http://javafx.com/javafx"
       xmlns:fx="http://javafx.com/fxml"
       fx:controller="lab6.ui.controllers.TableViewController">
-    <ComboBox fx:id="commandsComboBox" onAction="#commandSelected" promptText="%commandSelector.promt"></ComboBox>
-    <TextField fx:id="commandArgs" promptText="%commandSelector.commandArgsPromt"></TextField>
+    <HBox>
+        <ComboBox fx:id="commandsComboBox" promptText="%commandSelector.promt"></ComboBox>
+        <TextField fx:id="commandArgs" promptText="%commandSelector.commandArgsPromt"></TextField>
+        <Button fx:id="executeCommand" onAction="#executeCommand" styleClass="button" text="%commandSelector.execute"></Button>
+    </HBox>
     <Label fx:id="messageLabel" styleClass="boldLabel" text="Вывод команды"></Label>
     <CheckBox fx:id="onlyMine" text="%checkbox.onlyMine" onAction="#onlyMine"></CheckBox>
     <TableView fx:id="table">

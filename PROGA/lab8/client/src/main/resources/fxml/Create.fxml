@@ -8,12 +8,12 @@
 <VBox fx:id="main"
       xmlns="http://javafx.com/javafx/16"
       xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="lab6.ui.controllers.ItemChangeController"
+      fx:controller="lab6.ui.controllers.CreateController"
       styleClass="rootPane">
     <stylesheets>
         <URL value="@/css/main.css"/>
     </stylesheets>
-    <Label text="%collection.editing" styleClass="boldLabel"/>
+    <Label text="%collection.creating" styleClass="boldLabel"/>
 
     <Label text="%collection.name" styleClass="boldLabel"/>
     <TextField fx:id="name"/>
@@ -50,7 +50,6 @@
 
     <Label fx:id="messageLabel" styleClass="messageLabel" text="test"></Label>
 
-    <Button fx:id="change" styleClass="button" text="%button.change" onAction="#change"></Button>
-    <Button fx:id="remove" styleClass="button" text="%button.remove" onAction="#remove"></Button>
+    <Button fx:id="create" styleClass="button" text="%button.create" onAction="#create"></Button>
     <fx:include source="components/CloseButton.fxml"/>
 </VBox>

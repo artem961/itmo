@@ -13,9 +13,11 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.util.Callback;
 import lab6.ui.AppManager;
 import lab6.ui.utils.DataExchanger;
@@ -100,13 +102,22 @@ public class TableViewController {
             return new SimpleObjectProperty<>(house == null ? null : house.getNumberOfFlatsOnFloor());
         });
         table.setItems(data);
-        table.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
+
+        table.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
-            public void changed(ObservableValue observable, Object oldValue, Object newValue) {
-                AppManager.getInstance().setDataExchanger(new DataExchanger(newValue));
-                AppManager.getInstance().sceneManager.newWindow("ItemChange");
+            public void handle(MouseEvent event) {
+                if (event.getClickCount() == 2) {
+                    Flat flat = (Flat) table.getSelectionModel().getSelectedItem();
+                    if (flat.getUserId() != AppManager.getInstance().authManager.getUser().id()) {
+                        messageLabel.setText("text chto nelzya");
+                    } else {
+                        AppManager.getInstance().setDataExchanger(new DataExchanger(flat));
+                        AppManager.getInstance().sceneManager.newWindow("ItemChange");
+                    }
+                }
             }
         });
+
         updateTable();
         //endregion
 
@@ -133,25 +144,28 @@ public class TableViewController {
     public void onlyMine(ActionEvent actionEvent) {
         if (onlyMine.isSelected()) {
             data.removeIf(flat -> flat.getUserId() != AppManager.getInstance().authManager.getUser().id());
-        } else{
+        } else {
             updateTable();
         }
     }
 
-    private void updateTable(){
+    private void updateTable() {
         try {
             Response response = AppManager.getInstance().requestManager.parseAndMake("show");
 
-                Collection<? extends Flat> flats = (Collection<? extends Flat>) response.collection();
-                table.getItems().clear();
-                data.addAll(flats);
+            Collection<? extends Flat> flats = (Collection<? extends Flat>) response.collection();
+            table.getItems().clear();
+            data.addAll(flats);
         } catch (NetworkException e) {
             throw new RuntimeException(e);
-        } catch (IllegalStateException e){
+        } catch (IllegalStateException e) {
         }
     }
 
-    public void commandSelected(ActionEvent actionEvent) {
+    public void executeCommand(ActionEvent actionEvent) {
+        if (commandsComboBox.getValue() == null) {
+            return;
+        }
         String commandName = commandsComboBox.getValue().toString()
                 .trim()
                 .replace("\t", " ")
@@ -160,19 +174,27 @@ public class TableViewController {
                 .trim()
                 .replace("\t", " ")
                 .split("\\s+");
-
-
         try {
             Response response = AppManager.getInstance().requestManager.makeRequest(
                     new Request(commandName,
-                           commandArgs.getText().trim().equals("")? null: args,
+                            commandArgs.getText().trim().equals("") ? null : args,
                             null,
                             AppManager.getInstance().authManager.getUser())
             );
-            data.clear();
-            data.addAll((Collection<? extends Flat>) response.collection());
-            messageLabel.setText(response.message());
-        } catch (NetworkException e){
+            switch (response.type()){
+                case OK:
+                    data.clear();
+                    data.addAll((Collection<? extends Flat>) response.collection());
+                    messageLabel.setText(response.message());
+                    break;
+                case INPUT_FLAT:
+                    AppManager.getInstance().sceneManager.newWindow("Create");
+                    break;
+                case EXCEPTION:
+                    AppManager.getInstance().sceneManager.showWarning(response.message());
+                    break;
+            }
+        } catch (NetworkException e) {
             throw new RuntimeException(e);
         }
     }

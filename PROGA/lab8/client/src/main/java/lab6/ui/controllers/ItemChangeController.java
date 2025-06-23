@@ -46,6 +46,9 @@ public class ItemChangeController {
     @FXML
     public void initialize() {
         this.flat = (Flat) AppManager.getInstance().getDataExchanger().data();
+        if (flat == null){
+            closeThisWindow();
+        }
         name.setText(flat.getName());
         x.setText(String.valueOf(flat.getCoordinates().getX()));
         y.setText(String.valueOf(flat.getCoordinates().getY()));
@@ -93,12 +96,10 @@ public class ItemChangeController {
                     new String[]{flat.getId().toString()},
                     flat1,
                     AppManager.getInstance().authManager.getUser());
-            System.out.println(request);
             Response response = AppManager.getInstance().requestManager.makeRequest(request);
-            System.out.println(response);
             messageLabel.setText(response.message());
             if (response.type().equals(ResponseType.OK)) {
-                ((Stage) messageLabel.getScene().getWindow()).close();
+                closeThisWindow();
             }
         } catch (ValidationException e) {
             messageLabel.setText(e.getMessage());
@@ -112,10 +113,14 @@ public class ItemChangeController {
             Response response = AppManager.getInstance().requestManager.parseAndMake("remove_by_id " + flat.getId());
             messageLabel.setText(response.message());
             if (response.type().equals(ResponseType.OK)) {
-                ((Stage) messageLabel.getScene().getWindow()).close();
+                closeThisWindow();
             }
         } catch (NetworkException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    private void closeThisWindow(){
+        ((Stage) messageLabel.getScene().getWindow()).close();
     }
 }

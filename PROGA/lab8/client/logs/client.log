@@ -3449,3 +3449,56 @@
 /D:/itmo/PROGA/lab8/client/build/resources/main/fxml/components/TableView.fxml
 /D:/itmo/PROGA/lab8/client/build/resources/main/fxml/Main.fxml:19
 
+2025-06-22 14:10:23.892 [JavaFX Application Thread] ERROR lab6.ui.SceneManager - javafx.fxml.LoadException: Error resolving onAction='executeCommand', either the event handler is not in the Namespace or there is an error in the script.
+/D:/itmo/PROGA/lab8/client/build/resources/main/fxml/components/TableView.fxml:13
+/D:/itmo/PROGA/lab8/client/build/resources/main/fxml/Main.fxml:19
+
+2025-06-22 16:39:09.748 [JavaFX Application Thread] ERROR lab6.ui.SceneManager - javafx.fxml.LoadException: Error resolving onAction='executeCommand', either the event handler is not in the Namespace or there is an error in the script.
+/D:/itmo/PROGA/lab8/client/build/resources/main/fxml/components/TableView.fxml:13
+/D:/itmo/PROGA/lab8/client/build/resources/main/fxml/Main.fxml:19
+
+2025-06-23 15:30:41.256 [JavaFX Application Thread] ERROR lab6.ui.SceneManager - javafx.fxml.LoadException: 
+/D:/itmo/PROGA/lab8/client/build/resources/main/fxml/ItemChange.fxml
+
+2025-06-23 15:30:58.625 [JavaFX Application Thread] ERROR lab6.ui.SceneManager - javafx.fxml.LoadException: 
+/D:/itmo/PROGA/lab8/client/build/resources/main/fxml/ItemChange.fxml
+
+2025-06-23 15:32:38.589 [JavaFX Application Thread] ERROR lab6.ui.SceneManager - javafx.fxml.LoadException: 
+/D:/itmo/PROGA/lab8/client/build/resources/main/fxml/ItemChange.fxml
+
+2025-06-23 18:43:58.977 [JavaFX Application Thread] ERROR lab6.ui.SceneManager - javafx.fxml.LoadException: 
+/D:/itmo/PROGA/lab8/client/build/resources/main/fxml/components/TableView.fxml
+/D:/itmo/PROGA/lab8/client/build/resources/main/fxml/Main.fxml:19
+
+2025-06-23 18:44:11.863 [JavaFX Application Thread] ERROR lab6.ui.SceneManager - javafx.fxml.LoadException: 
+/D:/itmo/PROGA/lab8/client/build/resources/main/fxml/components/TableView.fxml
+/D:/itmo/PROGA/lab8/client/build/resources/main/fxml/Main.fxml:19
+
+2025-06-23 18:45:20.536 [JavaFX Application Thread] ERROR lab6.ui.SceneManager - javafx.fxml.LoadException: 
+/D:/itmo/PROGA/lab8/client/build/resources/main/fxml/components/TableView.fxml
+/D:/itmo/PROGA/lab8/client/build/resources/main/fxml/Main.fxml:19
+
+2025-06-23 18:46:59.316 [JavaFX Application Thread] ERROR lab6.ui.SceneManager - javafx.fxml.LoadException: 
+/D:/itmo/PROGA/lab8/client/build/resources/main/fxml/components/TableView.fxml
+/D:/itmo/PROGA/lab8/client/build/resources/main/fxml/Main.fxml:19
+
+2025-06-23 18:47:12.754 [JavaFX Application Thread] ERROR lab6.ui.SceneManager - javafx.fxml.LoadException: 
+/D:/itmo/PROGA/lab8/client/build/resources/main/fxml/components/TableView.fxml
+/D:/itmo/PROGA/lab8/client/build/resources/main/fxml/Main.fxml:19
+
+2025-06-23 18:47:36.443 [JavaFX Application Thread] ERROR lab6.ui.SceneManager - javafx.fxml.LoadException: Error resolving onAction='#commandSelected', either the event handler is not in the Namespace or there is an error in the script.
+/D:/itmo/PROGA/lab8/client/build/resources/main/fxml/components/TableView.fxml:11
+/D:/itmo/PROGA/lab8/client/build/resources/main/fxml/Main.fxml:19
+
+2025-06-23 18:50:07.937 [JavaFX Application Thread] ERROR lab6.ui.SceneManager - javafx.fxml.LoadException: 
+/D:/itmo/PROGA/lab8/client/build/resources/main/fxml/components/TableView.fxml
+/D:/itmo/PROGA/lab8/client/build/resources/main/fxml/Main.fxml:19
+
+2025-06-23 18:52:41.108 [JavaFX Application Thread] ERROR lab6.ui.SceneManager - javafx.fxml.LoadException: 
+/D:/itmo/PROGA/lab8/client/build/resources/main/fxml/components/TableView.fxml
+/D:/itmo/PROGA/lab8/client/build/resources/main/fxml/Main.fxml:19
+
+2025-06-23 19:07:32.831 [JavaFX Application Thread] ERROR lab6.ui.SceneManager - javafx.fxml.LoadException: 
+/D:/itmo/PROGA/lab8/client/build/resources/main/fxml/components/TableView.fxml
+/D:/itmo/PROGA/lab8/client/build/resources/main/fxml/Main.fxml:19
+

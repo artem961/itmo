@@ -5,10 +5,7 @@ import common.collection.exceptions.FieldLowerThanValidException;
 import common.collection.exceptions.NullFieldException;
 import common.collection.exceptions.ValidationException;
 import common.collection.interfaces.Validatable;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NonNull;
-import lombok.Setter;
+import lombok.*;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -21,13 +18,11 @@ import java.time.LocalDate;
 @Setter
 @EqualsAndHashCode
 public class Flat implements Comparable<Flat>, Validatable, Serializable {
-    @NonNull
     private Integer id; //Поле не может быть null, Значение поля должно быть больше 0, Значение этого поля должно быть уникальным, Значение этого поля должно генерироваться автоматически
     @NonNull
     private String name; //Поле не может быть null, Строка не может быть пустой
     @NonNull
     private Coordinates coordinates; //Поле не может быть null
-    @NonNull
     private java.time.LocalDate creationDate; //Поле не может быть null, Значение этого поля должно генерироваться автоматически
     private float area; //Значение поля должно быть больше 0
     private int numberOfRooms; //Значение поля должно быть больше 0
