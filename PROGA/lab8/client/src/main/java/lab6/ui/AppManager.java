@@ -29,13 +29,15 @@ public class AppManager {
     @Setter
     private DataExchanger dataExchanger;
 
-
     @Getter
     private final UserSettings userSettings;
     private final NetworkManager networkManager;
+    public final LocaleManager localeManager;
+
     public final SceneManager sceneManager;
     public final AuthManager authManager;
     public final RequestManager requestManager;
+
 
     private AppManager(Stage stage) {
         NetworkManager nm = null;
@@ -53,6 +55,7 @@ public class AppManager {
         this.sceneManager = new SceneManager(stage, userSettings);
         this.authManager = new AuthManager(networkManager);
         this.requestManager = new RequestManager(networkManager, authManager);
+        this.localeManager = new LocaleManager();
     }
 
     public static void init(Stage stage) {
@@ -70,6 +73,7 @@ public class AppManager {
 
     public void changeLanguage(Locale locale) {
         this.userSettings.setLocale(locale);
+        sceneManager.clearCache();
         sceneManager.updateScene();
     }
 }

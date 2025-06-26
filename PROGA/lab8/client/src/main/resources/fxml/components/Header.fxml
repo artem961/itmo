@@ -7,9 +7,13 @@
 <?import javafx.scene.layout.*?>
 
 <?import java.net.URL?>
-<?import javafx.collections.FXCollections?>
+<?import javafx.scene.text.Text?>
+
+<?import javafx.scene.shape.SVGPath?>
 <HBox
         styleClass="header"
+        alignment="CENTER"
+        spacing="20"
         fx:id="container"
         fx:controller="lab6.ui.controllers.HeaderController"
         xmlns="http://javafx.com/javafx"
@@ -18,8 +22,17 @@
         <URL value="@/css/header.css"/>
         <URL value="@/css/main.css"/>
     </stylesheets>
-    <Label text="%app.name" styleClass="appTitle"></Label>
+    <Text text="%app.name" styleClass="header-appTitle"/>
+
     <Region HBox.hgrow="ALWAYS"/>
-    <Label fx:id="userLabel" styleClass="userLabel" text="xxx" onMouseClicked="#user"></Label>
+
+    <HBox fx:id="userInfoContainer" styleClass="user-info-container" alignment="CENTER" spacing="8" onMouseClicked="#user">
+        <!-- Добавляем иконку пользователя в виде SVG. Это лучший способ. -->
+        <SVGPath styleClass="user-icon"
+                 content="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+
+        <!-- Метка с именем пользователя -->
+        <Label fx:id="userLabel" styleClass="userLabel" text="None"/>
+    </HBox>
     <fx:include source="LanguageSelector.fxml"/>
 </HBox>

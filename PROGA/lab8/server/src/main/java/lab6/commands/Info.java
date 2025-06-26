@@ -30,6 +30,7 @@ public class Info extends Command {
                         "Информация о коллекции: " +
                         "тип: " + collectionInfo.collectionType() +
                         "; количество элементов: " + collectionInfo.size())
+                .setCollection(collectionManager.getAsList())
                 .build();
     }
 }

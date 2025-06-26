@@ -50,13 +50,17 @@ public class Update extends Command {
             Flat flat = getFlat(Arrays.copyOfRange(args, 1, args.length), object);
             if (flat == null) {
                 return Response.builder()
-                        .setType(ResponseType.INPUT_FLAT)
+                        .setCollection(collectionManager.getAsList().stream()
+                                .filter(flat1 -> flat1.getId().equals(id))
+                                .toList())
+                        .setType(ResponseType.EDIT_FLAT)
                         .setMessage("Не удалось создать квартиру!")
                         .build();
             }
             flat.setUserId(user.id());
             collectionManager.update(flat, id);
             return Response.builder()
+                    .setCollection(collectionManager.getAsList())
                     .setMessage("Элемент с id " + id.toString() + " успешно обновлён!")
                     .build();
         } catch (NumberFormatException e) {

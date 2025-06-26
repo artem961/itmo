@@ -12,6 +12,7 @@
         xmlns:fx="http://javafx.com/fxml">
     <stylesheets>
         <URL value="@/css/main.css"/>
+        <URL value="@/css/selector.css"/>
     </stylesheets>
-        <ComboBox fx:id="languageComboBox" onAction="#languageSelected" promptText="%header.language.change"></ComboBox>
+        <ComboBox fx:id="languageComboBox" onAction="#languageSelected" styleClass="language-combo-box" promptText="%header.language.change"></ComboBox>
 </HBox>

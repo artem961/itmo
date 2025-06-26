@@ -65,7 +65,7 @@ public class Main {
         commandManager.registerCommand(new Info(collectionManager));
         commandManager.registerCommand(new RemoveById(collectionManager));
         commandManager.registerCommand(new RemoveLower(collectionManager));
-        commandManager.registerCommand(new History(commandManager));
+        commandManager.registerCommand(new History(commandManager, collectionManager));
         commandManager.registerCommand(new MaxByFurnish(collectionManager));
         commandManager.registerCommand(new FilterLessThanFurnish(collectionManager));
         commandManager.registerCommand(new PrintDescending(collectionManager));

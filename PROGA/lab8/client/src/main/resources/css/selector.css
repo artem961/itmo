@@ -1,0 +1,45 @@
+.combo-box {
+    -fx-background-color: -fx-accent-primary;
+    -fx-border-color: -fx-accent-secondary;
+    -fx-border-width: 2px;
+    -fx-background-radius: 8px;
+    -fx-border-radius: 8px;
+    -fx-padding: 5px 10px 5px 10px;
+    -fx-pref-width: 150px;
+}
+
+.combo-box:hover {
+    -fx-background-color: -fx-accent-secondary;
+}
+
+.combo-box .list-cell {
+    -fx-text-fill: -fx-text-inverted;
+    -fx-font-weight: bold;
+    -fx-background-color: transparent;
+}
+
+.combo-box .arrow {
+    -fx-background-color: -fx-text-inverted;
+}
+
+.combo-box-popup .list-view {
+    -fx-background-color: -fx-background-main;
+    -fx-border-color: -fx-accent-secondary;
+    -fx-background-insets: 0;
+}
+
+.combo-box-popup .list-view .list-cell {
+    -fx-text-fill: -fx-text-primary;
+    -fx-background-color: transparent;
+    -fx-padding: 8px;
+}
+
+.combo-box-popup .list-view .list-cell:hover {
+    -fx-background-color: -fx-accent-highlight;
+    -fx-text-fill: -fx-text-primary;
+}
+
+.combo-box-popup .list-view .list-cell:filled:selected {
+    -fx-background-color: -fx-accent-primary;
+    -fx-text-fill: -fx-text-inverted;
+}

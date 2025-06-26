@@ -12,6 +12,6 @@ public class UserSettings {
     private Locale locale;
 
     public UserSettings(){
-        this.locale = new Locale("en", "English");
+        this.locale = new Locale("en");
     }
 }

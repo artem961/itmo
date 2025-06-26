@@ -39,6 +39,8 @@ public class StandartRequestHandler extends RequestHandler {
                         return userManager.regUser(user);
                 }
                 throw new RuntimeException("Пользователь не найден в текущей сессии! Войдите или зарегистрируйтесь!");
+            } else if (commandName.equals("delete_user")) {
+                return userManager.deleteUser(user);
             }
 
             Command command = commandManager.getCommand(commandName);

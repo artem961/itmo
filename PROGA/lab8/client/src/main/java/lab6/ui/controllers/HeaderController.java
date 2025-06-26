@@ -8,12 +8,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import lab6.ui.AppManager;
-import lab6.ui.utils.Language;
 
-import java.io.IOException;
-import java.net.URL;
-import java.util.*;
-import java.util.stream.Collectors;
 
 public class HeaderController{
     @FXML
@@ -28,6 +23,10 @@ public class HeaderController{
     }
 
     public void user(MouseEvent mouseEvent) {
-        AppManager.getInstance().sceneManager.switchScene("User");
+        if (AppManager.getInstance().authManager.isAuth()) {
+            AppManager.getInstance().sceneManager.switchScene("User");
+        } else {
+            AppManager.getInstance().sceneManager.switchScene("Start");
+        }
     }
 }

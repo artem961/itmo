@@ -38,6 +38,7 @@ public class MaxByFurnish extends Command {
                     .build();
         } else {
             return Response.builder()
+                    .setCollection(collectionManager.getAsList())
                     .setMessage("В коллекции нет элементов значение поля furnish которых максимально.")
                     .build();
         }

@@ -40,6 +40,7 @@ public class AddIfMax extends Command {
             if (flat == null) {
                 return Response.builder()
                         .setType(ResponseType.INPUT_FLAT)
+                        .setCollection(collectionManager.getAsList())
                         .setMessage("Не удалось создать квартиру!")
                         .build();
             }
@@ -53,11 +54,13 @@ public class AddIfMax extends Command {
                     collectionManager.add(flat);
                 } else {
                     return Response.builder()
+                            .setCollection(collectionManager.getAsList())
                             .setMessage("Квартира не добавлена!")
                             .build();
                 }
             }
             return Response.builder()
+                    .setCollection(collectionManager.getAsList())
                     .setMessage("Квартира добавлена!")
                     .build();
         } catch (ValidationException e) {

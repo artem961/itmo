@@ -36,6 +36,7 @@ public class RemoveLower extends Command {
             return Response.builder()
                     .setType(ResponseType.INPUT_FLAT)
                     .setMessage("Не удалось создать квартиру!")
+                    .setCollection(collectionManager.getAsList())
                     .build();
         }
 
@@ -47,6 +48,7 @@ public class RemoveLower extends Command {
                 .count();
 
         return Response.builder()
+                .setCollection(collectionManager.getAsList())
                 .setMessage("Удалено элементов: " + elementsDelete + ".")
                 .build();
     }

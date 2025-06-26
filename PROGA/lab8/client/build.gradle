@@ -24,18 +24,17 @@ javafx {
     modules = ['javafx.controls', 'javafx.fxml']
 }
 
-mainClassName = 'lab6.Main'
+mainClassName = 'lab6.Launcher'
 
 application {
-    mainClass = 'lab6.Main'
-
-
+    mainClass = mainClassName
 }
 
 jar {
     manifest {
         attributes(
-                'Main-Class': 'lab6.Main',
+
+                'Main-Class': mainClassName
         )
     }
     from {

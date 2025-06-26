@@ -108,19 +108,19 @@ public class TableViewController {
             public void handle(MouseEvent event) {
                 if (event.getClickCount() == 2) {
                     Flat flat = (Flat) table.getSelectionModel().getSelectedItem();
+                    if (flat == null) return;
                     if (flat.getUserId() != AppManager.getInstance().authManager.getUser().id()) {
                         messageLabel.setText("text chto nelzya");
                     } else {
                         AppManager.getInstance().setDataExchanger(new DataExchanger(flat));
-                        AppManager.getInstance().sceneManager.newWindow("ItemChange");
+                        AppManager.getInstance().sceneManager.switchScene("ItemChange");
                     }
                 }
             }
         });
-
-        updateTable();
         //endregion
 
+        //region add commands
         try {
             Response response = AppManager.getInstance().requestManager.makeRequest(new Request(
                     "get_commands",
@@ -137,23 +137,37 @@ public class TableViewController {
         } catch (NetworkException e) {
             throw new RuntimeException(e);
         }
+        //endregion
 
+        updateTable();
     }
 
 
     public void onlyMine(ActionEvent actionEvent) {
-        if (onlyMine.isSelected()) {
-            data.removeIf(flat -> flat.getUserId() != AppManager.getInstance().authManager.getUser().id());
-        } else {
-            updateTable();
-        }
+        updateTable();
     }
 
     private void updateTable() {
+       refreshData();
+        if (onlyMine.isSelected()) {
+            data.removeIf(flat -> flat.getUserId() != AppManager.getInstance().authManager.getUser().id());
+        }
+    }
+
+    private void updateTable(Collection<? extends Flat> collection){
+        if (onlyMine.isSelected()) {
+            collection.removeIf(flat -> flat.getUserId() != AppManager.getInstance().authManager.getUser().id());
+        }
+        table.getItems().clear();
+        data.addAll(collection);
+    }
+
+    private void refreshData(){
+
         try {
             Response response = AppManager.getInstance().requestManager.parseAndMake("show");
-
             Collection<? extends Flat> flats = (Collection<? extends Flat>) response.collection();
+
             table.getItems().clear();
             data.addAll(flats);
         } catch (NetworkException e) {
@@ -183,12 +197,16 @@ public class TableViewController {
             );
             switch (response.type()){
                 case OK:
-                    data.clear();
-                    data.addAll((Collection<? extends Flat>) response.collection());
+                    updateTable((Collection<? extends Flat>) response.collection());
                     messageLabel.setText(response.message());
                     break;
                 case INPUT_FLAT:
-                    AppManager.getInstance().sceneManager.newWindow("Create");
+                    AppManager.getInstance().sceneManager.switchScene("Create");
+                    break;
+                case EDIT_FLAT:
+                    Flat flat = (Flat) response.collection().toArray()[0];
+                    AppManager.getInstance().setDataExchanger(new DataExchanger(flat));
+                    AppManager.getInstance().sceneManager.switchScene("ItemChange");
                     break;
                 case EXCEPTION:
                     AppManager.getInstance().sceneManager.showWarning(response.message());

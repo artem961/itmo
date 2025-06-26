@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.layout.VBox?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import java.net.URL?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import java.net.URL?>
+
+<?import javafx.scene.layout.Region?>
 <BorderPane fx:id="rootPane"
             xmlns="http://javafx.com/javafx/16"
             xmlns:fx="http://javafx.com/fxml/1"
@@ -13,27 +18,37 @@
             styleClass="rootPane">
     <stylesheets>
         <URL value="@/css/main.css"/>
+        <URL value="@/css/form.css"/>
     </stylesheets>
     <top>
         <fx:include source="components/Header.fxml"/>
     </top>
     <center>
-        <VBox styleClass="container">
-            <Label fx:id="modeLabel" styleClass="boldLabel" text="%form.label.reg"></Label>
-            <stylesheets>
-                <URL value="@/css/form.css"/>
-            </stylesheets>
+        <StackPane alignment="CENTER" style="-fx-padding: 20px;">
+            <VBox styleClass="auth-form-card" maxWidth="650">
 
-            <Label fx:id="nameLabel" text="%form.label.name"></Label>
-            <TextField fx:id="nameField" promptText="%form.input.promt.name"></TextField>
+                <VBox alignment="CENTER" spacing="10">
+                    <Label fx:id="modeLabel" styleClass="form-title" text="%form.label.reg"/>
+                    <Region styleClass="title-separator"/>
+                </VBox>
 
-            <Label fx:id="passLabel" text="%form.label.pass"></Label>
-            <TextField fx:id="passField" promptText="%form.input.promt.pass"></TextField>
+                <VBox styleClass="form-field-group, first-form-field-group">
+                    <Label text="%form.label.name" styleClass="form-label"/>
+                    <TextField fx:id="nameField" promptText="%form.input.promt.name"/>
+                </VBox>
 
-            <Label fx:id="messageLabel" styleClass="messageLabel" text="test"></Label>
+                <VBox styleClass="form-field-group">
+                    <Label text="%form.label.pass" styleClass="form-label"/>
+                    <PasswordField fx:id="passField" promptText="%form.input.promt.pass"/>
+                </VBox>
 
-            <Button fx:id="regButton" styleClass="button" text="%form.button.reg" onAction="#reg"></Button>
-            <fx:include source="components/BackButton.fxml"/>
-        </VBox>
+                <Label fx:id="messageLabel" styleClass="messageLabel" visible="false"/>
+
+                <VBox alignment="CENTER" spacing="15">
+                    <Button fx:id="regButton" styleClass="button" text="%form.button.reg" onAction="#reg"/>
+                    <fx:include source="components/BackButton.fxml"/>
+                </VBox>
+            </VBox>
+        </StackPane>
     </center>
 </BorderPane>

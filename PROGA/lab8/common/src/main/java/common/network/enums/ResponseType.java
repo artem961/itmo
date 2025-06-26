@@ -5,6 +5,7 @@ public enum ResponseType {
     COMMAND_NOT_FOUND,
     EXCEPTION,
     INPUT_FLAT,
+    EDIT_FLAT,
     GET_COMMANDS,
     AUTH
 }

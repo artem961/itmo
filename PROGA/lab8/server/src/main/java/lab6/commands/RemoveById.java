@@ -27,6 +27,7 @@ public class RemoveById extends Command {
             boolean rezult = collectionManager.removeById(Integer.valueOf(args[0]), user.id());
             if (rezult) {
                 return Response.builder()
+                        .setCollection(collectionManager.getAsList())
                         .setMessage("Элемент с id " + args[0] + " удалён!")
                         .build();
             } else {

@@ -1,0 +1,13 @@
+.root {
+    /* Цветовая палитра */
+    -fx-background-main: #e8ede7;       /* Основной фон приложения (был -fx-primary-color) */
+    -fx-accent-primary: #036280;        /* Основной акцентный цвет, темный (был -fx-background-dark) */
+    -fx-accent-secondary: #378ba4;      /* Вторичный акцент, светлее (был -fx-background-light) */
+    -fx-accent-highlight: #81bece;      /* Самый светлый акцент для выделения (был -fx-secondary-color) */
+
+    -fx-text-primary: #012e4a;          /* Основной цвет текста (был -fx-text-color) */
+    -fx-text-inverted: white;           /* Цвет текста для темных фонов (например, на кнопках) */
+
+    -fx-warning-text: #D32F2F;
+    -fx-warning-fill: #FFEBEE;
+}

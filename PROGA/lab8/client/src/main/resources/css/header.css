@@ -1,12 +1,46 @@
-.appTitle {
-    -fx-font-size: 20pt;
-    -fx-font-weight: bold;
-    -fx-text-fill: #333333;
+.header {
+    -fx-background-color: -fx-background-main;
+    -fx-border-color: -fx-accent-secondary;
+
+    -fx-border-width: 0 0 2px 0;
+
+    -fx-padding: 10px 25px;
 }
 
-.header {
-    -fx-background-color: #f4f4f4;
-    -fx-border-color: #cccccc;
-    -fx-border-width: 0 0 1 0;
-    -fx-padding: 0 15px 0 15px; /* top | right | bottom | left */
+.header-appTitle {
+    -fx-font-family: "Segoe UI Semibold", "Helvetica Neue", Arial, sans-serif;
+    -fx-font-size: 22pt;
+    -fx-font-weight: bold;
+    -fx-fill: -fx-accent-primary;
+    -fx-stroke-width: 0;
+    -fx-effect: null;
+}
+
+.user-info-container {
+    -fx-padding: 8px 12px;
+        -fx-background-radius: 8px;
+        -fx-border-radius: 8px;
+        -fx-background-color: -fx-accent-highlight;
+        -fx-border-color: -fx-accent-secondary;
+        -fx-border-width: 1px;
+        -fx-cursor: hand;
+        -fx-transition: -fx-background-color -fx-animation-speed,
+                        -fx-scale-x -fx-animation-speed,
+                        -fx-scale-y -fx-animation-speed;
+}
+
+.user-info-container:hover {
+-fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
+    -fx-background-color: derive(-fx-accent-highlight, -10%);
+}
+
+.user-icon {
+    -fx-fill: -fx-text-primary;
+}
+
+.userLabel {
+    -fx-font-size: 11pt;
+    -fx-font-weight: bold;
+    -fx-text-fill: -fx-text-primary;
 }

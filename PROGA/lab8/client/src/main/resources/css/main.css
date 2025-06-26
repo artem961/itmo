@@ -1,24 +1,36 @@
+@import url("style.css");
+
 .container{
     -fx-alignment: center;
     -fx-spacing: 10px;
     -fx-padding: 20px;
-    -fx-max-width: 600px;
+    -fx-background-color: -fx-background-main;
 }
 
-.button{
+.button {
    -fx-cursor: hand;
-   -fx-padding: 10px 20px;
-   -fx-background-radius: 5px;
-   -fx-border-radius: 5px;
-   -fx-border-width: 1px;
-   -fx-border-color: #333;
-   -fx-background-color: #eee;
-   -fx-font-size: 14px;
+   -fx-background-radius: 8px;
+   -fx-border-radius: 8px;
+   -fx-border-width: 2px;
+   -fx-font-weight: bold;
+
+   -fx-pref-width: 200px;
+   -fx-font-size: 12pt;
+   -fx-padding: 12px 24px;
+
+   -fx-background-color: -fx-accent-primary;
+   -fx-border-color: -fx-accent-secondary;
+   -fx-text-fill: -fx-text-inverted;
+
+   -fx-transition: -fx-background-color -fx-animation-speed,
+                   -fx-scale-x -fx-animation-speed,
+                   -fx-scale-y -fx-animation-speed;
 }
 
 .button:hover {
-    -fx-background-color: #f8f9fa;
-        -fx-border-color: #34495e;
+   -fx-background-color: -fx-accent-secondary;
+   -fx-scale-x: 1.1;
+   -fx-scale-y: 1.1;
 }
 
 .boldLabel {
@@ -27,26 +39,27 @@
 }
 
 .languageSelector{
-    -fx-padding: 5px 10px 5px 10px; /* top | right | bottom | left */
+    -fx-padding: 5px 10px 5px 10px;
     -fx-alignment: center;
-}
-
-.appTitle {
-    -fx-font-family: "Segoe UI Light", "Helvetica Neue", Arial, sans-serif; /* Более легкий и современный шрифт */
-        -fx-font-size: 52pt; /* Увеличенный размер шрифта */
-        -fx-font-weight: 300;
-        -fx-text-fill: #2c3e50; /* Современный темно-сине-серый цвет */
 }
 
 .rootPane{
- -fx-pref-width: 600px;
- -fx-pref-height: 600px;
- -fx-background-color: #f4f7f9; /* Слегка измененный фон для лучшего вида */
- -fx-alignment: top-center; /* Выравнивает VBox по верхнему краю */
+    -fx-background-color: -fx-background-main;
 }
 
-.tableView{
+.canvas{
+    -fx-background-color: white;
+    -fx-border-color: -fx-accent-secondary;
+    -fx-border-width: 2px 0 2px 0;
+}
+
+.messageLabel {
+    -fx-text-fill: -fx-warning-text;
+    -fx-font-weight: bold;
     -fx-alignment: center;
-    -fx-spacing: 10px;
-    -fx-padding: 20px;
+    -fx-padding: 10px;
+    -fx-background-radius: 8px;
+    -fx-border-radius: 8px;
+    -fx-background-color: -fx-warning-fill;
+    -fx-border-color: -fx-warning-text;
 }

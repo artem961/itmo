@@ -2,11 +2,10 @@
 
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.control.Button?>
-<?import java.net.URL?>
-<?import javafx.scene.control.Label?>
-
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.Region?>
+<?import javafx.scene.text.Text?>
+<?import java.net.URL?>
+
 <BorderPane fx:id="rootPane"
             xmlns="http://javafx.com/javafx/16"
             xmlns:fx="http://javafx.com/fxml/1"
@@ -16,19 +15,20 @@
         <URL value="@/css/main.css"/>
         <URL value="@/css/start.css"/>
     </stylesheets>
-    <top>
-        <VBox styleClass="container">
-            <Label fx:id="modeLabel" styleClass="appTitle" text="%app.name"></Label>
-        </VBox>
-    </top>
+
     <center>
-        <VBox styleClass="container">
-            <Button fx:id="authButton" styleClass="button" text="%form.button.auth" onAction="#auth"></Button>
-            <Button fx:id="regButton" styleClass="button" text="%form.button.reg" onAction="#reg"></Button>
+        <VBox styleClass="main-content-block" spacing="150">
+            <Text text="%app.name" styleClass="appTitle"/>
+
+            <VBox styleClass="action-buttons-container" spacing="15">
+                <Button fx:id="authButton" styleClass="button" text="%form.button.auth" onAction="#auth"/>
+                <Button fx:id="regButton" styleClass="button" text="%form.button.reg" onAction="#reg"/>
+            </VBox>
         </VBox>
     </center>
+
     <bottom>
-        <VBox styleClass="container">
+        <VBox styleClass="language-selector-container">
             <fx:include source="components/LanguageSelector.fxml"/>
         </VBox>
     </bottom>

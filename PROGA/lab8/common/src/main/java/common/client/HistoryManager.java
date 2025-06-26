@@ -27,7 +27,10 @@ public class HistoryManager {
          * @param command
          */
         private void add(Command command, User user) {
-            history.computeIfAbsent(user, key -> new ArrayDeque<>(maxSize)).add(command);
+            history.computeIfAbsent(user, key -> new ArrayDeque<>(maxSize)).addFirst(command);
+            if (history.get(user).size() > maxSize){
+                history.get(user).pollLast();
+            }
         }
 
         /**

@@ -65,4 +65,19 @@ public class UserManager {
                     .build();
         }
     }
+
+    public Response deleteUser(User user) {
+        try {
+            int res = userRepository.removeById(user.id());
+            authUsersId.removeIf(integer -> integer.equals(user.id()));
+            return Response.builder().setType(ResponseType.AUTH)
+                    .setMessage("Удалён пользователь " + user.name() + "!")
+                    .build();
+        } catch (DBException e) {
+            return Response.builder()
+                    .setType(ResponseType.EXCEPTION)
+                    .setMessage("Не удалось удалить такого пользователя!")
+                    .build();
+        }
+    }
 }

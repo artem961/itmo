@@ -12,6 +12,7 @@ import java.time.LocalTime;
 import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
+import java.util.concurrent.ThreadLocalRandom;
 
 import static java.lang.Math.round;
 
@@ -28,8 +29,8 @@ public class AddRandom extends Command {
     }
 
     private int getRandom() {
-        Random random = new Random(LocalTime.now().getNano());
-        return (int) round(random.nextDouble(2, 10000));
+        ThreadLocalRandom random = ThreadLocalRandom.current();
+        return random.nextInt(100, 1000);
     }
 
     private Flat makeRandomFlat() throws ValidationException {
@@ -37,14 +38,14 @@ public class AddRandom extends Command {
         String randomStr = String.valueOf(randomInt);
 
         return new Flat(
-                "random_flat_" + randomStr,
-                new Coordinates((float) randomInt, randomInt),
+                "flat_" + randomStr,
+                new Coordinates((float) getRandom(), getRandom()),
                 (float) randomInt,
                 randomInt,
                 (long) randomInt,
                 Furnish.NONE,
                 Transport.NONE,
-                new House("random_house_" + randomStr,
+                new House("house_" + randomStr,
                         randomInt,
                         (long) randomInt));
     }
@@ -57,7 +58,7 @@ public class AddRandom extends Command {
             else count = Integer.parseInt(args[0]);
 
             if (count < 0) throw new CommandExecutionError("Введите положительное число!");
-            //if (count > 100) throw new CommandExecutionError("Нельзя создать больше 100 объектов за раз!");
+            if (count > 100) throw new CommandExecutionError("Нельзя создать больше 100 объектов за раз!");
 
             Set<Flat> flats = new HashSet<>();
             Flat flat;
@@ -68,12 +69,13 @@ public class AddRandom extends Command {
             }
             collectionManager.add(flats);
             return Response.builder()
-                    .setMessage("Добавлены случайные квартиры в количестве " + count.toString() + " штук!")
+                    .setCollection(collectionManager.getAsList())
+                    .setMessage("Добавлены случайные квартиры в количестве " + count + " штук!")
                     .build();
         } catch (ValidationException e) {
             throw new CommandExecutionError(e.getMessage());
         } catch (NumberFormatException e) {
-            throw new CommandExecutionError("Введите целое положительное число в качеcтве аргумента!");
+            throw new CommandExecutionError("Введите целое положительное число в качестве аргумента!");
         } catch (CommandExecutionError e) {
             throw new CommandExecutionError(e.getMessage());
         }

@@ -99,9 +99,10 @@ public class ItemChangeController {
             Response response = AppManager.getInstance().requestManager.makeRequest(request);
             messageLabel.setText(response.message());
             if (response.type().equals(ResponseType.OK)) {
-                closeThisWindow();
+                AppManager.getInstance().sceneManager.switchScene("Main");
             }
         } catch (ValidationException e) {
+            messageLabel.setVisible(true);
             messageLabel.setText(e.getMessage());
         } catch (NetworkException e) {
             throw new RuntimeException(e);
@@ -113,7 +114,7 @@ public class ItemChangeController {
             Response response = AppManager.getInstance().requestManager.parseAndMake("remove_by_id " + flat.getId());
             messageLabel.setText(response.message());
             if (response.type().equals(ResponseType.OK)) {
-                closeThisWindow();
+                AppManager.getInstance().sceneManager.switchScene("Main");
             }
         } catch (NetworkException e) {
             throw new RuntimeException(e);

@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
 <?import java.net.URL?>
 
-<HBox
-        styleClass="container"
-        fx:id="container"
+<Button fx:id="backButton"
+        text="%form.button.back"
+        onAction="#back"
+        styleClass="back-button"
+        xmlns="http://javafx.com/javafx/16"
+        xmlns:fx="http://javafx.com/fxml/1"
         fx:controller="lab6.ui.controllers.BackButtonController"
-        xmlns="http://javafx.com/javafx"
-        xmlns:fx="http://javafx.com/fxml">
+        maxWidth="Infinity">
     <stylesheets>
         <URL value="@/css/main.css"/>
+        <URL value="@/css/backButton.css"/>
     </stylesheets>
-    <Button fx:id="backButton" styleClass="button" text="%form.button.back" onAction="#back"></Button>
-</HBox>
+</Button>

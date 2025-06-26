@@ -45,7 +45,6 @@ public class CreateController {
 
 
     public void create(ActionEvent actionEvent) {
-
         try {
             String nameF = name.getText();
             Coordinates coordinates = new Coordinates(Float.valueOf(x.getText()), Double.valueOf(y.getText()));
@@ -80,19 +79,25 @@ public class CreateController {
                     flat1,
                     AppManager.getInstance().authManager.getUser());
             Response response = AppManager.getInstance().requestManager.makeRequest(request);
-            messageLabel.setText(response.message());
             if (response.type().equals(ResponseType.OK)) {
-                closeThisWindow();
+                AppManager.getInstance().sceneManager.switchScene("Main");
+            }else{
+                messageLabel.setVisible(true);
+                messageLabel.setText(response.message());
             }
         } catch (ValidationException e) {
+            messageLabel.setVisible(true);
             messageLabel.setText(e.getMessage());
         } catch (NumberFormatException e){
+            messageLabel.setVisible(true);
             messageLabel.setText("Не верный формат ввода чисел!");
         } catch (IllegalArgumentException e) {
                 if (furnish.getText().isEmpty()) {
+                    messageLabel.setVisible(true);
                     messageLabel.setText("Нет таких значений Transport");
                 }
                 if (!furnish.getText().isEmpty()) {
+                    messageLabel.setVisible(true);
                     messageLabel.setText("Нет таких значений Furnish");
                 }
         } catch (NetworkException e) {

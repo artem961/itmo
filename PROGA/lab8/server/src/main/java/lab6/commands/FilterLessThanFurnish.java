@@ -44,6 +44,7 @@ public class FilterLessThanFurnish extends Command {
                             Arrays.stream(Furnish.values())
                                     .map(Objects::toString)
                                     .collect(Collectors.joining("\n")))
+                    .setCollection(collectionManager.getAsList())
                     .build();
         }
     }

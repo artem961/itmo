@@ -1,56 +1,85 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
 <?import java.net.URL?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextField?>
+
 <VBox fx:id="main"
       xmlns="http://javafx.com/javafx/16"
       xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="lab6.ui.controllers.ItemChangeController"
-      styleClass="rootPane">
+      styleClass="item-form-container">
     <stylesheets>
         <URL value="@/css/main.css"/>
+        <URL value="@/css/item.css"/>
     </stylesheets>
-    <Label text="%collection.editing" styleClass="boldLabel"/>
 
-    <Label text="%collection.name" styleClass="boldLabel"/>
-    <TextField fx:id="name"/>
+    <VBox styleClass="item-form-card" scaleY="0.9" scaleX="0.9">
+        <Label text="%collection.editing" styleClass="form-title, centered"/>
+        <VBox spacing="15">
+            <VBox styleClass="form-field-group">
+                <Label text="%collection.name" styleClass="form-label"/>
+                <TextField fx:id="name"/>
+            </VBox>
 
-    <Label text="%collection.x" styleClass="boldLabel"/>
-    <TextField fx:id="x"/>
+            <VBox styleClass="form-field-group">
+                <Label text="%collection.x" styleClass="form-label"/>
+                <TextField fx:id="x"/>
+            </VBox>
 
-    <Label text="%collection.y" styleClass="boldLabel"/>
-    <TextField fx:id="y"/>
+            <VBox styleClass="form-field-group">
+                <Label text="%collection.y" styleClass="form-label"/>
+                <TextField fx:id="y"/>
+            </VBox>
 
-    <Label text="%collection.area" styleClass="boldLabel"/>
-    <TextField fx:id="area"/>
+            <VBox styleClass="form-field-group">
+                <Label text="%collection.area" styleClass="form-label"/>
+                <TextField fx:id="area"/>
+            </VBox>
 
-    <Label text="%collection.NumOfRooms" styleClass="boldLabel"/>
-    <TextField fx:id="numOfRooms"/>
+            <VBox styleClass="form-field-group">
+                <Label text="%collection.NumOfRooms" styleClass="form-label"/>
+                <TextField fx:id="numOfRooms"/>
+            </VBox>
 
-    <Label text="%collection.height" styleClass="boldLabel"/>
-    <TextField fx:id="height"/>
+            <VBox styleClass="form-field-group">
+                <Label text="%collection.height" styleClass="form-label"/>
+                <TextField fx:id="height"/>
+            </VBox>
 
-    <Label text="%collection.transport" styleClass="boldLabel"/>
-    <TextField fx:id="transport"/>
+            <VBox styleClass="form-field-group">
+                <Label text="%collection.transport" styleClass="form-label"/>
+                <TextField fx:id="transport"/>
+            </VBox>
 
-    <Label text="%collection.furnish" styleClass="boldLabel"/>
-    <TextField fx:id="furnish"/>
+            <VBox styleClass="form-field-group">
+                <Label text="%collection.furnish" styleClass="form-label"/>
+                <TextField fx:id="furnish"/>
+            </VBox>
 
-    <Label text="%collection.house.name" styleClass="boldLabel"/>
-    <TextField fx:id="houseName"/>
+            <VBox styleClass="form-field-group">
+                <Label text="%collection.house.name" styleClass="form-label"/>
+                <TextField fx:id="houseName"/>
+            </VBox>
 
-    <Label text="%collection.year" styleClass="boldLabel"/>
-    <TextField fx:id="year"/>
+            <VBox styleClass="form-field-group">
+                <Label text="%collection.year" styleClass="form-label"/>
+                <TextField fx:id="year"/>
+            </VBox>
 
-    <Label text="%collection.numberOfFlats" styleClass="boldLabel"/>
-    <TextField fx:id="numberOfFlats"/>
+            <VBox styleClass="form-field-group">
+                <Label text="%collection.numberOfFlats" styleClass="form-label"/>
+                <TextField fx:id="numberOfFlats"/>
+            </VBox>
+            <VBox alignment="CENTER">
+                <Label fx:id="messageLabel" styleClass="messageLabel" visible="false" text="test"/>
+            </VBox>
+        </VBox>
 
-    <Label fx:id="messageLabel" styleClass="messageLabel" text="test"></Label>
-
-    <Button fx:id="change" styleClass="button" text="%button.change" onAction="#change"></Button>
-    <Button fx:id="remove" styleClass="button" text="%button.remove" onAction="#remove"></Button>
-    <fx:include source="components/CloseButton.fxml"/>
+        <HBox styleClass="form-actions">
+            <Button fx:id="remove" styleClass="danger-button" text="%button.remove" onAction="#remove"/>
+            <Button fx:id="change" styleClass="button" text="%button.change" onAction="#change" scaleY="0.91"/>
+            <fx:include source="components/BackButton.fxml"/>
+        </HBox>
+    </VBox>
 </VBox>

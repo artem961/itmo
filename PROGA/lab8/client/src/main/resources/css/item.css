@@ -1,0 +1,79 @@
+.item-form-container {
+    -fx-padding: 20px;
+    -fx-alignment: center; /* Центрирование карточки */
+    -fx-background-color: -fx-background-main;
+}
+
+.item-form-card {
+    -fx-padding: 30px;
+    -fx-spacing: 8px;
+    -fx-background-color: white;
+    -fx-background-radius: 12px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 15, 0, 0, 4);
+    -fx-max-width: 600px;
+}
+
+.form-title {
+    -fx-font-size: 20pt;
+    -fx-font-weight: bold;
+    -fx-text-fill: -fx-text-primary;
+    -fx-padding-bottom: 20px;
+}
+.form-title.centered {
+    -fx-alignment: center;
+    -fx-max-width: infinity;
+}
+
+.form-grid .label {
+    -fx-font-size: 11pt;
+    -fx-font-weight: 600;
+    -fx-text-fill: -fx-text-primary;
+    -fx-alignment: center-left;
+}
+.form-grid .text-field {
+    -fx-pref-height: 36px;
+    -fx-font-size: 11pt;
+    -fx-background-radius: 6px;
+    -fx-border-radius: 6px;
+    -fx-border-width: 1px;
+    -fx-border-color: -fx-accent-highlight;
+}
+.form-grid .text-field:focused {
+    -fx-border-color: -fx-accent-primary;
+    -fx-border-width: 2px;
+}
+
+.form-actions {
+    -fx-spacing: 10px;
+    -fx-alignment: center;
+    -fx-padding-top: 20px;
+}
+
+.danger-button {
+     -fx-background-color: -fx-warning-text;
+        -fx-text-fill: -fx-warning-fill;
+        -fx-border-color: -fx-warning-fill;
+
+        -fx-pref-width: 200px;
+        -fx-max-width: -fx-pref-width;
+
+        -fx-border-width: 2px;
+        -fx-border-radius: 8px;
+        -fx-background-radius: 8px;
+        -fx-font-size: 12pt;
+        -fx-font-weight: bold;
+        -fx-padding: 10px 24px;
+        -fx-cursor: hand;
+        -fx-transition: -fx-warning-fill 0.2s ease-in-out, -fx-text-fill 0.2s ease-in-out, -fx-border-color 0.2s ease-in-out;
+}
+.danger-button:hover {
+    -fx-background-color: -fx-warning-fill;
+    -fx-text-fill: -fx-warning-text;
+    -fx-border-color: -fx-warning-text;
+}
+
+.form-label {
+    -fx-font-size: 12pt;
+    -fx-text-fill: -fx-accent-secondary;
+    -fx-font-weight: normal;
+}

@@ -1,0 +1,23 @@
+.back-button {
+    -fx-background-color: -fx-accent-highlight;
+    -fx-text-fill: -fx-text-primary;
+    -fx-border-color: -fx-accent-secondary;
+
+    -fx-pref-width: 200px;
+    -fx-max-width: -fx-pref-width;
+
+    -fx-border-width: 2px;
+    -fx-border-radius: 8px;
+    -fx-background-radius: 8px;
+    -fx-font-size: 12pt;
+    -fx-font-weight: bold;
+    -fx-padding: 10px 24px;
+    -fx-cursor: hand;
+    -fx-transition: -fx-background-color 0.2s ease-in-out, -fx-text-fill 0.2s ease-in-out, -fx-border-color 0.2s ease-in-out;
+}
+
+.back-button:hover {
+    -fx-background-color: -fx-accent-secondary;
+    -fx-text-fill: -fx-text-inverted;
+    -fx-border-color: -fx-accent-primary;
+}

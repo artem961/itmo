@@ -3,18 +3,27 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.layout.HBox?>
+<?import java.net.URL?>
+<?import javafx.scene.layout.Region?>
 <VBox fx:id="tableWrap"
       xmlns="http://javafx.com/javafx"
       xmlns:fx="http://javafx.com/fxml"
-      fx:controller="lab6.ui.controllers.TableViewController">
-    <HBox>
+      fx:controller="lab6.ui.controllers.TableViewController"
+      styleClass="table-view-container">
+
+    <HBox styleClass="command-bar" alignment="CENTER_LEFT">
         <ComboBox fx:id="commandsComboBox" promptText="%commandSelector.promt"></ComboBox>
-        <TextField fx:id="commandArgs" promptText="%commandSelector.commandArgsPromt"></TextField>
+        <TextField fx:id="commandArgs" promptText="%commandSelector.commandArgsPromt" HBox.hgrow="ALWAYS"></TextField>
         <Button fx:id="executeCommand" onAction="#executeCommand" styleClass="button" text="%commandSelector.execute"></Button>
+
+        <Region HBox.hgrow="ALWAYS"/>
+
+        <CheckBox fx:id="onlyMine" text="%checkbox.onlyMine" onAction="#onlyMine"/>
     </HBox>
-    <Label fx:id="messageLabel" styleClass="boldLabel" text="Вывод команды"></Label>
-    <CheckBox fx:id="onlyMine" text="%checkbox.onlyMine" onAction="#onlyMine"></CheckBox>
-    <TableView fx:id="table">
+
+    <Label fx:id="messageLabel" styleClass="section-title"></Label>
+
+    <TableView fx:id="table" styleClass="main-table-view" VBox.vgrow="ALWAYS">
         <columns>
             <TableColumn fx:id="colId" text="%collection.id"/>
             <TableColumn fx:id="name" text="%collection.name"/>

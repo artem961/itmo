@@ -1,0 +1,33 @@
+.start-container{
+    -fx-alignment: center;
+}
+
+.app-title-container {
+    -fx-alignment: center;
+    -fx-padding: 0 0 20px 0;
+}
+
+.language-selector-container {
+    -fx-alignment: center;
+    -fx-padding: 0 0 40px 0;
+}
+
+.action-buttons-container {
+    -fx-alignment: center;
+}
+
+.main-content-block {
+    -fx-alignment: center;
+    -fx-padding: 0 0 100px 0;
+}
+
+.appTitle {
+    -fx-font-family: "Segoe UI Light", "Helvetica Neue", Arial, sans-serif;
+    -fx-font-size: 106pt;
+    -fx-font-weight: 300;
+    -fx-fill: linear-gradient(from 0% 0% to 100% 100%, -fx-accent-primary 65%, -fx-accent-highlight 100%);
+    -fx-stroke: -fx-accent-primary;
+    -fx-stroke-width: 1.5px;
+    -fx-stroke-type: outside;
+    -fx-effect: null;
+}

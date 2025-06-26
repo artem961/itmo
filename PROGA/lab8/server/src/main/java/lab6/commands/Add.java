@@ -38,12 +38,14 @@ public class Add extends Command {
             if (flat == null) {
                 return Response.builder()
                         .setType(ResponseType.INPUT_FLAT)
+                        .setCollection(collectionManager.getAsList())
                         .setMessage("Не удалось создать квартиру!")
                         .build();
             }
 
             collectionManager.add(flat);
             return Response.builder()
+                    .setCollection(collectionManager.getAsList())
                     .setMessage("Квартира успешно добавлена!")
                     .build();
         } catch (ValidationException e) {

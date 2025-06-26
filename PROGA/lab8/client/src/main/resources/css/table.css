@@ -1,0 +1,180 @@
+.table-view-container {
+    -fx-padding: 20px;
+    -fx-spacing: 20px;
+    -fx-background-color: -fx-background-main;
+}
+
+.command-bar {
+    -fx-spacing: 15px;
+}
+
+.command-bar .combo-box,
+.command-bar .text-field {
+    -fx-pref-height: 42px;
+    -fx-font-size: 12pt;
+    -fx-background-radius: 8px;
+    -fx-border-radius: 8px;
+    -fx-border-width: 1px;
+    -fx-border-color: -fx-accent-highlight;
+    -fx-background-color: white;
+}
+
+.command-bar .combo-box:focused,
+.command-bar .text-field:focused {
+    -fx-border-color: -fx-accent-primary;
+    -fx-border-width: 2px;
+}
+
+.command-bar .combo-box {
+    -fx-pref-width: 200px;
+}
+
+.command-bar .combo-box .arrow-button {
+    -fx-background-color: transparent;
+}
+
+.options-bar {
+    -fx-alignment: center-left;
+    -fx-spacing: 20px;
+}
+
+.section-title {
+    -fx-font-size: 16pt;
+    -fx-font-weight: bold;
+    -fx-text-fill: -fx-text-primary;
+}
+
+.check-box {
+    -fx-text-fill: -fx-text-primary;
+    -fx-font-size: 11pt;
+}
+.check-box .box {
+    -fx-background-color: white;
+    -fx-border-color: -fx-accent-secondary;
+    -fx-border-width: 2px;
+    -fx-border-radius: 4px;
+}
+.check-box:selected .mark {
+    -fx-background-color: -fx-accent-primary;
+}
+
+.main-table-view {
+    -fx-background-color: transparent;
+    -fx-border-color: -fx-accent-highlight;
+    -fx-border-width: 2px;
+    -fx-background-radius: 8px;
+    -fx-border-radius: 8px;
+}
+
+.main-table-view .column-header-background {
+    -fx-background-color: -fx-accent-primary;
+    -fx-background-radius: 6px 6px 0 0;
+    -fx-background-insets: 0;
+}
+
+.main-table-view .column-header {
+    -fx-background-color: transparent;
+    -fx-border-width: 0 1px 0 0;
+    -fx-border-color: -fx-accent-secondary;
+}
+
+.main-table-view .column-header .label {
+    -fx-text-fill: -fx-text-inverted;
+    -fx-font-weight: bold;
+    -fx-font-size: 11pt;
+    -fx-text-transform: uppercase;
+    -fx-alignment: center-left;
+    -fx-padding: 12px 10px;
+}
+
+.main-table-view .column-header .arrow {
+    -fx-background-color: -fx-text-inverted;
+}
+
+.main-table-view .filler {
+    -fx-background-color: -fx-accent-primary;
+}
+
+.main-table-view .table-row-cell {
+    -fx-background-color: white;
+    -fx-border-color: transparent;
+    -fx-font-size: 11pt;
+    -fx-text-fill: -fx-text-primary;
+}
+
+
+.main-table-view .table-row-cell:odd {
+    -fx-background-color: -fx-background-main;
+}
+
+.main-table-view .table-row-cell:selected {
+    -fx-background-color: -fx-accent-highlight;
+}
+
+.main-table-view .table-row-cell:selected .text {
+    -fx-fill: -fx-text-primary;
+}
+
+.main-table-view .virtual-flow .horizontal-bar,
+.main-table-view .virtual-flow .vertical-bar {
+    -fx-background-color: transparent;
+}
+
+
+.main-table-view .scroll-bar:vertical,
+.main-table-view .scroll-bar:horizontal {
+    -fx-background-color: -fx-background-main;
+}
+
+.main-table-view .scroll-bar .thumb {
+    -fx-background-color: -fx-accent-secondary;
+    -fx-background-radius: 8px;
+}
+
+.main-table-view .scroll-bar .thumb:hover {
+    -fx-background-color: -fx-accent-primary;
+}
+
+.main-tab-pane .tab-header-area {
+    -fx-padding: 10px 10px 0 10px;
+    -fx-border-insets: 0 -10px -1px -10px;
+}
+
+.main-tab-pane .tab-header-area .tab-header-background {
+    -fx-background-color: -fx-background-main;
+}
+
+.main-tab-pane .tab {
+    -fx-font-weight: bold;
+    -fx-font-size: 11pt;
+    -fx-padding: 10px 25px;
+    -fx-background-insets: 0;
+    -fx-border-width: 2px 2px 0 2px;
+    -fx-border-color: -fx-accent-highlight;
+    -fx-background-color: white;
+
+    -fx-background-radius: 10px 10px 0 0;
+    -fx-border-radius: 10px 10px 0 0;
+    -fx-background-color: -fx-accent-highlight;
+    -fx-text-fill: -fx-text-primary;
+}
+
+.main-tab-pane .tab:hover {
+    -fx-background-color: white;
+}
+
+.main-tab-pane .tab:selected {
+    -fx-background-color: white;
+    -fx-text-fill: -fx-text-primary;
+    -fx-focus-color: transparent;
+    -fx-border-color: -fx-accent-secondary;
+}
+
+.main-tab-pane .tab-content-pane {
+    -fx-background-color: -fx-background-main;
+}
+
+.tabPage{
+    -fx-border-color: -fx-accent-secondary;
+    -fx-border-width: 2px 0 0 0;
+}

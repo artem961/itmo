@@ -48,7 +48,25 @@ public class UserRepository implements Repository<User> {
 
     @Override
     public int removeById(Integer id) {
-        return 0;
+        try {
+            String query = "DELETE FROM users WHERE id=?";
+            @Cleanup Connection connection = dbManager.getConnection();
+            connection.setAutoCommit(false);
+
+            PreparedStatement stat = connection.prepareStatement(query);
+            stat.setInt(1, id);
+            int result = stat.executeUpdate();
+
+            if (result != 0) {
+                connection.commit();
+                return 1;
+            } else {
+                connection.rollback();
+                return 0;
+            }
+        } catch (SQLException e) {
+            throw new DBException("Не удалось удалить user по id!\n" + e);
+        }
     }
 
     @Override

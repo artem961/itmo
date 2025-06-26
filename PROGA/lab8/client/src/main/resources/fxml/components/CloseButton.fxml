@@ -4,14 +4,16 @@
 <?import javafx.scene.layout.*?>
 <?import java.net.URL?>
 
-<HBox
-        styleClass="container"
-        fx:id="container"
+<Button fx:id="closeButton"
+        text="%button.close"
+        onAction="#close"
+        styleClass="back-button"
+        xmlns="http://javafx.com/javafx/16"
+        xmlns:fx="http://javafx.com/fxml/1"
         fx:controller="lab6.ui.controllers.CloseButtonController"
-        xmlns="http://javafx.com/javafx"
-        xmlns:fx="http://javafx.com/fxml">
-    <stylesheets>
-        <URL value="@/css/main.css"/>
-    </stylesheets>
-    <Button fx:id="closeButton" styleClass="button" text="%button.close" onAction="#close"></Button>
-</HBox>
+        maxWidth="Infinity">
+<stylesheets>
+    <URL value="@/css/main.css"/>
+    <URL value="@/css/backButton.css"/>
+</stylesheets>
+</Button>

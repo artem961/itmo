@@ -18,7 +18,7 @@ public class NetworkManager implements AutoCloseable {
            // InetAddress serverAddress = InetAddress.getByName(configLoader.get("server_address"));
            // int serverPort = Integer.parseInt(configLoader.get("server_port"));
             InetAddress serverAddress = InetAddress.getByName("localhost");
-            int serverPort = 13532;
+            int serverPort = 13536;
 
             socket = new Socket();
             socket.setReceiveBufferSize(524288*2);

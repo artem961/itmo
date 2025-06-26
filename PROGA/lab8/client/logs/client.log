@@ -3502,3 +3502,87 @@
 /D:/itmo/PROGA/lab8/client/build/resources/main/fxml/components/TableView.fxml
 /D:/itmo/PROGA/lab8/client/build/resources/main/fxml/Main.fxml:19
 
+2025-06-24 15:37:38.188 [JavaFX Application Thread] ERROR lab6.ui.SceneManager - javafx.fxml.LoadException: 
+/D:/itmo/PROGA/lab8/client/build/resources/main/fxml/Auth.fxml:47
+
+2025-06-24 15:37:43.551 [JavaFX Application Thread] ERROR lab6.ui.SceneManager - javafx.fxml.LoadException: 
+/D:/itmo/PROGA/lab8/client/build/resources/main/fxml/Auth.fxml:47
+
+2025-06-24 15:37:46.047 [JavaFX Application Thread] ERROR lab6.ui.SceneManager - javafx.fxml.LoadException: 
+/D:/itmo/PROGA/lab8/client/build/resources/main/fxml/Auth.fxml:47
+
+2025-06-24 22:24:00.365 [JavaFX Application Thread] ERROR lab6.ui.SceneManager - javafx.fxml.LoadException: 
+/D:/itmo/PROGA/lab8/client/build/resources/main/fxml/User.fxml
+
+2025-06-24 22:24:03.281 [JavaFX Application Thread] ERROR lab6.ui.SceneManager - javafx.fxml.LoadException: 
+/D:/itmo/PROGA/lab8/client/build/resources/main/fxml/User.fxml
+
+2025-06-24 22:24:04.967 [JavaFX Application Thread] ERROR lab6.ui.SceneManager - javafx.fxml.LoadException: 
+/D:/itmo/PROGA/lab8/client/build/resources/main/fxml/User.fxml
+
+2025-06-25 00:40:38.040 [JavaFX Application Thread] ERROR lab6.ui.SceneManager - javafx.fxml.LoadException: 
+/D:/itmo/PROGA/lab8/client/build/resources/main/fxml/ItemChange.fxml
+
+2025-06-25 00:40:44.342 [JavaFX Application Thread] ERROR lab6.ui.SceneManager - javafx.fxml.LoadException: 
+/D:/itmo/PROGA/lab8/client/build/resources/main/fxml/ItemChange.fxml
+
+2025-06-25 00:40:53.243 [JavaFX Application Thread] ERROR lab6.ui.SceneManager - javafx.fxml.LoadException: 
+/D:/itmo/PROGA/lab8/client/build/resources/main/fxml/ItemChange.fxml
+
+2025-06-25 01:03:30.999 [JavaFX Application Thread] ERROR lab6.ui.SceneManager - javafx.fxml.LoadException: 
+/D:/itmo/PROGA/lab8/client/build/resources/main/fxml/ItemChange.fxml:24
+
+2025-06-25 01:03:34.324 [JavaFX Application Thread] ERROR lab6.ui.SceneManager - javafx.fxml.LoadException: 
+/D:/itmo/PROGA/lab8/client/build/resources/main/fxml/ItemChange.fxml:24
+
+2025-06-25 01:03:37.224 [JavaFX Application Thread] ERROR lab6.ui.SceneManager - javafx.fxml.LoadException: 
+/D:/itmo/PROGA/lab8/client/build/resources/main/fxml/ItemChange.fxml:24
+
+2025-06-25 01:03:45.107 [JavaFX Application Thread] ERROR lab6.ui.SceneManager - javafx.fxml.LoadException: 
+/D:/itmo/PROGA/lab8/client/build/resources/main/fxml/ItemChange.fxml:24
+
+2025-06-25 14:35:50.392 [JavaFX Application Thread] ERROR lab6.ui.SceneManager - Failed to load scene: Start
+java.lang.IllegalStateException: ResourceBundle for locale en_ENGLISH is not pre-cached!
+	at lab6.ui.SceneManager$1.call(SceneManager.java:62) ~[main/:?]
+	at lab6.ui.SceneManager$1.call(SceneManager.java:57) ~[main/:?]
+	at javafx.graphics/javafx.concurrent.Task$TaskCallable.call(Task.java:1425) ~[javafx-graphics-16-win.jar:?]
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264) ~[?:?]
+	at java.base/java.lang.Thread.run(Thread.java:840) [?:?]
+2025-06-25 15:01:57.018 [JavaFX Application Thread] ERROR lab6.ui.SceneManager - Failed to load scene: Start
+javafx.fxml.LoadException: No resources specified.
+/D:/itmo/PROGA/lab8/client/build/resources/main/fxml/Start.fxml:21
+
+	at javafx.fxml/javafx.fxml.FXMLLoader.constructLoadException(FXMLLoader.java:2703) ~[javafx-fxml-16-win.jar:?]
+	at javafx.fxml/javafx.fxml.FXMLLoader$Element.resolvePrefixedValue(FXMLLoader.java:431) ~[javafx-fxml-16-win.jar:?]
+	at javafx.fxml/javafx.fxml.FXMLLoader$Element.processValue(FXMLLoader.java:372) ~[javafx-fxml-16-win.jar:?]
+	at javafx.fxml/javafx.fxml.FXMLLoader$Element.processPropertyAttribute(FXMLLoader.java:334) ~[javafx-fxml-16-win.jar:?]
+	at javafx.fxml/javafx.fxml.FXMLLoader$Element.processInstancePropertyAttributes(FXMLLoader.java:244) ~[javafx-fxml-16-win.jar:?]
+	at javafx.fxml/javafx.fxml.FXMLLoader$ValueElement.processEndElement(FXMLLoader.java:777) ~[javafx-fxml-16-win.jar:?]
+	at javafx.fxml/javafx.fxml.FXMLLoader.processEndElement(FXMLLoader.java:2924) ~[javafx-fxml-16-win.jar:?]
+	at javafx.fxml/javafx.fxml.FXMLLoader.loadImpl(FXMLLoader.java:2639) ~[javafx-fxml-16-win.jar:?]
+	at javafx.fxml/javafx.fxml.FXMLLoader.loadImpl(FXMLLoader.java:2548) ~[javafx-fxml-16-win.jar:?]
+	at javafx.fxml/javafx.fxml.FXMLLoader.load(FXMLLoader.java:2517) ~[javafx-fxml-16-win.jar:?]
+	at lab6.ui.SceneManager$1.call(SceneManager.java:61) ~[main/:?]
+	at lab6.ui.SceneManager$1.call(SceneManager.java:55) ~[main/:?]
+	at javafx.graphics/javafx.concurrent.Task$TaskCallable.call(Task.java:1425) ~[javafx-graphics-16-win.jar:?]
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264) ~[?:?]
+	at java.base/java.lang.Thread.run(Thread.java:840) [?:?]
+2025-06-25 15:02:01.802 [JavaFX Application Thread] ERROR lab6.ui.SceneManager - Failed to load scene: Start
+javafx.fxml.LoadException: No resources specified.
+/D:/itmo/PROGA/lab8/client/build/resources/main/fxml/Start.fxml:21
+
+	at javafx.fxml/javafx.fxml.FXMLLoader.constructLoadException(FXMLLoader.java:2703) ~[javafx-fxml-16-win.jar:?]
+	at javafx.fxml/javafx.fxml.FXMLLoader$Element.resolvePrefixedValue(FXMLLoader.java:431) ~[javafx-fxml-16-win.jar:?]
+	at javafx.fxml/javafx.fxml.FXMLLoader$Element.processValue(FXMLLoader.java:372) ~[javafx-fxml-16-win.jar:?]
+	at javafx.fxml/javafx.fxml.FXMLLoader$Element.processPropertyAttribute(FXMLLoader.java:334) ~[javafx-fxml-16-win.jar:?]
+	at javafx.fxml/javafx.fxml.FXMLLoader$Element.processInstancePropertyAttributes(FXMLLoader.java:244) ~[javafx-fxml-16-win.jar:?]
+	at javafx.fxml/javafx.fxml.FXMLLoader$ValueElement.processEndElement(FXMLLoader.java:777) ~[javafx-fxml-16-win.jar:?]
+	at javafx.fxml/javafx.fxml.FXMLLoader.processEndElement(FXMLLoader.java:2924) ~[javafx-fxml-16-win.jar:?]
+	at javafx.fxml/javafx.fxml.FXMLLoader.loadImpl(FXMLLoader.java:2639) ~[javafx-fxml-16-win.jar:?]
+	at javafx.fxml/javafx.fxml.FXMLLoader.loadImpl(FXMLLoader.java:2548) ~[javafx-fxml-16-win.jar:?]
+	at javafx.fxml/javafx.fxml.FXMLLoader.load(FXMLLoader.java:2517) ~[javafx-fxml-16-win.jar:?]
+	at lab6.ui.SceneManager$1.call(SceneManager.java:61) ~[main/:?]
+	at lab6.ui.SceneManager$1.call(SceneManager.java:55) ~[main/:?]
+	at javafx.graphics/javafx.concurrent.Task$TaskCallable.call(Task.java:1425) ~[javafx-graphics-16-win.jar:?]
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264) ~[?:?]
+	at java.base/java.lang.Thread.run(Thread.java:840) [?:?]

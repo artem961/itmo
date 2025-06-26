@@ -27,6 +27,9 @@ public class RegController {
         this.messageLabel.setText(response.message());
         if (response.type() == ResponseType.AUTH){
             AppManager.getInstance().sceneManager.switchScene("Main");
+        } else{
+            this.messageLabel.setText(response.message());
+            this.messageLabel.setVisible(true);
         }
     }
 }

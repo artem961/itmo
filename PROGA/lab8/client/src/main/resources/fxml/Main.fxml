@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.control.Button?>
 <?import java.net.URL?>
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.layout.Region?>
 <VBox fx:id="rootPane"
       xmlns="http://javafx.com/javafx/16"
       xmlns:fx="http://javafx.com/fxml/1"
@@ -13,9 +13,23 @@
       styleClass="rootPane">
     <stylesheets>
         <URL value="@/css/main.css"/>
+        <URL value="@/css/table.css"/>
     </stylesheets>
         <fx:include source="components/Header.fxml"/>
-        <VBox styleClass="tableView" VBox.vgrow="ALWAYS">
-            <fx:include source="components/TableView.fxml"/>
-        </VBox>
+    <TabPane styleClass="main-tab-pane" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS" onMouseClicked="#update">
+        <Tab text="%view.table">
+            <BorderPane styleClass="tabPage">
+                <center>
+                    <fx:include source="components/TableView.fxml"/>
+                </center>
+            </BorderPane>
+        </Tab>
+        <Tab text="%view.graph">
+            <BorderPane styleClass="canvas">
+                <center>
+                    <fx:include source="components/GraphView.fxml"/>
+                </center>
+            </BorderPane>
+        </Tab>
+    </TabPane>
 </VBox>

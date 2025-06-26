@@ -4,6 +4,7 @@ import common.network.Request;
 import common.network.Response;
 import common.network.Serializer;
 import common.network.User;
+import common.network.enums.ResponseType;
 import common.network.exceptions.NetworkException;
 import lab6.network.NetworkManager;
 import lombok.Getter;
@@ -59,5 +60,22 @@ public class AuthManager {
         Response response = sendRequest(request);
         handleResponce(response);
         return response;
+    }
+
+    public void logOut() {
+        this.user = null;
+    }
+
+    public Response deleteUser(User user) {
+        Request request = new Request("delete_user", null, null, user);
+        Response response = sendRequest(request);
+        if (response.type().equals(ResponseType.AUTH)){
+            logOut();
+        }
+        return response;
+    }
+
+    public Response deleteUser() {
+        return deleteUser(this.user);
     }
 }
