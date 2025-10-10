@@ -10352,3 +10352,290 @@
 2025-06-25 17:19:28.606 [pool-3-thread-1] INFO  lab6.network.server.RequestHandlerModule - Обработан запрос от пользователя ggg, команда update
 2025-06-25 17:19:28.607 [pool-4-thread-3] INFO  lab6.network.server.ResponseSenderModule - Отправлен ответ на адрес /127.0.0.1:41140
 2025-06-25 17:20:56.530 [pool-2-thread-6] INFO  lab6.network.server.RequestReaderModule - Соединение принудительно разорвано!
+2025-06-27 03:08:22.851 [main] INFO  lab6.network.server.RequestReaderModule - Проинициализирован модуль чтения запросов.
+2025-06-27 03:08:22.857 [main] INFO  lab6.network.server.ResponseSenderModule - Проинициализирован модуль отправки ответов.
+2025-06-27 03:08:22.862 [main] INFO  lab6.network.server.Server - Сервер инициализирован по адресу localhost/127.0.0.1:13536
+2025-06-27 03:08:22.864 [Сервер] INFO  lab6.network.server.Server - Сервер запущен по адресу localhost/127.0.0.1:13536
+2025-06-27 03:08:22.864 [Thread-0] INFO  lab6.network.server.RequestHandlerModule - Запущен модуль обработки запросов.
+2025-06-27 03:08:35.280 [Сервер] INFO  lab6.network.server.Server - Принято подключение от /127.0.0.1:55548
+2025-06-27 03:08:42.552 [Сервер] INFO  lab6.network.server.Server - Клиент отключен
+2025-06-27 03:08:42.552 [pool-2-thread-1] INFO  lab6.network.server.RequestReaderModule - Соединение принудительно разорвано!
+2025-06-27 03:08:55.402 [Сервер] INFO  lab6.network.server.Server - Принято подключение от /127.0.0.1:55556
+2025-06-27 03:09:32.231 [pool-2-thread-1] INFO  lab6.network.server.RequestReaderModule - Получено новое сообщение c адреса /127.0.0.1:55556, пользователь полина матвеева и коломоец ахуели, команда reg
+2025-06-27 03:09:32.338 [pool-3-thread-1] INFO  lab6.network.server.RequestHandlerModule - Обработан запрос от пользователя полина матвеева и коломоец ахуели, команда reg
+2025-06-27 03:09:32.347 [pool-4-thread-1] INFO  lab6.network.server.ResponseSenderModule - Отправлен ответ на адрес /127.0.0.1:55556
+2025-06-27 03:09:32.494 [pool-2-thread-1] INFO  lab6.network.server.RequestReaderModule - Получено новое сообщение c адреса /127.0.0.1:55556, пользователь полина матвеева и коломоец ахуели, команда get_commands
+2025-06-27 03:09:32.498 [pool-3-thread-2] INFO  lab6.network.server.RequestHandlerModule - Обработан запрос от пользователя полина матвеева и коломоец ахуели, команда get_commands
+2025-06-27 03:09:32.503 [pool-4-thread-1] INFO  lab6.network.server.ResponseSenderModule - Отправлен ответ на адрес /127.0.0.1:55556
+2025-06-27 03:09:32.513 [pool-2-thread-1] INFO  lab6.network.server.RequestReaderModule - Получено новое сообщение c адреса /127.0.0.1:55556, пользователь полина матвеева и коломоец ахуели, команда show
+2025-06-27 03:09:32.514 [pool-3-thread-3] INFO  lab6.network.server.RequestHandlerModule - Обработан запрос от пользователя полина матвеева и коломоец ахуели, команда show
+2025-06-27 03:09:32.529 [pool-4-thread-1] INFO  lab6.network.server.ResponseSenderModule - Отправлен ответ на адрес /127.0.0.1:55556
+2025-06-27 03:09:32.562 [pool-2-thread-1] INFO  lab6.network.server.RequestReaderModule - Получено новое сообщение c адреса /127.0.0.1:55556, пользователь полина матвеева и коломоец ахуели, команда show
+2025-06-27 03:09:32.562 [pool-3-thread-4] INFO  lab6.network.server.RequestHandlerModule - Обработан запрос от пользователя полина матвеева и коломоец ахуели, команда show
+2025-06-27 03:09:32.564 [pool-4-thread-1] INFO  lab6.network.server.ResponseSenderModule - Отправлен ответ на адрес /127.0.0.1:55556
+2025-06-27 03:09:56.422 [pool-2-thread-1] INFO  lab6.network.server.RequestReaderModule - Получено новое сообщение c адреса /127.0.0.1:55556, пользователь полина матвеева и коломоец ахуели, команда show
+2025-06-27 03:09:56.423 [pool-3-thread-5] INFO  lab6.network.server.RequestHandlerModule - Обработан запрос от пользователя полина матвеева и коломоец ахуели, команда show
+2025-06-27 03:09:56.428 [pool-4-thread-1] INFO  lab6.network.server.ResponseSenderModule - Отправлен ответ на адрес /127.0.0.1:55556
+2025-06-27 03:09:57.120 [pool-2-thread-1] INFO  lab6.network.server.RequestReaderModule - Получено новое сообщение c адреса /127.0.0.1:55556, пользователь полина матвеева и коломоец ахуели, команда show
+2025-06-27 03:09:57.121 [pool-3-thread-6] INFO  lab6.network.server.RequestHandlerModule - Обработан запрос от пользователя полина матвеева и коломоец ахуели, команда show
+2025-06-27 03:09:57.123 [pool-4-thread-1] INFO  lab6.network.server.ResponseSenderModule - Отправлен ответ на адрес /127.0.0.1:55556
+2025-06-27 03:10:00.185 [pool-2-thread-1] INFO  lab6.network.server.RequestReaderModule - Получено новое сообщение c адреса /127.0.0.1:55556, пользователь полина матвеева и коломоец ахуели, команда get_commands
+2025-06-27 03:10:00.186 [pool-3-thread-7] INFO  lab6.network.server.RequestHandlerModule - Обработан запрос от пользователя полина матвеева и коломоец ахуели, команда get_commands
+2025-06-27 03:10:00.188 [pool-4-thread-1] INFO  lab6.network.server.ResponseSenderModule - Отправлен ответ на адрес /127.0.0.1:55556
+2025-06-27 03:10:00.190 [pool-2-thread-1] INFO  lab6.network.server.RequestReaderModule - Получено новое сообщение c адреса /127.0.0.1:55556, пользователь полина матвеева и коломоец ахуели, команда show
+2025-06-27 03:10:00.191 [pool-3-thread-8] INFO  lab6.network.server.RequestHandlerModule - Обработан запрос от пользователя полина матвеева и коломоец ахуели, команда show
+2025-06-27 03:10:00.194 [pool-4-thread-1] INFO  lab6.network.server.ResponseSenderModule - Отправлен ответ на адрес /127.0.0.1:55556
+2025-06-27 03:10:00.201 [pool-2-thread-1] INFO  lab6.network.server.RequestReaderModule - Получено новое сообщение c адреса /127.0.0.1:55556, пользователь полина матвеева и коломоец ахуели, команда show
+2025-06-27 03:10:00.202 [pool-3-thread-9] INFO  lab6.network.server.RequestHandlerModule - Обработан запрос от пользователя полина матвеева и коломоец ахуели, команда show
+2025-06-27 03:10:00.203 [pool-4-thread-1] INFO  lab6.network.server.ResponseSenderModule - Отправлен ответ на адрес /127.0.0.1:55556
+2025-06-27 03:10:01.431 [pool-2-thread-1] INFO  lab6.network.server.RequestReaderModule - Получено новое сообщение c адреса /127.0.0.1:55556, пользователь полина матвеева и коломоец ахуели, команда get_commands
+2025-06-27 03:10:01.432 [pool-3-thread-10] INFO  lab6.network.server.RequestHandlerModule - Обработан запрос от пользователя полина матвеева и коломоец ахуели, команда get_commands
+2025-06-27 03:10:01.433 [pool-4-thread-1] INFO  lab6.network.server.ResponseSenderModule - Отправлен ответ на адрес /127.0.0.1:55556
+2025-06-27 03:10:01.437 [pool-2-thread-1] INFO  lab6.network.server.RequestReaderModule - Получено новое сообщение c адреса /127.0.0.1:55556, пользователь полина матвеева и коломоец ахуели, команда show
+2025-06-27 03:10:01.437 [pool-3-thread-1] INFO  lab6.network.server.RequestHandlerModule - Обработан запрос от пользователя полина матвеева и коломоец ахуели, команда show
+2025-06-27 03:10:01.439 [pool-4-thread-1] INFO  lab6.network.server.ResponseSenderModule - Отправлен ответ на адрес /127.0.0.1:55556
+2025-06-27 03:10:01.444 [pool-2-thread-1] INFO  lab6.network.server.RequestReaderModule - Получено новое сообщение c адреса /127.0.0.1:55556, пользователь полина матвеева и коломоец ахуели, команда show
+2025-06-27 03:10:01.447 [pool-3-thread-2] INFO  lab6.network.server.RequestHandlerModule - Обработан запрос от пользователя полина матвеева и коломоец ахуели, команда show
+2025-06-27 03:10:01.447 [pool-4-thread-1] INFO  lab6.network.server.ResponseSenderModule - Отправлен ответ на адрес /127.0.0.1:55556
+2025-06-27 03:10:05.204 [pool-2-thread-1] INFO  lab6.network.server.RequestReaderModule - Получено новое сообщение c адреса /127.0.0.1:55556, пользователь полина матвеева и коломоец ахуели, команда history
+2025-06-27 03:10:05.217 [pool-3-thread-3] INFO  lab6.network.server.RequestHandlerModule - Обработан запрос от пользователя полина матвеева и коломоец ахуели, команда history
+2025-06-27 03:10:05.218 [pool-4-thread-1] INFO  lab6.network.server.ResponseSenderModule - Отправлен ответ на адрес /127.0.0.1:55556
+2025-06-27 03:10:08.234 [pool-2-thread-1] INFO  lab6.network.server.RequestReaderModule - Получено новое сообщение c адреса /127.0.0.1:55556, пользователь полина матвеева и коломоец ахуели, команда clear
+2025-06-27 03:10:08.252 [pool-3-thread-4] INFO  lab6.network.server.RequestHandlerModule - Обработан запрос от пользователя полина матвеева и коломоец ахуели, команда clear
+2025-06-27 03:10:08.253 [pool-4-thread-1] INFO  lab6.network.server.ResponseSenderModule - Отправлен ответ на адрес /127.0.0.1:55556
+2025-06-27 03:10:45.081 [pool-2-thread-1] INFO  lab6.network.server.RequestReaderModule - Получено новое сообщение c адреса /127.0.0.1:55556, пользователь полина матвеева и коломоец ахуели, команда delete_user
+2025-06-27 03:10:45.099 [pool-3-thread-5] INFO  lab6.network.server.RequestHandlerModule - Обработан запрос от пользователя полина матвеева и коломоец ахуели, команда delete_user
+2025-06-27 03:10:45.101 [pool-4-thread-1] INFO  lab6.network.server.ResponseSenderModule - Отправлен ответ на адрес /127.0.0.1:55556
+2025-06-27 03:11:15.392 [pool-2-thread-1] INFO  lab6.network.server.RequestReaderModule - Получено новое сообщение c адреса /127.0.0.1:55556, пользователь хуй, команда reg
+2025-06-27 03:11:15.405 [pool-3-thread-6] INFO  lab6.network.server.RequestHandlerModule - Обработан запрос от пользователя хуй, команда reg
+2025-06-27 03:11:15.406 [pool-4-thread-1] INFO  lab6.network.server.ResponseSenderModule - Отправлен ответ на адрес /127.0.0.1:55556
+2025-06-27 03:11:15.430 [pool-2-thread-1] INFO  lab6.network.server.RequestReaderModule - Получено новое сообщение c адреса /127.0.0.1:55556, пользователь хуй, команда get_commands
+2025-06-27 03:11:15.431 [pool-3-thread-7] INFO  lab6.network.server.RequestHandlerModule - Обработан запрос от пользователя хуй, команда get_commands
+2025-06-27 03:11:15.433 [pool-4-thread-1] INFO  lab6.network.server.ResponseSenderModule - Отправлен ответ на адрес /127.0.0.1:55556
+2025-06-27 03:11:15.437 [pool-2-thread-1] INFO  lab6.network.server.RequestReaderModule - Получено новое сообщение c адреса /127.0.0.1:55556, пользователь хуй, команда show
+2025-06-27 03:11:15.438 [pool-3-thread-8] INFO  lab6.network.server.RequestHandlerModule - Обработан запрос от пользователя хуй, команда show
+2025-06-27 03:11:15.439 [pool-4-thread-1] INFO  lab6.network.server.ResponseSenderModule - Отправлен ответ на адрес /127.0.0.1:55556
+2025-06-27 03:11:15.448 [pool-2-thread-1] INFO  lab6.network.server.RequestReaderModule - Получено новое сообщение c адреса /127.0.0.1:55556, пользователь хуй, команда show
+2025-06-27 03:11:15.448 [pool-3-thread-9] INFO  lab6.network.server.RequestHandlerModule - Обработан запрос от пользователя хуй, команда show
+2025-06-27 03:11:15.450 [pool-4-thread-1] INFO  lab6.network.server.ResponseSenderModule - Отправлен ответ на адрес /127.0.0.1:55556
+2025-06-27 03:11:41.896 [pool-2-thread-1] INFO  lab6.network.server.RequestReaderModule - Получено новое сообщение c адреса /127.0.0.1:55556, пользователь хуй, команда show
+2025-06-27 03:11:41.897 [pool-3-thread-10] INFO  lab6.network.server.RequestHandlerModule - Обработан запрос от пользователя хуй, команда show
+2025-06-27 03:11:41.898 [pool-4-thread-1] INFO  lab6.network.server.ResponseSenderModule - Отправлен ответ на адрес /127.0.0.1:55556
+2025-06-27 03:11:45.724 [pool-2-thread-1] INFO  lab6.network.server.RequestReaderModule - Получено новое сообщение c адреса /127.0.0.1:55556, пользователь хуй, команда add_random
+2025-06-27 03:11:46.036 [pool-3-thread-1] INFO  lab6.network.server.RequestHandlerModule - Обработан запрос от пользователя хуй, команда add_random
+2025-06-27 03:11:46.040 [pool-4-thread-1] INFO  lab6.network.server.ResponseSenderModule - Отправлен ответ на адрес /127.0.0.1:55556
+2025-06-27 03:12:04.565 [pool-2-thread-1] INFO  lab6.network.server.RequestReaderModule - Получено новое сообщение c адреса /127.0.0.1:55556, пользователь хуй, команда update
+2025-06-27 03:12:04.592 [pool-3-thread-2] INFO  lab6.network.server.RequestHandlerModule - Обработан запрос от пользователя хуй, команда update
+2025-06-27 03:12:04.595 [pool-4-thread-1] INFO  lab6.network.server.ResponseSenderModule - Отправлен ответ на адрес /127.0.0.1:55556
+2025-06-27 03:12:07.200 [pool-2-thread-1] INFO  lab6.network.server.RequestReaderModule - Получено новое сообщение c адреса /127.0.0.1:55556, пользователь хуй, команда show
+2025-06-27 03:12:07.202 [pool-3-thread-3] INFO  lab6.network.server.RequestHandlerModule - Обработан запрос от пользователя хуй, команда show
+2025-06-27 03:12:07.204 [pool-4-thread-1] INFO  lab6.network.server.ResponseSenderModule - Отправлен ответ на адрес /127.0.0.1:55556
+2025-06-27 03:12:07.558 [pool-2-thread-1] INFO  lab6.network.server.RequestReaderModule - Получено новое сообщение c адреса /127.0.0.1:55556, пользователь хуй, команда show
+2025-06-27 03:12:07.559 [pool-3-thread-4] INFO  lab6.network.server.RequestHandlerModule - Обработан запрос от пользователя хуй, команда show
+2025-06-27 03:12:07.560 [pool-4-thread-1] INFO  lab6.network.server.ResponseSenderModule - Отправлен ответ на адрес /127.0.0.1:55556
+2025-06-27 03:12:07.734 [pool-2-thread-1] INFO  lab6.network.server.RequestReaderModule - Получено новое сообщение c адреса /127.0.0.1:55556, пользователь хуй, команда show
+2025-06-27 03:12:07.734 [pool-3-thread-5] INFO  lab6.network.server.RequestHandlerModule - Обработан запрос от пользователя хуй, команда show
+2025-06-27 03:12:07.737 [pool-4-thread-1] INFO  lab6.network.server.ResponseSenderModule - Отправлен ответ на адрес /127.0.0.1:55556
+2025-06-27 03:12:08.033 [pool-2-thread-1] INFO  lab6.network.server.RequestReaderModule - Получено новое сообщение c адреса /127.0.0.1:55556, пользователь хуй, команда show
+2025-06-27 03:12:08.034 [pool-3-thread-6] INFO  lab6.network.server.RequestHandlerModule - Обработан запрос от пользователя хуй, команда show
+2025-06-27 03:12:08.034 [pool-4-thread-1] INFO  lab6.network.server.ResponseSenderModule - Отправлен ответ на адрес /127.0.0.1:55556
+2025-06-27 03:12:08.217 [pool-2-thread-1] INFO  lab6.network.server.RequestReaderModule - Получено новое сообщение c адреса /127.0.0.1:55556, пользователь хуй, команда show
+2025-06-27 03:12:08.218 [pool-3-thread-7] INFO  lab6.network.server.RequestHandlerModule - Обработан запрос от пользователя хуй, команда show
+2025-06-27 03:12:08.219 [pool-4-thread-1] INFO  lab6.network.server.ResponseSenderModule - Отправлен ответ на адрес /127.0.0.1:55556
+2025-06-27 03:12:08.403 [pool-2-thread-1] INFO  lab6.network.server.RequestReaderModule - Получено новое сообщение c адреса /127.0.0.1:55556, пользователь хуй, команда show
+2025-06-27 03:12:08.403 [pool-3-thread-8] INFO  lab6.network.server.RequestHandlerModule - Обработан запрос от пользователя хуй, команда show
+2025-06-27 03:12:08.405 [pool-4-thread-1] INFO  lab6.network.server.ResponseSenderModule - Отправлен ответ на адрес /127.0.0.1:55556
+2025-06-27 03:12:08.570 [pool-2-thread-1] INFO  lab6.network.server.RequestReaderModule - Получено новое сообщение c адреса /127.0.0.1:55556, пользователь хуй, команда show
+2025-06-27 03:12:08.570 [pool-3-thread-9] INFO  lab6.network.server.RequestHandlerModule - Обработан запрос от пользователя хуй, команда show
+2025-06-27 03:12:08.571 [pool-4-thread-1] INFO  lab6.network.server.ResponseSenderModule - Отправлен ответ на адрес /127.0.0.1:55556
+2025-06-27 03:12:08.726 [pool-2-thread-1] INFO  lab6.network.server.RequestReaderModule - Получено новое сообщение c адреса /127.0.0.1:55556, пользователь хуй, команда show
+2025-06-27 03:12:08.727 [pool-3-thread-10] INFO  lab6.network.server.RequestHandlerModule - Обработан запрос от пользователя хуй, команда show
+2025-06-27 03:12:08.729 [pool-4-thread-1] INFO  lab6.network.server.ResponseSenderModule - Отправлен ответ на адрес /127.0.0.1:55556
+2025-06-27 03:12:08.893 [pool-2-thread-1] INFO  lab6.network.server.RequestReaderModule - Получено новое сообщение c адреса /127.0.0.1:55556, пользователь хуй, команда show
+2025-06-27 03:12:08.894 [pool-3-thread-1] INFO  lab6.network.server.RequestHandlerModule - Обработан запрос от пользователя хуй, команда show
+2025-06-27 03:12:08.895 [pool-4-thread-1] INFO  lab6.network.server.ResponseSenderModule - Отправлен ответ на адрес /127.0.0.1:55556
+2025-06-27 03:12:09.063 [pool-2-thread-1] INFO  lab6.network.server.RequestReaderModule - Получено новое сообщение c адреса /127.0.0.1:55556, пользователь хуй, команда show
+2025-06-27 03:12:09.064 [pool-3-thread-2] INFO  lab6.network.server.RequestHandlerModule - Обработан запрос от пользователя хуй, команда show
+2025-06-27 03:12:09.065 [pool-4-thread-1] INFO  lab6.network.server.ResponseSenderModule - Отправлен ответ на адрес /127.0.0.1:55556
+2025-06-27 03:12:09.225 [pool-2-thread-1] INFO  lab6.network.server.RequestReaderModule - Получено новое сообщение c адреса /127.0.0.1:55556, пользователь хуй, команда show
+2025-06-27 03:12:09.226 [pool-3-thread-3] INFO  lab6.network.server.RequestHandlerModule - Обработан запрос от пользователя хуй, команда show
+2025-06-27 03:12:09.227 [pool-4-thread-1] INFO  lab6.network.server.ResponseSenderModule - Отправлен ответ на адрес /127.0.0.1:55556
+2025-06-27 03:12:09.362 [pool-2-thread-1] INFO  lab6.network.server.RequestReaderModule - Получено новое сообщение c адреса /127.0.0.1:55556, пользователь хуй, команда show
+2025-06-27 03:12:09.364 [pool-3-thread-4] INFO  lab6.network.server.RequestHandlerModule - Обработан запрос от пользователя хуй, команда show
+2025-06-27 03:12:09.365 [pool-4-thread-1] INFO  lab6.network.server.ResponseSenderModule - Отправлен ответ на адрес /127.0.0.1:55556
+2025-06-27 03:12:09.540 [pool-2-thread-1] INFO  lab6.network.server.RequestReaderModule - Получено новое сообщение c адреса /127.0.0.1:55556, пользователь хуй, команда show
+2025-06-27 03:12:09.541 [pool-3-thread-5] INFO  lab6.network.server.RequestHandlerModule - Обработан запрос от пользователя хуй, команда show
+2025-06-27 03:12:09.542 [pool-4-thread-1] INFO  lab6.network.server.ResponseSenderModule - Отправлен ответ на адрес /127.0.0.1:55556
+2025-06-27 03:12:20.407 [pool-2-thread-1] INFO  lab6.network.server.RequestReaderModule - Получено новое сообщение c адреса /127.0.0.1:55556, пользователь хуй, команда update
+2025-06-27 03:12:20.422 [pool-3-thread-6] INFO  lab6.network.server.RequestHandlerModule - Обработан запрос от пользователя хуй, команда update
+2025-06-27 03:12:20.423 [pool-4-thread-1] INFO  lab6.network.server.ResponseSenderModule - Отправлен ответ на адрес /127.0.0.1:55556
+2025-06-27 03:12:26.594 [pool-2-thread-1] INFO  lab6.network.server.RequestReaderModule - Получено новое сообщение c адреса /127.0.0.1:55556, пользователь хуй, команда update
+2025-06-27 03:12:26.605 [pool-3-thread-7] INFO  lab6.network.server.RequestHandlerModule - Обработан запрос от пользователя хуй, команда update
+2025-06-27 03:12:26.607 [pool-4-thread-1] INFO  lab6.network.server.ResponseSenderModule - Отправлен ответ на адрес /127.0.0.1:55556
+2025-06-27 03:12:33.140 [pool-2-thread-1] INFO  lab6.network.server.RequestReaderModule - Получено новое сообщение c адреса /127.0.0.1:55556, пользователь , команда auth
+2025-06-27 03:12:33.146 [pool-3-thread-8] INFO  lab6.network.server.RequestHandlerModule - Обработан запрос от пользователя , команда auth
+2025-06-27 03:12:33.147 [pool-4-thread-1] INFO  lab6.network.server.ResponseSenderModule - Отправлен ответ на адрес /127.0.0.1:55556
+2025-06-27 03:12:37.332 [pool-2-thread-1] INFO  lab6.network.server.RequestReaderModule - Получено новое сообщение c адреса /127.0.0.1:55556, пользователь , команда reg
+2025-06-27 03:12:37.340 [pool-3-thread-9] INFO  lab6.network.server.RequestHandlerModule - Обработан запрос от пользователя , команда reg
+2025-06-27 03:12:37.341 [pool-4-thread-1] INFO  lab6.network.server.ResponseSenderModule - Отправлен ответ на адрес /127.0.0.1:55556
+2025-06-27 03:12:37.362 [pool-2-thread-1] INFO  lab6.network.server.RequestReaderModule - Получено новое сообщение c адреса /127.0.0.1:55556, пользователь , команда get_commands
+2025-06-27 03:12:37.363 [pool-3-thread-10] INFO  lab6.network.server.RequestHandlerModule - Обработан запрос от пользователя , команда get_commands
+2025-06-27 03:12:37.365 [pool-4-thread-1] INFO  lab6.network.server.ResponseSenderModule - Отправлен ответ на адрес /127.0.0.1:55556
+2025-06-27 03:12:37.366 [pool-2-thread-1] INFO  lab6.network.server.RequestReaderModule - Получено новое сообщение c адреса /127.0.0.1:55556, пользователь , команда show
+2025-06-27 03:12:37.367 [pool-3-thread-1] INFO  lab6.network.server.RequestHandlerModule - Обработан запрос от пользователя , команда show
+2025-06-27 03:12:37.368 [pool-4-thread-1] INFO  lab6.network.server.ResponseSenderModule - Отправлен ответ на адрес /127.0.0.1:55556
+2025-06-27 03:12:37.373 [pool-2-thread-1] INFO  lab6.network.server.RequestReaderModule - Получено новое сообщение c адреса /127.0.0.1:55556, пользователь , команда show
+2025-06-27 03:12:37.374 [pool-3-thread-2] INFO  lab6.network.server.RequestHandlerModule - Обработан запрос от пользователя , команда show
+2025-06-27 03:12:37.374 [pool-4-thread-1] INFO  lab6.network.server.ResponseSenderModule - Отправлен ответ на адрес /127.0.0.1:55556
+2025-06-27 03:12:45.020 [pool-2-thread-1] INFO  lab6.network.server.RequestReaderModule - Получено новое сообщение c адреса /127.0.0.1:55556, пользователь , команда show
+2025-06-27 03:12:45.020 [pool-3-thread-3] INFO  lab6.network.server.RequestHandlerModule - Обработан запрос от пользователя , команда show
+2025-06-27 03:12:45.022 [pool-4-thread-1] INFO  lab6.network.server.ResponseSenderModule - Отправлен ответ на адрес /127.0.0.1:55556
+2025-06-27 03:12:50.778 [pool-2-thread-1] INFO  lab6.network.server.RequestReaderModule - Получено новое сообщение c адреса /127.0.0.1:55556, пользователь , команда update
+2025-06-27 03:12:50.778 [pool-3-thread-4] INFO  lab6.network.server.RequestHandlerModule - Обработан запрос от пользователя , команда update
+2025-06-27 03:12:50.779 [pool-4-thread-1] INFO  lab6.network.server.ResponseSenderModule - Отправлен ответ на адрес /127.0.0.1:55556
+2025-06-27 03:13:36.889 [pool-2-thread-1] INFO  lab6.network.server.RequestReaderModule - Получено новое сообщение c адреса /127.0.0.1:55556, пользователь , команда show
+2025-06-27 03:13:36.889 [pool-3-thread-5] INFO  lab6.network.server.RequestHandlerModule - Обработан запрос от пользователя , команда show
+2025-06-27 03:13:36.890 [pool-4-thread-1] INFO  lab6.network.server.ResponseSenderModule - Отправлен ответ на адрес /127.0.0.1:55556
+2025-06-27 03:13:40.617 [pool-2-thread-1] INFO  lab6.network.server.RequestReaderModule - Получено новое сообщение c адреса /127.0.0.1:55556, пользователь , команда show
+2025-06-27 03:13:40.618 [pool-3-thread-6] INFO  lab6.network.server.RequestHandlerModule - Обработан запрос от пользователя , команда show
+2025-06-27 03:13:40.618 [pool-4-thread-1] INFO  lab6.network.server.ResponseSenderModule - Отправлен ответ на адрес /127.0.0.1:55556
+2025-06-27 03:13:42.438 [pool-2-thread-1] INFO  lab6.network.server.RequestReaderModule - Получено новое сообщение c адреса /127.0.0.1:55556, пользователь , команда add_random
+2025-06-27 03:13:42.438 [pool-3-thread-7] INFO  lab6.network.server.RequestHandlerModule - Обработан запрос от пользователя , команда add_random
+2025-06-27 03:13:42.439 [pool-4-thread-1] INFO  lab6.network.server.ResponseSenderModule - Отправлен ответ на адрес /127.0.0.1:55556
+2025-06-27 03:13:45.381 [pool-2-thread-1] INFO  lab6.network.server.RequestReaderModule - Получено новое сообщение c адреса /127.0.0.1:55556, пользователь , команда add_random
+2025-06-27 03:13:45.398 [pool-3-thread-8] INFO  lab6.network.server.RequestHandlerModule - Обработан запрос от пользователя , команда add_random
+2025-06-27 03:13:45.400 [pool-4-thread-1] INFO  lab6.network.server.ResponseSenderModule - Отправлен ответ на адрес /127.0.0.1:55556
+2025-06-27 03:13:49.545 [pool-2-thread-1] INFO  lab6.network.server.RequestReaderModule - Получено новое сообщение c адреса /127.0.0.1:55556, пользователь , команда update
+2025-06-27 03:13:49.562 [pool-3-thread-9] INFO  lab6.network.server.RequestHandlerModule - Обработан запрос от пользователя , команда update
+2025-06-27 03:13:49.564 [pool-4-thread-1] INFO  lab6.network.server.ResponseSenderModule - Отправлен ответ на адрес /127.0.0.1:55556
+2025-06-27 03:15:13.403 [Сервер] INFO  lab6.network.server.Server - Клиент отключен
+2025-06-27 03:15:13.403 [pool-2-thread-2] INFO  lab6.network.server.RequestReaderModule - Соединение принудительно разорвано!
+2025-06-27 03:15:18.583 [Сервер] INFO  lab6.network.server.Server - Принято подключение от /127.0.0.1:55679
+2025-06-27 03:15:32.372 [pool-2-thread-2] INFO  lab6.network.server.RequestReaderModule - Получено новое сообщение c адреса /127.0.0.1:55679, пользователь ммм, команда reg
+2025-06-27 03:15:32.387 [pool-3-thread-10] INFO  lab6.network.server.RequestHandlerModule - Обработан запрос от пользователя ммм, команда reg
+2025-06-27 03:15:32.388 [pool-4-thread-2] INFO  lab6.network.server.ResponseSenderModule - Отправлен ответ на адрес /127.0.0.1:55679
+2025-06-27 03:15:32.487 [pool-2-thread-2] INFO  lab6.network.server.RequestReaderModule - Получено новое сообщение c адреса /127.0.0.1:55679, пользователь ммм, команда get_commands
+2025-06-27 03:15:32.487 [pool-3-thread-1] INFO  lab6.network.server.RequestHandlerModule - Обработан запрос от пользователя ммм, команда get_commands
+2025-06-27 03:15:32.488 [pool-4-thread-2] INFO  lab6.network.server.ResponseSenderModule - Отправлен ответ на адрес /127.0.0.1:55679
+2025-06-27 03:15:32.496 [pool-2-thread-2] INFO  lab6.network.server.RequestReaderModule - Получено новое сообщение c адреса /127.0.0.1:55679, пользователь ммм, команда show
+2025-06-27 03:15:32.496 [pool-3-thread-2] INFO  lab6.network.server.RequestHandlerModule - Обработан запрос от пользователя ммм, команда show
+2025-06-27 03:15:32.497 [pool-4-thread-2] INFO  lab6.network.server.ResponseSenderModule - Отправлен ответ на адрес /127.0.0.1:55679
+2025-06-27 03:15:32.543 [pool-2-thread-2] INFO  lab6.network.server.RequestReaderModule - Получено новое сообщение c адреса /127.0.0.1:55679, пользователь ммм, команда show
+2025-06-27 03:15:32.543 [pool-3-thread-3] INFO  lab6.network.server.RequestHandlerModule - Обработан запрос от пользователя ммм, команда show
+2025-06-27 03:15:32.543 [pool-4-thread-2] INFO  lab6.network.server.ResponseSenderModule - Отправлен ответ на адрес /127.0.0.1:55679
+2025-06-27 03:15:37.182 [pool-2-thread-2] INFO  lab6.network.server.RequestReaderModule - Получено новое сообщение c адреса /127.0.0.1:55679, пользователь ммм, команда show
+2025-06-27 03:15:37.183 [pool-3-thread-4] INFO  lab6.network.server.RequestHandlerModule - Обработан запрос от пользователя ммм, команда show
+2025-06-27 03:15:37.184 [pool-4-thread-2] INFO  lab6.network.server.ResponseSenderModule - Отправлен ответ на адрес /127.0.0.1:55679
+2025-06-27 03:15:38.161 [pool-2-thread-2] INFO  lab6.network.server.RequestReaderModule - Получено новое сообщение c адреса /127.0.0.1:55679, пользователь ммм, команда show
+2025-06-27 03:15:38.162 [pool-3-thread-5] INFO  lab6.network.server.RequestHandlerModule - Обработан запрос от пользователя ммм, команда show
+2025-06-27 03:15:38.164 [pool-4-thread-2] INFO  lab6.network.server.ResponseSenderModule - Отправлен ответ на адрес /127.0.0.1:55679
+2025-06-27 03:16:18.352 [pool-2-thread-2] INFO  lab6.network.server.RequestReaderModule - Получено новое сообщение c адреса /127.0.0.1:55679, пользователь ммм, команда add_random
+2025-06-27 03:16:18.626 [pool-3-thread-6] INFO  lab6.network.server.RequestHandlerModule - Обработан запрос от пользователя ммм, команда add_random
+2025-06-27 03:16:18.628 [pool-4-thread-2] INFO  lab6.network.server.ResponseSenderModule - Отправлен ответ на адрес /127.0.0.1:55679
+2025-06-27 03:16:18.872 [pool-2-thread-2] INFO  lab6.network.server.RequestReaderModule - Получено новое сообщение c адреса /127.0.0.1:55679, пользователь ммм, команда add_random
+2025-06-27 03:16:19.144 [pool-3-thread-7] INFO  lab6.network.server.RequestHandlerModule - Обработан запрос от пользователя ммм, команда add_random
+2025-06-27 03:16:19.146 [pool-4-thread-2] INFO  lab6.network.server.ResponseSenderModule - Отправлен ответ на адрес /127.0.0.1:55679
+2025-06-27 03:16:19.438 [pool-2-thread-2] INFO  lab6.network.server.RequestReaderModule - Получено новое сообщение c адреса /127.0.0.1:55679, пользователь ммм, команда add_random
+2025-06-27 03:16:19.655 [pool-3-thread-8] INFO  lab6.network.server.RequestHandlerModule - Обработан запрос от пользователя ммм, команда add_random
+2025-06-27 03:16:19.657 [pool-4-thread-2] INFO  lab6.network.server.ResponseSenderModule - Отправлен ответ на адрес /127.0.0.1:55679
+2025-06-27 03:16:19.831 [pool-2-thread-2] INFO  lab6.network.server.RequestReaderModule - Получено новое сообщение c адреса /127.0.0.1:55679, пользователь ммм, команда add_random
+2025-06-27 03:16:20.080 [pool-3-thread-9] INFO  lab6.network.server.RequestHandlerModule - Обработан запрос от пользователя ммм, команда add_random
+2025-06-27 03:16:20.083 [pool-4-thread-2] INFO  lab6.network.server.ResponseSenderModule - Отправлен ответ на адрес /127.0.0.1:55679
+2025-06-27 03:16:20.123 [pool-2-thread-2] INFO  lab6.network.server.RequestReaderModule - Получено новое сообщение c адреса /127.0.0.1:55679, пользователь ммм, команда add_random
+2025-06-27 03:16:20.323 [pool-3-thread-10] INFO  lab6.network.server.RequestHandlerModule - Обработан запрос от пользователя ммм, команда add_random
+2025-06-27 03:16:20.326 [pool-4-thread-2] INFO  lab6.network.server.ResponseSenderModule - Отправлен ответ на адрес /127.0.0.1:55679
+2025-06-27 03:16:20.348 [pool-2-thread-2] INFO  lab6.network.server.RequestReaderModule - Получено новое сообщение c адреса /127.0.0.1:55679, пользователь ммм, команда add_random
+2025-06-27 03:16:20.582 [pool-3-thread-1] INFO  lab6.network.server.RequestHandlerModule - Обработан запрос от пользователя ммм, команда add_random
+2025-06-27 03:16:20.586 [pool-4-thread-2] INFO  lab6.network.server.ResponseSenderModule - Отправлен ответ на адрес /127.0.0.1:55679
+2025-06-27 03:16:20.607 [pool-2-thread-2] INFO  lab6.network.server.RequestReaderModule - Получено новое сообщение c адреса /127.0.0.1:55679, пользователь ммм, команда add_random
+2025-06-27 03:16:20.820 [pool-3-thread-2] INFO  lab6.network.server.RequestHandlerModule - Обработан запрос от пользователя ммм, команда add_random
+2025-06-27 03:16:20.825 [pool-4-thread-2] INFO  lab6.network.server.ResponseSenderModule - Отправлен ответ на адрес /127.0.0.1:55679
+2025-06-27 03:16:20.852 [pool-2-thread-2] INFO  lab6.network.server.RequestReaderModule - Получено новое сообщение c адреса /127.0.0.1:55679, пользователь ммм, команда add_random
+2025-06-27 03:16:21.051 [pool-3-thread-3] INFO  lab6.network.server.RequestHandlerModule - Обработан запрос от пользователя ммм, команда add_random
+2025-06-27 03:16:21.054 [pool-4-thread-2] INFO  lab6.network.server.ResponseSenderModule - Отправлен ответ на адрес /127.0.0.1:55679
+2025-06-27 03:16:21.076 [pool-2-thread-2] INFO  lab6.network.server.RequestReaderModule - Получено новое сообщение c адреса /127.0.0.1:55679, пользователь ммм, команда add_random
+2025-06-27 03:16:21.277 [pool-3-thread-4] INFO  lab6.network.server.RequestHandlerModule - Обработан запрос от пользователя ммм, команда add_random
+2025-06-27 03:16:21.280 [pool-4-thread-2] INFO  lab6.network.server.ResponseSenderModule - Отправлен ответ на адрес /127.0.0.1:55679
+2025-06-27 03:16:21.305 [pool-2-thread-2] INFO  lab6.network.server.RequestReaderModule - Получено новое сообщение c адреса /127.0.0.1:55679, пользователь ммм, команда add_random
+2025-06-27 03:16:21.543 [pool-3-thread-5] INFO  lab6.network.server.RequestHandlerModule - Обработан запрос от пользователя ммм, команда add_random
+2025-06-27 03:16:21.547 [pool-4-thread-2] INFO  lab6.network.server.ResponseSenderModule - Отправлен ответ на адрес /127.0.0.1:55679
+2025-06-27 03:16:21.568 [pool-2-thread-2] INFO  lab6.network.server.RequestReaderModule - Получено новое сообщение c адреса /127.0.0.1:55679, пользователь ммм, команда add_random
+2025-06-27 03:16:21.824 [pool-3-thread-6] INFO  lab6.network.server.RequestHandlerModule - Обработан запрос от пользователя ммм, команда add_random
+2025-06-27 03:16:21.829 [pool-4-thread-2] INFO  lab6.network.server.ResponseSenderModule - Отправлен ответ на адрес /127.0.0.1:55679
+2025-06-27 03:16:21.852 [pool-2-thread-2] INFO  lab6.network.server.RequestReaderModule - Получено новое сообщение c адреса /127.0.0.1:55679, пользователь ммм, команда add_random
+2025-06-27 03:16:22.076 [pool-3-thread-7] INFO  lab6.network.server.RequestHandlerModule - Обработан запрос от пользователя ммм, команда add_random
+2025-06-27 03:16:22.081 [pool-4-thread-2] INFO  lab6.network.server.ResponseSenderModule - Отправлен ответ на адрес /127.0.0.1:55679
+2025-06-27 03:16:22.099 [pool-2-thread-2] INFO  lab6.network.server.RequestReaderModule - Получено новое сообщение c адреса /127.0.0.1:55679, пользователь ммм, команда add_random
+2025-06-27 03:16:22.317 [pool-3-thread-8] INFO  lab6.network.server.RequestHandlerModule - Обработан запрос от пользователя ммм, команда add_random
+2025-06-27 03:16:22.322 [pool-4-thread-2] INFO  lab6.network.server.ResponseSenderModule - Отправлен ответ на адрес /127.0.0.1:55679
+2025-06-27 03:16:22.350 [pool-2-thread-2] INFO  lab6.network.server.RequestReaderModule - Получено новое сообщение c адреса /127.0.0.1:55679, пользователь ммм, команда add_random
+2025-06-27 03:16:22.560 [pool-3-thread-9] INFO  lab6.network.server.RequestHandlerModule - Обработан запрос от пользователя ммм, команда add_random
+2025-06-27 03:16:22.564 [pool-4-thread-2] INFO  lab6.network.server.ResponseSenderModule - Отправлен ответ на адрес /127.0.0.1:55679
+2025-06-27 03:16:22.581 [pool-2-thread-2] INFO  lab6.network.server.RequestReaderModule - Получено новое сообщение c адреса /127.0.0.1:55679, пользователь ммм, команда add_random
+2025-06-27 03:16:22.786 [pool-3-thread-10] INFO  lab6.network.server.RequestHandlerModule - Обработан запрос от пользователя ммм, команда add_random
+2025-06-27 03:16:22.791 [pool-4-thread-2] INFO  lab6.network.server.ResponseSenderModule - Отправлен ответ на адрес /127.0.0.1:55679
+2025-06-27 03:16:22.809 [pool-2-thread-2] INFO  lab6.network.server.RequestReaderModule - Получено новое сообщение c адреса /127.0.0.1:55679, пользователь ммм, команда add_random
+2025-06-27 03:16:23.059 [pool-3-thread-1] INFO  lab6.network.server.RequestHandlerModule - Обработан запрос от пользователя ммм, команда add_random
+2025-06-27 03:16:23.064 [pool-4-thread-2] INFO  lab6.network.server.ResponseSenderModule - Отправлен ответ на адрес /127.0.0.1:55679
+2025-06-27 03:16:23.092 [pool-2-thread-2] INFO  lab6.network.server.RequestReaderModule - Получено новое сообщение c адреса /127.0.0.1:55679, пользователь ммм, команда add_random
+2025-06-27 03:16:23.336 [pool-3-thread-2] INFO  lab6.network.server.RequestHandlerModule - Обработан запрос от пользователя ммм, команда add_random
+2025-06-27 03:16:23.340 [pool-4-thread-2] INFO  lab6.network.server.ResponseSenderModule - Отправлен ответ на адрес /127.0.0.1:55679
+2025-06-27 03:16:23.359 [pool-2-thread-2] INFO  lab6.network.server.RequestReaderModule - Получено новое сообщение c адреса /127.0.0.1:55679, пользователь ммм, команда add_random
+2025-06-27 03:16:23.560 [pool-3-thread-3] INFO  lab6.network.server.RequestHandlerModule - Обработан запрос от пользователя ммм, команда add_random
+2025-06-27 03:16:23.567 [pool-4-thread-2] INFO  lab6.network.server.ResponseSenderModule - Отправлен ответ на адрес /127.0.0.1:55679
+2025-06-27 03:16:23.592 [pool-2-thread-2] INFO  lab6.network.server.RequestReaderModule - Получено новое сообщение c адреса /127.0.0.1:55679, пользователь ммм, команда add_random
+2025-06-27 03:16:23.782 [pool-3-thread-4] INFO  lab6.network.server.RequestHandlerModule - Обработан запрос от пользователя ммм, команда add_random
+2025-06-27 03:16:23.788 [pool-4-thread-2] INFO  lab6.network.server.ResponseSenderModule - Отправлен ответ на адрес /127.0.0.1:55679
+2025-06-27 03:16:24.210 [pool-2-thread-2] INFO  lab6.network.server.RequestReaderModule - Получено новое сообщение c адреса /127.0.0.1:55679, пользователь ммм, команда get_commands
+2025-06-27 03:16:24.210 [pool-3-thread-5] INFO  lab6.network.server.RequestHandlerModule - Обработан запрос от пользователя ммм, команда get_commands
+2025-06-27 03:16:24.211 [pool-4-thread-2] INFO  lab6.network.server.ResponseSenderModule - Отправлен ответ на адрес /127.0.0.1:55679
+2025-06-27 03:16:24.213 [pool-2-thread-2] INFO  lab6.network.server.RequestReaderModule - Получено новое сообщение c адреса /127.0.0.1:55679, пользователь ммм, команда show
+2025-06-27 03:16:24.217 [pool-3-thread-6] INFO  lab6.network.server.RequestHandlerModule - Обработан запрос от пользователя ммм, команда show
+2025-06-27 03:16:24.224 [pool-4-thread-2] INFO  lab6.network.server.ResponseSenderModule - Отправлен ответ на адрес /127.0.0.1:55679
+2025-06-27 03:16:24.233 [pool-2-thread-2] INFO  lab6.network.server.RequestReaderModule - Получено новое сообщение c адреса /127.0.0.1:55679, пользователь ммм, команда show
+2025-06-27 03:16:24.236 [pool-3-thread-7] INFO  lab6.network.server.RequestHandlerModule - Обработан запрос от пользователя ммм, команда show
+2025-06-27 03:16:24.243 [pool-4-thread-2] INFO  lab6.network.server.ResponseSenderModule - Отправлен ответ на адрес /127.0.0.1:55679
+2025-06-27 03:16:57.506 [pool-2-thread-2] INFO  lab6.network.server.RequestReaderModule - Соединение принудительно разорвано!
+2025-06-27 03:16:57.506 [Сервер] INFO  lab6.network.server.Server - Клиент отключен
+2025-07-09 22:11:20.228 [main] INFO  lab6.network.server.RequestReaderModule - Проинициализирован модуль чтения запросов.
+2025-07-09 22:11:20.233 [main] INFO  lab6.network.server.ResponseSenderModule - Проинициализирован модуль отправки ответов.
+2025-07-09 22:11:20.239 [main] INFO  lab6.network.server.Server - Сервер инициализирован по адресу localhost/127.0.0.1:13536
+2025-07-09 22:11:20.241 [Сервер] INFO  lab6.network.server.Server - Сервер запущен по адресу localhost/127.0.0.1:13536
+2025-07-09 22:11:20.242 [Thread-0] INFO  lab6.network.server.RequestHandlerModule - Запущен модуль обработки запросов.
+2025-07-09 22:12:14.471 [Сервер] INFO  lab6.network.server.Server - Принято подключение от /127.0.0.1:59560
+2025-07-09 22:13:08.526 [pool-2-thread-1] INFO  lab6.network.server.RequestReaderModule - Получено новое сообщение c адреса /127.0.0.1:59560, пользователь bbbbb, команда reg
+2025-07-09 22:13:08.644 [pool-3-thread-1] INFO  lab6.network.server.RequestHandlerModule - Обработан запрос от пользователя bbbbb, команда reg
+2025-07-09 22:13:08.649 [pool-4-thread-1] INFO  lab6.network.server.ResponseSenderModule - Отправлен ответ на адрес /127.0.0.1:59560
+2025-07-09 22:13:08.805 [pool-2-thread-1] INFO  lab6.network.server.RequestReaderModule - Получено новое сообщение c адреса /127.0.0.1:59560, пользователь bbbbb, команда get_commands
+2025-07-09 22:13:08.809 [pool-3-thread-2] INFO  lab6.network.server.RequestHandlerModule - Обработан запрос от пользователя bbbbb, команда get_commands
+2025-07-09 22:13:08.813 [pool-4-thread-1] INFO  lab6.network.server.ResponseSenderModule - Отправлен ответ на адрес /127.0.0.1:59560
+2025-07-09 22:13:08.818 [pool-2-thread-1] INFO  lab6.network.server.RequestReaderModule - Получено новое сообщение c адреса /127.0.0.1:59560, пользователь bbbbb, команда show
+2025-07-09 22:13:08.822 [pool-3-thread-3] INFO  lab6.network.server.RequestHandlerModule - Обработан запрос от пользователя bbbbb, команда show
+2025-07-09 22:13:08.868 [pool-4-thread-1] INFO  lab6.network.server.ResponseSenderModule - Отправлен ответ на адрес /127.0.0.1:59560
+2025-07-09 22:13:08.993 [pool-2-thread-1] INFO  lab6.network.server.RequestReaderModule - Получено новое сообщение c адреса /127.0.0.1:59560, пользователь bbbbb, команда show
+2025-07-09 22:13:08.999 [pool-3-thread-4] INFO  lab6.network.server.RequestHandlerModule - Обработан запрос от пользователя bbbbb, команда show
+2025-07-09 22:13:09.022 [pool-4-thread-1] INFO  lab6.network.server.ResponseSenderModule - Отправлен ответ на адрес /127.0.0.1:59560
+2025-07-09 22:13:29.527 [pool-2-thread-1] INFO  lab6.network.server.RequestReaderModule - Получено новое сообщение c адреса /127.0.0.1:59560, пользователь bbbbb, команда show
+2025-07-09 22:13:29.530 [pool-3-thread-5] INFO  lab6.network.server.RequestHandlerModule - Обработан запрос от пользователя bbbbb, команда show
+2025-07-09 22:13:29.545 [pool-4-thread-1] INFO  lab6.network.server.ResponseSenderModule - Отправлен ответ на адрес /127.0.0.1:59560
+2025-07-09 22:13:36.350 [pool-2-thread-1] INFO  lab6.network.server.RequestReaderModule - Получено новое сообщение c адреса /127.0.0.1:59560, пользователь bbbbb, команда show
+2025-07-09 22:13:36.353 [pool-3-thread-6] INFO  lab6.network.server.RequestHandlerModule - Обработан запрос от пользователя bbbbb, команда show
+2025-07-09 22:13:36.360 [pool-4-thread-1] INFO  lab6.network.server.ResponseSenderModule - Отправлен ответ на адрес /127.0.0.1:59560
+2025-07-09 22:13:42.900 [pool-2-thread-1] INFO  lab6.network.server.RequestReaderModule - Получено новое сообщение c адреса /127.0.0.1:59560, пользователь bbbbb, команда show
+2025-07-09 22:13:42.903 [pool-3-thread-7] INFO  lab6.network.server.RequestHandlerModule - Обработан запрос от пользователя bbbbb, команда show
+2025-07-09 22:13:42.910 [pool-4-thread-1] INFO  lab6.network.server.ResponseSenderModule - Отправлен ответ на адрес /127.0.0.1:59560
+2025-07-09 22:13:48.842 [pool-2-thread-1] INFO  lab6.network.server.RequestReaderModule - Получено новое сообщение c адреса /127.0.0.1:59560, пользователь bbbbb, команда add_random
+2025-07-09 22:13:48.938 [pool-3-thread-8] INFO  lab6.network.server.RequestHandlerModule - Обработан запрос от пользователя bbbbb, команда add_random
+2025-07-09 22:13:48.944 [pool-4-thread-1] INFO  lab6.network.server.ResponseSenderModule - Отправлен ответ на адрес /127.0.0.1:59560
+2025-07-09 22:13:49.505 [pool-2-thread-1] INFO  lab6.network.server.RequestReaderModule - Получено новое сообщение c адреса /127.0.0.1:59560, пользователь bbbbb, команда add_random
+2025-07-09 22:13:49.546 [pool-3-thread-9] INFO  lab6.network.server.RequestHandlerModule - Обработан запрос от пользователя bbbbb, команда add_random
+2025-07-09 22:13:49.561 [pool-4-thread-1] INFO  lab6.network.server.ResponseSenderModule - Отправлен ответ на адрес /127.0.0.1:59560
+2025-07-09 22:14:10.361 [pool-2-thread-1] INFO  lab6.network.server.RequestReaderModule - Получено новое сообщение c адреса /127.0.0.1:59560, пользователь bbbbb, команда update
+2025-07-09 22:14:10.391 [pool-3-thread-10] INFO  lab6.network.server.RequestHandlerModule - Обработан запрос от пользователя bbbbb, команда update
+2025-07-09 22:14:10.398 [pool-4-thread-1] INFO  lab6.network.server.ResponseSenderModule - Отправлен ответ на адрес /127.0.0.1:59560
+2025-07-09 22:14:23.956 [pool-2-thread-1] INFO  lab6.network.server.RequestReaderModule - Получено новое сообщение c адреса /127.0.0.1:59560, пользователь bbbbb, команда show
+2025-07-09 22:14:23.959 [pool-3-thread-1] INFO  lab6.network.server.RequestHandlerModule - Обработан запрос от пользователя bbbbb, команда show
+2025-07-09 22:14:23.964 [pool-4-thread-1] INFO  lab6.network.server.ResponseSenderModule - Отправлен ответ на адрес /127.0.0.1:59560
+2025-07-09 22:14:29.939 [pool-2-thread-1] INFO  lab6.network.server.RequestReaderModule - Получено новое сообщение c адреса /127.0.0.1:59560, пользователь bbbbb, команда info
+2025-07-09 22:14:29.943 [pool-3-thread-2] INFO  lab6.network.server.RequestHandlerModule - Обработан запрос от пользователя bbbbb, команда info
+2025-07-09 22:14:29.949 [pool-4-thread-1] INFO  lab6.network.server.ResponseSenderModule - Отправлен ответ на адрес /127.0.0.1:59560

@@ -2,6 +2,8 @@ package lab6.ui;
 
 import java.util.*;
 
+
+
 public class LocaleManager {
     private final Map<Locale, ResourceBundle> bundles = new HashMap<>();
     private static final String BUNDLE_BASE = "i18n.locale";
@@ -12,6 +14,8 @@ public class LocaleManager {
         loadBundle(new Locale("el"));
         loadBundle(new Locale("mk"));
         loadBundle(new Locale("es"));
+
+
     }
 
 

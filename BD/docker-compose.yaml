@@ -3,11 +3,11 @@ version: '3.9'
 services:
   postgres:
     image: postgres:17
-    container_name: postgres_container
+    container_name: tg_bot_database
     environment:
       POSTGRES_USER: admin
       POSTGRES_PASSWORD: 1111
-      POSTGRES_DB: test
+      POSTGRES_DB: tg_bot
     #volumes:
     #  - postgres_data:/var/lib/postgresql/data
     ports:

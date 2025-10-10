@@ -3,7 +3,6 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.layout.HBox?>
-<?import java.net.URL?>
 <?import javafx.scene.layout.Region?>
 <VBox fx:id="tableWrap"
       xmlns="http://javafx.com/javafx"
