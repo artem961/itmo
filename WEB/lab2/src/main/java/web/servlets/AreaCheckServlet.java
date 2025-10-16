@@ -82,7 +82,7 @@ public class AreaCheckServlet extends HttpServlet {
                     point.getY(),
                     rad,
                     result,
-                    String.valueOf(endTime - startTime),
+                    String.valueOf((endTime - startTime)),
                     String.valueOf(LocalTime.now().withNano(0)));
             results.add(standartResult);
         });

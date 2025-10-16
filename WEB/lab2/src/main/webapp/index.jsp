@@ -17,9 +17,9 @@
     <tr>
         <td colspan="3">
             <header class="primary-text">
-                <h1>Лабораторная работа №1</h1>
+                <h1>Лабораторная работа №2</h1>
                 <h3>Храбров Артём Алексеевич Р3215</h3>
-                <h3>Вариант 467944</h3>
+                <h3>Вариант 73109</h3>
             </header>
         </td>
     </tr>
@@ -167,6 +167,9 @@
     </tr>
 </table>
 
+<script src="js/tools/ajax/ajax-manager.js"></script>
+<script src="js/tools/table/table-manager.js"></script>
+<script src="js/tools/validation/validator.js"></script>
 <script src="js/tools/graphics.js"></script>
 <script src="js/tools/tooltip.js"></script>
 <script src="js/tools/canvas-controller.js"></script>
@@ -174,6 +177,7 @@
 <script src="js/interactiveObjects/interactive-object.js"></script>
 <script src="js/interactiveObjects/grid.js"></script>
 <script src="js/interactiveObjects/axis.js"></script>
+<script src="js/interactiveObjects/point-object.js"></script>
 <script src="js/interactiveObjects/zones/rectangle-zone.js"></script>
 <script src="js/interactiveObjects/zones/sector-zone.js"></script>
 <script src="js/interactiveObjects/zones/triangle-zone.js"></script>

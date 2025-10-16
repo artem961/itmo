@@ -6,7 +6,7 @@ class CanvasController {
         this.isAnimating = false;
 
         canvas.addEventListener('mousemove', (e) => {
-            let position = this.getCursorPositionOnCanvas(e);
+            let position = CanvasController.getCursorPositionOnCanvas(e, this.canvas);
             this.processHover(position);
 
             if (this.checkUpdateRequests()) {
@@ -92,24 +92,24 @@ class CanvasController {
         });
     }
 
-    getCursorPositionOnCanvas(event) {
-        const rect = this.canvas.getBoundingClientRect();
-        const style = window.getComputedStyle(this.canvas);
+      static getCursorPositionOnCanvas(event, canvas) {
+        const rect = canvas.getBoundingClientRect();
+        const style = window.getComputedStyle(canvas);
         const paddingLeft = parseFloat(style.paddingLeft);
         const paddingTop = parseFloat(style.paddingTop);
 
         let x = Math.round(event.clientX - rect.left - paddingLeft - 1);
         let y = Math.round(event.clientY - rect.top - paddingTop - 1);
 
-        const centerX = this.canvas.width / 2;
-        const centerY = this.canvas.height / 2;
+        const centerX = canvas.width / 2;
+        const centerY = canvas.height / 2;
         x = x - centerX;
         y = y - centerY;
 
         return new Position(x, -y);
     }
 
-    processHover(position) {
+     processHover(position) {
         this.objects.forEach(object => {
             if (object.checkHover && object.checkPositionInObject(position)) {
                 object.setHovered(true);

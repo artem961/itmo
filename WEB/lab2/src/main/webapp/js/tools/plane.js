@@ -7,6 +7,13 @@ class Plane {
 
         this.rLabels = null;
         this.newLabels = null;
+
+        this.points = [];
+    }
+
+    addPoint(point){
+        this.points.push(point);
+        canvasController.addObject(point);
     }
 
     initObjects(){
@@ -20,16 +27,16 @@ class Plane {
 
         let grid = new Grid(canvas);
         let axis = new Axis(canvas);
-        let rect = new RectangleZone(canvas, 0, 0, widthR, heightR/2);
+        let rect = new RectangleZone(canvas, -widthR, -heightR/2, widthR, heightR/2);
         let triangle = new TriangleZone(canvas,
             new Position(0, 0),
             new Position(-widthR / 2, 0),
-            new Position(0, -heightR));
+            new Position(0, heightR));
         let sector = new SectorZone(canvas,
             new Position(0, 0),
             widthR,
-            3 * Math.PI / 2,
-            Math.PI * 2);
+            0,
+            Math.PI / 2);
 
         this.rLabels = this._initRLabels(R, shift);
         this.newLabels = this.rLabels;
@@ -47,10 +54,11 @@ class Plane {
         this.canvasController.addObject(rect);
         this.canvasController.addObject(triangle);
         this.canvasController.addObject(sector);
+        this.canvasController.addObjects(this.points);
         this.canvasController.addObject(axis);
         this.canvasController.addObject(new LabelObject(canvas, new Position(shift,  hHeight -shift*1.5), "Y"));
         this.canvasController.addObject(new LabelObject(canvas, new Position(hWidth -shift*1.5, shift), "X"));
-        canvasController.addObjects(this.rLabels);
+        this.canvasController.addObjects(this.rLabels);
     }
 
     switchLabels(newR){

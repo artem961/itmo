@@ -23,8 +23,10 @@ class Point extends GeometricShape{
     }
 
     draw(ctx, scale) {
+        ctx.beginPath();
         ctx.arc(this.position.x, this.position.y, scale, 0, 2 * Math.PI);
         ctx.fill();
+        ctx.closePath();
     }
 }
 
@@ -101,6 +103,5 @@ class Polygon extends GeometricShape{
         ctx.closePath();
     }
 }
-
 
 
