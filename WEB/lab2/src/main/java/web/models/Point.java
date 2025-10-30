@@ -14,13 +14,14 @@ public class Point {
 
     public boolean checkHit(BigDecimal r) {
         BigDecimal zero = BigDecimal.ZERO;
+        BigDecimal halfR = r.divide(BigDecimal.valueOf(2), MathContext.DECIMAL128);
 
-        if (x.compareTo(zero) >= 0 && y.compareTo(zero) >= 0 &&
-                x.compareTo(r) <= 0 && y.compareTo(r.divide(BigDecimal.valueOf(2), MathContext.DECIMAL128)) <= 0) {
+        if (x.compareTo(zero) <= 0 && y.compareTo(zero) <= 0 &&
+                x.compareTo(r.negate()) >= 0 && y.compareTo(halfR.negate()) >= 0) {
             return true;
         }
 
-        if (x.compareTo(zero) >= 0 && y.compareTo(zero) <= 0) {
+        if (x.compareTo(zero) >= 0 && y.compareTo(zero) >= 0) {
             BigDecimal xSquared = x.multiply(x);
             BigDecimal ySquared = y.multiply(y);
             BigDecimal rSquared = r.multiply(r);
@@ -31,9 +32,9 @@ public class Point {
             }
         }
 
-        if (x.compareTo(zero) <= 0 && y.compareTo(zero) <= 0) {
-            BigDecimal rightSide = BigDecimal.valueOf(-2).multiply(x).subtract(r);
-            if (y.compareTo(rightSide) >= 0) {
+        if (x.compareTo(zero) <= 0 && y.compareTo(zero) >= 0) {
+            BigDecimal func = x.multiply(BigDecimal.valueOf(2)).add(r);
+            if (y.compareTo(func) <= 0) {
                 return true;
             }
         }

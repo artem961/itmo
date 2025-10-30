@@ -12,6 +12,7 @@ class Plane {
     }
 
     addPoint(point){
+        point.setCurrentR(this.R);
         this.points.push(point);
         canvasController.addObject(point);
     }
@@ -54,8 +55,8 @@ class Plane {
         this.canvasController.addObject(rect);
         this.canvasController.addObject(triangle);
         this.canvasController.addObject(sector);
-        this.canvasController.addObjects(this.points);
         this.canvasController.addObject(axis);
+        this.canvasController.addObjects(this.points);
         this.canvasController.addObject(new LabelObject(canvas, new Position(shift,  hHeight -shift*1.5), "Y"));
         this.canvasController.addObject(new LabelObject(canvas, new Position(hWidth -shift*1.5, shift), "X"));
         this.canvasController.addObjects(this.rLabels);
@@ -98,8 +99,9 @@ class Plane {
         }
 
         canvasController.addObjects(this.newLabels);
-        canvasController.updateFrame();
         this.R = newR;
+        this._scalePoints();
+        canvasController.updateFrame();
     }
 
     _initRLabels(R, shift){
@@ -128,5 +130,11 @@ class Plane {
                 new LabelObject(canvas, new Position(widthR / 2, shift), "R/2"),
                 new LabelObject(canvas, new Position(-widthR / 2, shift), "-R/2")]
         }
+    }
+
+    _scalePoints(){
+        this.points.forEach((point) => {
+            point.setCurrentR(this.R);
+        })
     }
 }

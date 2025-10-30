@@ -106,6 +106,31 @@ canvas {
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
+select {
+    width: 60%;
+    padding: 1rem 0.5rem;
+    border-radius: var(--radius-m);
+    border: 2px solid var(--accent-color);
+    background-color: var(--background-color);
+    color: var(--primary-text-color);
+    cursor: pointer;
+}
+
+select option {
+    background-color: var(--background-color);
+    color: var(--primary-text-color);
+    padding: 0.5rem;
+}
+
+select option:hover {
+    border-color: var(--accent-color);
+}
+
+select option:checked {
+    background-color: var(--secondary-accent-color);
+    color: var(--on-accent-text-color);
+}
+
 .r-group ul {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -237,6 +262,48 @@ canvas {
     transform: translateY(0);
 }
 
+.x-group input[type="button"] {
+    border-radius: var(--radius-m);
+    text-align: center;
+    padding: 1rem 0.5rem;
+    cursor: pointer;
+    background-color: var(--background-color);
+    border: 2px solid var(--accent-color);
+    transition: all 0.3s ease;
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--primary-text-color);
+}
+
+.x-group input[type="button"]:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    z-index: 2;
+}
+
+.x-group input[type="button"]:active{
+    background-color: var(--accent-color);
+    color: var(--on-accent-text-color);
+    border-color: var(--secondary-accent-color);
+    font-weight: 600;
+    transform: none;
+    scale: 0.98;
+}
+
+.x-group input[type="button"]:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(var(--accent-color), 0.3);
+}
+
+.x-group input[type="button"].selected {
+    background-color: var(--accent-color);
+    color: var(--on-accent-text-color);
+    border-color: var(--secondary-accent-color);
+    font-weight: 600;
+    transform: none;
+    scale: 0.98;
+}
+
 .y-group input[type="text"] {
     background-color: var(--background-color);
     border: 2px solid var(--accent-color);
@@ -335,6 +402,7 @@ button:disabled {
 .table-wrapper {
     overflow-y: auto;
     height: 670px;
+    width: 600px;
     border-radius: var(--radius-l);
     background: var(--background-color);
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);

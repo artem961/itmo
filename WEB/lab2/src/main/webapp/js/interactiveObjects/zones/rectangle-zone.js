@@ -25,7 +25,7 @@ class RectangleZone extends InteractiveObject {
         let rectangle = new Polygon([
             new Position(x, y),
             new Position(x, y + height),
-            new Position(x + width, height),
+            new Position(x + width, y + height),
             new Position(x + width, y)
         ]);
 

@@ -2,6 +2,8 @@
 <%@ page import="java.io.IOException" %>
 <%@ page import="web.tools.http.StandartCalcResult" %>
 <%@ page import="java.util.Collections" %>
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.ArrayList" %>
 <%@ page pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -31,55 +33,13 @@
             <div id="r-container">
                 <div id="r-label" class="label primary-text">R</div>
                 <div id="r-group" class="r-group">
-                    <ul>
-                        <li>
-                            <input type="checkbox" name="r" id="r1" value="1" checked>
-                            <label for="r1" class="checkbox-item">
-                                <span class="custom-checkbox"></span>
-                                <span class="label-text">1</span>
-                            </label>
-                        </li>
-
-                        <li>
-                            <input type="checkbox" name="r" id="r1_5" value="1.5">
-                            <label for="r1_5" class="checkbox-item">
-                                <span class="custom-checkbox"></span>
-                                <span class="label-text">1.5</span>
-                            </label>
-                        </li>
-
-                        <li>
-                            <input type="checkbox" name="r" id="r2" value="2">
-                            <label for="r2" class="checkbox-item">
-                                <span class="custom-checkbox"></span>
-                                <span class="label-text">2</span>
-                            </label>
-                        </li>
-
-                        <li>
-                            <input type="checkbox" name="r" id="r2_5" value="2.5">
-                            <label for="r2_5" class="checkbox-item">
-                                <span class="custom-checkbox"></span>
-                                <span class="label-text">2.5</span>
-                            </label>
-                        </li>
-
-                        <li>
-                            <input type="checkbox" name="r" id="r3" value="3">
-                            <label for="r3" class="checkbox-item">
-                                <span class="custom-checkbox"></span>
-                                <span class="label-text">3</span>
-                            </label>
-                        </li>
-
-                        <li>
-                            <input type="checkbox" name="r" id="r5" value="5">
-                            <label for="r5" class="checkbox-item">
-                                <span class="custom-checkbox"></span>
-                                <span class="label-text">5</span>
-                            </label>
-                        </li>
-                    </ul>
+                    <select id="r">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
                 </div>
             </div>
 
@@ -123,32 +83,23 @@
             <div class="menu">
                 <div class="label primary-text">X</div>
                 <div id="x-group" class="x-group primary-text">
-                    <input type="radio" name="x" id="x-5" value="-5">
-                    <label for="x-5">-5</label>
+                    <input type="button" name="x" id="x-4" value="-4">
 
-                    <input type="radio" name="x" id="x-4" value="-4">
-                    <label for="x-4">-4</label>
+                    <input type="button" name="x" id="x-3" value="-3">
 
-                    <input type="radio" name="x" id="x-3" value="-3">
-                    <label for="x-3">-3</label>
+                    <input type="button" name="x" id="x-2" value="-2">
 
-                    <input type="radio" name="x" id="x-2" value="-2">
-                    <label for="x-2">-2</label>
+                    <input type="button" name="x" id="x-1" value="-1">
 
-                    <input type="radio" name="x" id="x-1" value="-1">
-                    <label for="x-1">-1</label>
+                    <input type="button" name="x" id="x0" value="0" class="selected">
 
-                    <input type="radio" name="x" id="x0" value="0" checked>
-                    <label for="x0">0</label>
+                    <input type="button" name="x" id="x1" value="1">
 
-                    <input type="radio" name="x" id="x1" value="1">
-                    <label for="x1">1</label>
+                    <input type="button" name="x" id="x2" value="2">
 
-                    <input type="radio" name="x" id="x2" value="2">
-                    <label for="x2">2</label>
+                    <input type="button" name="x" id="x3" value="3">
 
-                    <input type="radio" name="x" id="x3" value="3">
-                    <label for="x3">3</label>
+                    <input type="button" name="x" id="x4" value="4">
                 </div>
                 <div class="label primary-text">Y</div>
                 <div id="y-group" class="y-group">
@@ -186,6 +137,5 @@
 <script src="js/tools/plane.js"></script>
 <script src="js/main.js"></script>
 <script src="js/menu.js"></script>
-
 </body>
 </html>

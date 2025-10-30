@@ -1,12 +1,17 @@
 class PointObject extends InteractiveObject {
-    constructor(canvas, x, y) {
+    constructor(canvas, x, y, r) {
         super(canvas);
         this.x = x;
         this.y = y;
+        this.r = r
 
-        this.hitColor = 'rgb(64,223,83)';
-        this.missedColor = 'rgb(253,61,61)';
+      //  this.hitColor = 'rgb(64,223,83)';
+       // this.missedColor = 'rgb(253,61,61)';
+        this.hitColor = 'rgb(51,51,51)';
+        this.missedColor = this.hitColor;
         this.hit = false;
+
+        this.currentR = this.r;
     }
 
     draw() {
@@ -15,8 +20,11 @@ class PointObject extends InteractiveObject {
         } else{
             this.context.fillStyle = this.missedColor;
         }
+        const scale = (this.r / this.currentR);
+        let convertedX = this.x * canvas.width/3 * scale;
+        let convertedY = this.y * canvas.height/3 * scale;
 
-        let point = new Point(new Position(this.x, this.y).convert(canvas))
+        let point = new Point(new Position(convertedX, convertedY).convert(canvas))
         point.draw(this.context, 3);
     }
 
@@ -29,4 +37,15 @@ class PointObject extends InteractiveObject {
     setHit(isHit){
         this.hit = isHit;
     }
+
+    setCurrentR(currentR){
+        this.currentR = currentR;
+    }
+}
+
+function createPoint(canvas, x, y, r, result){
+    let point = new PointObject(canvas, x, y, r);
+    point.setHit(result);
+
+    return point;
 }

@@ -14,10 +14,7 @@ async function endSession(){
 
 async function sendRequest(x, y, r) {
     //const api = 'http://localhost:8080/fcgi-bin/server.jar';
-    let query = `${api}/start?x=${x}&y=${y}`
-    r.forEach(rad => {
-        query += `&r=${rad}`;
-    })
+    let query = `${api}/start?x=${x}&y=${y}&r=${r}`
 
     let response = await fetch(query);
 
