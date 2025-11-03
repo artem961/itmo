@@ -43,6 +43,18 @@
                 </div>
             </div>
 
+            <div id="checkbox-container">
+                <ul>
+                    <li>
+                        <input type="checkbox" name="redirect" id="redirect" checked>
+                        <label for="redirect" class="checkbox-item">
+                            <span class="custom-checkbox"></span>
+                            <span class="label-text">Перенаправлять</span>
+                        </label>
+                    </li>
+                </ul>
+            </div>
+
         </td>
         <td class="table-column">
             <div class="table-wrapper">
@@ -64,12 +76,18 @@
                             for (StandartCalcResult res : resultsArray.results()) {
                     %>
                     <tr>
-                        <td><%= res.x() %></td>
-                        <td><%= res.y() %></td>
-                        <td><%= res.r() %></td>
-                        <td data-result=<%=res.result()%>><%= res.result() %></td>
-                        <td><%= res.time() %></td>
-                        <td><%= res.currentTime() %></td>
+                        <td><%= res.x() %>
+                        </td>
+                        <td><%= res.y() %>
+                        </td>
+                        <td><%= res.r() %>
+                        </td>
+                        <td data-result=<%=res.result()%>><%= res.result() %>
+                        </td>
+                        <td><%= res.time() %>
+                        </td>
+                        <td><%= res.currentTime() %>
+                        </td>
                     </tr>
                     <%
                             }

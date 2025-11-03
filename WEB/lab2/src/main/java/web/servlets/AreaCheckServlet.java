@@ -29,7 +29,7 @@ import java.util.stream.Collectors;
 public class AreaCheckServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        try{
+        try {
             BigDecimal x = Validator.parseNumber(req.getParameter("x"));
             BigDecimal y = Validator.parseNumber(req.getParameter("y"));
             List<BigDecimal> r = Arrays.stream(req.getParameterValues("r"))
@@ -38,23 +38,17 @@ public class AreaCheckServlet extends HttpServlet {
 
             Point point = new Point(x, y);
             List<StandartCalcResult> results = checkHits(point, r);
+            saveInSession(req, results);
 
-            if (req.getSession().getAttribute("results") != null) {
-                CalcResultsArray resultsArray = (CalcResultsArray) req.getSession().getAttribute("results");
-                List<StandartCalcResult> reverseResults = new ArrayList<>(results);
-                Collections.reverse(reverseResults);
-                resultsArray.results().addAll(0, reverseResults);
-                req.getSession().setAttribute("results", resultsArray);
+            if (req.getParameter("redirect") != null && req.getParameter("redirect").equals("true")) {
+                resp.sendRedirect("results.jsp");
             } else{
-                req.getSession().setAttribute("results", new CalcResultsArray(results));
+                resp.setContentType("application/json");
+                resp.setCharacterEncoding("UTF-8");
+                resp.getWriter().write(new CalcResultsArray(results).toJson());
+                resp.setStatus(StatusCode.OK.getStatusCode());
             }
-
-            CalcResultsArray answer = new CalcResultsArray(results);
-            resp.setContentType("application/json");
-            resp.setCharacterEncoding("UTF-8");
-            resp.getWriter().write(answer.toJson());
-            resp.setStatus(StatusCode.OK.getStatusCode());
-        } catch (ServerException e){
+        } catch (ServerException e) {
             sendError(req, resp, e);
         } catch (Exception e) {
             sendError(req, resp, new ServerException(StatusCode.INTERNAL_SERVER_ERROR, e.getMessage()));
@@ -68,7 +62,7 @@ public class AreaCheckServlet extends HttpServlet {
         resp.getWriter().print(e.toJson());
     }
 
-    private List<StandartCalcResult> checkHits(Point point, List<BigDecimal> r){
+    private List<StandartCalcResult> checkHits(Point point, List<BigDecimal> r) {
         List<StandartCalcResult> results = new ArrayList<>();
 
 
@@ -87,5 +81,17 @@ public class AreaCheckServlet extends HttpServlet {
             results.add(standartResult);
         });
         return results;
+    }
+
+    private void saveInSession(HttpServletRequest req, List<StandartCalcResult> results) {
+        if (req.getSession().getAttribute("results") != null) {
+            CalcResultsArray resultsArray = (CalcResultsArray) req.getSession().getAttribute("results");
+            List<StandartCalcResult> reverseResults = new ArrayList<>(results);
+            Collections.reverse(reverseResults);
+            resultsArray.results().addAll(0, reverseResults);
+            req.getSession().setAttribute("results", resultsArray);
+        } else {
+            req.getSession().setAttribute("results", new CalcResultsArray(results));
+        }
     }
 }

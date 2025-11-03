@@ -41,6 +41,7 @@ submitButton.addEventListener('click', () => {
 
 rSelect.addEventListener('change', () => {
     let r = rSelect.options[rSelect.selectedIndex].value;
+    addPointsToCanvas();
     plane.switchLabels(r);
 });
 

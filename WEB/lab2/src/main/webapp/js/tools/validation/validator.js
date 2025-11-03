@@ -6,8 +6,8 @@ function validateAndShowTooltips() {
     if (!validateNumberInString(y)) {
         showTooltip("Введите целое или дробное число!", yField);
         valid = false;
-    } else if (!validateRange(y, -5, 3)) {
-        showTooltip("Диапазон значений y -5 ... 3", yField);
+    } else if (!validateRange(y, -3, 3)) {
+        showTooltip("Диапазон значений y -3 ... 3", yField);
         valid = false;
     }
 

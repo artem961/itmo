@@ -25,6 +25,12 @@ public class Accordion extends SimpleTagSupport {
     public void doTag() throws JspException, IOException {
         JspWriter out = getJspContext().getOut();
 
+        if (getJspContext().getAttribute("scriptsIncluded") != Boolean.TRUE ) {
+            out.print(includeScripts());
+            getJspContext().setAttribute("scriptsIncluded", Boolean.TRUE);
+        }
+
+
         StringWriter writer = new StringWriter();
         getJspBody().invoke(writer);
         String data = writer.toString();
@@ -32,7 +38,6 @@ public class Accordion extends SimpleTagSupport {
         this.id = this.id == null ? String.valueOf(Math.abs(new Random(System.nanoTime()).nextInt())) : this.id;
 
         out.print(String.format("<div class=\"accordion\" id=\"%s\">", id));
-
         List<AccordionItem> items = parseData(data);
         if (items.isEmpty()) {
 
@@ -45,7 +50,6 @@ public class Accordion extends SimpleTagSupport {
                 }
             });
         }
-
         out.print("</div>");
 
         out.print(initJSAccordionObject(mode, expanded));
@@ -74,6 +78,13 @@ public class Accordion extends SimpleTagSupport {
         js.append("\n<script>");
         js.append(String.format("\tnew Accordion(document.getElementById(\"%s\"), \"%s\", \"%s\");", this.id, mode, expanded));
         js.append("</script>\n");
+
+        return js.toString();
+    }
+
+    private String includeScripts(){
+        StringBuilder js = new StringBuilder();
+        js.append("\n<script src=\"accordion/accordion.js\"></script>");
 
         return js.toString();
     }

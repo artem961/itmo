@@ -6,7 +6,6 @@
     <link rel="stylesheet" href="accordion/accordion.css">
 </head>
 <body>
-<script src="accordion/accordion.js"></script>
 
 <ui:accordion mode="single" expanded="1, 2">
     [TITLE]Заголовок 1[/TITLE]

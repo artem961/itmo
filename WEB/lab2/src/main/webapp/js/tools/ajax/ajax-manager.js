@@ -8,19 +8,41 @@ async function endSession(){
     if (response.ok) {
         return response.json();
     } else {
-        alert(`HTTP Error! ${response.message}`);
+        showError(`HTTP Error! ${response.message}`);
     }
 }
 
-async function sendRequest(x, y, r) {
-    //const api = 'http://localhost:8080/fcgi-bin/server.jar';
-    let query = `${api}/start?x=${x}&y=${y}&r=${r}`
+async function getHistory(){
+    let query = `${api}/history`
 
     let response = await fetch(query);
 
-    if (response.ok) {
-        return response.json();
+    if (response.ok){
+        return response.json()
     } else {
-        alert(`HTTP Error! ${response.message}`);
+        showError(response.message);
     }
+}
+
+async function sendRequest(x, y, r, redirect=false) {
+    //const api = 'http://localhost:8080/fcgi-bin/server.jar';
+    let query = `${api}/start?x=${x}&y=${y}&r=${r}&redirect=${redirect}`
+
+    let response = await fetch(query, {
+        redirect: "follow"
+    });
+
+    if (response.redirected){
+        window.location.href = response.url;
+    } else{
+        if (response.ok) {
+            return response.json();
+        } else {
+            showError(`HTTP Error! ${response.message}`);
+        }
+    }
+}
+
+function showError(message){
+    alert(message);
 }

@@ -131,13 +131,13 @@ select option:checked {
     color: var(--on-accent-text-color);
 }
 
-.r-group ul {
+ul {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 10px;
 }
 
-.r-group li {
+li {
     list-style: none;
     background-color: var(--primary-color);
     border: var(--border-s) solid var(--accent-color);
@@ -146,7 +146,7 @@ select option:checked {
     cursor: pointer;
 }
 
-.r-group li:hover {
+li:hover {
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
@@ -159,7 +159,7 @@ select option:checked {
     padding: 1rem;
 }
 
-.r-group input[type="checkbox"] {
+input[type="checkbox"] {
     position: absolute;
     opacity: 0;
 }
@@ -175,12 +175,12 @@ select option:checked {
     justify-content: center;
 }
 
-.r-group input[type="checkbox"]:checked + .checkbox-item .custom-checkbox {
+input[type="checkbox"]:checked + .checkbox-item .custom-checkbox {
     background-color: var(--secondary-accent-color);
     border-color: var(--secondary-accent-color);
 }
 
-.r-group input[type="checkbox"]:checked + .checkbox-item .custom-checkbox::after {
+input[type="checkbox"]:checked + .checkbox-item .custom-checkbox::after {
     content: '✓';
     color: white;
     font-size: 12px;
@@ -191,6 +191,17 @@ select option:checked {
     font-size: 14pt;
     font-weight: 500;
     color: var(--primary-text-color);
+}
+
+#checkbox-container{
+    text-align: center;
+    padding: 20px;
+}
+
+#checkbox-container ul{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .menu-column{

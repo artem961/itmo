@@ -17,6 +17,11 @@ class Plane {
         canvasController.addObject(point);
     }
 
+    clearPoints(){
+        canvasController.removeObjects(this.points);
+        this.points = [];
+    }
+
     initObjects(){
         let R = this.R;
 
