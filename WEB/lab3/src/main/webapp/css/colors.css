@@ -1,0 +1,21 @@
+:root {
+    --background-color: rgb(255, 255, 255);
+    --primary-color: rgb(237, 243, 248);
+    --accent-color: rgb(176, 199, 221);
+    --secondary-accent-color: rgb(142, 170, 197);
+
+    --primary-text-color: rgb(33, 33, 33);
+    --secondary-text-color: rgb(117, 117, 117);
+    --on-accent-text-color: rgb(255, 255, 255);
+
+    --success-color: rgb(92, 179, 116);
+    --warning-color: rgb(220, 163, 78);
+    --danger-color: rgb(214, 97, 95);
+
+    --paper-color: #F2F0F4;
+
+
+    --tooltip-accent: rgb(225, 75, 75);
+    --tooltip-secondary: rgb(200, 45, 45);
+    --tooltip-glow: rgba(225, 75, 75, 0.4);
+}

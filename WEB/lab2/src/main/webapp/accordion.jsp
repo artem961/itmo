@@ -24,5 +24,6 @@
     [TITLE]Заголовок 3[/TITLE]
     [CONTENT]Содержимое тега аккордион 3[/CONTENT]
 </ui:accordion>
+
 </body>
 </html>

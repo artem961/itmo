@@ -90,6 +90,7 @@ public class AreaCheckServlet extends HttpServlet {
             Collections.reverse(reverseResults);
             resultsArray.results().addAll(0, reverseResults);
             req.getSession().setAttribute("results", resultsArray);
+
         } else {
             req.getSession().setAttribute("results", new CalcResultsArray(results));
         }

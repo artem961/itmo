@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<!--suppress ALL -->
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+<h:head>
+    <title>lab3</title>
+    <link rel="stylesheet" href="css/colors.css"></link>
+    <link rel="stylesheet" href="css/main.css"></link>
+</h:head>
+<h:body>
+    <table class="main-table">
+        <tr>
+            <td colspan="3">
+                <header class="primary-text">
+                    <h1>Лабораторная работа №3</h1>
+                    <h3>Храбров Артём Алексеевич Р3215</h3>
+                    <h3>Вариант 27833</h3>
+                </header>
+            </td>
+        </tr>
+        <tr>
+            <td class="canvas-column">
+                <div id="canvas-container">
+                    <canvas id="canvas" width="400" height="400"></canvas>
+                </div>
+                <div id="r-container">
+                    <div id="r-label" class="label primary-text">R</div>
+                    <div id="r-group" class="r-group">
+                        <select id="r">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                    </div>
+                </div>
+            </td>
+            <td class="table-column">
+                <div class="table-wrapper">
+                    <table class="table" id="results">
+                        <thead class="primary-text">
+                        <tr>
+                            <th>X</th>
+                            <th>Y</th>
+                            <th>R</th>
+                            <th>Результат</th>
+                            <th>Время выполнения</th>
+                            <th>Время</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        </tbody>
+                    </table>
+                </div>
+            </td>
+            <td class="menu-column">
+                <div class="menu">
+                    <h:form>
+                        <div class="label primary-text">X</div>
+                        <div id="x-group" class="x-group primary-text">
+
+                            <input type="button" name="x" id="x-3" value="-3"></input>
+
+                            <input type="button" name="x" id="x-2" value="-2"></input>
+
+                            <input type="button" name="x" id="x-1" value="-1"></input>
+
+                            <input type="button" name="x" id="x0" value="0" class="selected"></input>
+
+                            <input type="button" name="x" id="x1" value="1"></input>
+
+                            <input type="button" name="x" id="x2" value="2"></input>
+
+                            <input type="button" name="x" id="x3" value="3"></input>
+
+                            <input type="button" name="x" id="x4" value="4"></input>
+                        </div>
+                        <div class="label primary-text">Y</div>
+                        <div id="y-group" class="y-group">
+                            <h:inputText id="y" name="y" value="#{checkHitBean.y}" maxlength="7"></h:inputText>
+                            <h:outputLabel for="y" value=""/>
+                        </div>
+
+                        <div id="b-group" class="b-group">
+                            <h:commandButton value="Отправить" action="#{checkHitBean.calcResults}"/>
+                        </div>
+                    </h:form>
+                </div>
+
+                <div class="settings">
+                    <button class="button-secondary" type="submit" id="clear">Очистить</button>
+                </div>
+            </td>
+        </tr>
+    </table>
+
+
+    <script src="js/tools/ajax/ajax-manager.js"></script>
+    <script src="js/tools/table/table-manager.js"></script>
+    <script src="js/tools/validation/validator.js"></script>
+    <script src="js/tools/graphics.js"></script>
+    <script src="js/tools/tooltip.js"></script>
+    <script src="js/tools/canvas-controller.js"></script>
+
+    <script src="js/interactiveObjects/interactive-object.js"></script>
+    <script src="js/interactiveObjects/grid.js"></script>
+    <script src="js/interactiveObjects/axis.js"></script>
+    <script src="js/interactiveObjects/point-object.js"></script>
+    <script src="js/interactiveObjects/zones/rectangle-zone.js"></script>
+    <script src="js/interactiveObjects/zones/sector-zone.js"></script>
+    <script src="js/interactiveObjects/zones/triangle-zone.js"></script>
+    <script src="js/interactiveObjects/label.js"></script>
+
+    <script src="js/tools/plane.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/menu.js"></script>
+</h:body>
+</html>
