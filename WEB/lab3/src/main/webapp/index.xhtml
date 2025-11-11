@@ -1,86 +1,76 @@
 <!DOCTYPE html>
 <!--suppress ALL -->
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
 <h:head>
     <title>lab3</title>
     <link rel="stylesheet" href="css/colors.css"></link>
     <link rel="stylesheet" href="css/main.css"></link>
 </h:head>
 <h:body>
-    <table class="main-table">
-        <tr>
-            <td colspan="3">
-                <header class="primary-text">
-                    <h1>Лабораторная работа №3</h1>
-                    <h3>Храбров Артём Алексеевич Р3215</h3>
-                    <h3>Вариант 27833</h3>
-                </header>
-            </td>
-        </tr>
-        <tr>
-            <h:form>
+    <h:form>
+        <table class="main-table">
+            <tr>
+                <td colspan="3">
+                    <header class="primary-text">
+                        <h1>Лабораторная работа №3</h1>
+                        <h3>Храбров Артём Алексеевич Р3215</h3>
+                        <h3>Вариант 27833</h3>
+                    </header>
+                </td>
+            </tr>
+            <tr>
                 <h:commandButton id="navButton" action="toMain" value="Главная"/>
-            </h:form>
-        </tr>
-        <tr>
-            <td class="canvas-column">
-                <div id="canvas-container">
-                    <canvas id="canvas" width="400" height="400"></canvas>
-                </div>
-                <div id="r-container">
-                    <div id="r-label" class="label primary-text">R</div>
-                    <div id="r-group" class="r-group">
-                        <select id="r">
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                        </select>
+            </tr>
+            <tr>
+                <td class="canvas-column">
+                    <div id="canvas-container">
+                        <canvas id="canvas" width="400" height="400"></canvas>
                     </div>
-                </div>
-            </td>
-            <td class="table-column">
-                <div class="table-wrapper">
-                    <table class="table" id="results">
-                        <thead class="primary-text">
-                        <tr>
-                            <th>X</th>
-                            <th>Y</th>
-                            <th>R</th>
-                            <th>Результат</th>
-                            <th>Время выполнения</th>
-                            <th>Время</th>
-                        </tr>
-                        </thead>
-                        <tbody>
+                    <div id="r-container">
+                        <div id="r-label" class="label primary-text">R</div>
+                        <div id="r-group" class="r-group">
 
-                        </tbody>
-                    </table>
-                </div>
-            </td>
-            <td class="menu-column">
-                <div class="menu">
-                    <h:form>
+                            <h:outputLabel for="rValues" value="R:"/>
+                            <p:selectManyCheckbox id="rValues" value="#{checkHitBean.r}" layout="grid" columns="5">
+                                <f:converter converterId="jakarta.faces.BigDecimal" />
+                                <f:selectItem itemValue="1.0" itemLabel="1"/>
+                                <f:selectItem itemValue="2.0" itemLabel="2"/>
+                                <f:selectItem itemValue="3.0" itemLabel="3"/>
+                                <f:selectItem itemValue="4.0" itemLabel="4"/>
+                                <f:selectItem itemValue="5.0" itemLabel="5"/>
+                            </p:selectManyCheckbox>
+                        </div>
+                    </div>
+                </td>
+                <td class="table-column">
+                    <div class="table-wrapper">
+                        <table class="table" id="results">
+                            <thead class="primary-text">
+                            <tr>
+                                <th>X</th>
+                                <th>Y</th>
+                                <th>R</th>
+                                <th>Результат</th>
+                                <th>Время выполнения</th>
+                                <th>Время</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </td>
+                <td class="menu-column">
+                    <div class="menu">
+
                         <div class="label primary-text">X</div>
                         <div id="x-group" class="x-group primary-text">
-
-                            <input type="button" name="x" id="x-3" value="-3"></input>
-
-                            <input type="button" name="x" id="x-2" value="-2"></input>
-
-                            <input type="button" name="x" id="x-1" value="-1"></input>
-
-                            <input type="button" name="x" id="x0" value="0" class="selected"></input>
-
-                            <input type="button" name="x" id="x1" value="1"></input>
-
-                            <input type="button" name="x" id="x2" value="2"></input>
-
-                            <input type="button" name="x" id="x3" value="3"></input>
-
-                            <input type="button" name="x" id="x4" value="4"></input>
+                            <h:inputText id="x" value="#{checkHitBean.x}"/>
+                            <p:slider for="x"/>
                         </div>
                         <div class="label primary-text">Y</div>
                         <div id="y-group" class="y-group">
@@ -91,15 +81,17 @@
                         <div id="b-group" class="b-group">
                             <h:commandButton value="Отправить" action="#{checkHitBean.calcResults}"/>
                         </div>
-                    </h:form>
-                </div>
+                        <h:outputText value="#{checkHitBean.message}"></h:outputText>
 
-                <div class="settings">
-                    <button class="button-secondary" type="submit" id="clear">Очистить</button>
-                </div>
-            </td>
-        </tr>
-    </table>
+                    </div>
+
+                    <div class="settings">
+                        <button class="button-secondary" type="submit" id="clear">Очистить</button>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </h:form>
 
 
     <script src="js/tools/ajax/ajax-manager.js"></script>

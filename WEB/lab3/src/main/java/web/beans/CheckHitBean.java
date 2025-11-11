@@ -14,6 +14,7 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.logging.Level;
 
 @Named
 @RequestScoped
@@ -24,11 +25,18 @@ public class CheckHitBean {
     private BigDecimal x;
     private List<BigDecimal> r;
     private List<StandartCalcResult> results;
+    private String message;
 
     public void calcResults() {
-        log.info(y.toString() + " " + x.toString() + " " + Arrays.toString(r.toArray()));
-        Point point = new Point(this.x, this.y);
-        this.results = checkHits(point, this.r);
+        try {
+            log.info(y.toString() + " " + x.toString() + " " + Arrays.toString(r.toArray()));
+            Point point = new Point(this.x, this.y);
+            this.results = checkHits(point, this.r);
+            log.info(Arrays.toString(this.results.toArray()));
+        } catch (Exception e) {
+            log.log(Level.SEVERE, e.toString(), e);
+            this.message = e.getMessage();
+        }
     }
 
     private List<StandartCalcResult> checkHits(Point point, List<BigDecimal> r) {
