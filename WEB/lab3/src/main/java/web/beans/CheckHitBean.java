@@ -1,20 +1,21 @@
 package web.beans;
 
 
+import jakarta.enterprise.context.RequestScoped;
+import jakarta.inject.Named;
 import lombok.Data;
 import lombok.extern.java.Log;
 import web.models.Point;
 import web.models.StandartCalcResult;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+
 import java.math.BigDecimal;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-@ManagedBean
+@Named
 @RequestScoped
 @Data
 @Log

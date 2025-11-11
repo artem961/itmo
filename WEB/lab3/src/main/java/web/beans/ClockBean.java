@@ -1,25 +1,26 @@
 package web.beans;
 
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Named;
 import lombok.Data;
 import lombok.extern.java.Log;
 
-import javax.faces.bean.ApplicationScoped;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
-import javax.faces.bean.ViewScoped;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
-@ManagedBean
-@ViewScoped
+@Named
+@ApplicationScoped
 @Data
+@Log
 public class ClockBean {
-    private LocalDateTime currentTime;
+    private String currentTime;
+    private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
     {
-        currentTime = LocalDateTime.now();
+        updateCurrentTime();
     }
 
     public void updateCurrentTime() {
-        currentTime = LocalDateTime.now();
+        currentTime = formatter.format(LocalDateTime.now()).toString();
     }
 }

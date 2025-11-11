@@ -2,7 +2,8 @@
 <!--suppress ALL -->
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ace="http://www.icefaces.org/icefaces/components">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
 <h:head>
     <title>lab3</title>
     <link rel="stylesheet" href="css/colors.css"></link>
@@ -22,17 +23,17 @@
         <tr>
             <td class="main-column">
                 <div id="main-container">
+                    <h:form>
                     <div id="clock-container">
                         <h:outputText id="clock" value="#{clockBean.currentTime}"/>
-                        <ace:poll interval="3000" listener="#{clockBean.updateCurrentTime()}" render="clock"/>
+
                     </div>
-                    <h:form>
-                        <h:commandButton id="submit" action="toIndex" value="График"/>
+                        <h:commandButton id="navButton" action="toIndex" value="График"/>
+                        <p:poll interval="3" listener="#{clockBean.updateCurrentTime}" update="clock"/>
                     </h:form>
                 </div>
             </td>
         </tr>
     </table>
-
 </h:body>
 </html>

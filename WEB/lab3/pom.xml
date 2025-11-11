@@ -14,23 +14,26 @@
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <version.mojarra>2.3.9</version.mojarra>
-        <version.icefaces>3.3.0</version.icefaces>
+        <version.jakarta.faces>4.0.1</version.jakarta.faces>
+        <version.primefaces>12.0.0</version.primefaces>
         <version.lombok>1.18.24</version.lombok>
+        <version.jakarta.servlet>6.0.0</version.jakarta.servlet>
+        <version.jakartaee.api>10.0.0</version.jakartaee.api> <!-- Добавить общий API Jakarta EE -->
     </properties>
 
     <dependencies>
         <dependency>
             <groupId>org.glassfish</groupId>
-            <artifactId>javax.faces</artifactId>
-            <version>${version.mojarra}</version>
+            <artifactId>jakarta.faces</artifactId>
+            <version>${version.jakarta.faces}</version>
             <scope>compile</scope>
         </dependency>
 
         <dependency>
-            <groupId>org.icefaces</groupId>
-            <artifactId>icefaces</artifactId>
-            <version>${version.icefaces}</version>
+            <groupId>org.primefaces</groupId>
+            <artifactId>primefaces</artifactId>
+            <version>${version.primefaces}</version>
+            <classifier>jakarta</classifier>
         </dependency>
 
         <dependency>
@@ -41,9 +44,26 @@
         </dependency>
 
         <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>javax.servlet-api</artifactId>
-            <version>3.1.0</version>
+            <groupId>jakarta.servlet</groupId>
+            <artifactId>jakarta.servlet-api</artifactId>
+            <version>${version.jakarta.servlet}</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- Дополнительно можно добавить общую зависимость на Jakarta EE API,
+             хотя jakarta.faces и jakarta.servlet-api часто достаточно.
+             Это полезно для других Jakarta API, например, CDI. -->
+        <dependency>
+            <groupId>jakarta.platform</groupId>
+            <artifactId>jakarta.jakartaee-api</artifactId>
+            <version>${version.jakartaee.api}</version>
+            <scope>provided</scope>
+        </dependency>
+        <!-- Для CDI -->
+        <dependency>
+            <groupId>jakarta.enterprise</groupId>
+            <artifactId>jakarta.enterprise.cdi-api</artifactId>
+            <version>4.0.1</version> <!-- Соответствует Jakarta EE 10 -->
             <scope>provided</scope>
         </dependency>
     </dependencies>
@@ -54,19 +74,22 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.8.1</version>
+                <version>3.11.0</version> <!-- Обновлен до более новой версии -->
                 <configuration>
-                    <source>17</source>
-                    <target>17</target>
+                    <source>${maven.compiler.source}</source>
+                    <target>${maven.compiler.target}</target>
                 </configuration>
             </plugin>
 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
-                <version>3.2.3</version>
+                <version>3.4.0</version> <!-- Обновлен до более новой версии -->
                 <configuration>
                     <failOnMissingWebXml>false</failOnMissingWebXml>
+                    <!-- Указываем версию схемы web.xml для Jakarta EE -->
+                    <webappDirectory>${project.build.directory}/${project.build.finalName}</webappDirectory>
+                    <webXml>${project.basedir}/src/main/webapp/WEB-INF/web.xml</webXml>
                 </configuration>
             </plugin>
         </plugins>
