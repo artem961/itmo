@@ -2,6 +2,7 @@ package web.beans;
 
 
 import jakarta.enterprise.context.RequestScoped;
+import jakarta.inject.Inject;
 import jakarta.inject.Named;
 import lombok.Data;
 import lombok.extern.java.Log;
@@ -24,15 +25,18 @@ public class CheckHitBean {
     private BigDecimal y;
     private BigDecimal x;
     private List<BigDecimal> r;
-    private List<StandartCalcResult> results;
     private String message;
+    @Inject
+    private HistoryBean historyBean;
 
     public void calcResults() {
         try {
             log.info(y.toString() + " " + x.toString() + " " + Arrays.toString(r.toArray()));
             Point point = new Point(this.x, this.y);
-            this.results = checkHits(point, this.r);
-            log.info(Arrays.toString(this.results.toArray()));
+            List<StandartCalcResult> results = checkHits(point, this.r);
+            historyBean.addToHistory(results);
+            this.message = "";
+            log.info(Arrays.toString(results.toArray()));
         } catch (Exception e) {
             log.log(Level.SEVERE, e.toString(), e);
             this.message = e.getMessage();
