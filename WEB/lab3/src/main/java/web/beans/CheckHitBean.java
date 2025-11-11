@@ -31,14 +31,11 @@ public class CheckHitBean {
 
     public void calcResults() {
         try {
-            log.info(y.toString() + " " + x.toString() + " " + Arrays.toString(r.toArray()));
             Point point = new Point(this.x, this.y);
             List<StandartCalcResult> results = checkHits(point, this.r);
             historyBean.addToHistory(results);
             this.message = "";
-            log.info(Arrays.toString(results.toArray()));
         } catch (Exception e) {
-            log.log(Level.SEVERE, e.toString(), e);
             this.message = e.getMessage();
         }
     }

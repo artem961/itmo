@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="css/main.css"></link>
 </h:head>
 <h:body>
-    <h:form>
+    <h:form id="mainForm">
         <table class="main-table">
             <tr>
                 <td colspan="3">
@@ -35,7 +35,7 @@
 
                             <h:outputLabel for="rValues" value="R:"/>
                             <p:selectManyCheckbox id="rValues" value="#{checkHitBean.r}" layout="grid" columns="5">
-                                <f:converter converterId="jakarta.faces.BigDecimal" />
+                                <f:converter converterId="jakarta.faces.BigDecimal"/>
                                 <f:selectItem itemValue="1.0" itemLabel="1"/>
                                 <f:selectItem itemValue="2.0" itemLabel="2"/>
                                 <f:selectItem itemValue="3.0" itemLabel="3"/>
@@ -47,22 +47,27 @@
                 </td>
                 <td class="table-column">
                     <div class="table-wrapper">
-                        <table class="table" id="results">
-                            <thead class="primary-text">
-                            <tr>
-                                <th>X</th>
-                                <th>Y</th>
-                                <th>R</th>
-                                <th>Результат</th>
-                                <th>Время выполнения</th>
-                                <th>Время</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-
-
-                            </tbody>
-                        </table>
+                        <p:dataTable value="#{historyBean.results}" var="result"
+                                     rendered="#{not empty historyBean.results}" id="resultsTable">
+                            <p:column headerText="X">
+                                <h:outputText value="#{result.x()}"/>
+                            </p:column>
+                            <p:column headerText="Y">
+                                <h:outputText value="#{result.y()}"/>
+                            </p:column>
+                            <p:column headerText="R">
+                                <h:outputText value="#{result.r()}"/>
+                            </p:column>
+                            <p:column headerText="Результат">
+                                <h:outputText value="#{result.result()}"/>
+                            </p:column>
+                            <p:column headerText="Время выполнения">
+                                <h:outputText value="#{result.time()}"/>
+                            </p:column>
+                            <p:column headerText="Время">
+                                <h:outputText value="#{result.currentTime()}"/>
+                            </p:column>
+                        </p:dataTable>
                     </div>
                 </td>
                 <td class="menu-column">
@@ -80,7 +85,9 @@
                         </div>
 
                         <div id="b-group" class="b-group">
-                            <h:commandButton value="Отправить" action="#{checkHitBean.calcResults}"/>
+                            <p:commandButton value="Отправить"
+                                             actionListener="#{checkHitBean.calcResults}"
+                                             update="@form"/>
                         </div>
                         <h:outputText value="#{checkHitBean.message}"></h:outputText>
 
