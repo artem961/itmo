@@ -10,42 +10,27 @@
     <link rel="stylesheet" href="css/main.css"></link>
 </h:head>
 <h:body>
-    <h:form id="mainForm">
-        <table class="main-table">
-            <tr>
-                <td colspan="3">
-                    <header class="primary-text">
-                        <h1>Лабораторная работа №3</h1>
-                        <h3>Храбров Артём Алексеевич Р3215</h3>
-                        <h3>Вариант 27833</h3>
-                    </header>
-                </td>
-            </tr>
-            <tr>
-                <h:commandButton id="navButton" action="toMain" value="Главная"/>
-            </tr>
-            <tr>
-                <td class="canvas-column">
-                    <div id="canvas-container">
-                        <canvas id="canvas" width="400" height="400"></canvas>
-                    </div>
-                    <div id="r-container">
-                        <div id="r-label" class="label primary-text">R</div>
-                        <div id="r-group" class="r-group">
-
-                            <h:outputLabel for="rValues" value="R:"/>
-                            <p:selectManyCheckbox id="rValues" value="#{checkHitBean.r}" layout="grid" columns="5">
-                                <f:converter converterId="jakarta.faces.BigDecimal"/>
-                                <f:selectItem itemValue="1.0" itemLabel="1"/>
-                                <f:selectItem itemValue="2.0" itemLabel="2"/>
-                                <f:selectItem itemValue="3.0" itemLabel="3"/>
-                                <f:selectItem itemValue="4.0" itemLabel="4"/>
-                                <f:selectItem itemValue="5.0" itemLabel="5"/>
-                            </p:selectManyCheckbox>
-                        </div>
-                    </div>
-                </td>
-                <td class="table-column">
+    <table class="main-table">
+        <tr>
+            <td colspan="3">
+                <header class="primary-text">
+                    <h1>Лабораторная работа №3</h1>
+                    <h3>Храбров Артём Алексеевич Р3215</h3>
+                    <h3>Вариант 27833</h3>
+                </header>
+            </td>
+        </tr>
+        <tr>
+            <h:commandButton id="navButton" action="toMain" value="Главная"/>
+        </tr>
+        <tr>
+            <td class="canvas-column">
+                <div id="canvas-container">
+                    <canvas id="canvas" width="400" height="400"></canvas>
+                </div>
+            </td>
+            <td class="table-column">
+                <h:form id="tableForm">
                     <div class="table-wrapper">
                         <p:dataTable value="#{historyBean.results}" var="result"
                                      rendered="#{not empty historyBean.results}" id="resultsTable">
@@ -69,37 +54,64 @@
                             </p:column>
                         </p:dataTable>
                     </div>
-                </td>
-                <td class="menu-column">
+                </h:form>
+            </td>
+            <td class="menu-column">
+                <h:form id="menuForm">
                     <div class="menu">
+                        <div id="r-container">
+                            <div id="r-label" class="label primary-text">R</div>
+                            <div id="r-group" class="r-group">
 
-                        <div class="label primary-text">X</div>
-                        <div id="x-group" class="x-group primary-text">
-                            <h:inputText id="x" value="#{checkHitBean.x}"/>
-                            <p:slider for="x"/>
+                                <h:outputLabel for="rValues" value="R:"/>
+                                <p:selectManyCheckbox id="rValues" value="#{checkHitBean.r}" layout="grid" columns="5">
+                                    <f:converter converterId="jakarta.faces.BigDecimal"/>
+                                    <f:selectItem itemValue="1.0" itemLabel="1"/>
+                                    <f:selectItem itemValue="2.0" itemLabel="2"/>
+                                    <f:selectItem itemValue="3.0" itemLabel="3"/>
+                                    <f:selectItem itemValue="4.0" itemLabel="4"/>
+                                    <f:selectItem itemValue="5.0" itemLabel="5"/>
+                                </p:selectManyCheckbox>
+                            </div>
                         </div>
-                        <div class="label primary-text">Y</div>
-                        <div id="y-group" class="y-group">
-                            <h:inputText id="y" name="y" value="#{checkHitBean.y}" maxlength="7"></h:inputText>
-                            <h:outputLabel for="y" value=""/>
+
+                        <div id="x-container">
+                            <div class="label primary-text">X</div>
+                            <div id="x-group" class="x-group primary-text">
+                                <h:inputText id="x" value="#{checkHitBean.x}" maxlength="7">
+                                    <f:validateDoubleRange minimum="-4" maximum="4"></f:validateDoubleRange>
+                                </h:inputText>
+                                <h:messages for="x"/>
+                                <p:slider for="x" minValue="-4" maxValue="4" step="0.1"/>
+                            </div>
+                        </div>
+
+                        <div id="y-container">
+                            <div class="label primary-text">Y</div>
+                            <div id="y-group" class="y-group">
+                                <h:inputText id="y" name="y" value="#{checkHitBean.y}" maxlength="7">
+                                    <f:validateDoubleRange minimum="-5" maximum="5"></f:validateDoubleRange>
+                                </h:inputText>
+                                <h:messages for="y"/>
+                                <h:outputLabel for="y" value=""/>
+                            </div>
                         </div>
 
                         <div id="b-group" class="b-group">
                             <p:commandButton value="Отправить"
                                              actionListener="#{checkHitBean.calcResults}"
-                                             update="@form"/>
+                                             update="tableForm menuForm"/>
                         </div>
                         <h:outputText value="#{checkHitBean.message}"></h:outputText>
 
                     </div>
-
                     <div class="settings">
                         <button class="button-secondary" type="submit" id="clear">Очистить</button>
                     </div>
-                </td>
-            </tr>
-        </table>
-    </h:form>
+                </h:form>
+            </td>
+        </tr>
+    </table>
 
 
     <script src="js/tools/ajax/ajax-manager.js"></script>
