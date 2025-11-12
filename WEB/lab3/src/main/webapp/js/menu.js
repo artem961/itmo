@@ -12,33 +12,6 @@ clearButton.addEventListener('click', (e) => {
     canvasController.updateFrame();
 })
 
-submitButton.addEventListener('click', () => {
-    let x = document.querySelector('input[name="x"].selected').value;
-    let y = document.querySelector('input[name="y"]').value;
-    let r = rSelect.options[rSelect.selectedIndex].value;
-
-    if (validateAndShowTooltips()) {
-        let json = sendRequest(x, y, r);
-        json
-            .then(data => {
-                addTableRows(data);
-
-                data.results.forEach(result => {
-                    let point = createPoint(canvas, result.x/result.r, result.y/result.r, result.r, result.result);
-                    plane.addPoint(point);
-                    canvasController.updateFrame();
-                });
-                //saveToStorage(data);
-            })
-            .catch(err => {
-                alert(err)
-            })
-    } else {
-        submitButton.disabled = true;
-        setTimeout(() => submitButton.disabled = false, 5000);
-    }
-});
-
 rSelect.addEventListener('change', () => {
     let r = rSelect.options[rSelect.selectedIndex].value;
     addPointsToCanvas();

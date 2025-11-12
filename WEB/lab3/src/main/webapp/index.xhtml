@@ -54,6 +54,12 @@
                             </p:column>
                         </p:dataTable>
                     </div>
+                    <h:outputScript>
+                        function getServerResults(){
+                        return #{historyBean.getResultsAsJson()};
+                        }
+                        addPointsToCanvas();
+                    </h:outputScript>
                 </h:form>
             </td>
             <td class="menu-column">
@@ -63,8 +69,10 @@
                             <div id="r-label" class="label primary-text">R</div>
                             <div id="r-group" class="r-group">
 
-                                <h:outputLabel for="rValues" value="R:"/>
-                                <p:selectManyCheckbox id="rValues" value="#{checkHitBean.r}" layout="grid" columns="5">
+                                <h:outputLabel for="r" value="R:"/>
+                                <p:selectManyCheckbox id="r" value="#{checkHitBean.r}" layout="grid" columns="5"
+                                                      required="true"
+                                                      requiredMessage="Выберите хотя бы одно значение R">
                                     <f:converter converterId="jakarta.faces.BigDecimal"/>
                                     <f:selectItem itemValue="1.0" itemLabel="1"/>
                                     <f:selectItem itemValue="2.0" itemLabel="2"/>
@@ -72,6 +80,8 @@
                                     <f:selectItem itemValue="4.0" itemLabel="4"/>
                                     <f:selectItem itemValue="5.0" itemLabel="5"/>
                                 </p:selectManyCheckbox>
+
+                                <h:messages for="r"/>
                             </div>
                         </div>
 
@@ -98,7 +108,8 @@
                         </div>
 
                         <div id="b-group" class="b-group">
-                            <p:commandButton value="Отправить"
+                            <p:commandButton id="submit"
+                                             value="Отправить"
                                              actionListener="#{checkHitBean.calcResults}"
                                              update="tableForm menuForm"/>
                         </div>

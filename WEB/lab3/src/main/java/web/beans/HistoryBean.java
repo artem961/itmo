@@ -3,6 +3,7 @@ package web.beans;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Named;
 import lombok.Data;
+import web.models.CalcResultsArray;
 import web.models.StandartCalcResult;
 
 import java.util.ArrayList;
@@ -24,5 +25,10 @@ public class HistoryBean {
 
     public void addToHistory(List<StandartCalcResult> results){
         this.results.addAll(results);
+    }
+
+    public String getResultsAsJson(){
+        CalcResultsArray calcResultsArray = new CalcResultsArray(results);
+        return calcResultsArray.toJson();
     }
 }
