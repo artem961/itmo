@@ -10,6 +10,8 @@ canvas.addEventListener('click', (e) => {
     let x = (position.x / (canvas.width / 3) * plane.R).toFixed(2);
     let y = (position.y / (canvas.height / 3) * plane.R).toFixed(2);
 
+    console.log(plane.R);
+
     const formX = document.getElementById("menuForm:x");
     const formY = document.getElementById("menuForm:y");
     const sendButton = document.getElementById("menuForm:submit");

@@ -58,8 +58,14 @@
                         function getServerResults(){
                         return #{historyBean.getResultsAsJson()};
                         }
-                        addPointsToCanvas();
                     </h:outputScript>
+
+                    <h:outputScript>
+                        try{
+                        setTimeout(updateAll, 100);
+                        } catch(e){}
+                    </h:outputScript>
+
                 </h:form>
             </td>
             <td class="menu-column">
@@ -69,7 +75,7 @@
                             <div id="r-label" class="label primary-text">R</div>
                             <div id="r-group" class="r-group">
 
-                                <h:outputLabel for="r" value="R:"/>
+                                <h:outputLabel for="r" value=""/>
                                 <p:selectManyCheckbox id="r" value="#{checkHitBean.r}" layout="grid" columns="5"
                                                       required="true"
                                                       requiredMessage="Выберите хотя бы одно значение R">
@@ -113,6 +119,7 @@
                                              actionListener="#{checkHitBean.calcResults}"
                                              update="tableForm menuForm"/>
                         </div>
+
                         <h:outputText value="#{checkHitBean.message}"></h:outputText>
 
                     </div>
@@ -150,5 +157,8 @@
     <script src="js/tools/plane.js"></script>
     <script src="js/main.js"></script>
     <script src="js/menu.js"></script>
+
+    <script src="js/updateJSFElements.js"></script>
+    <script>updateAll()</script>
 </h:body>
 </html>
