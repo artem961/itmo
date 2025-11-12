@@ -31,4 +31,8 @@ public class HistoryBean {
         CalcResultsArray calcResultsArray = new CalcResultsArray(results);
         return calcResultsArray.toJson();
     }
+
+    public void clearHistory(){
+        this.results.clear();
+    }
 }

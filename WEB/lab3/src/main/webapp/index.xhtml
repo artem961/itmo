@@ -116,10 +116,16 @@
                         <h:outputText value="#{checkHitBean.message}"></h:outputText>
 
                     </div>
+                </h:form>
+                <h:form>
                     <div class="settings">
-                        <button class="button-secondary" type="submit" id="clear">Очистить</button>
+                        <p:commandButton id="clear"
+                                         value="Очистить"
+                                         actionListener="#{historyBean.clearHistory()}"
+                                         update="tableForm"/>
                     </div>
                 </h:form>
+
             </td>
         </tr>
     </table>
