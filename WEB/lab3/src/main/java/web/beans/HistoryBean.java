@@ -1,8 +1,10 @@
 package web.beans;
 
 import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
 import jakarta.inject.Named;
 import lombok.Data;
+import services.ResultService;
 import web.models.CalcResultsArray;
 import web.models.StandartCalcResult;
 
@@ -13,6 +15,8 @@ import java.util.List;
 @ApplicationScoped
 @Data
 public class HistoryBean {
+    @Inject
+    private ResultService resultService;
     private List<StandartCalcResult> results;
 
     {
@@ -25,6 +29,8 @@ public class HistoryBean {
 
     public void addToHistory(List<StandartCalcResult> results){
         this.results.addAll(results);
+        this.results.forEach(resultService::save);
+
     }
 
     public String getResultsAsJson(){
