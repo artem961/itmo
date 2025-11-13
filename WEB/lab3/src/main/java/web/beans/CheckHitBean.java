@@ -29,6 +29,13 @@ public class CheckHitBean {
     @Inject
     private HistoryBean historyBean;
 
+    {
+        r = new ArrayList<>();
+        r.add(new BigDecimal("1.0"));
+        y = new BigDecimal("0.0");
+        x = new BigDecimal("0.0");
+    }
+
     public void calcResults() {
         try {
             Point point = new Point(this.x, this.y);

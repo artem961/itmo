@@ -56,13 +56,13 @@
                     </div>
                     <h:outputScript>
                         function getServerResults(){
-                        return #{historyBean.getResultsAsJson()};
+                            return #{historyBean.getResultsAsJson()};
                         }
                     </h:outputScript>
 
                     <h:outputScript>
                         try{
-                        setTimeout(updateAll, 100);
+                            setTimeout(updateAll, 100);
                         } catch(e){}
                     </h:outputScript>
 

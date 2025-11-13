@@ -18,7 +18,7 @@
         <version.primefaces>12.0.0</version.primefaces>
         <version.lombok>1.18.24</version.lombok>
         <version.jakarta.servlet>6.0.0</version.jakarta.servlet>
-        <version.jakartaee.api>10.0.0</version.jakartaee.api> <!-- Добавить общий API Jakarta EE -->
+        <version.jakartaee.api>10.0.0</version.jakartaee.api>
     </properties>
 
     <dependencies>
@@ -50,20 +50,18 @@
             <scope>provided</scope>
         </dependency>
 
-        <!-- Дополнительно можно добавить общую зависимость на Jakarta EE API,
-             хотя jakarta.faces и jakarta.servlet-api часто достаточно.
-             Это полезно для других Jakarta API, например, CDI. -->
+
         <dependency>
             <groupId>jakarta.platform</groupId>
             <artifactId>jakarta.jakartaee-api</artifactId>
             <version>${version.jakartaee.api}</version>
             <scope>provided</scope>
         </dependency>
-        <!-- Для CDI -->
+
         <dependency>
             <groupId>jakarta.enterprise</groupId>
             <artifactId>jakarta.enterprise.cdi-api</artifactId>
-            <version>4.0.1</version> <!-- Соответствует Jakarta EE 10 -->
+            <version>4.0.1</version>
             <scope>provided</scope>
         </dependency>
 
@@ -80,7 +78,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.11.0</version> <!-- Обновлен до более новой версии -->
+                <version>3.11.0</version>
                 <configuration>
                     <source>${maven.compiler.source}</source>
                     <target>${maven.compiler.target}</target>
@@ -90,10 +88,9 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
-                <version>3.4.0</version> <!-- Обновлен до более новой версии -->
+                <version>3.4.0</version>
                 <configuration>
                     <failOnMissingWebXml>false</failOnMissingWebXml>
-                    <!-- Указываем версию схемы web.xml для Jakarta EE -->
                     <webappDirectory>${project.build.directory}/${project.build.finalName}</webappDirectory>
                     <webXml>${project.basedir}/src/main/webapp/WEB-INF/web.xml</webXml>
                 </configuration>

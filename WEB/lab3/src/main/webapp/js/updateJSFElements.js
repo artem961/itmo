@@ -1,4 +1,4 @@
-function addMenuListeners(){
+function addMenuListeners() {
     const rCheckboxDivs = document.querySelectorAll('#menuForm\\:r .ui-chkbox');
 
     for (const checkboxDiv of rCheckboxDivs) {
@@ -22,6 +22,21 @@ function addMenuListeners(){
 
 }
 
-function updateAll(){
+function addSubmitButtonListener() {
+    let submitButton = document.getElementById("menuForm:submit");
+
+    submitButton.addEventListener('click', (event) => {
+        setTimeout(updateCanvas, 100);
+    });
+}
+
+function updateCanvas(){
+    addPointsToCanvas();
+    canvasController.updateFrame();
+}
+
+function updateAll() {
     addMenuListeners();
+    addSubmitButtonListener();
+    updateCanvas();
 }
