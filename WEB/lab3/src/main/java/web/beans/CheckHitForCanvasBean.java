@@ -1,6 +1,5 @@
 package web.beans;
 
-
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
@@ -9,41 +8,47 @@ import lombok.extern.java.Log;
 import web.models.Point;
 import web.models.StandartCalcResult;
 
-
 import java.math.BigDecimal;
+import java.math.MathContext;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.logging.Level;
 
 @Named
 @RequestScoped
 @Data
 @Log
-public class CheckHitBean {
+public class CheckHitForCanvasBean {
     private BigDecimal y;
     private BigDecimal x;
     private List<BigDecimal> r;
+    private String rStringList;
     private String message;
     @Inject
     private HistoryBean historyBean;
 
-    {
-        r = new ArrayList<>();
-        r.add(new BigDecimal("1.0"));
-        y = new BigDecimal("0.0");
-        x = new BigDecimal("0.0");
-    }
-
     public void calcResults() {
         try {
-            Point point = new Point(this.x, this.y);
-            List<StandartCalcResult> results = point.checkHits(this.r);
+            List<StandartCalcResult> results = new ArrayList<>();
+            parseRStringList();
+
+            r.forEach(r -> {
+                Point point = new Point(x.multiply(r), y.multiply(r));
+                results.add(point.checkHit(r));
+            });
+
             historyBean.addToHistory(results);
             this.message = "";
         } catch (Exception e) {
             this.message = e.getMessage();
         }
+    }
+
+    private void parseRStringList() {
+        r = Arrays.stream(rStringList
+                .split("&"))
+                .map(BigDecimal::new)
+                .toList();
     }
 }

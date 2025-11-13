@@ -5,6 +5,9 @@ import lombok.Getter;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
+import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @AllArgsConstructor
@@ -12,7 +15,7 @@ public class Point {
     private BigDecimal x;
     private BigDecimal y;
 
-    public boolean checkHit(BigDecimal r) {
+    private boolean check(BigDecimal r) {
         BigDecimal zero = BigDecimal.ZERO;
         BigDecimal halfR = r.divide(BigDecimal.valueOf(2), MathContext.DECIMAL128);
 
@@ -40,5 +43,28 @@ public class Point {
         }
 
         return false;
+    }
+
+    public StandartCalcResult checkHit(BigDecimal r) {
+        Long startTime = System.nanoTime();
+        boolean result = this.check(r);
+        Long endTime = System.nanoTime();
+
+        return  new StandartCalcResult(
+                this.getX(),
+                this.getY(),
+                r,
+                result,
+                String.valueOf((endTime - startTime)),
+                String.valueOf(LocalTime.now().withNano(0)));
+    }
+
+    public List<StandartCalcResult> checkHits(List<BigDecimal> r) {
+        List<StandartCalcResult> results = new ArrayList<>();
+
+        r.forEach((rad) -> {
+            results.add(checkHit(rad));
+        });
+        return results;
     }
 }
