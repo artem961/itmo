@@ -8,7 +8,9 @@ function addMenuListeners() {
             let r = "R"
             let selected = 0
             for (const checkbox of rCheckboxes) {
-                if (checkbox.getAttribute('aria-checked') === 'true') {
+                if (checkbox.getAttribute('aria-checked') === 'true' ||
+                    checkbox.getAttribute('checked') === 'checked' &&
+                    checkbox.getAttribute('aria-checked') === null) {
                     r = checkbox.value;
                     selected++
                 }
