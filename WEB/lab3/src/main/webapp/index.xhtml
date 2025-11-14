@@ -105,11 +105,13 @@
                         <div id="x-container">
                             <div class="label primary-text">X</div>
                             <div id="x-group" class="x-group primary-text">
-                                <h:inputText id="x" value="#{checkHitBean.x}" maxlength="7">
+
+                                <h:inputHidden id="x" value="#{checkHitBean.x}" maxlength="7">
                                     <f:validateDoubleRange minimum="-4" maximum="4"></f:validateDoubleRange>
-                                </h:inputText>
+                                </h:inputHidden>
                                 <h:messages for="x"/>
-                                <p:slider for="x" minValue="-4" maxValue="4" step="0.1"/>
+                                <h:outputText id="output" value="#{checkHitBean.x}" />
+                                <p:slider for="x" minValue="-4" maxValue="4" step="0.1" display="output"/>
                             </div>
                         </div>
 

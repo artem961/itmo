@@ -24,9 +24,12 @@
             <td class="main-column">
                 <div id="main-container">
                     <h:form>
+
+                        <f:metadata>
+                            <f:event type="preRenderView" listener="#{clockBean.updateCurrentTime()}" />
+                        </f:metadata>
                     <div id="clock-container">
                         <h:outputText id="clock" value="#{clockBean.currentTime}"/>
-
                     </div>
                         <h:commandButton id="navButton" action="toIndex" value="График"/>
                         <p:poll interval="13" listener="#{clockBean.updateCurrentTime}" update="clock"/>
