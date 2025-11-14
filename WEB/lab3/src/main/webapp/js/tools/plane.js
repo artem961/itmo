@@ -33,16 +33,16 @@ class Plane {
 
         let grid = new Grid(canvas);
         let axis = new Axis(canvas);
-        let rect = new RectangleZone(canvas, -widthR, -heightR/2, widthR, heightR/2);
+        let rect = new RectangleZone(canvas, -widthR, -heightR, widthR, heightR);
         let triangle = new TriangleZone(canvas,
             new Position(0, 0),
-            new Position(-widthR / 2, 0),
+            new Position(widthR, 0),
             new Position(0, heightR));
         let sector = new SectorZone(canvas,
             new Position(0, 0),
-            widthR,
-            0,
-            Math.PI / 2);
+            widthR/2,
+            Math.PI / 2,
+            Math.PI);
 
         this.rLabels = this._initRLabels(R, shift);
         this.newLabels = this.rLabels;
