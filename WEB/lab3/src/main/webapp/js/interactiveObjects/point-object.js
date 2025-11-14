@@ -5,10 +5,8 @@ class PointObject extends InteractiveObject {
         this.y = y;
         this.r = r
 
-      //  this.hitColor = 'rgb(64,223,83)';
-       // this.missedColor = 'rgb(253,61,61)';
-        this.hitColor = 'rgb(51,51,51)';
-        this.missedColor = this.hitColor;
+        this.hitColor = 'rgb(61,255,77)';
+        this.missedColor = 'rgb(253,61,61)';
         this.hit = false;
 
         this.currentR = this.r;
