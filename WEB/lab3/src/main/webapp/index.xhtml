@@ -21,15 +21,14 @@
             </td>
         </tr>
         <tr>
-            <h:form>
-                <h:commandButton id="navButton" action="toMain" value="Главная"/>
-            </h:form>
-        </tr>
-        <tr>
             <td class="canvas-column">
                 <div id="canvas-container">
                     <canvas id="canvas" width="400" height="400"></canvas>
                 </div>
+
+                <h:form style="padding: 20px">
+                    <h:commandButton id="navButton" action="toMain" value="Главная" styleClass="button-secondary"/>
+                </h:form>
                 <h:form id="secretForm" style="display: none">
                     <h:inputText id="x" name="x" value="#{checkHitForCanvasBean.x}"></h:inputText>
                     <h:inputText id="y" name="y" value="#{checkHitForCanvasBean.y}"></h:inputText>
@@ -55,9 +54,10 @@
                                 <h:outputText value="#{result.r()}"/>
                             </p:column>
                             <p:column headerText="Результат">
+                                <f:passThroughAttribute name="data-result" value="#{result.result()}" />
                                 <h:outputText value="#{result.result()}"/>
                             </p:column>
-                            <p:column headerText="Время выполнения">
+                            <p:column headerText="Выполнение">
                                 <h:outputText value="#{result.time()}"/>
                             </p:column>
                             <p:column headerText="Время">
@@ -98,7 +98,18 @@
                                     <f:selectItem itemValue="3" itemLabel="3"/>
                                 </p:selectManyCheckbox>
 
-                                <h:messages for="r"/>
+                                <h:messages id="r-messages" for="r" style="display: none"/>
+                                <h:outputScript>
+                                    var errorElement = document.querySelector('#menuForm\\:r-messages li');
+                                    if (errorElement) {
+                                        var inputElement = document.getElementById('menuForm:r');
+                                        if (inputElement) {
+                                            var errorText = errorElement.textContent.trim();
+                                            errorText = errorText.replace(/^menuForm:r:\s*/, '');
+                                            showTooltip(errorText, inputElement);
+                                        }
+                                    }
+                                </h:outputScript>
                             </div>
                         </div>
 
@@ -118,11 +129,22 @@
                         <div id="y-container">
                             <div class="label primary-text">Y</div>
                             <div id="y-group" class="y-group">
-                                <h:inputText id="y" name="y" value="#{checkHitBean.y}" maxlength="7">
+                                <h:inputText id="y" name="y" value="#{checkHitBean.y}" maxlength="7" required="true" requiredMessage="Введите значение y!">
                                     <f:validateDoubleRange minimum="-5" maximum="5"></f:validateDoubleRange>
                                 </h:inputText>
-                                <h:messages for="y"/>
+                                <h:messages id="y-messages" for="y" style="display: none"/>
                                 <h:outputLabel for="y" value=""/>
+                                <h:outputScript>
+                                        var errorElement = document.querySelector('#menuForm\\:y-messages li');
+                                        if (errorElement) {
+                                            var inputElement = document.getElementById('menuForm:y');
+                                            if (inputElement) {
+                                                var errorText = errorElement.textContent.trim();
+                                                errorText = errorText.replace(/^menuForm:y:\s*/, '');
+                                                showTooltip(errorText, inputElement);
+                                            }
+                                        }
+                                </h:outputScript>
                             </div>
                         </div>
 

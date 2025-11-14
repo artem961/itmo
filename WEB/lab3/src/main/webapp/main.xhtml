@@ -31,7 +31,7 @@
                     <div id="clock-container">
                         <h:outputText id="clock" value="#{clockBean.currentTime}"/>
                     </div>
-                        <h:commandButton id="navButton" action="toIndex" value="График"/>
+                        <h:commandButton id="navButton" action="toIndex" value="График" styleClass="button-secondary"/>
                         <p:poll interval="13" listener="#{clockBean.updateCurrentTime}" update="clock"/>
                     </h:form>
                 </div>
