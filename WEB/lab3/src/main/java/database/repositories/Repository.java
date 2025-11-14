@@ -6,5 +6,6 @@ public interface Repository <T>{
     public void save(T entity);
     public void delete(T entity);
     public List<T> getAll();
-
+    public void deleteAll()
+;
 }

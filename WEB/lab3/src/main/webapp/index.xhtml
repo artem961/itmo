@@ -43,8 +43,8 @@
             <td class="table-column">
                 <h:form id="tableForm">
                     <div class="table-wrapper">
-                        <p:dataTable value="#{historyBean.results}" var="result"
-                                     rendered="#{not empty historyBean.results}" id="resultsTable">
+                        <p:dataTable value="#{historyBean.getHistory()}" var="result"
+                                     rendered="#{not empty historyBean.getHistory()}" id="resultsTable">
                             <p:column headerText="X">
                                 <h:outputText value="#{result.x()}"/>
                             </p:column>

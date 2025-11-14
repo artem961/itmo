@@ -26,6 +26,15 @@ public class ResultRepository implements Repository<Result> {
 
     @Override
     public List<Result> getAll() {
-        return List.of();
+        return entityManager
+                .createQuery("select r from Result r", Result.class)
+                .getResultList();
+    }
+
+    @Override
+    public void deleteAll() {
+        entityManager
+                .createQuery("delete from Result r")
+                .executeUpdate();
     }
 }
