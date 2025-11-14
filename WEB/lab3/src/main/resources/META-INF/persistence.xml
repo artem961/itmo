@@ -4,15 +4,19 @@
 
     <persistence-unit name="lab3" transaction-type="JTA">
         <jta-data-source>java:/PostgresDS</jta-data-source>
+        <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+
+        <class>database.models.Result</class>
 
         <properties>
             <property name="jakarta.persistence.schema-generation.database.action" value="drop-and-create"/>
+            <property name="eclipselink.weaving" value="false"/>
+            <property name="eclipselink.weaving.internal" value="false"/>
+            <property name="eclipselink.weaving.lazy" value="false"/>
+            <property name="eclipselink.weaving.changetracking" value="false"/>
 
-            <property name="hibernate.show_sql" value="true"/>
-            <property name="hibernate.format_sql" value="true"/>
-            <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>
-            <property name="hibernate.ejb.naming_strategy_delegator" value="org.hibernate.cfg.ImprovedNamingStrategy"/>
-            <property name="hibernate.bytecode.use_reflection_optimizer" value="false"/>
+            <property name="eclipselink.logging.level" value="INFO"/>
+            <property name="eclipselink.target-server" value="JBoss"/>
         </properties>
     </persistence-unit>
 </persistence>
