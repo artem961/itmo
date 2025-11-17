@@ -3,7 +3,7 @@
              xmlns="http://xmlns.jcp.org/xml/ns/persistence">
 
     <persistence-unit name="lab3" transaction-type="JTA">
-        <jta-data-source>java:/PostgresDS</jta-data-source>
+        <jta-data-source>java:/jboss/datasources/MyPostgresDS</jta-data-source>
         <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
 
         <class>database.models.Result</class>
