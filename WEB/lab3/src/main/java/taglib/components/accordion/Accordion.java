@@ -1,8 +1,10 @@
 package taglib.components.accordion;
 
+import jakarta.faces.application.ResourceDependency;
 import jakarta.faces.component.FacesComponent;
 import jakarta.faces.component.UIComponent;
 import jakarta.faces.component.UIComponentBase;
+import jakarta.faces.component.UIOutput;
 import jakarta.faces.context.FacesContext;
 import jakarta.faces.context.ResponseWriter;
 import lombok.extern.java.Log;
@@ -11,13 +13,15 @@ import java.io.IOException;
 
 @Log
 @FacesComponent("accordionTag")
+@ResourceDependency(name = "taglib/components/css/accordion.css", target = "head")
+@ResourceDependency(name = "taglib/components/js/accordion.js", target = "head")
 public class Accordion extends UIComponentBase {
     private String mode;
     private String expanded;
 
     @Override
     public String getFamily() {
-        return "accordion";
+        return "taglib/components";
     }
 
     @Override
@@ -44,6 +48,8 @@ public class Accordion extends UIComponentBase {
     public void encodeEnd(FacesContext context) throws IOException {
         ResponseWriter writer = context.getResponseWriter();
         writer.endElement("div");
+
+        this.expanded = this.expanded == null? "[]" : "[" + this.expanded + "]";
 
 
         writer.startElement("script", this);

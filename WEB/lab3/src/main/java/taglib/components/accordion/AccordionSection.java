@@ -14,7 +14,7 @@ public class AccordionSection extends UIComponentBase {
 
     @Override
     public String getFamily() {
-        return "accordion";
+        return "taglib/components";
     }
 
     @Override
@@ -22,24 +22,31 @@ public class AccordionSection extends UIComponentBase {
         ResponseWriter writer = context.getResponseWriter();
         initAttributes();
 
-        // Accordion header
+        writer.startElement("div", this);
+        writer.writeAttribute("class", "accordion-item", null);
+
         writer.startElement("div", this);
         writer.writeAttribute("class", "accordion-header", null);
 
-        writer.startElement("h3", this);
+        writer.startElement("span", this);
+        writer.writeAttribute("class", "accordion-title", null);
         writer.writeText(title, null);
-        writer.endElement("h3");
+        writer.endElement("span");
+
+        writer.startElement("span", this);
+        writer.writeAttribute("class", "accordion-icon", null);
+        writer.writeText("▶", null);
+        writer.endElement("span");
 
         writer.endElement("div");
 
-        // Accordion content
         writer.startElement("div", this);
         writer.writeAttribute("class", "accordion-content", null);
+        writer.startElement("p", this);
     }
 
     @Override
     public void encodeChildren(FacesContext context) throws IOException {
-        // Рендерим дочерние компоненты (контент секции)
         for (UIComponent child : getChildren()) {
             child.encodeAll(context);
         }
@@ -48,7 +55,9 @@ public class AccordionSection extends UIComponentBase {
     @Override
     public void encodeEnd(FacesContext context) throws IOException {
         ResponseWriter writer = context.getResponseWriter();
-        writer.endElement("div"); // закрываем accordion-content
+        writer.endElement("p");
+        writer.endElement("div");
+        writer.endElement("div");
     }
 
     private void initAttributes() {

@@ -14,11 +14,6 @@
             <component-type>accordionTag</component-type>
         </component>
         <attribute>
-            <name>id</name>
-            <required>false</required>
-            <type>java.lang.String</type>
-        </attribute>
-        <attribute>
             <name>mode</name>
             <required>true</required>
             <type>java.lang.String</type>

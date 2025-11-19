@@ -3,10 +3,10 @@ class Accordion {
 
         this.element = element;
         this.mode = mode;
+
         if (typeof expanded !== "object"){
             this.expanded = expanded === undefined ? [] : JSON.parse(expanded);
         } else{
-            this.expanded = expanded;
         }
 
         this.items = this.element.querySelectorAll(".accordion-item");

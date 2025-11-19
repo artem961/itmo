@@ -5,6 +5,11 @@
 
   <display-name>lab3</display-name>
 
+  <context-param>
+    <param-name>jakarta.faces.FACELETS_LIBRARIES</param-name>
+    <param-value>/WEB-INF/taglib.xml</param-value>
+  </context-param>
+
   <servlet>
     <servlet-name>Faces Servlet</servlet-name>
     <servlet-class>jakarta.faces.webapp.FacesServlet</servlet-class>
