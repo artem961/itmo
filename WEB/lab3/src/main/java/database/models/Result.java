@@ -20,5 +20,4 @@ public class Result {
     private boolean result;
     private String time;
     private String currentTime;
-
 }
