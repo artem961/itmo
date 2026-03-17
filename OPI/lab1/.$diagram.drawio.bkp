@@ -1,0 +1,61 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/26.0.16 Chrome/132.0.6834.196 Electron/34.2.0 Safari/537.36" version="26.0.16">
+  <diagram name="Страница — 1" id="OVZmFMn0sbgHKPC8I9UI">
+    <mxGraphModel dx="2625" dy="4853" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2339" pageHeight="3300" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="xW9Y_Rt3apIX33t8iV_--7" style="rounded=1;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;endArrow=none;startFill=0;" edge="1" parent="1" source="xW9Y_Rt3apIX33t8iV_--1" target="xW9Y_Rt3apIX33t8iV_--3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="xW9Y_Rt3apIX33t8iV_--9" style="rounded=1;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;endArrow=none;startFill=0;" edge="1" parent="1" source="xW9Y_Rt3apIX33t8iV_--1" target="xW9Y_Rt3apIX33t8iV_--8">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="xW9Y_Rt3apIX33t8iV_--11" style="rounded=1;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;endArrow=none;startFill=0;" edge="1" parent="1" source="xW9Y_Rt3apIX33t8iV_--1" target="xW9Y_Rt3apIX33t8iV_--10">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="xW9Y_Rt3apIX33t8iV_--1" value="Гость" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="260" y="50" width="90" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="xW9Y_Rt3apIX33t8iV_--14" style="rounded=1;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;endArrow=none;startFill=0;" edge="1" parent="1" source="xW9Y_Rt3apIX33t8iV_--2" target="xW9Y_Rt3apIX33t8iV_--13">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="xW9Y_Rt3apIX33t8iV_--2" value="Пользователь" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="270" y="410" width="90" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="xW9Y_Rt3apIX33t8iV_--3" value="Регистрация" style="ellipse;whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="510" y="-100" width="200" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="xW9Y_Rt3apIX33t8iV_--4" value="Модератор" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="280" y="690" width="90" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="xW9Y_Rt3apIX33t8iV_--8" value="Авторизация" style="ellipse;whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="510" y="10" width="200" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="xW9Y_Rt3apIX33t8iV_--10" value="Просмотр ленты рекомендаций" style="ellipse;whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="505" y="150" width="210" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="xW9Y_Rt3apIX33t8iV_--18" value="&amp;lt;&amp;lt;EXTEND&amp;gt;&amp;gt;" style="rounded=1;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;endArrow=none;startFill=0;" edge="1" parent="1" source="xW9Y_Rt3apIX33t8iV_--13" target="xW9Y_Rt3apIX33t8iV_--15">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="xW9Y_Rt3apIX33t8iV_--19" value="&amp;lt;&amp;lt;EXTEND&amp;gt;&amp;gt;" style="rounded=1;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;endArrow=none;startFill=0;" edge="1" parent="1" source="xW9Y_Rt3apIX33t8iV_--13" target="xW9Y_Rt3apIX33t8iV_--16">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="xW9Y_Rt3apIX33t8iV_--20" style="rounded=1;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;endArrow=none;startFill=0;" edge="1" parent="1" source="xW9Y_Rt3apIX33t8iV_--13" target="xW9Y_Rt3apIX33t8iV_--17">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="xW9Y_Rt3apIX33t8iV_--13" value="Просмотр ленты рекомендаций" style="ellipse;whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="505" y="420" width="210" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="xW9Y_Rt3apIX33t8iV_--15" value="Написать комментарий" style="ellipse;whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="940" y="280" width="220" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="xW9Y_Rt3apIX33t8iV_--16" value="Поставить реакцию на комментарий или запись" style="ellipse;whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="940" y="420" width="220" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="xW9Y_Rt3apIX33t8iV_--17" value="Отправить жалобу" style="ellipse;whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="940" y="560" width="220" height="80" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

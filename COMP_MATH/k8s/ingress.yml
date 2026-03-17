@@ -1,0 +1,31 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: comp-math-ingress
+  namespace: comp-math
+  annotations:
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "false"
+    
+    nginx.ingress.kubernetes.io/enable-cors: "true"
+    nginx.ingress.kubernetes.io/cors-allow-origin: "*"
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: comp-math.arhr.tech
+    http:
+      paths:
+      - path: /lab2
+        pathType: Prefix
+        backend:
+          service:
+            name: lab2-frontend-service
+            port:
+              number: 80
+      - path: /lab2/api
+        pathType: Prefix
+        backend:
+          service:
+            name: lab2-backend-service
+            port:
+              number: 80

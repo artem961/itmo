@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: comp-math-lab2
+server:
+  servlet:
+    context-path: /lab2/api
