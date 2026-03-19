@@ -3,20 +3,24 @@
 	import functionPlot from 'function-plot';
 	import { fade, slide } from 'svelte/transition';
 
-	// --- Интерфейсы ---
 	interface Equation { id: number; formula: string; view: string; }
 	interface Method { id: number; label: string; }
 	interface System { id: number; eq1: { formula: string; view: string }; eq2: { formula: string; view: string }; }
+	
 	interface SolveResponse {
-		root?: number; funcValue?: number;
-		x?: number; y?: number; dx?: number; dy?: number;
-		iterations: number; error: string | null;
+		root?: string;
+		funcValue?: string;
+		x?: string;
+		y?: string;
+		dx?: string;
+		dy?: string;
+		iterations: number;
+		error: string | null;
 	}
 
 	//const API_BASE = 'http://localhost:8080/lab2/api';
-    const API_BASE = 'https://comp-math.arhr.tech/lab2/api';
+	const API_BASE = 'https://comp-math.arhr.tech/lab2/api';
 
-	// --- Состояние ---
 	let equations = $state<Equation[]>([]);
 	let methods = $state<Method[]>([]);
 	let systems = $state<System[]>([]);
@@ -37,6 +41,15 @@
 	let errorMsg = $state<string | null>(null);
 
 	let plotContainer: HTMLDivElement | undefined = $state();
+
+	function extractRaw(jsonStr: string, key: string): string | undefined {
+		const regex = new RegExp(`"${key}"\\s*:\\s*([^,}]+)`);
+		const match = jsonStr.match(regex);
+		if (!match) return undefined;
+		let val = match[1].trim().replace(/^"|"$/g, ''); 
+		if (val === 'null') return undefined;
+		return val.length > 15 ? val.substring(0, 15) : val;
+	}
 
 	onMount(async () => {
 		try {
@@ -87,14 +100,9 @@
 			}
 
 			functionPlot({
-				target: plotContainer,
-				width: 480,
-				height: 380,
-				grid: true,
-				xAxis: { domain: [-12, 12] },
-				yAxis: { domain: [-12, 12] },
-				data,
-				annotations
+				target: plotContainer, width: 480, height: 380, grid: true,
+				xAxis: { domain: [-12, 12] }, yAxis: { domain: [-12, 12] },
+				data, annotations
 			});
 		} catch (err) { console.error(err); }
 	}
@@ -112,9 +120,24 @@
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify(payload)
 			});
-			const data = await res.json();
-			if (data.error) errorMsg = data.error;
-			else result = data;
+			
+			const rawText = await res.text();
+			const data = JSON.parse(rawText);
+
+			if (data.error) {
+				errorMsg = data.error;
+			} else {
+				result = {
+					iterations: data.iterations,
+					error: data.error,
+					root: extractRaw(rawText, 'root'),
+					funcValue: extractRaw(rawText, 'funcValue'),
+					x: extractRaw(rawText, 'x'),
+					y: extractRaw(rawText, 'y'),
+					dx: extractRaw(rawText, 'dx'),
+					dy: extractRaw(rawText, 'dy')
+				};
+			}
 		} catch { errorMsg = "Ошибка сети"; }
 		finally { isLoading = false; }
 	}
@@ -192,7 +215,7 @@
 
 		<button class="primary-btn" onclick={handleSubmit} disabled={isLoading}>
 			{#if isLoading} <span class="spinner"></span> {/if}
-			{isLoading ? 'Вычисляем...' : 'Решить задачу'}
+			{isLoading ? 'Вычисление...' : 'Решить задачу'}
 		</button>
 	</aside>
 
@@ -211,98 +234,65 @@
 		{#if errorMsg}
 			<div class="msg-card error" in:slide>
 				<div class="msg-icon"><b>!</b></div>
-				<div class="msg-body">
-					<p>{errorMsg}</p>
-				</div>
+				<div class="msg-body"><p>{errorMsg}</p></div>
 			</div>
 		{/if}
 
-		<!-- Находим блок результатов в твоем коде и заменяем вывод значений -->
-{#if result}
-    <div class="msg-card success" in:slide>
-        <div class="msg-header">
-            <h4>Результаты</h4>
-            <span class="iter-tag">{result.iterations} итераций</span>
-        </div>
-        <div class="res-grid">
-            {#if mode === 'single'}
-                <!-- Убрали .toFixed(6) и .toExponential(2) -->
-                <div class="res-item"><span>Корень</span><strong>{result.root}</strong></div>
-                <div class="res-item"><span>f(x)</span><strong>{result.funcValue}</strong></div>
-            {:else}
-                <!-- Убрали .toFixed(4) -->
-                <div class="res-item"><span>X</span><strong>{result.x}</strong></div>
-                <div class="res-item"><span>Y</span><strong>{result.y}</strong></div>
-                <div class="res-item"><span>Δx</span><strong>{result.dx ?? '—'}</strong></div>
-                <div class="res-item"><span>Δy</span><strong>{result.dy ?? '—'}</strong></div>
-            {/if}
-        </div>
-    </div>
-{/if}
+		{#if result}
+			<div class="msg-card success" in:slide>
+				<div class="msg-header">
+					<h4>Результаты</h4>
+					<span class="iter-tag">{result.iterations} ит.</span>
+				</div>
+				<div class="res-grid">
+					{#if mode === 'single'}
+						<div class="res-item"><span>Корень</span><strong>{result.root}</strong></div>
+						<div class="res-item"><span>f(x)</span><strong>{result.funcValue}</strong></div>
+					{:else}
+						<div class="res-item"><span>X</span><strong>{result.x}</strong></div>
+						<div class="res-item"><span>Y</span><strong>{result.y}</strong></div>
+						<div class="res-item"><span>Δx</span><strong>{result.dx ?? '—'}</strong></div>
+						<div class="res-item"><span>Δy</span><strong>{result.dy ?? '—'}</strong></div>
+					{/if}
+				</div>
+			</div>
+		{/if}
 	</main>
 </div>
 
 <style>
 	:global(*) { box-sizing: border-box; }
 	:global(body) { margin: 0; font-family: 'Inter', sans-serif; background: #f8fafc; overflow: hidden; }
-	
 	.app-shell { display: flex; height: 100vh; width: 100vw; }
-
-	/* Sidebar */
-	.sidebar { 
-		width: 360px; min-width: 360px; background: #fff; border-right: 1px solid #e2e8f0; 
-		display: flex; flex-direction: column; padding: 1.25rem; overflow-x: hidden;
-	}
+	.sidebar { width: 360px; min-width: 360px; background: #fff; border-right: 1px solid #e2e8f0; display: flex; flex-direction: column; padding: 1.25rem; overflow-x: hidden; }
 	.brand { display: flex; align-items: center; gap: 10px; margin-bottom: 1.5rem; }
 	.logo { background: #6366f1; color: white; min-width: 36px; height: 36px; border-radius: 8px; display: grid; place-items: center; font-weight: 800; }
 	.brand h2 { margin: 0; font-size: 1rem; }
 	.brand span { font-size: 0.7rem; color: #94a3b8; }
-	
 	.mode-switch { display: flex; background: #f1f5f9; padding: 3px; border-radius: 10px; margin-bottom: 1.25rem; }
 	.mode-switch button { flex: 1; border: none; padding: 8px; border-radius: 7px; font-weight: 600; cursor: pointer; color: #64748b; background: transparent; font-size: 0.85rem; }
 	.mode-switch button.active { background: white; color: #6366f1; box-shadow: 0 2px 6px rgba(0,0,0,0.05); }
-	
 	.config-scroll { flex: 1; overflow-y: auto; padding-right: 4px; }
 	section { margin-bottom: 1.25rem; }
 	.section-title { display: block; font-size: 0.7rem; text-transform: uppercase; font-weight: 700; color: #94a3b8; margin-bottom: 0.6rem; letter-spacing: 0.05em; }
-
-	/* Choice Card & Bracket */
 	.choice-card { text-align: left; padding: 10px; border: 2px solid #f1f5f9; border-radius: 10px; background: white; cursor: pointer; width: 100%; margin-bottom: 5px; transition: 0.2s; }
 	.choice-card.selected { border-color: #6366f1; background: #f5f3ff; }
 	.formula { font-family: serif; font-size: 0.9rem; }
-	
 	.sys-bracket { display: flex; align-items: center; gap: 8px; }
-	.sys-bracket::before { 
-		content: '{'; font-family: 'Cambria', serif; font-size: 2.2rem; font-weight: 300; 
-		color: #6366f1; margin-top: -4px; line-height: 1;
-	}
+	.sys-bracket::before { content: '{'; font-family: 'Cambria', serif; font-size: 2.2rem; font-weight: 300; color: #6366f1; margin-top: -4px; line-height: 1; }
 	.sys-stack { display: flex; flex-direction: column; font-size: 0.85rem; color: #475569; line-height: 1.3; font-family: serif; }
-
-	/* Styled Select */
 	.custom-select-wrapper { position: relative; width: 100%; }
-	.custom-select-wrapper::after {
-		content: ''; position: absolute; right: 12px; top: 50%; transform: translateY(-50%);
-		width: 10px; height: 6px; background-color: #64748b;
-		clip-path: polygon(100% 0%, 0 0%, 50% 100%); pointer-events: none;
-	}
-	.styled-select { 
-		width: 100%; padding: 10px 30px 10px 12px; border-radius: 8px; border: 1px solid #cbd5e1; 
-		background: #f8fafc; font-weight: 600; font-size: 0.9rem; color: #1e293b;
-		appearance: none; cursor: pointer; transition: all 0.2s ease;
-	}
+	.custom-select-wrapper::after { content: ''; position: absolute; right: 12px; top: 50%; transform: translateY(-50%); width: 10px; height: 6px; background-color: #64748b; clip-path: polygon(100% 0%, 0 0%, 50% 100%); pointer-events: none; }
+	.styled-select { width: 100%; padding: 10px 30px 10px 12px; border-radius: 8px; border: 1px solid #cbd5e1; background: #f8fafc; font-weight: 600; font-size: 0.9rem; color: #1e293b; appearance: none; cursor: pointer; transition: all 0.2s ease; }
 	.styled-select:focus { border-color: #6366f1; background: #fff; box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1); outline: none; }
-
 	.grid-inputs { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
 	.input-box { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 6px 10px; transition: 0.2s; }
 	.input-box:focus-within { border-color: #6366f1; background: white; }
 	.input-box span { font-size: 0.65rem; font-weight: 700; color: #94a3b8; }
 	.input-box input { border: none; background: transparent; font-weight: 600; width: 100%; outline: none; font-size: 0.9rem; }
-	
 	.method-badge { background: #e0e7ff; color: #4338ca; padding: 10px; border-radius: 8px; font-weight: 700; text-align: center; font-size: 0.85rem; }
 	.primary-btn { width: 100%; background: #6366f1; color: white; border: none; padding: 14px; border-radius: 10px; font-weight: 700; cursor: pointer; margin-top: 10px; transition: 0.2s; }
 	.primary-btn:hover { background: #4f46e5; transform: translateY(-1px); }
-
-	/* Content & Results */
 	.content { flex: 1; padding: 1rem; display: flex; flex-direction: column; gap: 0.75rem; align-items: center; justify-content: center; }
 	.viz-card { background: white; padding: 1rem; border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.03); border: 1px solid #e2e8f0; }
 	.viz-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; }
@@ -310,19 +300,16 @@
 	.legend { display: flex; gap: 12px; font-size: 0.75rem; font-weight: 600; color: #64748b; }
 	.l-item { display: flex; align-items: center; gap: 4px; }
 	.l-item i { width: 7px; height: 7px; border-radius: 50%; display: block; }
-
-	.msg-card { width: 100%; max-width: 500px; padding: 0.85rem 1.25rem; border-radius: 12px; display: flex; gap: 0.75rem; box-shadow: 0 2px 10px rgba(0,0,0,0.02); }
+	.msg-card { width: 100%; max-width: 600px; padding: 0.85rem 1.25rem; border-radius: 12px; display: flex; gap: 0.75rem; box-shadow: 0 2px 10px rgba(0,0,0,0.02); }
 	.msg-card.success { background: #f0fdf4; border: 1px solid #bbf7d0; flex-direction: column; color: #166534; }
 	.msg-card.error { background: #fff1f2; border: 1px solid #fecdd3; color: #9f1239; align-items: center; }
 	.msg-icon { background: #fb7185; color: white; min-width: 24px; height: 24px; border-radius: 50%; display: grid; place-items: center; font-weight: 800; font-size: 0.8rem; }
-	
 	.msg-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px; }
 	.iter-tag { background: rgba(0,0,0,0.04); padding: 2px 8px; border-radius: 12px; font-size: 0.7rem; font-weight: 700; }
 	.res-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 0.75rem; border-top: 1px solid rgba(0,0,0,0.04); padding-top: 0.75rem; }
 	.res-item { display: flex; flex-direction: column; }
 	.res-item span { font-size: 0.65rem; text-transform: uppercase; font-weight: 700; opacity: 0.6; }
-	.res-item strong { font-size: 0.95rem; font-family: monospace; }
-
+	.res-item strong { font-size: 0.95rem; font-family: monospace; word-break: break-all; }
 	.spinner { width: 14px; height: 14px; border: 2px solid rgba(255,255,255,0.3); border-top-color: white; border-radius: 50%; animation: spin 0.8s linear infinite; }
 	@keyframes spin { to { transform: rotate(360deg); } }
 </style>

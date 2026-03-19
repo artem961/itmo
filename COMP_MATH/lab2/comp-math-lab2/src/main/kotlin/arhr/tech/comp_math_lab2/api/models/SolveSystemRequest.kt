@@ -10,17 +10,17 @@ data class SolveSystemRequest(
     val systemId: Int?,
 
     @field:NotNull(message = "Начальное приближение x0 обязательно")
-    @field:DecimalMin("-200", message = "Начальное x0 слишком мало")
-    @field:DecimalMax("200", message = "Начальное x0 слишком велико")
+    //@field:DecimalMin("-200", message = "Начальное x0 слишком мало")
+    //@field:DecimalMax("200", message = "Начальное x0 слишком велико")
     val x0: BigDecimal?,
 
     @field:NotNull(message = "Начальное приближение y0 обязательно")
-    @field:DecimalMin("-200", message = "Начальное y0 слишком мало")
-    @field:DecimalMax("200", message = "Начальное y0 слишком велико")
+    //@field:DecimalMin("-200", message = "Начальное y0 слишком мало")
+    //@field:DecimalMax("200", message = "Начальное y0 слишком велико")
     val y0: BigDecimal?,
 
     @field:NotNull(message = "Точность должна быть указана")
-    @field:DecimalMin("0.0000000001", message = "Слишком высокая точность")
+    //@field:DecimalMin("0.0000000001", message = "Слишком высокая точность")
     @field:DecimalMax("1.0", message = "Точность слишком грубая")
     val eps: BigDecimal?
 )

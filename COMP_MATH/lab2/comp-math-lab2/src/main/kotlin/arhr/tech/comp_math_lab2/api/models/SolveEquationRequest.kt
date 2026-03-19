@@ -12,15 +12,17 @@ data class SolveEquationRequest(
     @field:NotNull(message = "Не выбран метод")
     val methodId: Int?,
 
-    @field:DecimalMin("-200", message = "Слишком маленькая граница а")
-    @field:DecimalMax("200", message = "Слишком большая граница а")
+    @field:NotNull(message = "граница a обязательна")
+    //@field:DecimalMin("-200", message = "Слишком маленькая граница а")
+    //@field:DecimalMax("200", message = "Слишком большая граница а")
     val a: BigDecimal?,
 
-    @field:DecimalMin("-200", message = "Слишком маленькая граница b")
-    @field:DecimalMax("200", message = "Слишком большая граница b")
+    @field:NotNull(message = "граница b обязательна")
+    //@field:DecimalMin("-200", message = "Слишком маленькая граница b")
+    //@field:DecimalMax("200", message = "Слишком большая граница b")
     val b: BigDecimal?,
 
-    @field:DecimalMin("0.0000000001", message = "Слишком большая точность")
+    //@field:DecimalMin("0.0000000001", message = "Слишком большая точность")
     @field:DecimalMax("1.0", message = "Точность слишком грубая")
     val eps: BigDecimal?
     )
