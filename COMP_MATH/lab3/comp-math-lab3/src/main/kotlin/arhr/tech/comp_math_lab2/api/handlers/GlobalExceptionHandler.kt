@@ -1,9 +1,6 @@
 package arhr.tech.comp_math_lab2.api.handlers
 
-import arhr.tech.comp_math_lab2.api.models.SolveEquationRequest
-import arhr.tech.comp_math_lab2.api.models.SolveEquationResponse
-import jakarta.validation.ValidationException
-import org.springframework.beans.factory.parsing.Problem
+import arhr.tech.comp_math_lab2.api.models.SolveIntegralResponse
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.MethodArgumentNotValidException
@@ -14,12 +11,12 @@ import org.springframework.web.bind.annotation.RestControllerAdvice
 class GlobalExceptionHandler {
 
     @ExceptionHandler(MethodArgumentNotValidException::class)
-    fun handleValidationException(e: MethodArgumentNotValidException): ResponseEntity<SolveEquationResponse> {
+    fun handleValidationException(e: MethodArgumentNotValidException): ResponseEntity<SolveIntegralResponse> {
         val errors = e.bindingResult.fieldErrors.map { it.defaultMessage }
         val message = errors.joinToString("\n")
 
         return ResponseEntity(
-            SolveEquationResponse(error = message),
+            SolveIntegralResponse(error = message),
             HttpStatus.BAD_REQUEST)
     }
 
@@ -32,9 +29,9 @@ class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(Exception::class)
-    fun handleException(e: Exception): ResponseEntity<SolveEquationResponse> {
+    fun handleException(e: Exception): ResponseEntity<SolveIntegralResponse> {
         return ResponseEntity(
-            SolveEquationResponse(error =  e.message),
+            SolveIntegralResponse(error =  e.message),
             HttpStatus.BAD_REQUEST)
     }
 }

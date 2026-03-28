@@ -1,25 +1,34 @@
 package arhr.tech.comp_math_lab2.services
 
-import arhr.tech.comp_math_lab2.api.models.SolveEquationRequest
-import arhr.tech.comp_math_lab2.api.models.SolveEquationResponse
+import arhr.tech.comp_math_lab2.api.models.SolveIntegralRequest
+import arhr.tech.comp_math_lab2.api.models.SolveIntegralResponse
 import arhr.tech.comp_math_lab2.data.EquationRepository
-import arhr.tech.comp_math_lab2.services.solvers.EquationSolver
+import arhr.tech.comp_math_lab2.dto.SolveIntegralRequestDto
+import arhr.tech.comp_math_lab2.services.solvers.IntegralSolver
 import arhr.tech.comp_math_lab2.services.solvers.SolveType
 import arhr.tech.comp_math_lab2.utils.Equation
 import org.springframework.stereotype.Service
 
 @Service
-class EquationService(
-    private val solvers: List<EquationSolver>,
+class IntegralService(
+    private val solvers: List<IntegralSolver>,
     private val equationRepository: EquationRepository
 ) {
-    fun solve(request: SolveEquationRequest): SolveEquationResponse {
+    fun solve(request: SolveIntegralRequest): SolveIntegralResponse {
         val type: SolveType = SolveType.fromId(request.methodId)
         val solver = findSolver(type)
-        return solver.solve(request)
+        val equation = equationRepository.getById(request.equationId)
+
+        val dto = SolveIntegralRequestDto(equation = equation,
+            a = request.a!!,
+            b = request.b!!,
+            eps = request.eps!!,
+        )
+
+        return solver.solve(dto)
     }
 
-    fun findSolver(type: SolveType): EquationSolver {
+    fun findSolver(type: SolveType): IntegralSolver {
         solvers.forEach {
             if (it.supports(type)) return it
         }

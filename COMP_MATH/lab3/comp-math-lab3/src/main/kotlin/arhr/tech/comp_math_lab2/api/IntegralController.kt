@@ -1,8 +1,8 @@
 package arhr.tech.comp_math_lab2.api
 
-import arhr.tech.comp_math_lab2.api.models.SolveEquationRequest
-import arhr.tech.comp_math_lab2.api.models.SolveEquationResponse
-import arhr.tech.comp_math_lab2.services.EquationService
+import arhr.tech.comp_math_lab2.api.models.SolveIntegralRequest
+import arhr.tech.comp_math_lab2.api.models.SolveIntegralResponse
+import arhr.tech.comp_math_lab2.services.IntegralService
 import arhr.tech.comp_math_lab2.services.solvers.SolveType
 import arhr.tech.comp_math_lab2.utils.Equation
 import jakarta.validation.Valid
@@ -13,26 +13,25 @@ import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
-import kotlin.enums.EnumEntries
 
 @RestController
-@RequestMapping("/equations")
+@RequestMapping("/integrals")
 @CrossOrigin(origins = ["*"])
-class EquationController(
-    val equationService: EquationService
+class IntegralController(
+    val integralService: IntegralService
 ) {
 
 
     @PostMapping("/solve")
     fun solve(
-        @Valid @RequestBody request: SolveEquationRequest
-    ): ResponseEntity<SolveEquationResponse> {
-        return ResponseEntity.ok(equationService.solve(request))
+        @Valid @RequestBody request: SolveIntegralRequest
+    ): ResponseEntity<SolveIntegralResponse> {
+        return ResponseEntity.ok(integralService.solve(request))
     }
 
-    @GetMapping("/all")
+    @GetMapping("/equations")
     fun getEquations(): ResponseEntity<List<Equation>> {
-        return ResponseEntity.ok(equationService.getEquations())
+        return ResponseEntity.ok(integralService.getEquations())
     }
 
     @GetMapping("/methods")
