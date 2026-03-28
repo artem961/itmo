@@ -13,7 +13,7 @@ enum class SolveType(val id: Int, val label: String) {
     companion object {
         fun fromId(id: Int?): SolveType {
             return entries.find { it.id == id }
-                ?: throw IllegalArgumentException("Метод с ID $id не поддерживается")
+                ?: throw IllegalArgumentException("Метод с ID $id не существует")
         }
     }
 }

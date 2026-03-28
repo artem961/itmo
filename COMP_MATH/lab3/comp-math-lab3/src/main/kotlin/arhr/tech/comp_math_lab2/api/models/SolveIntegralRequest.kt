@@ -11,12 +11,13 @@ data class SolveIntegralRequest(
     @field:NotNull(message = "Не выбран метод")
     val methodId: Int?,
 
-    @field:NotNull(message = "граница a обязательна")
+    @field:NotNull(message = "Граница a обязательна")
     val a: BigDecimal?,
 
-    @field:NotNull(message = "граница b обязательна")
+    @field:NotNull(message = "Граница b обязательна")
     val b: BigDecimal?,
 
+    @field:NotNull(message = "Точность не указана")
     @field:DecimalMax("1.0", message = "Точность слишком грубая")
     val eps: BigDecimal?
     )

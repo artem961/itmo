@@ -20,18 +20,17 @@ abstract class AbstractRungeIntegralSolver : IntegralSolver {
         var n = 4
         var iterations = 0
         var h = calcH(a, b, n)
-        var value = methodImpl(equation, a, b, h)
-
+        var value = methodImpl(equation, a, b, h, n)
         while (true) {
             iterations++
             n *= 2
             h = calcH(a, b, n)
-            val newValue = methodImpl(equation, a, b, h)
+            val newValue = methodImpl(equation, a, b, h, n)
 
             val error = newValue.subtract(value)
                 .divide(
-                    (BigDecimal.TWO.pow(rungeCoff).subtract(BigDecimal.ONE)), MathContext.DECIMAL32
-                )
+                    (BigDecimal.TWO.pow(rungeCoff).subtract(BigDecimal.ONE)), MathContext.DECIMAL64
+                ).abs()
             value = newValue
 
             if (error < eps) {
@@ -48,7 +47,8 @@ abstract class AbstractRungeIntegralSolver : IntegralSolver {
         eq: Equation,
         a: BigDecimal,
         b: BigDecimal,
-        h: BigDecimal
+        h: BigDecimal,
+        n: Int
     ): BigDecimal
 
     fun calcH(
@@ -57,7 +57,7 @@ abstract class AbstractRungeIntegralSolver : IntegralSolver {
         n: Int
     ): BigDecimal {
         return b.subtract(a).abs()
-            .divide(BigDecimal(n), MathContext.DECIMAL32)
+            .divide(BigDecimal(n), MathContext.DECIMAL64)
     }
 
     fun createResponse(value: BigDecimal, splits: Int): SolveIntegralResponse {
