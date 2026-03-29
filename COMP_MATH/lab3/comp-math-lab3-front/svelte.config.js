@@ -8,7 +8,7 @@ export default {
       out: 'build' // Это папка по умолчанию
     }),
 	paths: {
-      base: '/lab2'
+      base: '/lab3'
     }
   }
 };

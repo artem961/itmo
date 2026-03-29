@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: lab2-frontend
+  name: lab3-frontend
   namespace: comp-math
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: lab2-frontend
+      app: lab3-frontend
   template:
     metadata:
       labels:
-        app: lab2-frontend
+        app: lab3-frontend
     spec:
       containers:
-      - name: lab2-frontend-container
-        image: artem5252/cm-2-frontend:latest
+      - name: lab3-frontend-container
+        image: artem5252/cm-3-frontend:latest
         ports:
         - containerPort: 3000

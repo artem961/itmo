@@ -6,17 +6,19 @@ import org.springframework.stereotype.Repository
 @Repository
 class EquationRepository {
     private val equations = mutableMapOf<Int, Equation>()
-
     init {
         equations.put(0, Equation(
             formula = "3*x^3 - 4*x^2 + 7*x - 17",
             view = "3x³ - 4x² + 7x - 17",
             id = 0))
         equations.put(1, Equation(
-            formula = "-x^3 - x^2 + x + 3",
-            view = "-x³ - x² + x + 3 ",
+            formula = "1/sqrt(x)",
+            view = "1/√x",
             id = 1))
-
+        equations.put(2, Equation(
+            formula = "1/(2*x)",
+            view = "1/2x",
+            id = 2))
     }
 
     fun getById(id: Int?): Equation {
