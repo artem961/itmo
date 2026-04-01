@@ -5,12 +5,14 @@ import arhr.tech.comp_math_lab2.dto.SolveIntegralRequestDto
 import arhr.tech.comp_math_lab2.utils.Equation
 import arhr.tech.comp_math_lab2.utils.SingularityPoint
 import arhr.tech.comp_math_lab2.utils.SingularityType
+import org.slf4j.LoggerFactory
 import java.math.BigDecimal
 import java.math.MathContext
 
 abstract class AbstractRungeIntegralSolver : IntegralSolver {
+    private val log = LoggerFactory.getLogger(AbstractRungeIntegralSolver::class.java)
     abstract val rungeCoff: Int
-    private val delta = BigDecimal("0.00001")
+    private val delta = BigDecimal("0.0001")
 
     override fun solve(
         request: SolveIntegralRequestDto
@@ -19,31 +21,46 @@ abstract class AbstractRungeIntegralSolver : IntegralSolver {
         val a = request.a
         val b = request.b
         val eps = request.eps
+        log.info("Начало вычислений")
+
+        val START = System.currentTimeMillis()
+        var INTERVAL = System.currentTimeMillis()
+        fun duration(): String{
+                var interval = ((System.currentTimeMillis() - INTERVAL) / 1000.0).toString()
+                var total = ((System.currentTimeMillis() - START) / 1000.0).toString()
+                INTERVAL = System.currentTimeMillis()
+                return interval + " | " + total
+
+        }
 
         val singularPoints = findSingularities(equation, a, b)
-        validateConvergence(singularPoints, equation)
+        log.info("Поиск разрывов: " + duration())
 
+        validateConvergence(singularPoints, equation)
         val segments = splitToSegments(a, b, singularPoints)
 
         segments.forEach { segment -> println(segment) }
         var n = 4
         var value = calculateOnSegments(equation, segments, n)
-
+        log.info("Итерация n=$n: " + duration())
         while (true) {
-            println("$n")
             n *= 2
             val newValue = calculateOnSegments(equation, segments, n)
-
+            log.info("Итерация n=$n: " + duration())
             val denominator = BigDecimal.TWO.pow(rungeCoff).subtract(BigDecimal.ONE)
             val error = newValue.subtract(value).abs().divide(denominator, MathContext.DECIMAL64)
 
             value = newValue
 
-            if (error < eps)
+            if (error < eps) {
+                log.info("Рассчёт окончен")
                 return createResponse(value, n)
+            }
 
-            if (n > 1000000)
+            if (n > 10000000) {
+                log.info("Лимит разбиений")
                 throw RuntimeException("Достигнут лимит разбиений")
+            }
         }
     }
 
@@ -125,7 +142,10 @@ abstract class AbstractRungeIntegralSolver : IntegralSolver {
 
     fun validateConvergence(points: List<SingularityPoint>, equation: Equation) {
         val breakPoints = points
+            .filter { it.type == SingularityType.LEFT || it.type == SingularityType.RIGHT }
             .filter { !checkConvergence(equation, it) }
+
+        breakPoints.forEach { println(it.x.toString() + " " + it.type.toString()) }
         if (breakPoints.isNotEmpty()) {
             val pointsString = breakPoints.joinToString("") { "x = ${it.x}" }
             throw RuntimeException("Интеграл расходится. Точки разрыва: $pointsString")

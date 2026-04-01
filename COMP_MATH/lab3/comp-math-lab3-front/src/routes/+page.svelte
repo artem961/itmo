@@ -13,7 +13,9 @@
 		error: string | null;
 	}
 
-	const API_BASE = 'https://comp-math.arhr.tech/lab3/api/integrals';
+	//const API_BASE = 'https://comp-math.arhr.tech/lab3/api/integrals';
+
+	const API_BASE = 'http://localhost:8080/lab3/api/integrals';
 
 	let equations = $state<Equation[]>([]);
 	let methods = $state<Method[]>([]);

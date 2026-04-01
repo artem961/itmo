@@ -16,7 +16,7 @@ class LeftRectanglesSolver : AbstractRungeIntegralSolver() {
         h: BigDecimal,
         n: Int
     ): BigDecimal {
-        var sum = BigDecimal.ZERO
+            var sum = BigDecimal.ZERO
 
         for (i in 0 until n) {
             val x = a.add(BigDecimal(i).multiply(h))

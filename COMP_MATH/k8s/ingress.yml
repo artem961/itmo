@@ -29,3 +29,17 @@ spec:
             name: lab2-backend-service
             port:
               number: 80
+      - path: /lab3
+        pathType: Prefix
+        backend:
+          service:
+            name: lab3-frontend-service
+            port:
+              number: 80
+      - path: /lab3/api
+        pathType: Prefix
+        backend:
+          service:
+            name: lab3-backend-service
+            port:
+              number: 80
