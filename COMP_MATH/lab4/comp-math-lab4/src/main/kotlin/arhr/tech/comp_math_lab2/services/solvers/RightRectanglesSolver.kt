@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component
 import java.math.BigDecimal
 
 @Component
-class LeftRectanglesSolver : AbstractRungeIntegralSolver() {
+class RightRectanglesSolver : AbstractRungeIntegralSolver() {
     override val rungeCoff: Int
         get() = 1
 
@@ -16,9 +16,9 @@ class LeftRectanglesSolver : AbstractRungeIntegralSolver() {
         h: BigDecimal,
         n: Int
     ): BigDecimal {
-            var sum = BigDecimal.ZERO
+        var sum = BigDecimal.ZERO
 
-        for (i in 0 until n) {
+        for (i in 1 .. n) {
             val x = a.add(BigDecimal(i).multiply(h))
             sum = sum.add(eq.f(x))
         }
@@ -26,6 +26,6 @@ class LeftRectanglesSolver : AbstractRungeIntegralSolver() {
     }
 
     override fun supports(type: SolveType): Boolean {
-        return type == SolveType.LEFT_RECTANGLES
+        return type == SolveType.RIGHT_RECTANGLES
     }
 }

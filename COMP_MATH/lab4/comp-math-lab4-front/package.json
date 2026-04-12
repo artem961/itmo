@@ -1,0 +1,35 @@
+{
+	"name": "comp-math-lab2-front",
+	"private": true,
+	"version": "0.0.1",
+	"type": "module",
+	"scripts": {
+		"dev": "vite dev",
+		"build": "vite build",
+		"preview": "vite preview",
+		"prepare": "svelte-kit sync || echo ''",
+		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch"
+	},
+	"devDependencies": {
+		"@smui/button": "^8.0.3",
+		"@smui/textfield": "^8.0.3",
+		"@sveltejs/adapter-auto": "^7.0.0",
+		"@sveltejs/adapter-node": "^5.5.4",
+		"@sveltejs/kit": "^2.50.2",
+		"@sveltejs/vite-plugin-svelte": "^6.2.4",
+		"svelte": "^5.51.0",
+		"svelte-check": "^4.4.2",
+		"typescript": "^5.9.3",
+		"vite": "^7.3.1"
+	},
+	"dependencies": {
+		"@smui/card": "^8.0.3",
+		"@smui/form-field": "^8.0.3",
+		"@smui/list": "^8.0.3",
+		"@smui/radio": "^8.0.3",
+		"@smui/select": "^8.0.3",
+		"function-plot": "^1.25.3",
+		"svelte-material-ui": "^8.0.3"
+	}
+}

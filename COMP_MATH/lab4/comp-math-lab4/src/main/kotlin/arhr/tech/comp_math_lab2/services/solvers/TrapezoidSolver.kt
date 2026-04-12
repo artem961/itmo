@@ -3,11 +3,12 @@ package arhr.tech.comp_math_lab2.services.solvers
 import arhr.tech.comp_math_lab2.utils.Equation
 import org.springframework.stereotype.Component
 import java.math.BigDecimal
+import java.math.MathContext
 
 @Component
-class LeftRectanglesSolver : AbstractRungeIntegralSolver() {
+class TrapezoidSolver : AbstractRungeIntegralSolver() {
     override val rungeCoff: Int
-        get() = 1
+        get() = 2
 
     override fun methodImpl(
         eq: Equation,
@@ -16,16 +17,17 @@ class LeftRectanglesSolver : AbstractRungeIntegralSolver() {
         h: BigDecimal,
         n: Int
     ): BigDecimal {
-            var sum = BigDecimal.ZERO
+        var sum = BigDecimal.ZERO
 
-        for (i in 0 until n) {
-            val x = a.add(BigDecimal(i).multiply(h))
+        for (i in 1 until n) {
+            val x = a.add((BigDecimal(i)).multiply(h))
             sum = sum.add(eq.f(x))
         }
-        return sum.multiply(h)
+        val k = (eq.f(a).add(eq.f(b))).divide(BigDecimal.TWO, MathContext.DECIMAL64)
+        return sum.add(k).multiply(h)
     }
 
     override fun supports(type: SolveType): Boolean {
-        return type == SolveType.LEFT_RECTANGLES
+        return type == SolveType.TRAPEZOID
     }
 }

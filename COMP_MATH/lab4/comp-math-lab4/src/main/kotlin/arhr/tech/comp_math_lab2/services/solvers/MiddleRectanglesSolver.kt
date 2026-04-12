@@ -5,9 +5,9 @@ import org.springframework.stereotype.Component
 import java.math.BigDecimal
 
 @Component
-class LeftRectanglesSolver : AbstractRungeIntegralSolver() {
+class MiddleRectanglesSolver : AbstractRungeIntegralSolver() {
     override val rungeCoff: Int
-        get() = 1
+        get() = 2
 
     override fun methodImpl(
         eq: Equation,
@@ -16,16 +16,16 @@ class LeftRectanglesSolver : AbstractRungeIntegralSolver() {
         h: BigDecimal,
         n: Int
     ): BigDecimal {
-            var sum = BigDecimal.ZERO
+        var sum = BigDecimal.ZERO
 
-        for (i in 0 until n) {
-            val x = a.add(BigDecimal(i).multiply(h))
+        for (i in 1 .. n) {
+            val x = a.add((BigDecimal(i).subtract(BigDecimal("0.5"))).multiply(h))
             sum = sum.add(eq.f(x))
         }
         return sum.multiply(h)
     }
 
     override fun supports(type: SolveType): Boolean {
-        return type == SolveType.LEFT_RECTANGLES
+        return type == SolveType.MIDDLE_RECTANGLES
     }
 }
