@@ -3,7 +3,6 @@
 	import functionPlot from 'function-plot';
 	import { slide, fade } from 'svelte/transition';
 
-	// --- Интерфейсы ---
 	interface Point { x: number; y: number; }
 	interface ApproxResult {
 		type: { id: number; label: string };
@@ -17,10 +16,8 @@
 
 	const API_BASE = 'https://comp-math.arhr.tech/lab4/api/approx';
 	
-	// Палитра: Степенная (5) - Почти черная
 	const COLORS = ['#6366f1', '#d946ef', '#f59e0b', '#ef4444', '#22c55e', '#111827'];
 
-	// --- Состояние ---
 	let points = $state<Point[]>([
 		{x: 1.1, y: 2.73}, {x: 2.3, y: 5.12}, {x: 3.7, y: 7.74}, {x: 4.5, y: 8.91},
 		{x: 5.4, y: 10.59}, {x: 6.8, y: 12.75}, {x: 7.5, y: 14.1}, {x: 8.2, y: 15.5}
@@ -39,10 +36,6 @@
 
 	let shouldResetScale = true;
 
-	/**
-	 * Очистка формулы для function-plot и buildSafePoints.
-	 * Исправляет проблему отсутствия знака умножения (например, 6.37log -> 6.37*log)
-	 */
 	function cleanFormula(f: string): string {
 		return f
 			.replace(/y\s*=\s*/g, '')
@@ -51,15 +44,12 @@
 			.replace(/x³/g, 'x^3')
 			.replace(/ln\(/g, 'log(')
 			.replace(/e\^/g, 'exp')
-			// Вставляем умножение между числом и буквой: 6.37ln -> 6.37*log, 2x -> 2*x
 			.replace(/(\d)([a-z])/g, '$1*$2') 
 			.replace(/(\))(\d)/g, '$1*$2')
 			.replace(/(\))([a-z])/g, '$1*$2');
 	}
 
-	/**
-	 * Ручная генерация точек для функций, чувствительных к x <= 0 (Log, Power)
-	 */
+	
 	function buildSafePoints(fStr: string): [number, number][] {
 		const jsStr = fStr
 			.replace(/log\(/g, 'Math.log(')
@@ -75,7 +65,6 @@
 		}
 
 		const pts: [number, number][] = [];
-		// Генерируем точки от 0.01 до 15 с мелким шагом
 		for (let xi = 0.01; xi <= 15; xi += 0.05) {
 			try {
 				const yi = evalFn(xi);
@@ -137,8 +126,8 @@
 				data.push({ 
 					fn: fStr, 
 					color, 
-					graphType: 'polyline', // Явно указываем тип линии
-					attr: { fill: 'none' },  // Принудительно убираем заливку
+					graphType: 'polyline',
+					attr: { fill: 'none' },
 					nSamples: 1000 
 				});
 			}
