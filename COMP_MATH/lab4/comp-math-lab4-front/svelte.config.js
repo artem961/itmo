@@ -1,14 +1,13 @@
 // svelte.config.js
-import adapter from '@sveltejs/adapter-node'; // <-- Импортируем node-адаптер
+import adapter from '@sveltejs/adapter-node'; 
 
 export default {
   kit: {
     adapter: adapter({
-      // Опции (необязательно)
-      out: 'build' // Это папка по умолчанию
+      out: 'build'
     }),
 	paths: {
-      base: '/lab3'
+      base: '/lab4'
     }
   }
 };

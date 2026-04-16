@@ -3,4 +3,4 @@ spring:
     name: comp-math-lab3
 server:
   servlet:
-    context-path: /lab3/api
+    context-path: /lab4/api

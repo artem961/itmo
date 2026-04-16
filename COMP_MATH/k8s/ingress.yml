@@ -50,3 +50,17 @@ spec:
             name: lab3-backend-service
             port:
               number: 80
+      - path: /lab4
+        pathType: Prefix
+        backend:
+          service:
+            name: lab4-frontend-service
+            port:
+              number: 80
+      - path: /lab4/api
+        pathType: Prefix
+        backend:
+          service:
+            name: lab4-backend-service
+            port:
+              number: 80

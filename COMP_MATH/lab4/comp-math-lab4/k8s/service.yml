@@ -1,11 +1,11 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: lab3-backend-service
+  name: lab4-backend-service
   namespace: comp-math
 spec:
   selector:
-    app: lab3-backend
+    app: lab4-backend
   ports:
     - port: 80
       targetPort: 8080

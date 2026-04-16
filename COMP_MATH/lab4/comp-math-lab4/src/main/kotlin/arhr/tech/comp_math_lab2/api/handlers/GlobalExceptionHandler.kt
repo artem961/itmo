@@ -1,6 +1,6 @@
 package arhr.tech.comp_math_lab2.api.handlers
 
-import arhr.tech.comp_math_lab2.api.models.SolveIntegralResponse
+import arhr.tech.comp_math_lab2.api.models.ApproximationResponse
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.MethodArgumentNotValidException
@@ -11,12 +11,12 @@ import org.springframework.web.bind.annotation.RestControllerAdvice
 class GlobalExceptionHandler {
 
     @ExceptionHandler(MethodArgumentNotValidException::class)
-    fun handleValidationException(e: MethodArgumentNotValidException): ResponseEntity<SolveIntegralResponse> {
+    fun handleValidationException(e: MethodArgumentNotValidException): ResponseEntity<ApproximationResponse> {
         val errors = e.bindingResult.fieldErrors.map { it.defaultMessage }
         val message = errors.joinToString("\n")
 
         return ResponseEntity(
-            SolveIntegralResponse(error = message),
+            ApproximationResponse(error = message, best = null, results = null),
             HttpStatus.BAD_REQUEST)
     }
 
@@ -29,9 +29,9 @@ class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(Exception::class)
-    fun handleException(e: Exception): ResponseEntity<SolveIntegralResponse> {
+    fun handleException(e: Exception): ResponseEntity<ApproximationResponse> {
         return ResponseEntity(
-            SolveIntegralResponse(error =  e.message),
+            ApproximationResponse(error =  e.message, best =  null, results = null),
             HttpStatus.BAD_REQUEST)
     }
 }

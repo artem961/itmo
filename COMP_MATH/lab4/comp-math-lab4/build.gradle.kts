@@ -26,6 +26,7 @@ dependencies {
 	implementation("tools.jackson.module:jackson-module-kotlin")
 	implementation("org.springframework.boot:spring-boot-starter-actuator")
 	implementation("org.mariuszgromada.math:MathParser.org-mXparser:6.1.0")
+	implementation("org.ejml:ejml-simple:0.43.1")
 	testImplementation("org.springframework.boot:spring-boot-starter-validation-test")
 	testImplementation("org.springframework.boot:spring-boot-starter-webmvc-test")
 	testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
