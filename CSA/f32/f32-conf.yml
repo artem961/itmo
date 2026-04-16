@@ -1,0 +1,22 @@
+name: is-prime
+limit: 7600000
+memory_size: 0x240
+memory_mapped_io:
+  0x80: [2147483647]
+  0x84: []
+reports:
+  - name: Step-by-step
+    slice: all
+    view: |
+      T S A {T:dec} {S:dec} {A:hex} R {R}
+      {pc}:	{instruction}	{pc:label}
+  - name: Result
+    slice: last
+    filter:
+      - state
+    view: |
+      numio[0x80]: {io:0x80:dec}
+      numio[0x84]: {io:0x84:dec}
+    assert: |
+      numio[0x80]: [] >>> []
+      numio[0x84]: [] >>> [1]
