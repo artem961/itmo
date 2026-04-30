@@ -1,0 +1,12 @@
+  apiVersion: v1
+  kind: Service
+  metadata:
+    name: lab5-frontend-service
+    namespace: comp-math
+  spec:
+    selector:
+      app: lab5-frontend
+    ports:
+    - port: 80      
+      targetPort: 3000
+    type: ClusterIP

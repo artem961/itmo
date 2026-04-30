@@ -75,8 +75,10 @@ newton_method:
     @p newton_its >r
 iteration:
     dup @p n_orig            \ n:x:x:[]
-    divide
-    over drop                \ main:x:[]
+    divide                   \ main:remainder:x:[]
+    >r
+    drop
+    r>                       \ main:x:[]
     +
     2/
     next iteration

@@ -1,0 +1,696 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/26.0.16 Chrome/132.0.6834.196 Electron/34.2.0 Safari/537.36" version="26.0.16">
+  <diagram id="InterpolationAll" name="Lab 5 Full">
+    <mxGraphModel dx="375005" dy="295533" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="4500" pageHeight="3500" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="f_t" value="Процедура factorial(k)" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="3800" y="50" width="160" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="f_1" value="НАЧАЛО" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="3820" y="90" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="f_2" value="res = 1" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="3820" y="170" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="f_3" value="i = 2, k" style="shape=hexagon;perimeter=hexagonPerimeter2;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="3810" y="230" width="140" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="f_4" value="res = res * i" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="3820" y="300" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="f_5" value="res" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" vertex="1" parent="1">
+          <mxGeometry x="3820" y="370" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="f_6" value="КОНЕЦ" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="3820" y="430" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="fe1" parent="1" source="f_1" target="f_2" edge="1" />
+        <mxCell id="fe2" parent="1" source="f_2" target="f_3" edge="1" />
+        <mxCell id="fe3" parent="1" source="f_3" target="f_4" edge="1" />
+        <mxCell id="fe4" edge="1" parent="1" source="f_4" target="f_3">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="3970" y="320" />
+              <mxPoint x="3970" y="255" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="fe5" edge="1" parent="1" source="f_3" target="f_5">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="3790" y="255" />
+              <mxPoint x="3790" y="390" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="fe6" parent="1" source="f_5" target="f_6" edge="1" />
+        <mxCell id="fd_t" value="Процедура calculateFiniteDifferences" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="3800" y="550" width="220" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="fd_1" value="НАЧАЛО" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="3840" y="600" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="fd_2" value="d[0] = points.y" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="3830" y="680" width="140" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="fd_3" value="k = 1, n - 1" style="shape=hexagon;perimeter=hexagonPerimeter2;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="3830" y="740" width="140" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="fd_4" value="i = 0, n - 1 - k" style="shape=hexagon;perimeter=hexagonPerimeter2;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="3830" y="810" width="140" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="fd_5" value="d[k][i] = d[k-1][i+1] - d[k-1][i]" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="3810" y="880" width="180" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="fd_6" value="d" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" vertex="1" parent="1">
+          <mxGeometry x="3840" y="940" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="fd_7" value="КОНЕЦ" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="3840" y="1000" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="fde1" parent="1" source="fd_1" target="fd_2" edge="1" />
+        <mxCell id="fde2" parent="1" source="fd_2" target="fd_3" edge="1" />
+        <mxCell id="fde3" parent="1" source="fd_3" target="fd_4" edge="1" />
+        <mxCell id="fde4" parent="1" source="fd_4" target="fd_5" edge="1" />
+        <mxCell id="fde5" edge="1" parent="1" source="fd_5" target="fd_4">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="4010" y="900" />
+              <mxPoint x="4010" y="835" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="fde6" edge="1" parent="1" source="fd_4" target="fd_3">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="3800" y="835" />
+              <mxPoint x="3800" y="765" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="fde7" edge="1" parent="1" source="fd_3" target="fd_6">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="4040" y="765" />
+              <mxPoint x="4040" y="960" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="fde8" parent="1" source="fd_6" target="fd_7" edge="1" />
+        <mxCell id="ga_t" value="Метод Гаусса" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1;fontSize=16" parent="1" vertex="1">
+          <mxGeometry x="1100" y="40" width="200" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="SeZBY3181p9hstLFeavz-16" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="ga_1" target="ga_in">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ga_1" value="НАЧАЛО" style="ellipse;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="1140" y="90" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="SeZBY3181p9hstLFeavz-17" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="ga_in" target="ga_eq">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ga_in" value="points, x" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" vertex="1" parent="1">
+          <mxGeometry x="1130" y="170" width="140" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="SeZBY3181p9hstLFeavz-18" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="ga_eq" target="ga_fd">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ga_eq" value="checkEquidistant(points)" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" vertex="1" parent="1">
+          <mxGeometry x="1100" y="240" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="SeZBY3181p9hstLFeavz-19" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="ga_fd" target="ga_init">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ga_fd" value="d = calculateFiniteDifferences(points)" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" vertex="1" parent="1">
+          <mxGeometry x="1080" y="300" width="240" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="SeZBY3181p9hstLFeavz-20" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="ga_init" target="ga_cond1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ga_init" value="n = points.size&lt;br&gt;mid = n / 2&lt;br&gt;x&lt;sub&gt;0&lt;/sub&gt; = points[mid].x&lt;br&gt;t = (x - x&lt;sub&gt;0&lt;/sub&gt;) / h&lt;br&gt;res = d[0][mid]" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1110" y="360" width="180" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="ga_cond1" value="t &gt;= 0" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1150" y="470" width="100" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ga_f1" value="dy = d[1][mid]&lt;br&gt;fwd = true" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1030" y="550" width="110" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="ga_f2" value="dy = d[1][mid-1]&lt;br&gt;fwd = false" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1260" y="550" width="110" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="SeZBY3181p9hstLFeavz-21" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="ga_step1" target="ga_loop">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ga_step1" value="res = res + t * dy&lt;br&gt;curT = t" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1130" y="610" width="140" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="SeZBY3181p9hstLFeavz-22" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="ga_loop" target="ga_cond2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ga_loop" value="k = 2, n - 1" style="shape=hexagon;perimeter=hexagonPerimeter2;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1130" y="680" width="140" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="ga_cond2" value="k % 2 == 0" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1150" y="750" width="100" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="SeZBY3181p9hstLFeavz-24" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="ga_even" target="ga_offs">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ga_even" value="m = k / 2&lt;br&gt;curT = curT * (t^2 - m^2)" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1010" y="830" width="160" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="SeZBY3181p9hstLFeavz-23" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="ga_odd" target="ga_offs">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ga_odd" value="curT = curT * t" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1240" y="830" width="120" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="SeZBY3181p9hstLFeavz-25" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="ga_offs" target="ga_sum">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ga_offs" value="dy = (fwd ? d[k][mid-m] : d[k][mid-((k+1)/2)])" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1100" y="910" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="ga_sum" value="res = res + (curT * dy) / factorial(k)" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" vertex="1" parent="1">
+          <mxGeometry x="1080" y="970" width="240" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="SeZBY3181p9hstLFeavz-15" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="ga_out" target="ga_end">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ga_out" value="res" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" vertex="1" parent="1">
+          <mxGeometry x="1140" y="1040" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="ga_end" value="КОНЕЦ" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1140" y="1100" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="gae1" parent="1" source="ga_1" target="ga_in" edge="1" />
+        <mxCell id="gae2" parent="1" source="ga_in" target="ga_eq" edge="1" />
+        <mxCell id="gae3" parent="1" source="ga_eq" target="ga_fd" edge="1" />
+        <mxCell id="gae4" parent="1" source="ga_fd" target="ga_init" edge="1" />
+        <mxCell id="gae5" parent="1" source="ga_init" target="ga_cond1" edge="1" />
+        <mxCell id="gae6" parent="1" source="ga_cond1" target="ga_f1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1085" y="500" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="gae7" parent="1" source="ga_cond1" target="ga_f2" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1315" y="500" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="gae8" parent="1" source="ga_f1" target="ga_step1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1085" y="600" />
+              <mxPoint x="1200" y="600" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="gae9" parent="1" source="ga_f2" target="ga_step1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1315" y="600" />
+              <mxPoint x="1200" y="600" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="gae10" parent="1" source="ga_step1" target="ga_loop" edge="1" />
+        <mxCell id="gae11" parent="1" source="ga_loop" target="ga_cond2" edge="1" />
+        <mxCell id="gae12" parent="1" source="ga_cond2" target="ga_even" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1090" y="780" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="gae13" parent="1" source="ga_cond2" target="ga_odd" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1300" y="780" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="gae14" parent="1" source="ga_even" target="ga_offs" edge="1" />
+        <mxCell id="gae15" parent="1" source="ga_odd" target="ga_offs" edge="1" />
+        <mxCell id="gae16" parent="1" source="ga_offs" target="ga_sum" edge="1" />
+        <mxCell id="gae17" parent="1" source="ga_sum" target="ga_loop" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1400" y="990" />
+              <mxPoint x="1400" y="850" />
+              <mxPoint x="1400" y="700" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="gae18" parent="1" source="ga_loop" target="ga_out" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="980" y="705" />
+              <mxPoint x="980" y="1060" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="gae19" parent="1" source="ga_out" target="ga_end" edge="1" />
+        <mxCell id="st_t" value="Метод Стирлинга" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1;fontSize=16" vertex="1" parent="1">
+          <mxGeometry x="1700" y="40" width="200" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="SeZBY3181p9hstLFeavz-26" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="st_1" target="st_in">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="st_1" value="НАЧАЛО" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1740" y="90" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="SeZBY3181p9hstLFeavz-27" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="st_in" target="st_eq">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="st_in" value="points, x" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" vertex="1" parent="1">
+          <mxGeometry x="1730" y="170" width="140" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="SeZBY3181p9hstLFeavz-28" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="st_eq" target="st_fd">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="st_eq" value="checkEquidistant(points)" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" vertex="1" parent="1">
+          <mxGeometry x="1700" y="240" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="SeZBY3181p9hstLFeavz-29" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="st_fd" target="st_init">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="st_fd" value="d = calculateFiniteDifferences(points)" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" vertex="1" parent="1">
+          <mxGeometry x="1680" y="300" width="240" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="SeZBY3181p9hstLFeavz-30" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="st_init" target="st_ord1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="st_init" value="mid = n / 2&lt;br&gt;t = (x - x&lt;sub&gt;mid&lt;/sub&gt;) / h&lt;br&gt;res = d[0][mid]&lt;br&gt;t2 = t^2&lt;br&gt;t2P = 1, tP = t" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1710" y="360" width="180" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="SeZBY3181p9hstLFeavz-31" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="st_ord1" target="st_loop">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="st_ord1" value="avg = (d[1][mid-1] + d[1][mid]) / 2&lt;br&gt;res = res + t * avg" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1690" y="470" width="220" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="SeZBY3181p9hstLFeavz-32" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="st_loop" target="st_cond">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="st_loop" value="k = 2, n - 1" style="shape=hexagon;perimeter=hexagonPerimeter2;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1730" y="540" width="140" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="st_cond" value="k % 2 == 0" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1750" y="610" width="100" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="SeZBY3181p9hstLFeavz-33" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="st_even" target="st_sum">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="st_even" value="m = k / 2&lt;br&gt;t2P = t2P * (t2 - (m-1)^2)&lt;br&gt;term = (t2P * d[k][mid-m]) / factorial(k)" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" vertex="1" parent="1">
+          <mxGeometry x="1560" y="690" width="220" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="SeZBY3181p9hstLFeavz-34" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.25;entryDx=0;entryDy=0;" edge="1" parent="1" source="st_odd" target="st_sum">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="st_odd" value="m = (k-1) / 2&lt;br&gt;tP = tP * (t2 - m^2)&lt;br&gt;avg = (d[k][mid-m-1] + d[k][mid-m]) / 2&lt;br&gt;term = (tP * avg) / factorial(k)" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" vertex="1" parent="1">
+          <mxGeometry x="1830" y="690" width="260" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="st_sum" value="res = res + term" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1740" y="780" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="SeZBY3181p9hstLFeavz-35" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="st_out" target="st_end">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="st_out" value="res" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" vertex="1" parent="1">
+          <mxGeometry x="1740" y="840" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="st_end" value="КОНЕЦ" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1740" y="900" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ste1" parent="1" source="st_1" target="st_in" edge="1" />
+        <mxCell id="ste2" parent="1" source="st_in" target="st_eq" edge="1" />
+        <mxCell id="ste3" parent="1" source="st_eq" target="st_fd" edge="1" />
+        <mxCell id="ste4" parent="1" source="st_fd" target="st_init" edge="1" />
+        <mxCell id="ste5" parent="1" source="st_init" target="st_ord1" edge="1" />
+        <mxCell id="ste6" parent="1" source="st_ord1" target="st_loop" edge="1" />
+        <mxCell id="ste7" edge="1" parent="1" source="st_loop" target="st_cond" />
+        <mxCell id="ste8" edge="1" parent="1" source="st_cond" target="st_even">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1670" y="640" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ste9" parent="1" source="st_cond" target="st_odd" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1960" y="640" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ste10" parent="1" source="st_even" target="st_sum" edge="1" />
+        <mxCell id="ste11" edge="1" parent="1" source="st_odd" target="st_sum" />
+        <mxCell id="ste12" edge="1" parent="1" source="st_sum" target="st_loop">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="2120" y="800" />
+              <mxPoint x="2120" y="565" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ste13" parent="1" source="st_loop" target="st_out" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1540" y="565" />
+              <mxPoint x="1540" y="860" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ste14" edge="1" parent="1" source="st_out" target="st_end" />
+        <mxCell id="be_t" value="Метод Бесселя" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1;fontSize=16" vertex="1" parent="1">
+          <mxGeometry x="2300" y="40" width="200" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="SeZBY3181p9hstLFeavz-36" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="be_1" target="be_in">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="be_1" value="НАЧАЛО" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="2340" y="90" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="SeZBY3181p9hstLFeavz-37" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="be_in" target="be_eq">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="be_in" value="points, x" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" vertex="1" parent="1">
+          <mxGeometry x="2330" y="170" width="140" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="SeZBY3181p9hstLFeavz-38" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="be_eq" target="be_fd">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="be_eq" value="checkEquidistant(points)" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" vertex="1" parent="1">
+          <mxGeometry x="2300" y="240" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="SeZBY3181p9hstLFeavz-39" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="be_fd" target="be_init">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="be_fd" value="d = calculateFiniteDifferences(points)" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" vertex="1" parent="1">
+          <mxGeometry x="2280" y="300" width="240" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="SeZBY3181p9hstLFeavz-40" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="be_init" target="be_loop">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="be_init" value="idx0 = n / 2 - 1&lt;br&gt;t = (x - x&lt;sub&gt;idx0&lt;/sub&gt;) / h&lt;br&gt;res = (y&lt;sub&gt;idx0&lt;/sub&gt; + y&lt;sub&gt;idx0+1&lt;/sub&gt;) / 2&lt;br&gt;res = res + (t - 0.5) * Δy&lt;sub&gt;idx0&lt;/sub&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="2290" y="360" width="220" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="SeZBY3181p9hstLFeavz-41" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="be_loop" target="be_cond">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="be_loop" value="k = 2, n - 1" style="shape=hexagon;perimeter=hexagonPerimeter2;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="2330" y="460" width="140" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="be_cond" value="k % 2 == 0" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="2350" y="530" width="100" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="SeZBY3181p9hstLFeavz-42" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="be_even" target="be_sum">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="be_even" value="avg = (d[k][idx0-m] + d[k][idx0-m+1]) / 2&lt;br&gt;term = (tFactor * avg) / factorial(k)" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" vertex="1" parent="1">
+          <mxGeometry x="2170" y="610" width="230" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="SeZBY3181p9hstLFeavz-43" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.25;entryDx=0;entryDy=0;" edge="1" parent="1" source="be_odd" target="be_sum">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="be_odd" value="term = ((t - 0.5) * tFactor * d[k][idx0-m]) / factorial(k)" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" vertex="1" parent="1">
+          <mxGeometry x="2440" y="610" width="280" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="be_sum" value="res = res + term" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="2340" y="700" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="SeZBY3181p9hstLFeavz-44" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="be_out" target="be_end">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="be_out" value="res" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" vertex="1" parent="1">
+          <mxGeometry x="2340" y="760" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="be_end" value="КОНЕЦ" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="2340" y="820" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="bee1" parent="1" source="be_1" target="be_in" edge="1" />
+        <mxCell id="bee2" parent="1" source="be_in" target="be_eq" edge="1" />
+        <mxCell id="bee3" parent="1" source="be_eq" target="be_fd" edge="1" />
+        <mxCell id="bee4" parent="1" source="be_fd" target="be_init" edge="1" />
+        <mxCell id="bee5" parent="1" source="be_init" target="be_loop" edge="1" />
+        <mxCell id="bee6" parent="1" source="be_loop" target="be_cond" edge="1" />
+        <mxCell id="bee7" edge="1" parent="1" source="be_cond" target="be_even">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="2285" y="560" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="bee8" edge="1" parent="1" source="be_cond" target="be_odd">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="2580" y="560" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="bee9" parent="1" source="be_even" target="be_sum" edge="1" />
+        <mxCell id="bee10" parent="1" source="be_odd" target="be_sum" edge="1" />
+        <mxCell id="bee11" edge="1" parent="1" source="be_sum" target="be_loop">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="2750" y="720" />
+              <mxPoint x="2750" y="485" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="bee12" edge="1" parent="1" source="be_loop" target="be_out">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="2150" y="485" />
+              <mxPoint x="2150" y="780" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="bee13" parent="1" source="be_out" target="be_end" edge="1" />
+        <mxCell id="SeZBY3181p9hstLFeavz-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="Y-mNxXkw3pw43mXS3g-1-0" target="lag_2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Y-mNxXkw3pw43mXS3g-1-0" value="НАЧАЛО" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="140" y="100" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="Y-mNxXkw3pw43mXS3g-1-1" value="Метод Лагранжа" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="145" y="50" width="110" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="SeZBY3181p9hstLFeavz-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="lag_2" target="lag_3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="lag_2" value="points, x" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" parent="1" vertex="1">
+          <mxGeometry x="90" y="240" width="220" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="SeZBY3181p9hstLFeavz-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="lag_3" target="lag_loop1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="lag_3" value="n = points.size&lt;br&gt;res = 0" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="100" y="340" width="200" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="SeZBY3181p9hstLFeavz-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="lag_loop1" target="lag_li">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="lag_loop1" value="i = 0, n - 1" style="shape=hexagon;perimeter=hexagonPerimeter2;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="102.5" y="440" width="195" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="SeZBY3181p9hstLFeavz-5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="lag_li" target="lag_loop2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="lag_li" value="li = 1" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="140" y="540" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="SeZBY3181p9hstLFeavz-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="lag_loop2" target="lag_cond">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="lag_loop2" value="j = 0, n - 1" style="shape=hexagon;perimeter=hexagonPerimeter2;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="140" y="610" width="120" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="lag_cond" value="j != i" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="125" y="700" width="150" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="lag_calc" value="li = li * (x - x&lt;sub&gt;j&lt;/sub&gt;) / (x&lt;sub&gt;i&lt;/sub&gt; - x&lt;sub&gt;j&lt;/sub&gt;)" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="85" y="810" width="230" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="lag_sum" value="res = res + y&lt;sub&gt;i&lt;/sub&gt; * li" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="102.5" y="900" width="195" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="SeZBY3181p9hstLFeavz-8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="lag_out" target="lag_end">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="lag_out" value="res" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" vertex="1" parent="1">
+          <mxGeometry x="110" y="1000" width="180" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="lag_end" value="КОНЕЦ" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="140" y="1100" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="le1" edge="1" parent="1" source="Y-mNxXkw3pw43mXS3g-1-0" target="lag_2" />
+        <mxCell id="le2" edge="1" parent="1" source="lag_2" target="lag_3" />
+        <mxCell id="le3" edge="1" parent="1" source="lag_3" target="lag_loop1" />
+        <mxCell id="le4" edge="1" parent="1" source="lag_loop1" target="lag_li" />
+        <mxCell id="le5" edge="1" parent="1" source="lag_li" target="lag_loop2" />
+        <mxCell id="le6" edge="1" parent="1" source="lag_loop2" target="lag_cond" />
+        <mxCell id="le7" edge="1" parent="1" source="lag_cond" target="lag_calc">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint value="ДА" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="SeZBY3181p9hstLFeavz-7" value="ДА" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="le7">
+          <mxGeometry x="-0.5008" y="2" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="le8" edge="1" parent="1" source="lag_calc" target="lag_loop2">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="340" y="840" />
+              <mxPoint x="340" y="635" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="le9" edge="1" parent="1" source="lag_loop2" target="lag_sum">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="50" y="635" />
+              <mxPoint x="50" y="930" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="le10" edge="1" parent="1" source="lag_sum" target="lag_loop1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="380" y="930" />
+              <mxPoint x="380" y="470" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="le11" edge="1" parent="1" source="lag_loop1" target="lag_out">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="20" y="470" />
+              <mxPoint x="20" y="1030" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="le12" edge="1" parent="1" source="lag_out" target="lag_end" />
+        <mxCell id="SeZBY3181p9hstLFeavz-9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="new_1" target="new_2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="new_1" value="НАЧАЛО" style="ellipse;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="640" y="100" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="new_t" value="Метод Ньютона" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="645" y="50" width="110" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="SeZBY3181p9hstLFeavz-10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="new_2" target="new_eq">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="new_2" value="points, x" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" parent="1" vertex="1">
+          <mxGeometry x="590" y="240" width="220" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="SeZBY3181p9hstLFeavz-11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="new_eq" target="new_fd">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="new_eq" value="checkEquidistant(points)" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" vertex="1" parent="1">
+          <mxGeometry x="600" y="340" width="200" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="SeZBY3181p9hstLFeavz-12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="new_fd" target="new_cond">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="new_fd" value="d = calculateFiniteDifferences(points)" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" vertex="1" parent="1">
+          <mxGeometry x="580" y="440" width="240" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="new_cond" value="|x - x&lt;sub&gt;0&lt;/sub&gt;| &lt;= |x - x&lt;sub&gt;n-1&lt;/sub&gt;|" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="610" y="540" width="180" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="new_fwd" value="t = (x - x&lt;sub&gt;0&lt;/sub&gt;) / h&lt;br&gt;res = y&lt;sub&gt;0&lt;/sub&gt;&lt;br&gt;fwd = true" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="500" y="660" width="160" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="new_bwd" value="t = (x - x&lt;sub&gt;n-1&lt;/sub&gt;) / h&lt;br&gt;res = y&lt;sub&gt;n-1&lt;/sub&gt;&lt;br&gt;fwd = false" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="740" y="660" width="160" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="SeZBY3181p9hstLFeavz-13" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="new_init" target="new_loop">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="new_init" value="term = 1" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="640" y="760" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="new_loop" value="k = 1, n - 1" style="shape=hexagon;perimeter=hexagonPerimeter2;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="630" y="840" width="140" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="new_calc" value="dt = (fwd ? t - (k-1) : t + (k-1))&lt;br&gt;dy = (fwd ? d[k][0] : d[k][n-1-k])&lt;br&gt;term = term * dt&lt;br&gt;res = res + (term * dy) / factorial(k)" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" vertex="1" parent="1">
+          <mxGeometry x="560" y="930" width="280" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="SeZBY3181p9hstLFeavz-14" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="new_out" target="new_end">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="new_out" value="res" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" vertex="1" parent="1">
+          <mxGeometry x="610" y="1060" width="180" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="new_end" value="КОНЕЦ" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="640" y="1160" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="ne1" edge="1" parent="1" source="new_1" target="new_2" />
+        <mxCell id="ne2" edge="1" parent="1" source="new_2" target="new_eq" />
+        <mxCell id="ne3" edge="1" parent="1" source="new_eq" target="new_fd" />
+        <mxCell id="ne4" edge="1" parent="1" source="new_fd" target="new_cond" />
+        <mxCell id="ne5" edge="1" parent="1" source="new_cond" target="new_fwd">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="580" y="580" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ne6" edge="1" parent="1" source="new_cond" target="new_bwd">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="820" y="580" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ne7" edge="1" parent="1" source="new_fwd" target="new_init">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="580" y="740" />
+              <mxPoint x="700" y="740" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ne8" edge="1" parent="1" source="new_bwd" target="new_init">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="820" y="740" />
+              <mxPoint x="700" y="740" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ne9" edge="1" parent="1" source="new_init" target="new_loop" />
+        <mxCell id="ne10" edge="1" parent="1" source="new_loop" target="new_calc" />
+        <mxCell id="ne11" edge="1" parent="1" source="new_calc" target="new_loop">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="860" y="975" />
+              <mxPoint x="860" y="865" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ne12" edge="1" parent="1" source="new_loop" target="new_out">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="540" y="865" />
+              <mxPoint x="540" y="1090" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ne13" edge="1" parent="1" source="new_out" target="new_end" />
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
