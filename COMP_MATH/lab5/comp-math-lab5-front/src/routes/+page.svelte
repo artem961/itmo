@@ -3,7 +3,6 @@
 	import functionPlot from 'function-plot';
 	import { slide, fade } from 'svelte/transition';
 
-	// --- ИНТЕРФЕЙСЫ ---
 	interface Point { x: number; y: number; }
 	interface InterpolationResult {
 		type: { id: number; label: string };
@@ -21,10 +20,8 @@
 	}
 
 	const API_BASE = 'https://comp-math.arhr.tech/lab5/api/interpolate';
-	// Чёткие, различимые цвета для графиков
 	const COLORS = ['#2563eb', '#dc2626', '#d97706', '#16a34a', '#9333ea', '#0891b2'];
 
-	// --- СОСТОЯНИЕ ---
 	let inputMode = $state<'table' | 'file' | 'function'>('table');
 	let targetX = $state<number>(1.5);
 
@@ -61,7 +58,6 @@
 	let activePointIndex = $state(0);
 	let fileInput: HTMLInputElement | undefined = $state();
 
-	// Генерация точек для режима "Функция" с фиксированным шагом
 	$effect(() => {
 		if (inputMode === 'function') {
 			funcError = null;
@@ -71,17 +67,14 @@
 				return;
 			}
 
-			// Сколько точек получится, если шаг фиксированный
 			let n = Math.floor((funcB - funcA) / funcH) + 1;
 			let lastX = funcA + (n - 1) * funcH;
 
-			// Если последняя точка выходит за b — уменьшаем n
 			if (lastX > funcB + 1e-8) {
 				n--;
 				lastX = funcA + (n - 1) * funcH;
 			}
 
-			// Если после уменьшения n < 2 — ошибка
 			if (n < 2) {
 				funcError = "Шаг h слишком большой. Нужно мин. 2 точки.";
 				funcModeData.points = [];
@@ -395,7 +388,6 @@
 			</button>
 		</aside>
 
-		<!-- ЦЕНТР: ГРАФИК -->
 		<main class="chart-area">
 			<div class="chart-card">
 				<div class="chart-meta">
@@ -408,7 +400,6 @@
 			{/if}
 		</main>
 
-		<!-- ПРАВАЯ ПАНЕЛЬ: РЕЗУЛЬТАТЫ -->
 		<aside class="results-panel">
 			<div class="results-header">
 				<span class="field-label">Результаты</span>
@@ -472,7 +463,6 @@
 	</div>
 </div>
 
-<!-- МОДАЛЬНОЕ ОКНО -->
 {#if isTableModalOpen}
 	<!-- svelte-ignore a11y_click_events_have_key_events -->
 	<!-- svelte-ignore a11y_no_static_element_interactions -->
@@ -512,7 +502,6 @@
 <style>
 	@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap');
 
-	/* ── RESET & BASE ─────────────────────────────── */
 	:global(*) { box-sizing: border-box; }
 	:global(body) {
 		margin: 0;
@@ -534,7 +523,6 @@
 		font-family: 'IBM Plex Mono', monospace !important;
 	}
 
-	/* ── LAYOUT ───────────────────────────────────── */
 	.app { display: flex; flex-direction: column; height: 100vh; }
 
 	.header {
@@ -569,7 +557,6 @@
 		overflow: hidden;
 	}
 
-	/* ── SIDEBAR (LEFT) ───────────────────────────── */
 	.sidebar {
 		background: #fff;
 		border-right: 1px solid #e5e7eb;
