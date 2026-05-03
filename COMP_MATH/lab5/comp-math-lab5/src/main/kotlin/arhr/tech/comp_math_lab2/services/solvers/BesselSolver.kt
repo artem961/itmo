@@ -2,7 +2,6 @@ package arhr.tech.comp_math_lab2.services.solvers
 
 import arhr.tech.comp_math_lab2.dto.InterpolationRequestDto
 import arhr.tech.comp_math_lab2.dto.InterpolationResult
-import arhr.tech.comp_math_lab2.dto.PointDto
 import org.springframework.stereotype.Component
 import java.math.BigDecimal
 import java.math.MathContext
@@ -77,8 +76,4 @@ class BesselSolver : InterpolationSolver {
         }
         return result
     }
-
-    /**
-     * Строит формулу для отображения
-     */
 }
