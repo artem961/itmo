@@ -1,0 +1,172 @@
+meta:
+  name: "StirlingInterpolation"
+  description: "Алгоритм вычисления интерполяционного многочлена Стирлинга с использованием центральных разностей"
+
+nodes:
+  # --- Слой 0 ---
+  start_node:
+    type: 5
+    layer: 0
+    text: "НАЧАЛО"
+
+  # --- Слой 1 ---
+  input_data:
+    type: 4
+    layer: 1
+    text: "points, x"
+
+  # --- Слой 2 ---
+  check_n:
+    type: 2
+    layer: 2
+    text: "n < 3 OR n % 2 == 0"
+
+  # --- Слой 3 ---
+  err_n:
+    type: 4
+    layer: 3
+    order: 1
+    text: "Exception: Нужно нечетное количество точек (>= 3)"
+
+  check_eq:
+    type: 3
+    layer: 3
+    order: 2
+    text: "checkEquidistant(points)"
+
+  # --- Слой 4 ---
+  pre_vars:
+    type: 1
+    layer: 4
+    text: |
+      n = points.size
+      h = points_{1}.x - points_{0}.x
+      centerIdx = n / 2
+
+  # --- Слой 5 ---
+  calc_diffs:
+    type: 3
+    layer: 5
+    text: "diffs = calculateFiniteDifferences(points)"
+
+  # --- Слой 6 ---
+  init_base:
+    type: 1
+    layer: 6
+    text: |
+      x0 = points_{centerIdx}.x
+      t = (x - x0) / h
+      res = diffs_{0}_{centerIdx}
+      firstAvgDelta = (diffs_{1}_{centerIdx - 1} + diffs_{1}_{centerIdx}) / 2
+      res = res + t * firstAvgDelta
+
+  # --- Слой 7 ---
+  loop_k:
+    type: 6
+    layer: 7
+    text: "k = 2, n - 1"
+
+  # --- Слой 8 ---
+  check_even:
+    type: 2
+    layer: 8
+    text: "k % 2 == 0"
+
+  # --- Слой 9 ---
+  calc_even:
+    type: 1
+    layer: 9
+    order: 1
+    text: |
+      m = k / 2
+      deltaY = diffs_{k}_{centerIdx - m}
+
+  calc_odd:
+    type: 1
+    layer: 9
+    order: 2
+    text: |
+      m = (k - 1) / 2
+      deltaY = (diffs_{k}_{centerIdx - m - 1} + diffs_{k}_{centerIdx - m}) / 2
+
+  # --- Слой 10 ---
+  calc_funcs:
+    type: 3
+    layer: 10
+    text: |
+      term = stirlingTerm(t, k)
+      fact = factorial(k)
+
+  # --- Слой 11 ---
+  update_res:
+    type: 1
+    layer: 11
+    text: "res = res + (term * deltaY) / fact"
+
+  # --- Слой 12 ---
+  out_res:
+    type: 4
+    layer: 12
+    text: "res"
+
+  # --- Слой 13 ---
+  end_node:
+    type: 5
+    layer: 13
+    text: "КОНЕЦ"
+
+edges:
+  # Инициализация и проверки
+  - from: start_node
+    to: input_data
+  - from: input_data
+    to: check_n
+
+  - from: check_n
+    to: err_n
+    label: "Да"
+  - from: check_n
+    to: check_eq
+    label: "Нет"
+
+  - from: check_eq
+    to: pre_vars
+  - from: pre_vars
+    to: calc_diffs
+  - from: calc_diffs
+    to: init_base
+  - from: init_base
+    to: loop_k
+
+  # Вход в тело цикла и ветвление на четность
+  - from: loop_k
+    to: check_even
+  - from: check_even
+    to: calc_even
+    label: "Да"
+  - from: check_even
+    to: calc_odd
+    label: "Нет"
+
+  # Слияние веток четности и расчет функций
+  - from: calc_even
+    to: calc_funcs
+  - from: calc_odd
+    to: calc_funcs
+
+  - from: calc_funcs
+    to: update_res
+
+  # Возврат в начало цикла
+  - from: update_res
+    to: loop_k
+
+  # Выход из цикла
+  - from: loop_k
+    to: out_res
+
+  # Финал
+  - from: err_n
+    to: end_node
+  - from: out_res
+    to: end_node

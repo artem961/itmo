@@ -11,6 +11,14 @@ interface InterpolationSolver {
     fun solve(request: InterpolationRequestDto): InterpolationResult
     fun supports(type: InterpolationType): Boolean
 
+    fun normalizePoints(points: List<PointDto>): List<PointDto> {
+        val sortedPoints = points.sortedBy { it.x }
+        for (i in 1 until sortedPoints.size) {
+            require(sortedPoints[i].x != sortedPoints[i - 1].x) { "В исходных данных обнаружены две одинаковые точки по x!" }
+        }
+        return sortedPoints
+    }
+
     fun BigDecimal.round(): BigDecimal {
         if (this.abs() <= BigDecimal("0.0000001")) return BigDecimal.ZERO
         return this.round(MathContext(4, RoundingMode.HALF_UP))
@@ -20,9 +28,10 @@ interface InterpolationSolver {
         val n = points.size
         if (n < 2) return
         val h = points[1].x - points[0].x
+        require(h != BigDecimal.ZERO) { "В исходных данных обнаружены две одинаковые точки по x!" }
         for (i in 2 until n) {
-            require(points[i].x - points[i - 1].x == h) { "Узлы должны быть равноотстоящими" }
             require(points[i].x != points[i - 1].x) { "В исходных данных обнаружены две одинаковые точки по x!" }
+            require(points[i].x - points[i - 1].x == h) { "Узлы должны быть равноотстоящими" }
         }
     }
 

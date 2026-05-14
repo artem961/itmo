@@ -14,7 +14,7 @@ class StirlingSolver : InterpolationSolver {
     private val mc = MathContext(16, RoundingMode.HALF_UP)
 
     override fun solve(request: InterpolationRequestDto): InterpolationResult {
-        val points = request.points
+        val points = normalizePoints(request.points)
         val x = request.x
         val n = points.size
 
@@ -52,30 +52,35 @@ class StirlingSolver : InterpolationSolver {
         n: Int
     ): BigDecimal {
         var result = diffs[0][centerIdx]
-        var currentT = t
-        val t2 = t.multiply(t, mc)
-        val avgDeltaY = (diffs[1][centerIdx - 1] + diffs[1][centerIdx]).divide(BigDecimal(2), mc)
-        result = result.add(currentT.multiply(avgDeltaY, mc))
+        val firstAvgDelta = (diffs[1][centerIdx - 1] + diffs[1][centerIdx]).divide(BigDecimal(2), mc)
+        result = result.add(t.multiply(firstAvgDelta, mc))
 
-        var tPower = currentT
-        var t2Power = BigDecimal.ONE
         for (k in 2 until n) {
-            val isEven = k % 2 == 0
-            if (isEven) {
+            val term = stirlingTerm(t, k)
+            val deltaY = if (k % 2 == 0) {
                 val m = k / 2
-                t2Power = if (m == 1) t2 else t2Power.multiply(t2.subtract((m - 1).toBigDecimal().pow(2, mc), mc), mc)
-                val deltaY = diffs[k][centerIdx - m]
-                val factorial = factorial(k)
-                result = result.add(t2Power.multiply(deltaY, mc).divide(factorial, mc))
+                diffs[k][centerIdx - m]
             } else {
                 val m = (k - 1) / 2
-                val avgDeltaY2 = (diffs[k][centerIdx - m - 1] + diffs[k][centerIdx - m]).divide(BigDecimal(2), mc)
-                tPower = if (m == 0) tPower.multiply(t2.subtract(BigDecimal.ONE, mc), mc) else tPower.multiply(t2.subtract(m.toBigDecimal().pow(2, mc), mc), mc)
-                val factorial = factorial(k)
-                result = result.add(tPower.multiply(avgDeltaY2, mc).divide(factorial, mc))
+                (diffs[k][centerIdx - m - 1] + diffs[k][centerIdx - m]).divide(BigDecimal(2), mc)
             }
+            result = result.add(term.multiply(deltaY, mc).divide(factorial(k), mc))
         }
         return result
+    }
+
+    private fun stirlingTerm(t: BigDecimal, order: Int): BigDecimal {
+        if (order == 1) return t
+        val t2 = t.multiply(t, mc)
+        if (order == 2) return t2
+
+        var term = if (order % 2 == 0) t2 else t
+        val limit = if (order % 2 == 0) order / 2 - 1 else (order - 1) / 2
+        for (j in 1..limit) {
+            val factor = t2.subtract(BigDecimal(j * j), mc)
+            term = term.multiply(factor, mc)
+        }
+        return term
     }
 
     private fun factorial(k: Int): BigDecimal {

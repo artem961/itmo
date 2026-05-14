@@ -19,7 +19,8 @@
 		visibleMethods: Set<number>;
 	}
 
-	const API_BASE = 'https://comp-math.arhr.tech/lab5/api/interpolate';
+	//const API_BASE = 'https://comp-math.arhr.tech/lab5/api/interpolate';
+	const API_BASE = 'http://localhost:8080/lab5/api/interpolate';
 	const COLORS = ['#2563eb', '#dc2626', '#d97706', '#16a34a', '#9333ea', '#0891b2'];
 
 	let inputMode = $state<'table' | 'file' | 'function'>('table');

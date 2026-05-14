@@ -1,0 +1,130 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/26.0.16 Chrome/132.0.6834.196 Electron/34.2.0 Safari/537.36" version="26.0.16">
+  <diagram id="scheme-gen" name="NewtonInterpolation">
+    <mxGraphModel dx="1843" dy="887" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="start_node" value="НАЧАЛО" style="ellipse;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="330" y="100" width="140" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="input_data" value="points, x" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" parent="1" vertex="1">
+          <mxGeometry x="330" y="220" width="140" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="check_eq" value="checkEquidistant(points)" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" parent="1" vertex="1">
+          <mxGeometry x="290" y="340" width="220" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="pre_vars" value="n = points.size&lt;br&gt;h = points&lt;sub&gt;1&lt;/sub&gt;.x - points&lt;sub&gt;0&lt;/sub&gt;.x&lt;br&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="263.75" y="460" width="272.5" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="calc_diffs" value="diffs = calculateFiniteDifferences(points)" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" parent="1" vertex="1">
+          <mxGeometry x="222.5" y="610" width="355" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="check_fwd" value="abs(x - points&lt;sub&gt;0&lt;/sub&gt;.x) &lt;= abs(x - points&lt;sub&gt;n-1&lt;/sub&gt;.x)" style="rhombus;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="120" y="730" width="560" height="72" as="geometry" />
+        </mxCell>
+        <mxCell id="init_fwd" value="useFwd = true&lt;br&gt;tCalc = (x - points&lt;sub&gt;0&lt;/sub&gt;.x) / h&lt;br&gt;res = points&lt;sub&gt;0&lt;/sub&gt;.y&lt;br&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="107.5" y="862" width="265" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="init_bwd" value="useFwd = false&lt;br&gt;tCalc = (x - points&lt;sub&gt;n-1&lt;/sub&gt;.x) / h&lt;br&gt;res = points&lt;sub&gt;n-1&lt;/sub&gt;.y&lt;br&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="412.5" y="862" width="280" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="init_term" value="termCalc = 1" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="330" y="1032" width="140" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="loop_k" value="k = 1, n - 1" style="shape=hexagon;perimeter=hexagonPerimeter2;whiteSpace=wrap;html=1;fixedSize=1;" parent="1" vertex="1">
+          <mxGeometry x="316" y="1152" width="168" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="check_loop_fwd" value="useFwd == true" style="rhombus;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="298.5" y="1272" width="203" height="72" as="geometry" />
+        </mxCell>
+        <mxCell id="loop_fwd_vars" value="delta = tCalc - (k - 1)&lt;br&gt;deltaY = diffs&lt;sub&gt;k&lt;/sub&gt;&lt;sub&gt;0&lt;/sub&gt;&lt;br&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="141.25" y="1404" width="212.5" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="loop_bwd_vars" value="delta = tCalc + (k - 1)&lt;br&gt;deltaY = diffs&lt;sub&gt;k&lt;/sub&gt;&lt;sub&gt;n - 1 - k&lt;/sub&gt;&lt;br&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="393.75" y="1404" width="265" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="calc_fact" value="fact = factorial(k)" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" parent="1" vertex="1">
+          <mxGeometry x="308.75" y="1554" width="182.5" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="calc_term_res" value="termCalc = termCalc * delta&lt;br&gt;res = res + (termCalc * deltaY) / fact&lt;br&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="237.5" y="1674" width="325" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="out_res" value="res" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" parent="1" vertex="1">
+          <mxGeometry x="330" y="1824" width="140" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="end_node" value="КОНЕЦ" style="ellipse;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="330" y="1944" width="140" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="edge_0" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;exitX=0.5;exitY=1;" parent="1" source="start_node" target="input_data" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge_1" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;exitX=0.5;exitY=1;" parent="1" source="input_data" target="check_eq" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge_2" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;exitX=0.5;exitY=1;" parent="1" source="check_eq" target="pre_vars" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge_3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;exitX=0.5;exitY=1;" parent="1" source="pre_vars" target="calc_diffs" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge_4" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;exitX=0.5;exitY=1;" parent="1" source="calc_diffs" target="check_fwd" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge_5" value="Да" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;exitX=0.5;exitY=1;" parent="1" source="check_fwd" target="init_fwd" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge_6" value="Нет" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;exitX=0.5;exitY=1;" parent="1" source="check_fwd" target="init_bwd" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge_7" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;exitX=0.5;exitY=1;" parent="1" source="init_fwd" target="init_term" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge_8" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;exitX=0.5;exitY=1;" parent="1" source="init_bwd" target="init_term" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge_9" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;exitX=0.5;exitY=1;" parent="1" source="init_term" target="loop_k" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge_10" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;exitX=0.5;exitY=1;" parent="1" source="loop_k" target="check_loop_fwd" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge_11" value="Да" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;exitX=0.5;exitY=1;" parent="1" source="check_loop_fwd" target="loop_fwd_vars" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge_12" value="Нет" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;exitX=0.5;exitY=1;" parent="1" source="check_loop_fwd" target="loop_bwd_vars" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge_13" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;exitX=0.5;exitY=1;" parent="1" source="loop_fwd_vars" target="calc_fact" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge_14" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;exitX=0.5;exitY=1;" parent="1" source="loop_bwd_vars" target="calc_fact" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge_15" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;exitX=0.5;exitY=1;" parent="1" source="calc_fact" target="calc_term_res" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge_16" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;exitX=1;exitY=0.5;" parent="1" source="calc_term_res" target="loop_k" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="752.5" y="1719" />
+              <mxPoint x="752.5" y="1182" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge_17" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="loop_k" target="out_res" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="316" y="1180" />
+              <mxPoint x="126" y="1180" />
+              <mxPoint x="126" y="1794" />
+              <mxPoint x="400" y="1794" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge_18" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;exitX=0.5;exitY=1;" parent="1" source="out_res" target="end_node" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

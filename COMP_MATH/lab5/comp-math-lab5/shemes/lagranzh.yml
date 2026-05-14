@@ -1,0 +1,154 @@
+meta:
+  name: "LagrangeInterpolation"
+  description: "Алгоритм вычисления интерполяционного многочлена Лагранжа"
+
+nodes:
+  # --- Слой 0 ---
+  start_node:
+    type: 5
+    layer: 0
+    text: "НАЧАЛО"
+
+  # --- Слой 1 ---
+  input_data:
+    type: 4
+    layer: 1
+    text: "points, x"
+
+  # --- Слой 2 ---
+  init_vars:
+    type: 1
+    layer: 2
+    text: |
+      n = points.size
+      res = 0
+
+  # --- Слой 3 ---
+  loop_i:
+    type: 6
+    layer: 3
+    text: "i = 0, n - 1"
+
+  # --- Слой 4 ---
+  init_li:
+    type: 1
+    layer: 4
+    text: "li = 1"
+
+  # --- Слой 5 ---
+  loop_j:
+    type: 6
+    layer: 5
+    text: "j = 0, n - 1"
+
+  # --- Слой 6 ---
+  check_j_not_i:
+    type: 2
+    layer: 6
+    text: "j != i"
+
+  # --- Слой 7 ---
+  calc_terms:
+    type: 1
+    layer: 7
+    text: |
+      numerator = x - points_{j}.x
+      denominator = points_{i}.x - points_{j}.x
+
+  # --- Слой 8 ---
+  check_zero:
+    type: 2
+    layer: 8
+    text: "denominator == 0"
+
+  # --- Слой 9 ---
+  err_zero:
+    type: 4
+    layer: 9
+    order: 1
+    text: "Exception: Значения X не могут быть одинаковыми"
+
+  calc_li:
+    type: 1
+    layer: 9
+    order: 2
+    text: "li = (li * numerator) / denominator"
+
+  # --- Слой 10 ---
+  calc_res:
+    type: 1
+    layer: 10
+    text: "res = res + points_{i}.y * li"
+
+  # --- Слой 11 ---
+  out_res:
+    type: 4
+    layer: 11
+    text: "res"
+
+  # --- Слой 12 ---
+  end_node:
+    type: 5
+    layer: 12
+    text: "КОНЕЦ"
+
+edges:
+  # Инициализация
+  - from: start_node
+    to: input_data
+  - from: input_data
+    to: init_vars
+  - from: init_vars
+    to: loop_i
+
+  # Вход во внешний цикл i
+  - from: loop_i
+    to: init_li
+
+  # Переход ко внутреннему циклу j
+  - from: init_li
+    to: loop_j
+
+  # Вход в тело внутреннего цикла j
+  - from: loop_j
+    to: check_j_not_i
+
+  # Условие (if j != i)
+  - from: check_j_not_i
+    to: calc_terms
+    label: "Да"
+  - from: check_j_not_i
+    to: loop_j
+    label: "Нет"
+
+  # Вычисление числителя и знаменателя, проверка деления на 0 (require)
+  - from: calc_terms
+    to: check_zero
+  - from: check_zero
+    to: err_zero
+    label: "Да"
+  - from: check_zero
+    to: calc_li
+    label: "Нет"
+
+  # Возврат во внутренний цикл (j)
+  - from: calc_li
+    to: loop_j
+
+  # Выход из внутреннего цикла и расчет итоговой суммы
+  - from: loop_j
+    to: calc_res
+
+  # Возврат во внешний цикл (i)
+  - from: calc_res
+    to: loop_i
+
+  # Выход из внешнего цикла
+  - from: loop_i
+    to: out_res
+
+  # Финал из разных веток
+  - from: err_zero
+    to: end_node
+  - from: out_res
+    to: end_node

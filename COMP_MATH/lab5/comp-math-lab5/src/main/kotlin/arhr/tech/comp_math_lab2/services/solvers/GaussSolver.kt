@@ -14,7 +14,7 @@ class GaussSolver : InterpolationSolver {
     private val mc = MathContext(16, RoundingMode.HALF_UP)
 
     override fun solve(request: InterpolationRequestDto): InterpolationResult {
-        val points = request.points
+        val points = normalizePoints(request.points)
         val x = request.x
         val n = points.size
 
@@ -53,27 +53,47 @@ class GaussSolver : InterpolationSolver {
         useForward: Boolean
     ): BigDecimal {
         var result = diffs[0][centerIdx]
-        var term = t
         val firstDeltaY = if (useForward) diffs[1][centerIdx] else diffs[1][centerIdx - 1]
-        result = result.add(term.multiply(firstDeltaY, mc))
-        var currentT = t
+        result = result.add(t.multiply(firstDeltaY, mc))
+
         for (k in 2 until n) {
-            val isEven = k % 2 == 0
-            val offset = if (useForward) if (isEven) k / 2 else k / 2 else (k + 1) / 2
-            val deltaY = diffs[k][centerIdx - offset]
-            currentT = if (isEven) {
-                val m = (k / 2).toBigDecimal()
-                currentT.multiply(t.multiply(t, mc).subtract(m.multiply(m, mc)), mc)
+            val term = if (useForward) gaussFirstTerm(t, k) else gaussSecondTerm(t, k)
+            val deltaY = if (useForward) {
+                val offset = if (k % 2 == 0) k / 2 else (k - 1) / 2
+                diffs[k][centerIdx - offset]
             } else {
-                currentT.multiply(t, mc)
+                val offset = if (k % 2 == 0) k / 2 else (k + 1) / 2
+                diffs[k][centerIdx - offset]
             }
-            if (deltaY != BigDecimal.ZERO) {
-                val factorialValue = factorial(k, mc)
-                val coeff = currentT.multiply(deltaY, mc).divide(factorialValue, mc)
-                result = result.add(coeff)
-            }
+            result = result.add(term.multiply(deltaY, mc).divide(factorial(k, mc), mc))
         }
         return result
+    }
+
+    private fun gaussFirstTerm(t: BigDecimal, order: Int): BigDecimal {
+        var term = t
+        for (k in 2..order) {
+            val factor = if (k % 2 == 0) {
+                t.subtract((k / 2).toBigDecimal(), mc)
+            } else {
+                t.add(((k - 1) / 2).toBigDecimal(), mc)
+            }
+            term = term.multiply(factor, mc)
+        }
+        return term
+    }
+
+    private fun gaussSecondTerm(t: BigDecimal, order: Int): BigDecimal {
+        var term = t
+        for (k in 2..order) {
+            val factor = if (k % 2 == 0) {
+                t.add((k / 2).toBigDecimal(), mc)
+            } else {
+                t.subtract(((k - 1) / 2).toBigDecimal(), mc)
+            }
+            term = term.multiply(factor, mc)
+        }
+        return term
     }
 
 }

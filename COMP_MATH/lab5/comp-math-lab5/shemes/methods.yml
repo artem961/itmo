@@ -1,0 +1,503 @@
+meta:
+  name: "AuxiliaryMathFunctions"
+  description: "Сборник вспомогательных функций для интерполяции (вычисление разностей, множителей, факториалов)"
+
+nodes:
+  # ==========================================
+  # 1. ФУНКЦИЯ: factorial (Слои 0-9)
+  # ==========================================
+  fact_start:
+    type: 5
+    layer: 0
+    text: "НАЧАЛО (factorial)"
+  fact_in:
+    type: 4
+    layer: 1
+    text: "k"
+  fact_init:
+    type: 1
+    layer: 2
+    text: "res = 1"
+  fact_loop:
+    type: 6
+    layer: 3
+    text: "i = 2, k"
+  fact_body:
+    type: 1
+    layer: 4
+    text: "res = res * i"
+  fact_out:
+    type: 4
+    layer: 5
+    text: "res"
+  fact_end:
+    type: 5
+    layer: 6
+    text: "КОНЕЦ (factorial)"
+
+  # ==========================================
+  # 2. ФУНКЦИЯ: calculateFiniteDifferences (Слои 10-19)
+  # ==========================================
+  diff_start:
+    type: 5
+    layer: 10
+    text: "НАЧАЛО (calculateFiniteDifferences)"
+  diff_in:
+    type: 4
+    layer: 11
+    text: "points"
+  diff_init:
+    type: 1
+    layer: 12
+    text: |
+      n = points.size
+      diffs = матрица NxN
+  diff_loop1:
+    type: 6
+    layer: 13
+    text: "i = 0, n - 1"
+  diff_body1:
+    type: 1
+    layer: 14
+    text: "diffs_{0}_{i} = points_{i}.y"
+  diff_loop_k:
+    type: 6
+    layer: 15
+    text: "k = 1, n - 1"
+  diff_loop_i:
+    type: 6
+    layer: 16
+    text: "i = 0, n - 1 - k"
+  diff_body2:
+    type: 1
+    layer: 17
+    text: "diffs_{k}_{i} = diffs_{k-1}_{i+1} - diffs_{k-1}_{i}"
+  diff_out:
+    type: 4
+    layer: 18
+    text: "diffs"
+  diff_end:
+    type: 5
+    layer: 19
+    text: "КОНЕЦ (calculateFiniteDifferences)"
+
+  # ==========================================
+  # 3. ФУНКЦИЯ: stirlingTerm (Слои 20-35)
+  # ==========================================
+  st_start:
+    type: 5
+    layer: 20
+    text: "НАЧАЛО (stirlingTerm)"
+  st_in:
+    type: 4
+    layer: 21
+    text: "t, order"
+  st_chk1:
+    type: 2
+    layer: 22
+    text: "order == 1"
+  st_out_t:
+    type: 4
+    layer: 23
+    text: "t"
+  st_init_t2:
+    type: 1
+    layer: 23
+    text: "t2 = t * t"
+  st_chk2:
+    type: 2
+    layer: 24
+    text: "order == 2"
+  st_out_t2:
+    type: 4
+    layer: 25
+    text: "t2"
+  st_chk3:
+    type: 2
+    layer: 25
+    text: "order % 2 == 0"
+  st_even:
+    type: 1
+    layer: 26
+    order: 1
+    text: |
+      term = t2
+      limit = order / 2 - 1
+  st_odd:
+    type: 1
+    layer: 26
+    order: 2
+    text: |
+      term = t
+      limit = (order - 1) / 2
+  st_loop:
+    type: 6
+    layer: 27
+    text: "j = 1, limit"
+  st_body:
+    type: 1
+    layer: 28
+    text: |
+      factor = t2 - j * j
+      term = term * factor
+  st_out_main:
+    type: 4
+    layer: 29
+    text: "term"
+  st_end:
+    type: 5
+    layer: 30
+    text: "КОНЕЦ (stirlingTerm)"
+
+  # ==========================================
+  # 4. ФУНКЦИЯ: gaussFirstTerm (Слои 40-49)
+  # ==========================================
+  gf_start:
+    type: 5
+    layer: 40
+    text: "НАЧАЛО (gaussFirstTerm)"
+  gf_in:
+    type: 4
+    layer: 41
+    text: "t, order"
+  gf_init:
+    type: 1
+    layer: 42
+    text: "term = t"
+  gf_loop:
+    type: 6
+    layer: 43
+    text: "k = 2, order"
+  gf_chk:
+    type: 2
+    layer: 44
+    text: "k % 2 == 0"
+  gf_even:
+    type: 1
+    layer: 45
+    order: 1
+    text: "factor = t - (k / 2)"
+  gf_odd:
+    type: 1
+    layer: 45
+    order: 2
+    text: "factor = t + (k - 1) / 2"
+  gf_body:
+    type: 1
+    layer: 46
+    text: "term = term * factor"
+  gf_out:
+    type: 4
+    layer: 47
+    text: "term"
+  gf_end:
+    type: 5
+    layer: 48
+    text: "КОНЕЦ (gaussFirstTerm)"
+
+  # ==========================================
+  # 5. ФУНКЦИЯ: gaussSecondTerm (Слои 50-59)
+  # ==========================================
+  gs_start:
+    type: 5
+    layer: 50
+    text: "НАЧАЛО (gaussSecondTerm)"
+  gs_in:
+    type: 4
+    layer: 51
+    text: "t, order"
+  gs_init:
+    type: 1
+    layer: 52
+    text: "term = t"
+  gs_loop:
+    type: 6
+    layer: 53
+    text: "k = 2, order"
+  gs_chk:
+    type: 2
+    layer: 54
+    text: "k % 2 == 0"
+  gs_even:
+    type: 1
+    layer: 55
+    order: 1
+    text: "factor = t + (k / 2)"
+  gs_odd:
+    type: 1
+    layer: 55
+    order: 2
+    text: "factor = t - (k - 1) / 2"
+  gs_body:
+    type: 1
+    layer: 56
+    text: "term = term * factor"
+  gs_out:
+    type: 4
+    layer: 57
+    text: "term"
+  gs_end:
+    type: 5
+    layer: 58
+    text: "КОНЕЦ (gaussSecondTerm)"
+
+  # ==========================================
+  # 6. ФУНКЦИЯ: besselTerm (Слои 60-75)
+  # ==========================================
+  bs_start:
+    type: 5
+    layer: 60
+    text: "НАЧАЛО (besselTerm)"
+  bs_in:
+    type: 4
+    layer: 61
+    text: "t, order"
+  bs_chk1:
+    type: 2
+    layer: 62
+    text: "order == 1"
+  bs_out1:
+    type: 4
+    layer: 63
+    order: 1
+    text: "t - 0.5"
+  bs_chk2:
+    type: 2
+    layer: 63
+    order: 2
+    text: "order == 2"
+  bs_out2:
+    type: 4
+    layer: 64
+    order: 1
+    text: "t * (t - 1)"
+  bs_chk3:
+    type: 2
+    layer: 64
+    order: 2
+    text: "order % 2 == 0"
+  bs_even:
+    type: 1
+    layer: 65
+    order: 1
+    text: "term = t * (t - 1)"
+  bs_odd:
+    type: 1
+    layer: 65
+    order: 2
+    text: "term = (t - 0.5) * t * (t - 1)"
+  bs_init_loop:
+    type: 1
+    layer: 66
+    text: "maxPair = order / 2"
+  bs_loop:
+    type: 6
+    layer: 67
+    text: "pair = 2, maxPair"
+  bs_body:
+    type: 1
+    layer: 68
+    text: |
+      left = t - pair
+      right = t + (pair - 1)
+      term = term * left * right
+  bs_out_main:
+    type: 4
+    layer: 69
+    text: "term"
+  bs_end:
+    type: 5
+    layer: 70
+    text: "КОНЕЦ (besselTerm)"
+
+
+edges:
+  # ==========================================
+  # 1. СВЯЗИ: factorial
+  # ==========================================
+  - from: fact_start
+    to: fact_in
+  - from: fact_in
+    to: fact_init
+  - from: fact_init
+    to: fact_loop
+  - from: fact_loop
+    to: fact_body
+  - from: fact_body
+    to: fact_loop
+  - from: fact_loop
+    to: fact_out
+  - from: fact_out
+    to: fact_end
+
+  # ==========================================
+  # 2. СВЯЗИ: calculateFiniteDifferences
+  # ==========================================
+  - from: diff_start
+    to: diff_in
+  - from: diff_in
+    to: diff_init
+  - from: diff_init
+    to: diff_loop1
+  - from: diff_loop1
+    to: diff_body1
+  - from: diff_body1
+    to: diff_loop1
+  - from: diff_loop1
+    to: diff_loop_k
+  - from: diff_loop_k
+    to: diff_loop_i
+  - from: diff_loop_i
+    to: diff_body2
+  - from: diff_body2
+    to: diff_loop_i
+  - from: diff_loop_i
+    to: diff_loop_k
+  - from: diff_loop_k
+    to: diff_out
+  - from: diff_out
+    to: diff_end
+
+  # ==========================================
+  # 3. СВЯЗИ: stirlingTerm
+  # ==========================================
+  - from: st_start
+    to: st_in
+  - from: st_in
+    to: st_chk1
+  - from: st_chk1
+    to: st_out_t
+    label: "Да"
+  - from: st_chk1
+    to: st_init_t2
+    label: "Нет"
+  - from: st_init_t2
+    to: st_chk2
+  - from: st_chk2
+    to: st_out_t2
+    label: "Да"
+  - from: st_chk2
+    to: st_chk3
+    label: "Нет"
+  - from: st_chk3
+    to: st_even
+    label: "Да"
+  - from: st_chk3
+    to: st_odd
+    label: "Нет"
+  - from: st_even
+    to: st_loop
+  - from: st_odd
+    to: st_loop
+  - from: st_loop
+    to: st_body
+  - from: st_body
+    to: st_loop
+  - from: st_loop
+    to: st_out_main
+  - from: st_out_t
+    to: st_end
+  - from: st_out_t2
+    to: st_end
+  - from: st_out_main
+    to: st_end
+
+  # ==========================================
+  # 4. СВЯЗИ: gaussFirstTerm
+  # ==========================================
+  - from: gf_start
+    to: gf_in
+  - from: gf_in
+    to: gf_init
+  - from: gf_init
+    to: gf_loop
+  - from: gf_loop
+    to: gf_chk
+  - from: gf_chk
+    to: gf_even
+    label: "Да"
+  - from: gf_chk
+    to: gf_odd
+    label: "Нет"
+  - from: gf_even
+    to: gf_body
+  - from: gf_odd
+    to: gf_body
+  - from: gf_body
+    to: gf_loop
+  - from: gf_loop
+    to: gf_out
+  - from: gf_out
+    to: gf_end
+
+  # ==========================================
+  # 5. СВЯЗИ: gaussSecondTerm
+  # ==========================================
+  - from: gs_start
+    to: gs_in
+  - from: gs_in
+    to: gs_init
+  - from: gs_init
+    to: gs_loop
+  - from: gs_loop
+    to: gs_chk
+  - from: gs_chk
+    to: gs_even
+    label: "Да"
+  - from: gs_chk
+    to: gs_odd
+    label: "Нет"
+  - from: gs_even
+    to: gs_body
+  - from: gs_odd
+    to: gs_body
+  - from: gs_body
+    to: gs_loop
+  - from: gs_loop
+    to: gs_out
+  - from: gs_out
+    to: gs_end
+
+  # ==========================================
+  # 6. СВЯЗИ: besselTerm
+  # ==========================================
+  - from: bs_start
+    to: bs_in
+  - from: bs_in
+    to: bs_chk1
+  - from: bs_chk1
+    to: bs_out1
+    label: "Да"
+  - from: bs_chk1
+    to: bs_chk2
+    label: "Нет"
+  - from: bs_chk2
+    to: bs_out2
+    label: "Да"
+  - from: bs_chk2
+    to: bs_chk3
+    label: "Нет"
+  - from: bs_chk3
+    to: bs_even
+    label: "Да"
+  - from: bs_chk3
+    to: bs_odd
+    label: "Нет"
+  - from: bs_even
+    to: bs_init_loop
+  - from: bs_odd
+    to: bs_init_loop
+  - from: bs_init_loop
+    to: bs_loop
+  - from: bs_loop
+    to: bs_body
+  - from: bs_body
+    to: bs_loop
+  - from: bs_loop
+    to: bs_out_main
+  - from: bs_out1
+    to: bs_end
+  - from: bs_out2
+    to: bs_end
+  - from: bs_out_main
+    to: bs_end

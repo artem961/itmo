@@ -1,0 +1,195 @@
+meta:
+  name: "BesselInterpolation"
+  description: "Алгоритм вычисления интерполяционного многочлена Бесселя"
+
+nodes:
+  # --- Слой 0 ---
+  start_node:
+    type: 5
+    layer: 0
+    text: "НАЧАЛО"
+
+  # --- Слой 1 ---
+  input_data:
+    type: 4
+    layer: 1
+    text: "points, x"
+
+  # --- Слой 2 ---
+  check_n:
+    type: 2
+    layer: 2
+    text: "n < 4 OR n % 2 != 0"
+
+  # --- Слой 3 ---
+  err_n:
+    type: 4
+    layer: 3
+    order: 1
+    text: "Exception: Нужно четное количество точек (>= 4)"
+
+  check_eq:
+    type: 3
+    layer: 3
+    order: 2
+    text: "checkEquidistant(points)"
+
+  # --- Слой 4 ---
+  pre_vars:
+    type: 1
+    layer: 4
+    text: |
+      n = points.size
+      h = points_{1}.x - points_{0}.x
+      idx0 = n / 2 - 1
+
+  # --- Слой 5 ---
+  calc_diffs:
+    type: 3
+    layer: 5
+    text: "diffs = calculateFiniteDifferences(points)"
+
+  # --- Слой 6 ---
+  init_base:
+    type: 1
+    layer: 6
+    text: |
+      x0 = points_{idx0}.x
+      t = (x - x0) / h
+      y0 = diffs_{0}_{idx0}
+      y1 = diffs_{0}_{idx0 + 1}
+      res = (y0 + y1) / 2
+
+  # --- Слой 7 ---
+  loop_k:
+    type: 6
+    layer: 7
+    text: "k = 1, n - 1"
+
+  # --- Слой 8 ---
+  check_k_1:
+    type: 2
+    layer: 8
+    text: "k == 1"
+
+  # --- Слой 9 ---
+  calc_k_1:
+    type: 1
+    layer: 9
+    order: 1
+    text: "deltaY = diffs_{1}_{idx0}"
+
+  check_even:
+    type: 2
+    layer: 9
+    order: 2
+    text: "k % 2 == 0"
+
+  # --- Слой 10 ---
+  calc_even:
+    type: 1
+    layer: 10
+    order: 1
+    text: |
+      m = k / 2
+      deltaY = (diffs_{k}_{idx0 - m} + diffs_{k}_{idx0 - m + 1}) / 2
+
+  calc_odd:
+    type: 1
+    layer: 10
+    order: 2
+    text: |
+      m = (k - 1) / 2
+      deltaY = diffs_{k}_{idx0 - m}
+
+  # --- Слой 11 ---
+  calc_funcs:
+    type: 3
+    layer: 11
+    text: |
+      term = besselTerm(t, k)
+      fact = factorial(k)
+
+  # --- Слой 12 ---
+  update_res:
+    type: 1
+    layer: 12
+    text: "res = res + (term * deltaY) / fact"
+
+  # --- Слой 13 ---
+  out_res:
+    type: 4
+    layer: 13
+    text: "res"
+
+  # --- Слой 14 ---
+  end_node:
+    type: 5
+    layer: 14
+    text: "КОНЕЦ"
+
+edges:
+  # Инициализация и проверки
+  - from: start_node
+    to: input_data
+  - from: input_data
+    to: check_n
+
+  - from: check_n
+    to: err_n
+    label: "Да"
+  - from: check_n
+    to: check_eq
+    label: "Нет"
+
+  - from: check_eq
+    to: pre_vars
+  - from: pre_vars
+    to: calc_diffs
+  - from: calc_diffs
+    to: init_base
+  - from: init_base
+    to: loop_k
+
+  # Вход в тело цикла и первая развилка
+  - from: loop_k
+    to: check_k_1
+  - from: check_k_1
+    to: calc_k_1
+    label: "Да"
+  - from: check_k_1
+    to: check_even
+    label: "Нет"
+
+  # Вторая развилка (четность)
+  - from: check_even
+    to: calc_even
+    label: "Да"
+  - from: check_even
+    to: calc_odd
+    label: "Нет"
+
+  # Слияние всех веток deltaY и вызов подпрограмм
+  - from: calc_k_1
+    to: calc_funcs
+  - from: calc_even
+    to: calc_funcs
+  - from: calc_odd
+    to: calc_funcs
+
+  - from: calc_funcs
+    to: update_res
+
+  # Возврат в начало цикла
+  - from: update_res
+    to: loop_k
+
+  # Выход из цикла
+  - from: loop_k
+    to: out_res
+
+  # Финал алгоритма
+  - from: err_n
+    to: end_node
+  - from: out_res
+    to: end_node

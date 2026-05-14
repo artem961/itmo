@@ -15,8 +15,9 @@ class InterpolationService(
 ) {
     fun solve(request: InterpolationRequest): InterpolationResponse {
         request.points.forEach { point -> requireNotNull(point.x) { "Значение X не определено" }; requireNotNull(point.y) { "Значение Y не определено" } }
+        val sortedPoints = request.points.sortedBy { it.x }
         val dto = InterpolationRequestDto(
-            request.points.map { it -> PointDto(it.x!!, it.y!!) }.toList(),
+            sortedPoints.map { it -> PointDto(it.x!!, it.y!!) }.toList(),
             request.x
         )
 

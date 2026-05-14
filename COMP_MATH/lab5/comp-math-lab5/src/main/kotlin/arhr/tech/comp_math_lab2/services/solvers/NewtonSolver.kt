@@ -14,7 +14,7 @@ class NewtonSolver : InterpolationSolver {
     private val mc = MathContext(16, RoundingMode.HALF_UP)
 
     override fun solve(request: InterpolationRequestDto): InterpolationResult {
-        val points = request.points
+        val points = normalizePoints(request.points)
         val x = request.x
         val n = points.size
 

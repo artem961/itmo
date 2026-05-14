@@ -13,7 +13,7 @@ class BesselSolver : InterpolationSolver {
     private val mc = MathContext(16, RoundingMode.HALF_UP)
 
     override fun solve(request: InterpolationRequestDto): InterpolationResult {
-        val points = request.points
+        val points = normalizePoints(request.points)
         val x = request.x
         val n = points.size
 
@@ -55,24 +55,46 @@ class BesselSolver : InterpolationSolver {
         val y0 = diffs[0][idx0]
         val y1 = diffs[0][idx0 + 1]
         var result = y0.add(y1, mc).divide(BigDecimal(2), mc)
-        val deltaY0 = diffs[1][idx0]
-        val tMinusHalf = t.subtract(BigDecimal("0.5"), mc)
-        result = result.add(tMinusHalf.multiply(deltaY0, mc))
-        val tMinus1 = t.subtract(BigDecimal.ONE, mc)
-        val tTMinus1 = t.multiply(tMinus1, mc)
-        val avgDelta2 = (diffs[2][idx0 - 1] + diffs[2][idx0]).divide(BigDecimal(2), mc)
-        result = result.add(tTMinus1.multiply(avgDelta2, mc).divide(BigDecimal(2), mc))
-        if (n >= 5 && idx0 - 1 >= 0) {
-            val delta3 = diffs[3][idx0 - 1]
-            val tFactor = tMinusHalf.multiply(t, mc).multiply(tMinus1, mc)
-            result = result.add(tFactor.multiply(delta3, mc).divide(BigDecimal(6), mc))
+        for (k in 1 until n) {
+            val term = besselTerm(t, k)
+            val deltaY = if (k == 1) {
+                diffs[1][idx0]
+            } else if (k % 2 == 0) {
+                val m = k / 2
+                (diffs[k][idx0 - m] + diffs[k][idx0 - m + 1]).divide(BigDecimal(2), mc)
+            } else {
+                val m = (k - 1) / 2
+                diffs[k][idx0 - m]
+            }
+            result = result.add(term.multiply(deltaY, mc).divide(factorial(k), mc))
         }
-        if (n >= 6 && idx0 - 2 >= 0) {
-            val tPlus1 = t.add(BigDecimal.ONE, mc)
-            val tMinus2 = t.subtract(BigDecimal(2), mc)
-            val tFactor = t.multiply(tMinus1, mc).multiply(tPlus1, mc).multiply(tMinus2, mc)
-            val avgDelta4 = (diffs[4][idx0 - 2] + diffs[4][idx0 - 1]).divide(BigDecimal(2), mc)
-            result = result.add(tFactor.multiply(avgDelta4, mc).divide(BigDecimal(24), mc))
+        return result
+    }
+
+    private fun besselTerm(t: BigDecimal, order: Int): BigDecimal {
+        val half = BigDecimal("0.5")
+        if (order == 1) return t.subtract(half, mc)
+        if (order == 2) return t.multiply(t.subtract(BigDecimal.ONE, mc), mc)
+
+        var term = if (order % 2 == 0) {
+            t.multiply(t.subtract(BigDecimal.ONE, mc), mc)
+        } else {
+            t.subtract(half, mc).multiply(t, mc).multiply(t.subtract(BigDecimal.ONE, mc), mc)
+        }
+
+        val maxPair = order / 2
+        for (pair in 2..maxPair) {
+            val left = t.subtract(BigDecimal(pair), mc)
+            val right = t.add((pair - 1).toBigDecimal(), mc)
+            term = term.multiply(left, mc).multiply(right, mc)
+        }
+        return term
+    }
+
+    private fun factorial(k: Int): BigDecimal {
+        var result = BigDecimal.ONE
+        for (i in 2..k) {
+            result = result.multiply(BigDecimal(i), mc)
         }
         return result
     }
