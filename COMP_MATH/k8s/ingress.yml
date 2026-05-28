@@ -78,3 +78,17 @@ spec:
             name: lab5-backend-service
             port:
               number: 80
+      - path: /lab6
+        pathType: Prefix
+        backend:
+          service:
+            name: lab6-frontend-service
+            port:
+              number: 80
+      - path: /lab6/api
+        pathType: Prefix
+        backend:
+          service:
+            name: lab6-backend-service
+            port:
+              number: 80

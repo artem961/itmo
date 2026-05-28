@@ -1,0 +1,54 @@
+\babel@toc {russian}{}\relax 
+\contentsline {section}{\numberline {1}Введение}{1}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Что такое интерполяция}{1}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}Зачем это нужно}{1}{subsection.1.2}%
+\contentsline {subsection}{\numberline {1.3}Интерполяция и экстраполяция}{1}{subsection.1.3}%
+\contentsline {subsection}{\numberline {1.4}Интерполяция и аппроксимация}{1}{subsection.1.4}%
+\contentsline {subsection}{\numberline {1.5}Интерполяционный полином}{2}{subsection.1.5}%
+\contentsline {section}{\numberline {2}Общие термины}{2}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Узлы и равномерная сетка}{2}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Разделённые разности}{2}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}Конечные разности}{2}{subsection.2.3}%
+\contentsline {subsection}{\numberline {2.4}Параметр $t$}{3}{subsection.2.4}%
+\contentsline {section}{\numberline {3}Многочлен Лагранжа}{3}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Идея, формула и применение}{3}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Ограничения и учебная ценность}{3}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}Пошаговый пример с вычислениями}{3}{subsection.3.3}%
+\contentsline {section}{\numberline {4}Многочлен Ньютона}{4}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Идея и формы записи}{4}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}Форма через конечные разности и выбор направления}{4}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.3}Ограничение на сетку}{5}{subsection.4.3}%
+\contentsline {subsection}{\numberline {4.4}Пошаговый пример с таблицей и вычислениями}{5}{subsection.4.4}%
+\contentsline {section}{\numberline {5}Центральные формулы: Гаусс}{5}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Идея и формула}{5}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2}Когда и почему применять}{6}{subsection.5.2}%
+\contentsline {section}{\numberline {6}Центральные формулы: Стирлинг}{6}{section.6}%
+\contentsline {subsection}{\numberline {6.1}Идея, формула и применение}{6}{subsection.6.1}%
+\contentsline {subsection}{\numberline {6.2}Когда и почему применять}{6}{subsection.6.2}%
+\contentsline {section}{\numberline {7}Центральные формулы: Бессель}{6}{section.7}%
+\contentsline {subsection}{\numberline {7.1}Идея, формула и применение}{6}{subsection.7.1}%
+\contentsline {subsection}{\numberline {7.2}Когда и почему применять}{7}{subsection.7.2}%
+\contentsline {section}{\numberline {8}Интерполяция сплайнами}{7}{section.8}%
+\contentsline {subsection}{\numberline {8.1}Смысл}{7}{subsection.8.1}%
+\contentsline {subsection}{\numberline {8.2}Кубические сплайны}{7}{subsection.8.2}%
+\contentsline {subsection}{\numberline {8.3}Почему это удобно}{7}{subsection.8.3}%
+\contentsline {subsection}{\numberline {8.4}Почему сплайн лучше глобального полинома на практике}{7}{subsection.8.4}%
+\contentsline {subsection}{\numberline {8.5}Графическая иллюстрация}{8}{subsection.8.5}%
+\contentsline {subsection}{\numberline {8.6}Глобальная и локальная интерполяция}{8}{subsection.8.6}%
+\contentsline {section}{\numberline {9}Численные примеры}{8}{section.9}%
+\contentsline {subsection}{\numberline {9.1}Пример для Лагранжа и Ньютона}{8}{subsection.9.1}%
+\contentsline {subsection}{\numberline {9.2}Пример для центральных методов}{8}{subsection.9.2}%
+\contentsline {subsection}{\numberline {9.3}Пример сплайна}{9}{subsection.9.3}%
+\contentsline {section}{\numberline {10}Сравнение методов}{10}{section.10}%
+\contentsline {subsection}{\numberline {10.1}Как выбрать метод по ситуации}{10}{subsection.10.1}%
+\contentsline {section}{\numberline {11}Ответы на 17 контрольных вопросов}{10}{section.11}%
+\contentsline {section}{\numberline {12}Объяснение кода}{12}{section.12}%
+\contentsline {subsection}{\numberline {12.1}\texttt {LagranzhSolver.kt} --- реализация метода Лагранжа}{13}{subsection.12.1}%
+\contentsline {subsection}{\numberline {12.2}\texttt {NewtonSolver.kt} --- последовательное построение полинома}{14}{subsection.12.2}%
+\contentsline {subsection}{\numberline {12.3}\texttt {GaussSolver.kt} --- центральная интерполяция}{14}{subsection.12.3}%
+\contentsline {subsection}{\numberline {12.4}\texttt {StirlingSolver.kt} --- симметричная центральная формула}{15}{subsection.12.4}%
+\contentsline {subsection}{\numberline {12.5}\texttt {BesselSolver.kt} --- интерполяция между двумя центрами}{15}{subsection.12.5}%
+\contentsline {subsection}{\numberline {12.6}Общий интерфейс и вспомогательные методы}{15}{subsection.12.6}%
+\contentsline {section}{\numberline {13}Схематичные иллюстрации}{15}{section.13}%
+\contentsline {subsection}{\numberline {13.1}Интерполяция через точки}{16}{subsection.13.1}%
+\contentsline {subsection}{\numberline {13.2}Идея локальной интерполяции}{16}{subsection.13.2}%

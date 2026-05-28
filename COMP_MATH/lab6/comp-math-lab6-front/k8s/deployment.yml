@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: lab6-frontend
+  namespace: comp-math
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: lab6-frontend
+  template:
+    metadata:
+      labels:
+        app: lab6-frontend
+    spec:
+      containers:
+      - name: lab6-frontend-container
+        image: artem5252/cm-6-frontend:latest
+        ports:
+        - containerPort: 3000

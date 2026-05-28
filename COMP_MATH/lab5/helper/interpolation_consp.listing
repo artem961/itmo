@@ -1,0 +1,27 @@
+override fun solve(request: InterpolationRequestDto): InterpolationResult {
+    val points = normalizePoints(request.points)
+    val x = request.x
+    val n = points.size
+
+    checkEquidistant(points)
+    val h = points[1].x - points[0].x
+    val diffs = InterpolationSolver.calculateFiniteDifferences(points)
+
+    val evaluate: (BigDecimal) -> BigDecimal = { calcX ->
+        val useFwd = (calcX - points[0].x).abs() <= (calcX - points.last().x).abs()
+        val tCalc = if (useFwd) (calcX - points[0].x).divide(h, mc)
+                    else (calcX - points.last().x).divide(h, mc)
+        var res = if (useFwd) points[0].y else points.last().y
+        var termCalc = BigDecimal.ONE
+        for (k in 1 until n) {
+            val delta = if (useFwd) tCalc - BigDecimal(k - 1)
+                       else tCalc + BigDecimal(k - 1)
+            termCalc = termCalc.multiply(delta, mc)
+            val deltaY = if (useFwd) diffs[k][0] else diffs[k][n - 1 - k]
+            res = res.add(termCalc.multiply(deltaY, mc).divide(factorial(k, mc), mc))
+        }
+        res
+    }
+    val result = evaluate(x)
+    return InterpolationResult(type = InterpolationType.NEWTON, x = x, y = result)
+}

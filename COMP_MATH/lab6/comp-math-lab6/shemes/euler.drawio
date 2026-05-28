@@ -1,0 +1,141 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/26.0.16 Chrome/132.0.6834.196 Electron/34.2.0 Safari/537.36" version="26.0.16">
+  <diagram id="scheme-gen" name="EulerMethodServicePath">
+    <mxGraphModel dx="1750" dy="1035" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="start_node" value="НАЧАЛО" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="330" y="100" width="140" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="input_data" value="x0, y0, xn, h, eps, f, exactSolution" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" vertex="1" parent="1">
+          <mxGeometry x="245" y="220" width="310" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="check_valid" value="xn &gt; x0 И h &gt; 0" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="293.25" y="340" width="213.5" height="72" as="geometry" />
+        </mxCell>
+        <mxCell id="err_invalid" value="Exception: Invalid input data" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" vertex="1" parent="1">
+          <mxGeometry x="50" y="472" width="257.5" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="init_vars" value="n = floor((xn - x0) / h)&lt;br&gt;xs&lt;sub&gt;0&lt;/sub&gt; = x0&lt;br&gt;ys&lt;sub&gt;0&lt;/sub&gt; = y0&lt;br&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="438.75" y="472" width="220" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="loop_euler" value="i = 0, n - 1" style="shape=hexagon;perimeter=hexagonPerimeter2;whiteSpace=wrap;html=1;fixedSize=1;" vertex="1" parent="1">
+          <mxGeometry x="316" y="642" width="168" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="calc_euler" value="xs&lt;sub&gt;i+1&lt;/sub&gt; = x0 + (i + 1) * h&lt;br&gt;ys&lt;sub&gt;i+1&lt;/sub&gt; = ys&lt;sub&gt;i&lt;/sub&gt; + h * f(xs&lt;sub&gt;i&lt;/sub&gt;, ys&lt;sub&gt;i&lt;/sub&gt;)&lt;br&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="253.75" y="762" width="293.75" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="call_euler_half" value="solHalf = solve(f, x0, y0, xn, h / 2, eps)" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" vertex="1" parent="1">
+          <mxGeometry x="222.5" y="912" width="355" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="calc_runge" value="yH = ys&lt;sub&gt;n&lt;/sub&gt;&lt;br&gt;yHalf = solHalfYs&lt;sub&gt;last&lt;/sub&gt;&lt;br&gt;rungeError = abs(yH - yHalf) / 1.0&lt;br&gt;maxExactError = 0.0&lt;br&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="252.5" y="1032" width="295" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="loop_errors" value="i = 0, n" style="shape=hexagon;perimeter=hexagonPerimeter2;whiteSpace=wrap;html=1;fixedSize=1;" vertex="1" parent="1">
+          <mxGeometry x="316" y="1222" width="168" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="calc_local_err" value="yExact = exactSolution(xs&lt;sub&gt;i&lt;/sub&gt;)&lt;br&gt;localError = abs(ys&lt;sub&gt;i&lt;/sub&gt; - yExact)&lt;br&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="256.25" y="1342" width="287.5" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="check_max_err" value="localError &gt; maxExactError" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="235.5" y="1492" width="329" height="72" as="geometry" />
+        </mxCell>
+        <mxCell id="update_max_err" value="maxExactError = localError" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="282.5" y="1624" width="235" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="out_result" value="xs, ys, rungeError, maxExactError, table" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" vertex="1" parent="1">
+          <mxGeometry x="230" y="1744" width="340" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="end_node" value="КОНЕЦ" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="330" y="1864" width="140" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="edge_0" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;exitX=0.5;exitY=1;" parent="1" source="start_node" target="input_data" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge_1" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;exitX=0.5;exitY=1;" parent="1" source="input_data" target="check_valid" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge_2" value="Нет" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;exitX=0.5;exitY=1;" parent="1" source="check_valid" target="err_invalid" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge_3" value="Да" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;exitX=0.5;exitY=1;" parent="1" source="check_valid" target="init_vars" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge_4" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;exitX=0.5;exitY=1;" parent="1" source="init_vars" target="loop_euler" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge_5" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;exitX=0.5;exitY=1;" parent="1" source="loop_euler" target="calc_euler" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge_6" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;exitX=1;exitY=0.5;" parent="1" source="calc_euler" target="loop_euler" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="718.75" y="807" />
+              <mxPoint x="718.75" y="672" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge_7" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="loop_euler" target="call_euler_half">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="316" y="670" />
+              <mxPoint x="211" y="670" />
+              <mxPoint x="211" y="882" />
+              <mxPoint x="400" y="882" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge_8" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;exitX=0.5;exitY=1;" edge="1" parent="1" source="call_euler_half" target="calc_runge">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge_9" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;exitX=0.5;exitY=1;" edge="1" parent="1" source="calc_runge" target="loop_errors">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge_10" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;exitX=0.5;exitY=1;" edge="1" parent="1" source="loop_errors" target="calc_local_err">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge_11" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;exitX=0.5;exitY=1;" edge="1" parent="1" source="calc_local_err" target="check_max_err">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge_12" value="Да" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;exitX=0.5;exitY=1;" edge="1" parent="1" source="check_max_err" target="update_max_err">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge_13" value="Нет" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;exitX=1;exitY=0.5;" edge="1" parent="1" source="check_max_err" target="loop_errors">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="690" y="1528" />
+              <mxPoint x="690" y="1252" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge_14" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;exitX=1;exitY=0.5;" edge="1" parent="1" source="update_max_err" target="loop_errors">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="718.75" y="1654" />
+              <mxPoint x="718.75" y="1252" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge_15" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;exitX=0.5;exitY=1;" edge="1" parent="1" source="loop_errors" target="out_result">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="220.5" y="1312" />
+              <mxPoint x="220.5" y="1714" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge_16" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;exitX=0.5;exitY=1;" edge="1" parent="1" source="err_invalid" target="end_node">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="179" y="1834" />
+              <mxPoint x="400" y="1834" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge_17" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;exitX=0.5;exitY=1;" edge="1" parent="1" source="out_result" target="end_node">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
