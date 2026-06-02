@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DiffGenerationConfig">
+    <option name="sourceDbValue" value="f7950564-5b8e-40d4-89ce-707ec64998ce" />
+    <option name="sourceDiffType" value="DB" />
+    <option name="sourceModelValue" value="backend:lab4" />
+    <option name="targetDbValue" value="f7950564-5b8e-40d4-89ce-707ec64998ce" />
+  </component>
+</project>

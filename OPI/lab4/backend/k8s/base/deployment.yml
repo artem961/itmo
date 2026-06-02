@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: lab4-backend
+  namespace: lab4
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: lab4-backend
+  template:
+    metadata:
+      labels:
+        app: lab4-backend
+    spec:
+      containers:
+        - name: lab4-backend-container
+          image: artem5252/lab4-backend:latest
+          ports:
+            - containerPort: 8080

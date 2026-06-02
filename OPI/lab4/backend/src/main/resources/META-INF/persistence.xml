@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.2"
+             xmlns="http://xmlns.jcp.org/xml/ns/persistence">
+
+    <persistence-unit name="lab4" transaction-type="JTA">
+        <jta-data-source>java:/jboss/datasources/MyPostgresDS</jta-data-source>
+        <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+
+        <class>lab4.backend.data.entities.ResultEntity</class>
+        <class>lab4.backend.data.entities.UserEntity</class>
+        <class>lab4.backend.data.entities.TokenEntity</class>
+        <class>lab4.backend.data.entities.TableMetaEntity</class>
+
+        <properties>
+            <property name="jakarta.persistence.schema-generation.database.action" value="drop-and-create"/>
+            <property name="eclipselink.weaving" value="false"/>
+            <property name="eclipselink.weaving.internal" value="false"/>
+            <property name="eclipselink.weaving.lazy" value="false"/>
+            <property name="eclipselink.weaving.changetracking" value="false"/>
+
+            <property name="eclipselink.logging.level" value="INFO"/>
+            <property name="eclipselink.target-server" value="JBoss"/>
+        </properties>
+    </persistence-unit>
+</persistence>

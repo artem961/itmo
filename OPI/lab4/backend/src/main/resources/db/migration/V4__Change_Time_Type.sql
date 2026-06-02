@@ -1,0 +1,3 @@
+ALTER TABLE results
+    ALTER COLUMN currenttime TYPE TIMESTAMP WITH TIME ZONE
+        USING currenttime AT TIME ZONE 'UTC';

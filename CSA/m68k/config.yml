@@ -1,0 +1,15 @@
+name: "rle compress"
+limit: 1000
+memory_size: 0x1000
+memory_mapped_io:
+  0x80: ['a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 10]
+  0x84: []
+reports:
+  - name: Check results
+    slice: last
+    view: |
+      symio[0x80]: {io:0x80:sym}
+      symio[0x84]: {io:0x84:sym}
+    assert: |
+      symio[0x80]: "" >>> ""
+      symio[0x84]: "" >>> "9a2a"
