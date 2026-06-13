@@ -1,0 +1,17 @@
+name: "assert fnv32_1_hash('abc\\0') == 1134309195"
+limit: 1000
+memory_size: 0x1000
+memory_mapped_io:
+  0x80: ["a", "b", "c", 0]
+  0x84: []
+reports:
+  - name: Check results
+    slice: last
+    view: |
+      numio[0x80]: {io:0x80:dec}
+      numio[0x84]: {io:0x84:dec}
+      symio[0x80]: {io:0x80:sym}
+    assert: |
+      numio[0x80]: [] >>> []
+      numio[0x84]: [] >>> [1134309195]
+      symio[0x80]: "" >>> ""
